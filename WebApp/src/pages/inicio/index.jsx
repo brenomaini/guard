@@ -1,4 +1,21 @@
+import React from "react";
+import DashboardGridLineBlue from "../../components/dashbordGridLineBlue";
+import DashboardGridLineRed from "../../components/dashbordGridLineRed";
+
 export default function InicioDashboard() {
+  const mockLineBlue = [
+    { text: "ITENS EM ESTOQUE", value: 155 },
+    { text: "TIPO DE ITENS", value: 35 },
+    { text: "SAÍDAS (30 Dias)", value: 65 },
+    { text: "ENTRADAS (30 Dias)", value: 35 },
+  ];
+  const mockLineRed = [
+    { text: "KIT MOUSE E TECLADO DELL", value: 5 },
+    { text: "MONITOR 24", value: 3 },
+    { text: "HEADSET COISÉR", value: 5 },
+    { text: "HEBECAM", value: 2 },
+  ];
+
   return (
     <div className="flex flex-col justify-center items-center bg-black bg-opacity-10 h-full m-4">
       <div className="grid gap-4 grid-cols-2 grid-rows-1 row-auto h-16 w-full  place-items-center  p-2">
@@ -11,56 +28,16 @@ export default function InicioDashboard() {
       </div>
       <div className="grid gap-4 grid-cols-2 grid-rows-3 w-full    place-items-center p-2">
         <div className="inline-grid gap-2 grid-cols-2 h-full grid-flow-row w-full place-items-center">
-          <div className="w-full h-16  flex items-center justify-center bg-gran-blue bg-opacity-70 text-white text-center">
-            ITENS EM ESTOQUE
-          </div>
-          <div className="w-full h-16 flex items-center justify-center text-center bg-white">
-            132
-          </div>
-          <div className="w-full h-16 flex items-center justify-center bg-gran-blue bg-opacity-70 text-white text-center">
-            TIPOS DE ITENS
-          </div>
-          <div className="w-full h-16 flex items-center justify-center text-center bg-white">
-            30
-          </div>
-          <div className="w-full h-16 flex items-center justify-center bg-gran-blue bg-opacity-70 text-white text-center">
-            SAÍDAS (30 Dias)
-          </div>
-          <div className="w-full h-16 flex items-center justify-center text-center bg-white">
-            60
-          </div>
-          <div className="w-full h-16 flex items-center justify-center bg-gran-blue bg-opacity-70 text-white text-center">
-            ENTRADAS (30 Dias)
-          </div>
-          <div className="w-full h-16 flex items-center justify-center text-center bg-white">
-            45
-          </div>
+          {mockLineBlue.map((item) => {
+            return (
+              <DashboardGridLineBlue text={item.text} value={item.value} />
+            );
+          })}
         </div>
-        <div class="inline-grid gap-2 grid-cols-2 h-full grid-flow-row w-full place-items-center ">
-          <div className="w-full h-16  bg-gran-red bg-opacity-70 text-white text-center flex items-center justify-center">
-            KIT MOUSE E TECLADO DELL
-          </div>
-          <div className="w-full h-16 text-center flex items-center justify-center bg-white">
-            5
-          </div>
-          <div className="w-full h-16 bg-gran-red bg-opacity-70 text-white text-center flex items-center justify-center">
-            MONITOR 24"
-          </div>
-          <div className="w-full h-16 flex items-center justify-center text-center bg-white">
-            3
-          </div>
-          <div className="w-full h-16 bg-gran-red bg-opacity-70 text-white text-center flex items-center justify-center">
-            HEADSET COISÉR
-          </div>
-          <div className="w-full h-16 flex items-center justify-center text-center bg-white">
-            5
-          </div>
-          <div className="w-full h-16 bg-gran-red bg-opacity-70 text-white text-center flex items-center justify-center">
-            HEBECAM
-          </div>
-          <div className="w-full h-16 flex items-center justify-center text-center bg-white">
-            5
-          </div>
+        <div className="inline-grid gap-2 grid-cols-2 h-full grid-flow-row w-full place-items-center ">
+          {mockLineRed.map((item) => {
+            return <DashboardGridLineRed text={item.text} value={item.value} />;
+          })}
         </div>
       </div>
     </div>

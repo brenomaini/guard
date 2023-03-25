@@ -11,7 +11,7 @@ const Cadastro = [
   {
     name: "Item",
     description: "Cadastre os itens recém comprados",
-    href: "#",
+    href: "/cadastroItem",
     icon: DocumentPlusIcon,
   },
   {
