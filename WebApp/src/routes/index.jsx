@@ -1,9 +1,13 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Navbar from "../components/navbar";
 import BuscaItem from "../pages/buscaItem";
+import CadastroCategoria from "../pages/cadastros/cadastroCategoria";
 import Cadastroitem from "../pages/cadastros/cadastroItem";
+import CadastroMarca from "../pages/cadastros/cadastroMarca";
+import Entradas from "../pages/entradas";
 import Inicio from "../pages/inicio";
 import ItensEstoque from "../pages/itens-estoque";
+import Saidas from "../pages/saidas";
 import "../styles/global.css";
 
 export default function BlogRoutes() {
@@ -13,8 +17,12 @@ export default function BlogRoutes() {
       <Routes>
         <Route path="/" element={<Inicio />} />
         <Route path="/buscaItem" element={<BuscaItem />} />
-        <Route path="/itensEstoque" element={<ItensEstoque />} />
+        <Route path="/controleEstoque" element={<ItensEstoque />} />
         <Route path="/cadastroItem" element={<Cadastroitem />} />
+        <Route path="/cadastroCategoria" element={<CadastroCategoria />} />
+        <Route path="/cadastroMarca" element={<CadastroMarca />} />
+        <Route path="/entradas" element={<Entradas />} />
+        <Route path="/saidas" element={<Saidas />} />
       </Routes>
     </BrowserRouter>
   );

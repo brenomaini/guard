@@ -9,7 +9,7 @@ export default function InputExemple({ name }) {
       </label>
       <input
         id={name}
-        placeholder="Type here"
+        placeholder="Digite aqui"
         type="text"
         className="text-black border rounded-md w-80 max-sm:text-base max-sm:w-full"
       ></input>

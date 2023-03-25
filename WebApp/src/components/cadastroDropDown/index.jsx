@@ -10,20 +10,20 @@ import { Fragment } from "react";
 const Cadastro = [
   {
     name: "Item",
-    description: "Cadastre os itens recém comprados",
+    description: "Cadastre novos itens",
     href: "/cadastroItem",
     icon: DocumentPlusIcon,
   },
   {
     name: "Categoria",
     description: "Cadastre novas categorias de itens",
-    href: "#",
+    href: "/cadastroCategoria",
     icon: SwatchIcon,
   },
   {
     name: "Marca",
     description: "Cadastre novas marcas de equipamentos",
-    href: "#",
+    href: "/cadastroMarca",
     icon: TagIcon,
   },
 ];
@@ -32,7 +32,7 @@ export default function CadastroDropDown() {
   return (
     <Popover className="relative">
       <Popover.Button className="inline-flex items-center gap-x-1 text-gran-blue text-3xl hover:opacity-70 max-sm:text-xl">
-        <span>Cadastro</span>
+        <span>CADASTRO</span>
         <ChevronDownIcon className="h-8 w-6" aria-hidden="true" />
       </Popover.Button>
 

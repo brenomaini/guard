@@ -13,32 +13,32 @@ export default function Navbar() {
           className="text-gran-blue text-3xl hover:opacity-70 max-sm:text-xl"
           to="/"
         >
-          Início
+          INÍCIO
+        </Link>
+        <Link
+          className="text-gran-blue text-3xl hover:opacity-70 max-sm:text-xl"
+          to="/controleEstoque"
+        >
+          CONTROLE DE ESTOQUE
+        </Link>
+        <Link
+          className="text-gran-blue text-3xl hover:opacity-70 max-sm:text-xl"
+          to="/buscaItem"
+        >
+          ANÁLISE POR ITEM
         </Link>
         <Cadastro />
         <Link
           className="text-gran-blue text-3xl hover:opacity-70 max-sm:text-xl"
-          to="/buscaItem"
+          to="/entradas"
         >
-          Controle de estoque
+          ENTRADAS
         </Link>
         <Link
-          className="text-gran-blue text-3xl hover:opacity-70 max-sm:text-xl"
-          to="/buscaItem"
+          className="text-gran-blue text-3xl hover:opacity-70 max-sm:text-xl mr-8"
+          to="/saidas"
         >
-          Análise por Item
-        </Link>
-        <Link
-          className="text-gran-blue text-3xl hover:opacity-70 max-sm:text-xl"
-          to="/buscaItem"
-        >
-          Entradas
-        </Link>
-        <Link
-          className="text-gran-blue text-3xl hover:opacity-70 max-sm:text-xl mr-2"
-          to="/buscaItem"
-        >
-          Saídas
+          SAÍDAS
         </Link>
       </nav>
     </>
