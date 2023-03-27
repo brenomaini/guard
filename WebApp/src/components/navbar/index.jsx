@@ -1,3 +1,4 @@
+import { UserIcon } from "@heroicons/react/24/outline";
 import { Link } from "react-router-dom";
 import Cadastro from "../cadastroDropDown";
 
@@ -13,32 +14,35 @@ export default function Navbar() {
           className="text-gran-blue text-3xl hover:opacity-70 max-sm:text-xl"
           to="/"
         >
-          INÍCIO
+          Início
         </Link>
         <Link
           className="text-gran-blue text-3xl hover:opacity-70 max-sm:text-xl"
           to="/controleEstoque"
         >
-          CONTROLE DE ESTOQUE
-        </Link>
-        <Link
-          className="text-gran-blue text-3xl hover:opacity-70 max-sm:text-xl"
-          to="/buscaItem"
-        >
-          ANÁLISE POR ITEM
+          Controle de estoque
         </Link>
         <Cadastro />
         <Link
           className="text-gran-blue text-3xl hover:opacity-70 max-sm:text-xl"
           to="/entradas"
         >
-          ENTRADAS
+          Entradas
         </Link>
         <Link
           className="text-gran-blue text-3xl hover:opacity-70 max-sm:text-xl mr-8"
           to="/saidas"
         >
-          SAÍDAS
+          Saídas
+        </Link>
+        <Link
+          className="text-gran-blue text-3xl hover:opacity-70 max-sm:text-xl mr-8"
+          to="/saidas"
+        >
+          <UserIcon
+            className="h-12 w-12 font-bold text-gran-blue"
+            aria-hidden="true"
+          />
         </Link>
       </nav>
     </>

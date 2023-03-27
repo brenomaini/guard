@@ -4,8 +4,10 @@ import {
   DocumentPlusIcon,
   SwatchIcon,
   TagIcon,
+  UserIcon,
 } from "@heroicons/react/24/outline";
 import { Fragment } from "react";
+const logado = false;
 
 const Cadastro = [
   {
@@ -26,13 +28,19 @@ const Cadastro = [
     href: "/cadastroMarca",
     icon: TagIcon,
   },
+  {
+    name: "Agente",
+    description: "Cadastre novos agentes no sistema",
+    href: "/cadastroAgente",
+    icon: UserIcon,
+  },
 ];
 
 export default function CadastroDropDown() {
   return (
     <Popover className="relative">
       <Popover.Button className="inline-flex items-center gap-x-1 text-gran-blue text-3xl hover:opacity-70 max-sm:text-xl">
-        <span>CADASTRO</span>
+        <span>Cadastro</span>
         <ChevronDownIcon className="h-8 w-6" aria-hidden="true" />
       </Popover.Button>
 
