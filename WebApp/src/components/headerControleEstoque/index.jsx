@@ -23,9 +23,7 @@ export default function HeaderControle() {
       <div className="text-white font-semibold text-xl bg-gran-blue flex justify-center items-center p-2 rounded-md max-sm:text-base w-full">
         Retirado
       </div>
-      <div className="text-white font-semibold text-xl bg-gran-blue flex justify-center items-center p-2 rounded-md max-sm:text-base w-full">
-        Patrimonio
-      </div>
+
       <div className="text-white font-semibold text-xl bg-gran-blue flex justify-center items-center p-2 rounded-md max-sm:text-base w-full">
         Localização
       </div>

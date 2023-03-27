@@ -1,20 +1,12 @@
-import {
-  MagnifyingGlassIcon,
-  MinusCircleIcon,
-} from "@heroicons/react/24/outline";
+import Modal from "../modalRetirarItem";
+import ModalItensRetirados from "../modalVerRetirados";
 
 export default function LinhaControle({ item }) {
   return (
     <>
       <div className="flex gap-4">
-        <MinusCircleIcon
-          className="h-6 w-6 text-gran-blue"
-          aria-hidden="true"
-        />
-        <MagnifyingGlassIcon
-          className="h-6 w-6 text-gran-blue font-extrabold"
-          aria-hidden="true"
-        />
+        <Modal item={item} />
+        <ModalItensRetirados />
       </div>
       <div className="text-xl text-black flex justify-center items-center p-2 rounded-md max-sm:text-base w-full">
         {item.nota}
@@ -47,9 +39,7 @@ export default function LinhaControle({ item }) {
       <div className="text-xl flex justify-center items-center p-2 rounded-md max-sm:text-base w-full">
         {item.retirado}
       </div>
-      <div className="text-xl flex justify-center items-center p-2 rounded-md max-sm:text-base w-full">
-        {item.patrimonio}
-      </div>
+
       <div className="text-xl flex justify-center items-center p-2 rounded-md max-sm:text-base w-full">
         {item.localizacao}
       </div>

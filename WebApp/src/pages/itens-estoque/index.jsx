@@ -12,7 +12,7 @@ export default function ItensEstoque() {
       status: "Aguardando fornecedor",
       quantidade: 15,
       retirado: 5,
-      patrimonio: 102030,
+      patrimonio: [102030, 1020230, 1231231],
       localizacao: "A2",
     },
     {
@@ -23,7 +23,7 @@ export default function ItensEstoque() {
       status: "Em falta",
       quantidade: 5,
       retirado: 5,
-      patrimonio: 102031,
+      patrimonio: [102031, 1020230, 1231231],
       localizacao: "A2",
     },
     {
@@ -34,7 +34,7 @@ export default function ItensEstoque() {
       status: "Disponível",
       quantidade: 7,
       retirado: 2,
-      patrimonio: 102032,
+      patrimonio: [102032, 1020230, 1231231],
       localizacao: "B2",
     },
   ];
@@ -42,10 +42,10 @@ export default function ItensEstoque() {
     <>
       <h1>Pagina Itens Estoque</h1>
       <h2>Pesquisa AQUI</h2>
-      <div className="grid grid-cols-10  gap-2 row-auto h-16 w-full  place-items-center  p-4">
+      <div className="grid grid-cols-9  gap-2 row-auto h-16 w-full  place-items-center  p-4">
         <HeaderControle />
         {itemsEstoque.map((item) => {
-          return <LinhaControle item={item} key={item.patrimonio} />;
+          return <LinhaControle item={item} key={item.patrimonio[0]} />;
         })}
       </div>
     </>

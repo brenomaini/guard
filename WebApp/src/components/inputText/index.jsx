@@ -1,4 +1,4 @@
-export default function InputExemple({ name }) {
+export default function InputExemple({ name, onChange, value }) {
   return (
     <div>
       <label
@@ -12,6 +12,8 @@ export default function InputExemple({ name }) {
         placeholder="Digite aqui"
         type="text"
         className="text-black border rounded-md w-80 max-sm:text-base max-sm:w-full"
+        value={value}
+        onChange={onChange}
       ></input>
     </div>
   );

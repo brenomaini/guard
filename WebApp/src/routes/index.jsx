@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Navbar from "../components/navbar";
-import BuscaItem from "../pages/buscaItem";
+
 import CadastroCategoria from "../pages/cadastros/cadastroCategoria";
 import Cadastroitem from "../pages/cadastros/cadastroItem";
 import CadastroMarca from "../pages/cadastros/cadastroMarca";
@@ -16,7 +16,6 @@ export default function BlogRoutes() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Inicio />} />
-        <Route path="/buscaItem" element={<BuscaItem />} />
         <Route path="/controleEstoque" element={<ItensEstoque />} />
         <Route path="/cadastroItem" element={<Cadastroitem />} />
         <Route path="/cadastroCategoria" element={<CadastroCategoria />} />
