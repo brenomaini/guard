@@ -27,7 +27,7 @@ class StatusController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Status $status)
+    public function show($id)
     {
         return __FUNCTION__;
     }
@@ -35,7 +35,7 @@ class StatusController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateStatusRequest $request, Status $status)
+    public function update(UpdateStatusRequest $request, $id)
     {
         return __FUNCTION__;
     }
@@ -43,7 +43,7 @@ class StatusController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Status $status)
+    public function destroy($id)
     {
         return __FUNCTION__;
     }

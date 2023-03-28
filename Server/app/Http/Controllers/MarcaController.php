@@ -35,23 +35,16 @@ class MarcaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Marca $marca)
+    public function show($id)
     {
         return __FUNCTION__;
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Marca $marca)
-    {
-        return __FUNCTION__;
-    }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateMarcaRequest $request, Marca $marca)
+    public function update(UpdateMarcaRequest $request, $id)
     {
         return __FUNCTION__;
     }
@@ -59,7 +52,7 @@ class MarcaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Marca $marca)
+    public function destroy($id)
     {
         return __FUNCTION__;
     }

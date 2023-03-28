@@ -27,7 +27,7 @@ class CartegoriaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Cartegoria $cartegoria)
+    public function show($id)
     {
         return __FUNCTION__;
     }
@@ -35,7 +35,7 @@ class CartegoriaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateCartegoriaRequest $request, Cartegoria $cartegoria)
+    public function update(UpdateCartegoriaRequest $request, $id)
     {
         return __FUNCTION__;
     }
@@ -43,7 +43,7 @@ class CartegoriaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Cartegoria $cartegoria)
+    public function destroy($id)
     {
         return __FUNCTION__;
     }
