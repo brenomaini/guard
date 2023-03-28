@@ -2,6 +2,7 @@ import { useState } from "react";
 import HeaderControle from "../../components/headerControleEstoque";
 import InputExemple from "../../components/inputText";
 import LinhaControle from "../../components/linhaControleDeEstoque";
+import ModalInserirItem from "../../components/modalInserirNoEstoque";
 
 export default function ItensEstoque() {
   const itemsEstoque = [
@@ -62,13 +63,12 @@ export default function ItensEstoque() {
         selectText = selectText + `${item} = ${filter[item]} AND `;
       }
     }
-    console.log(selectText);
   }
 
   return (
     <>
-      <div className="flex flex-col items-center gap-2 mt-4">
-        <div className="flex h-28 gap-8">
+      <div className="flex flex-col items-center mt-4">
+        <div className="flex h-16  gap-8">
           <InputExemple
             name={"Setor/CC"}
             onChange={handleChange}
@@ -109,13 +109,16 @@ export default function ItensEstoque() {
           />
         </div>
         <button
-          className="mb-8 bg-gran-red bg-opacity-70 hover:scale-105 text-white font-semibold py-1 px-2 rounded "
+          className="mb-8 bg-gran-red bg-opacity-70 hover:scale-105 text-white font-semibold py-1 px-2 rounded hover:shadow-xl   "
           onClick={filtrarEstoque}
         >
           Pesquisar
         </button>
       </div>
-      <div className="table  gap-2 row-auto h-16 w-full  place-items-center  p-4 ">
+
+      <ModalInserirItem />
+
+      <div className="table  gap-2 row-auto h-16 w-full  place-items-center  p-4 border-collapse border-b ">
         <HeaderControle />
         {itemsEstoque.map((item) => {
           return <LinhaControle item={item} key={item.patrimonio[0]} />;
