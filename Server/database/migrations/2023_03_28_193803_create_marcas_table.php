@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('status_controllers', function (Blueprint $table) {
+        Schema::create('marcas', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->integer('status')->default(1);
+            $table->string('nome', 50)->unique();
         });
     }
 
@@ -23,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('status_controllers');
+        Schema::dropIfExists('marcas');
     }
 };

@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreCategoriaControllerRequest;
-use App\Http\Requests\UpdateCategoriaControllerRequest;
-use App\Models\CategoriaController;
+use App\Http\Requests\StoreMarcaRequest;
+use App\Http\Requests\UpdateMarcaRequest;
+use App\Models\Marca;
 
-class CategoriaControllerController extends Controller
+class MarcaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -27,7 +27,7 @@ class CategoriaControllerController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreCategoriaControllerRequest $request)
+    public function store(StoreMarcaRequest $request)
     {
         //
     }
@@ -35,7 +35,7 @@ class CategoriaControllerController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(CategoriaController $categoriaController)
+    public function show(Marca $marca)
     {
         //
     }
@@ -43,7 +43,7 @@ class CategoriaControllerController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(CategoriaController $categoriaController)
+    public function edit(Marca $marca)
     {
         //
     }
@@ -51,7 +51,7 @@ class CategoriaControllerController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateCategoriaControllerRequest $request, CategoriaController $categoriaController)
+    public function update(UpdateMarcaRequest $request, Marca $marca)
     {
         //
     }
@@ -59,7 +59,7 @@ class CategoriaControllerController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(CategoriaController $categoriaController)
+    public function destroy(Marca $marca)
     {
         //
     }

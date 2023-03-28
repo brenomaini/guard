@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Models\MarcaController;
+use App\Models\Cartegoria;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 
-class MarcaControllerPolicy
+class CartegoriaPolicy
 {
     /**
      * Determine whether the user can view any models.
@@ -19,7 +19,7 @@ class MarcaControllerPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, MarcaController $marcaController): bool
+    public function view(User $user, Cartegoria $cartegoria): bool
     {
         //
     }
@@ -35,7 +35,7 @@ class MarcaControllerPolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, MarcaController $marcaController): bool
+    public function update(User $user, Cartegoria $cartegoria): bool
     {
         //
     }
@@ -43,7 +43,7 @@ class MarcaControllerPolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, MarcaController $marcaController): bool
+    public function delete(User $user, Cartegoria $cartegoria): bool
     {
         //
     }
@@ -51,7 +51,7 @@ class MarcaControllerPolicy
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, MarcaController $marcaController): bool
+    public function restore(User $user, Cartegoria $cartegoria): bool
     {
         //
     }
@@ -59,7 +59,7 @@ class MarcaControllerPolicy
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, MarcaController $marcaController): bool
+    public function forceDelete(User $user, Cartegoria $cartegoria): bool
     {
         //
     }

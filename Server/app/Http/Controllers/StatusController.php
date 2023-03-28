@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreStatusControllerRequest;
-use App\Http\Requests\UpdateStatusControllerRequest;
-use App\Models\StatusController;
+use App\Http\Requests\StoreStatusRequest;
+use App\Http\Requests\UpdateStatusRequest;
+use App\Models\Status;
 
-class StatusControllerController extends Controller
+class StatusController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -27,7 +27,7 @@ class StatusControllerController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreStatusControllerRequest $request)
+    public function store(StoreStatusRequest $request)
     {
         //
     }
@@ -35,7 +35,7 @@ class StatusControllerController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(StatusController $statusController)
+    public function show(Status $status)
     {
         //
     }
@@ -43,7 +43,7 @@ class StatusControllerController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(StatusController $statusController)
+    public function edit(Status $status)
     {
         //
     }
@@ -51,7 +51,7 @@ class StatusControllerController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateStatusControllerRequest $request, StatusController $statusController)
+    public function update(UpdateStatusRequest $request, Status $status)
     {
         //
     }
@@ -59,7 +59,7 @@ class StatusControllerController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(StatusController $statusController)
+    public function destroy(Status $status)
     {
         //
     }
