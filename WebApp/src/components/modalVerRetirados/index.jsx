@@ -17,7 +17,7 @@ export default function ModalItensRetirados({ item }) {
       agente: "Pinga",
     },
     {
-      nota: "4444211",
+      nota: "1234321",
       item: "NOTEBOOK G15",
       setor: "Sucesso do suporte",
       recebedor: "Pai de todos",
@@ -27,7 +27,7 @@ export default function ModalItensRetirados({ item }) {
       agente: "Melke",
     },
     {
-      nota: "15555",
+      nota: "1234321",
       item: "NOTEBOOK G15",
       setor: "Sucesso do suporte",
       recebedor: "Marcorno",

@@ -1,5 +1,6 @@
+import { useState } from "react";
 import HeaderControle from "../../components/headerControleEstoque";
-
+import InputExemple from "../../components/inputText";
 import LinhaControle from "../../components/linhaControleDeEstoque";
 
 export default function ItensEstoque() {
@@ -38,11 +39,83 @@ export default function ItensEstoque() {
       localizacao: "B2",
     },
   ];
+  const [filter, setFilter] = useState({
+    setor: "",
+    solicitante: "",
+    item: "",
+    nf: "",
+    patrimonio: "",
+    status: "",
+  });
+
+  function handleChange(event) {
+    const value = event.target.value;
+    setFilter({
+      ...filter,
+      [event.target.name]: value,
+    });
+  }
+  function filtrarEstoque() {
+    let selectText = `SELECT * FROM ItensEstoque WHERE `;
+    for (const item in filter) {
+      if (filter[item] != "") {
+        selectText = selectText + `${item} = ${filter[item]} AND `;
+      }
+    }
+    console.log(selectText);
+  }
+
   return (
     <>
-      <h1>Pagina Itens Estoque</h1>
-      <h2>Pesquisa AQUI</h2>
-      <div className="grid grid-cols-9  gap-2 row-auto h-16 w-full  place-items-center  p-4">
+      <div className="flex flex-col items-center gap-2 mt-4">
+        <div className="flex h-28 gap-8">
+          <InputExemple
+            name={"Setor/CC"}
+            onChange={handleChange}
+            value={filter.setor}
+            htmlName={"setor"}
+          />
+          <InputExemple
+            name={"Solicitante"}
+            onChange={handleChange}
+            value={filter.solicitante}
+            htmlName={"solicitante"}
+          />
+          <InputExemple
+            name={"Ítem"}
+            onChange={handleChange}
+            value={filter.item}
+            htmlName={"item"}
+          />
+        </div>
+        <div className="flex h-28 gap-8">
+          <InputExemple
+            name={"Nota"}
+            onChange={handleChange}
+            value={filter.nf}
+            htmlName={"nf"}
+          />
+          <InputExemple
+            name={"Patrimônio"}
+            onChange={handleChange}
+            value={filter.patrimonio}
+            htmlName={"patrimonio"}
+          />
+          <InputExemple
+            name={"Status"}
+            onChange={handleChange}
+            value={filter.status}
+            htmlName={"status"}
+          />
+        </div>
+        <button
+          className="mb-8 bg-gran-red bg-opacity-70 hover:scale-105 text-white font-semibold py-1 px-2 rounded "
+          onClick={filtrarEstoque}
+        >
+          Pesquisar
+        </button>
+      </div>
+      <div className="table  gap-2 row-auto h-16 w-full  place-items-center  p-4 ">
         <HeaderControle />
         {itemsEstoque.map((item) => {
           return <LinhaControle item={item} key={item.patrimonio[0]} />;

@@ -30,13 +30,23 @@ export default function InicioDashboard() {
         <div className="inline-grid gap-2 grid-cols-2 h-full grid-flow-row w-full place-items-center">
           {mockLineBlue.map((item) => {
             return (
-              <DashboardGridLineBlue text={item.text} value={item.value} />
+              <DashboardGridLineBlue
+                text={item.text}
+                value={item.value}
+                key={item.text}
+              />
             );
           })}
         </div>
         <div className="inline-grid gap-2 grid-cols-2 h-full grid-flow-row w-full place-items-center ">
           {mockLineRed.map((item) => {
-            return <DashboardGridLineRed text={item.text} value={item.value} />;
+            return (
+              <DashboardGridLineRed
+                text={item.text}
+                value={item.value}
+                key={item.text}
+              />
+            );
           })}
         </div>
       </div>
