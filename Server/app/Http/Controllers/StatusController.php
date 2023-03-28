@@ -13,15 +13,7 @@ class StatusController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        return __FUNCTION__;
     }
 
     /**
@@ -29,7 +21,7 @@ class StatusController extends Controller
      */
     public function store(StoreStatusRequest $request)
     {
-        //
+        return __FUNCTION__;
     }
 
     /**
@@ -37,15 +29,7 @@ class StatusController extends Controller
      */
     public function show(Status $status)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Status $status)
-    {
-        //
+        return __FUNCTION__;
     }
 
     /**
@@ -53,7 +37,7 @@ class StatusController extends Controller
      */
     public function update(UpdateStatusRequest $request, Status $status)
     {
-        //
+        return __FUNCTION__;
     }
 
     /**
@@ -61,6 +45,6 @@ class StatusController extends Controller
      */
     public function destroy(Status $status)
     {
-        //
+        return __FUNCTION__;
     }
 }

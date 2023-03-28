@@ -13,15 +13,7 @@ class CartegoriaController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        return __FUNCTION__;
     }
 
     /**
@@ -29,7 +21,7 @@ class CartegoriaController extends Controller
      */
     public function store(StoreCartegoriaRequest $request)
     {
-        //
+        return __FUNCTION__;
     }
 
     /**
@@ -37,15 +29,7 @@ class CartegoriaController extends Controller
      */
     public function show(Cartegoria $cartegoria)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Cartegoria $cartegoria)
-    {
-        //
+        return __FUNCTION__;
     }
 
     /**
@@ -53,7 +37,7 @@ class CartegoriaController extends Controller
      */
     public function update(UpdateCartegoriaRequest $request, Cartegoria $cartegoria)
     {
-        //
+        return __FUNCTION__;
     }
 
     /**
@@ -61,6 +45,6 @@ class CartegoriaController extends Controller
      */
     public function destroy(Cartegoria $cartegoria)
     {
-        //
+        return __FUNCTION__;
     }
 }

@@ -13,7 +13,7 @@ class MarcaController extends Controller
      */
     public function index()
     {
-        //
+        return __FUNCTION__;
     }
 
     /**
@@ -21,7 +21,7 @@ class MarcaController extends Controller
      */
     public function create()
     {
-        //
+        return __FUNCTION__;
     }
 
     /**
@@ -29,7 +29,7 @@ class MarcaController extends Controller
      */
     public function store(StoreMarcaRequest $request)
     {
-        //
+        return __FUNCTION__;
     }
 
     /**
@@ -37,7 +37,7 @@ class MarcaController extends Controller
      */
     public function show(Marca $marca)
     {
-        //
+        return __FUNCTION__;
     }
 
     /**
@@ -45,7 +45,7 @@ class MarcaController extends Controller
      */
     public function edit(Marca $marca)
     {
-        //
+        return __FUNCTION__;
     }
 
     /**
@@ -53,7 +53,7 @@ class MarcaController extends Controller
      */
     public function update(UpdateMarcaRequest $request, Marca $marca)
     {
-        //
+        return __FUNCTION__;
     }
 
     /**
@@ -61,6 +61,6 @@ class MarcaController extends Controller
      */
     public function destroy(Marca $marca)
     {
-        //
+        return __FUNCTION__;
     }
 }
