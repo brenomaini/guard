@@ -41,12 +41,12 @@ export default function ModalItensRetirados({ item }) {
   return (
     <>
       <button
-        className="  mr-1 mb-1 ease-linear transition-all duration-150"
+        className="  mr-1 mb-1 ease-linear transition-all duration-150 h-full rounded-md"
         type="button"
         onClick={() => setShowModal(true)}
       >
         <MagnifyingGlassIcon
-          className="h-6 w-6 text-gran-blue hover:scale-125"
+          className="h-6 w-6 text-gran-blue  hover:scale-125"
           aria-hidden="true"
         />
       </button>

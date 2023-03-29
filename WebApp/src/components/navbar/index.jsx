@@ -1,4 +1,4 @@
-import { UserIcon } from "@heroicons/react/24/outline";
+import { UserCircleIcon } from "@heroicons/react/24/outline";
 import { Link } from "react-router-dom";
 import Cadastro from "../cadastroDropDown";
 
@@ -39,7 +39,7 @@ export default function Navbar() {
           className="text-gran-blue text-3xl hover:opacity-70 max-sm:text-xl mr-8"
           to="/saidas"
         >
-          <UserIcon
+          <UserCircleIcon
             className="h-12 w-12 font-bold text-gran-blue"
             aria-hidden="true"
           />
