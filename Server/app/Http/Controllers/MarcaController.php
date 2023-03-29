@@ -5,23 +5,32 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreMarcaRequest;
 use App\Http\Requests\UpdateMarcaRequest;
 use App\Models\Marca;
+use App\Repositories\MarcaRepository;
+use Illuminate\Http\Request;
 
 class MarcaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    protected $marca;
+    
+    public function __construct(Marca $marca)
     {
-        return __FUNCTION__;
+        $this->marca = $marca;
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Display a listing of the resource.
      */
-    public function create()
+    public function index(Request $request)
     {
-        return __FUNCTION__;
+        $marcaRepository = new MarcaRepository($this->marca);
+
+        return response()->json($marcaRepository->getResultado(), 200);
+        // // condição caso exista o atributo atributos na url
+        // if ($request->has('all')) {
+        //     return response()->json($marcaRepository->getResultado(), 200);
+        // } else {
+        //     return response()->json($marcaRepository->getResultadoPaginado(5), 200);
+        // }
     }
 
     /**
@@ -29,7 +38,14 @@ class MarcaController extends Controller
      */
     public function store(StoreMarcaRequest $request)
     {
-        return __FUNCTION__;
+        // validando campos de acordo com as regras do model
+        $request->validate($this->marca->rules(), $this->marca->feedback());
+        // salvando dados de marca no banco
+        $marca = Marca::create([
+            'nome' => $request->nome
+        ]);
+        // retornando feedback de cadastro
+        return response()->json($marca, 201);
     }
 
     /**

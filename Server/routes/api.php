@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::Apiresource('categoria', 'App\Http\Controllers\CartegoriaController');
+Route::Apiresource('categoria', 'App\Http\Controllers\CategoriaController');
 Route::Apiresource('marca', 'App\Http\Controllers\MarcaController');
 Route::Apiresource('status', 'App\Http\Controllers\StatusController');
 

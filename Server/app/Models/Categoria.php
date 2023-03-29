@@ -5,21 +5,21 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Marca extends Model
+class Categoria extends Model
 {
-    use HasFactory;
-    protected $fillable = ['nome'];
+    use HasFactory; 
+    protected $fillable = ['categoria'];
 
     public function rules() {
         return [
-            'nome' => 'required|unique:marcas,nome,'.$this->id,
+            'categoria' => 'required|unique:categorias,categoria,'.$this->id,
         ];
     }
 
     public function feedback() {
         return [
             'required' => 'O campo :attribute é obrigatório',
-            'nome.unique' => 'Já existe uma marca com esse nome.'
+            'categoria.unique' => 'Já existe uma categoria com esse nome.'
         ];
     }
 }
