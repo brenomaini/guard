@@ -1,4 +1,4 @@
-import { UserCircleIcon } from "@heroicons/react/24/outline";
+import { UsersIcon } from "@heroicons/react/24/solid";
 import { Link } from "react-router-dom";
 import Cadastro from "../cadastroDropDown";
 
@@ -11,36 +11,36 @@ export default function Navbar() {
           className="w-48 ml-2"
         ></img>
         <Link
-          className="text-gran-blue text-3xl hover:opacity-70 max-sm:text-xl"
+          className="text-gran-blue text-3xl hover:opacity-70 max-sm:text-xl "
           to="/"
         >
           Início
         </Link>
         <Link
-          className="text-gran-blue text-3xl hover:opacity-70 max-sm:text-xl"
+          className="text-gran-blue text-3xl hover:opacity-70 max-sm:text-xl "
           to="/controleEstoque"
         >
           Controle de estoque
         </Link>
         <Cadastro />
         <Link
-          className="text-gran-blue text-3xl hover:opacity-70 max-sm:text-xl"
+          className="text-gran-blue text-3xl hover:opacity-70 max-sm:text-xl "
           to="/entradas"
         >
           Entradas
         </Link>
         <Link
-          className="text-gran-blue text-3xl hover:opacity-70 max-sm:text-xl mr-8"
+          className="text-gran-blue text-3xl hover:opacity-70 max-sm:text-xl mr-8 "
           to="/saidas"
         >
           Saídas
         </Link>
         <Link
-          className="text-gran-blue text-3xl hover:opacity-70 max-sm:text-xl mr-8"
-          to="/saidas"
+          className="text-gran-blue text-3xl hover:opacity-70 max-sm:text-xl mr-8 "
+          to="/login"
         >
-          <UserCircleIcon
-            className="h-12 w-12 font-bold text-gran-blue"
+          <UsersIcon
+            className="h-12 w-12 font-bold text-gran-blue "
             aria-hidden="true"
           />
         </Link>

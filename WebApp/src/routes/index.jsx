@@ -7,6 +7,7 @@ import CadastroMarca from "../pages/cadastros/cadastroMarca";
 import Entradas from "../pages/entradas";
 import Inicio from "../pages/inicio";
 import ItensEstoque from "../pages/itens-estoque";
+import Login from "../pages/login";
 import Saidas from "../pages/saidas";
 import "../styles/global.css";
 
@@ -22,6 +23,7 @@ export default function BlogRoutes() {
         <Route path="/cadastroMarca" element={<CadastroMarca />} />
         <Route path="/entradas" element={<Entradas />} />
         <Route path="/saidas" element={<Saidas />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </BrowserRouter>
   );

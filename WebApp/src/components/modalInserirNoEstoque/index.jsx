@@ -3,24 +3,27 @@ import React, { useState } from "react";
 import Swal from "sweetalert2";
 import Input from "../inputText";
 
-export default function ModalInserirItem() {
+export default function ModalInserirItem({ insereItemEstoque }) {
   const [showModalAddItem, setShowModalAddItem] = React.useState(false);
 
-  const [inputInserir, setinputInserir] = useState({
+  const [item, setitem] = useState({
     item: "Prenchido via select",
     setor: "",
     status: "",
     nf: "",
     imagemNf: "",
     quantidade: "",
+    disponivel: "",
     data: "Automatico via sistema",
     solicitante: "",
     agente: "Automatico Via sistema",
+    retirado: 0,
+    localizacao: "A2",
   });
   function handleChange(event) {
     const value = event.target.value;
-    setinputInserir({
-      ...inputInserir,
+    setitem({
+      ...item,
       [event.target.name]: value,
     });
   }
@@ -45,7 +48,9 @@ export default function ModalInserirItem() {
               <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                 {/*header*/}
                 <div className="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
-                  <h3 className="text-3xl font-semibold">Retirar item</h3>
+                  <h3 className="text-3xl font-semibold">
+                    Inserir item no estoque
+                  </h3>
                   <button
                     className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
                     onClick={() => setShowModalAddItem(false)}
@@ -58,46 +63,52 @@ export default function ModalInserirItem() {
                 {/*body*/}
                 <div className="relative p-6 flex-auto">
                   <p className="my-4 text-slate-500 text-lg leading-relaxed">
-                    Qual item você deseja retirar?
+                    Qual item você deseja inserir?
                   </p>
                   <div className="flex w-full justify-around flex-wrap h-96 items-center ">
                     <span>InputSelect ITEM "NotebookG15"</span>
                     <Input
-                      name={"Solicitante"}
+                      name={"Quem solicitou"}
                       onChange={handleChange}
-                      value={inputInserir.solicitante}
+                      value={item.solicitante}
                       htmlName={"solicitante"}
                     />
                     <Input
-                      name={"Setor destino"}
+                      name={"Qual o setor destino"}
                       onChange={handleChange}
-                      value={inputInserir.setor}
+                      value={item.setor}
                       htmlName={"setor"}
                     />
                     <Input
                       name={"Status"}
                       onChange={handleChange}
-                      value={inputInserir.status}
+                      value={item.status}
                       htmlName={"status"}
                     />
                     {/* CRIAR A LSITA */}
                     <Input
                       name={"Nota Fiscal"}
                       onChange={handleChange}
-                      value={inputInserir.nf}
+                      value={item.nf}
                       htmlName={"nf"}
                     />
                     <Input
                       name={"Imagem NF"}
                       onChange={handleChange}
-                      value={inputInserir.imagemNf}
+                      value={item.imagemNf}
                       htmlName={"imagemNf"}
                     />
                     <Input
                       name={"Quantidade"}
                       onChange={handleChange}
-                      value={inputInserir.quantidade}
+                      value={item.quantidade}
                       htmlName={"quantidade"}
+                    />
+                    <Input
+                      name={"Localização"}
+                      onChange={handleChange}
+                      value={item.localizacao}
+                      htmlName={"localizacao"}
                     />
                   </div>
                 </div>
@@ -115,12 +126,17 @@ export default function ModalInserirItem() {
                     type="button"
                     onClick={() => {
                       let estaVazio = true;
-                      for (const item in inputInserir) {
-                        if (inputInserir[item] == "") {
-                          estaVazio = `O campo ${item} não pode estar vazio`;
+                      for (const info in item) {
+                        if (
+                          item[info] == "" &&
+                          info != "retirado" &&
+                          info != "disponivel"
+                        ) {
+                          estaVazio = `O campo ${info} não pode estar vazio`;
                         }
                       }
                       if (estaVazio === true) {
+                        insereItemEstoque(item);
                         Swal.fire({
                           title: "Confirmado",
                           text: "Item cadastrado no estoque!",

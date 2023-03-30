@@ -5,41 +5,41 @@ import LinhaControle from "../../components/linhaControleDeEstoque";
 import ModalInserirItem from "../../components/modalInserirNoEstoque";
 
 export default function ItensEstoque() {
-  const itemsEstoque = [
+  const [itemsEstoque, setItemEstoque] = useState([
     {
-      nota: "1234321",
-      item: "NOTEBOOK G15",
-      setor: "Sucesso do suporte",
-      disponivel: 10,
-      status: "Aguardando fornecedor",
-      quantidade: 15,
-      retirado: 5,
-      patrimonio: [102030, 1020230, 1231231],
-      localizacao: "A2",
-    },
-    {
-      nota: "1234321",
+      nf: "1234321",
       item: "NOTEBOOK G15",
       setor: "Comercial",
       disponivel: 0,
       status: "Em falta",
       quantidade: 5,
       retirado: 5,
-      patrimonio: [102031, 1020230, 1231231],
+      patrimonio: 102031,
       localizacao: "A2",
     },
     {
-      nota: "1234321",
-      item: "NOTEBOOK G15",
+      nf: "1234321",
+      item: "Headset",
+      setor: "Sucesso do suporte",
+      disponivel: 10,
+      status: "Aguardando fornecedor",
+      quantidade: 15,
+      retirado: 5,
+      patrimonio: 102030,
+      localizacao: "A2",
+    },
+    {
+      nf: "1234321",
+      item: "TARARA",
       setor: "Administrativo",
       disponivel: 5,
       status: "Disponível",
       quantidade: 7,
       retirado: 2,
-      patrimonio: [102032, 1020230, 1231231],
+      patrimonio: 102032,
       localizacao: "B2",
     },
-  ];
+  ]);
   const [filter, setFilter] = useState({
     setor: "",
     solicitante: "",
@@ -48,6 +48,9 @@ export default function ItensEstoque() {
     patrimonio: "",
     status: "",
   });
+  function insereItemEstoque(item) {
+    setItemEstoque((itemsEstoque) => [...itemsEstoque, item]);
+  }
 
   function handleChange(event) {
     const value = event.target.value;
@@ -116,12 +119,12 @@ export default function ItensEstoque() {
         </button>
       </div>
 
-      <ModalInserirItem />
+      <ModalInserirItem insereItemEstoque={insereItemEstoque} />
 
       <div className="table  gap-2 row-auto h-16 w-full  place-items-center  p-4 border-collapse border-b ">
         <HeaderControle />
         {itemsEstoque.map((item) => {
-          return <LinhaControle item={item} key={item.patrimonio[0]} />;
+          return <LinhaControle item={item} key={item.patrimonio} />;
         })}
       </div>
     </>
