@@ -121,7 +121,7 @@ export default function ItensEstoque() {
 
       <ModalInserirItem insereItemEstoque={insereItemEstoque} />
 
-      <div className="table  gap-2 row-auto h-16 w-full  place-items-center  p-4 border-collapse border-b ">
+      <div className="table  gap-2 row-auto h-16 w-full  place-items-center p-2 ">
         <HeaderControle />
         {itemsEstoque.map((item) => {
           return <LinhaControle item={item} key={item.patrimonio} />;

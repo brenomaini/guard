@@ -1,5 +1,7 @@
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import React from "react";
+import LinhaRetirados from "../linhaRetirados";
+import HeaderEntradaSaida from "../headerEntradaSaida";
 
 export default function ModalItensRetirados({ item }) {
   const [showModal, setShowModal] = React.useState(false);
@@ -53,7 +55,7 @@ export default function ModalItensRetirados({ item }) {
       {showModal ? (
         <>
           <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
-            <div className="relative w-auto my-6 mx-auto max-w-3xl">
+            <div className="relative w-1/2 my-6 mx-auto ">
               {/*content*/}
               <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                 {/*header*/}
@@ -70,19 +72,11 @@ export default function ModalItensRetirados({ item }) {
                 </div>
                 {/*body*/}
                 <div className="relative p-6 flex-auto">
-                  <div className="grid grid-cols-8 gap-4 row-auto  w-full  place-items-center  p-4">
+                  <div className="table  gap-4 row-auto h-20 w-full  place-items-center ">
+                    <HeaderEntradaSaida />
                     {itemsRetirados.map((item) => {
                       return (
-                        <>
-                          <div> nota: {item.nota}</div>
-                          <div> item: {item.item}</div>
-                          <div> setor: {item.setor}</div>
-                          <div> recebedor: {item.recebedor}</div>
-                          <div> aprovador: {item.aprovador}</div>
-                          <div> data: {item.data}</div>
-                          <div> patrimonio: {item.patrimonio}</div>
-                          <div>agente: {item.agente}</div>
-                        </>
+                        <LinhaRetirados item={item} key={item.patrimonio} />
                       );
                     })}
                   </div>
