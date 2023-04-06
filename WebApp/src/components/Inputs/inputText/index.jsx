@@ -1,4 +1,4 @@
-export default function InputExemple({ name, onChange, value, htmlName }) {
+export default function inputText({ name, onChange, value, htmlName }) {
   return (
     <div>
       <label
