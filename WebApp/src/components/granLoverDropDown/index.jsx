@@ -18,7 +18,7 @@ const GranLover = [
   {
     name: "Admissão",
     description: "Vincule itens rapidamenta a um novo GranLover",
-    href: "/Admissao",
+    href: "/admissao",
     icon: UserPlusIcon,
   },
   {

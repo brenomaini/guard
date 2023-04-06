@@ -3,9 +3,9 @@ import Swal from "sweetalert2";
 import Input from "../../../components/Inputs/inputText";
 import Header from "../../../components/headerGranLover";
 
-export default function desligamento() {
+export default function infos() {
   const [inputs, setInputs] = useState({
-    emailDesligado: "",
+    emailGranLover: "",
   });
 
   function handleChange(event) {
@@ -18,7 +18,7 @@ export default function desligamento() {
   function desvincular() {
     let estaVazio = true;
 
-    if (inputs.emailDesligado == "") {
+    if (inputs.emailGranLover == "") {
       estaVazio = `O campo e-mail não pode estar vazio`;
     }
 
@@ -57,19 +57,19 @@ export default function desligamento() {
     <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
       {/*header*/}
       <div className="flex items-start justify-between p-4 border-b border-solid border-slate-200 rounded-t">
-        <Header name="Desligamento" />
+        <Header name="Informações do GranLover" />
       </div>
       {/*body*/}
 
       <p className="my-4 text-slate-500 text-lg leading-relaxed flex justify-center">
-        Insira o e-mail do colaborador desligado.
+        Insira o e-mail do colaborador.
       </p>
       <div className="flex w-full justify-around flex-wrap h-96 items-center ">
         <Input
-          name={"E-mail do GranLover desligado"}
+          name={"E-mail do GranLover"}
           onChange={handleChange}
-          value={inputs.emailDesligado}
-          htmlName={"emailDesligado"}
+          value={inputs.emailGranLover}
+          htmlName={"emailGranLover"}
         />
       </div>
 
@@ -82,7 +82,7 @@ export default function desligamento() {
             desvincular();
           }}
         >
-          Desvincular
+          Buscar
         </button>
       </div>
     </div>

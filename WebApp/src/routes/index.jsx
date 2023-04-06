@@ -5,7 +5,9 @@ import CadastroCategoria from "../pages/cadastros/cadastroCategoria";
 import Cadastroitem from "../pages/cadastros/cadastroItem";
 import CadastroMarca from "../pages/cadastros/cadastroMarca";
 import Entradas from "../pages/entradas";
+import Admissao from "../pages/granLover/admissao";
 import Desligamento from "../pages/granLover/desligamento";
+import Infos from "../pages/granLover/infos";
 import Inicio from "../pages/inicio";
 import ItensEstoque from "../pages/itens-estoque";
 import Login from "../pages/login";
@@ -26,6 +28,8 @@ export default function BlogRoutes() {
         <Route path="/saidas" element={<Saidas />} />
         <Route path="/login" element={<Login />} />
         <Route path="/desligamento" element={<Desligamento />} />
+        <Route path="/admissao" element={<Admissao />} />
+        <Route path="/infos" element={<Infos />} />
       </Routes>
     </BrowserRouter>
   );

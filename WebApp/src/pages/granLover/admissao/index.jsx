@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import Swal from "sweetalert2";
+import InputSelectSetor from "../../../components/Inputs/inputSelectSetor";
 import Input from "../../../components/Inputs/inputText";
 import Header from "../../../components/headerGranLover";
 
-export default function desligamento() {
+export default function admissao() {
   const [inputs, setInputs] = useState({
-    emailDesligado: "",
+    email: "",
+    setor: "",
+    aprovador: "",
   });
 
   function handleChange(event) {
@@ -18,7 +21,7 @@ export default function desligamento() {
   function desvincular() {
     let estaVazio = true;
 
-    if (inputs.emailDesligado == "") {
+    if (inputs.email == "") {
       estaVazio = `O campo e-mail não pode estar vazio`;
     }
 
@@ -30,13 +33,13 @@ export default function desligamento() {
         showCancelButton: true,
         confirmButtonColor: "#0D134C",
         cancelButtonColor: "#DD303E",
-        confirmButtonText: "Sim, desvincular itens!",
+        confirmButtonText: "Sim, vincular itens!",
         cancelButtonText: "Não, cancelar",
       }).then((result) => {
         if (result.isConfirmed) {
           Swal.fire({
             title: "Confirmado",
-            text: "Itens desvinculados",
+            text: "Itens vinculados",
             icon: "success",
             confirmButtonColor: "#0D134C",
             confirmButtonText: "OK",
@@ -57,19 +60,26 @@ export default function desligamento() {
     <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
       {/*header*/}
       <div className="flex items-start justify-between p-4 border-b border-solid border-slate-200 rounded-t">
-        <Header name="Desligamento" />
+        <Header name="Admissão" />
       </div>
       {/*body*/}
 
       <p className="my-4 text-slate-500 text-lg leading-relaxed flex justify-center">
-        Insira o e-mail do colaborador desligado.
+        Insira o e-mail do colaborador admitido.
       </p>
       <div className="flex w-full justify-around flex-wrap h-96 items-center ">
         <Input
-          name={"E-mail do GranLover desligado"}
+          name={"E-mail do novo GranLover"}
           onChange={handleChange}
-          value={inputs.emailDesligado}
-          htmlName={"emailDesligado"}
+          value={inputs.email}
+          htmlName={"email"}
+        />
+        <InputSelectSetor />
+        <Input
+          name={"E-mail do GranLover aprovador"}
+          onChange={handleChange}
+          value={inputs.aprovador}
+          htmlName={"emailAprovador"}
         />
       </div>
 
@@ -82,7 +92,7 @@ export default function desligamento() {
             desvincular();
           }}
         >
-          Desvincular
+          Vincular itens
         </button>
       </div>
     </div>
