@@ -36,7 +36,7 @@ export default function LinhaControle({ item }) {
             item.status == "Disponível"
               ? `text-xl table-cell justify-around items-center text-center p-2 max-sm:text-base w-2/12 bg-green `
               : item.status == "Aguardando fornecedor"
-              ? `text-xl table-cell justify-around text-center items-center p-2 max-sm:text-base w-2/12 bg-yellow`
+              ? `text-base table-cell justify-around text-center items-center p-2 max-sm:text-base w-2/12 bg-yellow`
               : item.status == "Em falta"
               ? `text-xl table-cell text-white justify-around text-center items-center p-2 max-sm:text-base w-2/12 bg-gran-red`
               : null

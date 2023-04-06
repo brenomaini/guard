@@ -1,6 +1,6 @@
 import { useState } from "react";
 import HeaderControle from "../../components/headerControleEstoque";
-import InputExemple from "../../components/inputText";
+import InputExemple from "../../components/inputs/inputText";
 import LinhaControle from "../../components/linhaControleDeEstoque";
 import ModalInserirItem from "../../components/modalInserirNoEstoque";
 
@@ -47,6 +47,7 @@ export default function ItensEstoque() {
     nf: "",
     patrimonio: "",
     status: "",
+    recebedor: "",
   });
   function insereItemEstoque(item) {
     setItemEstoque((itemsEstoque) => [...itemsEstoque, item]);
@@ -109,6 +110,12 @@ export default function ItensEstoque() {
             onChange={handleChange}
             value={filter.status}
             htmlName={"status"}
+          />
+          <InputExemple
+            name={"Recebedor"}
+            onChange={handleChange}
+            value={filter.recebedor}
+            htmlName={"recebedor"}
           />
         </div>
         <button

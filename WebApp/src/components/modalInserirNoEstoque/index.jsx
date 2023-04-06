@@ -1,15 +1,17 @@
 import { PlusCircleIcon } from "@heroicons/react/24/outline";
 import React, { useState } from "react";
 import Swal from "sweetalert2";
-import Input from "../inputText";
+import InputFile from "../Inputs/inputFile";
+import InputSelectItem from "../Inputs/inputSelectItem";
+import InputSelectLocalizacao from "../Inputs/inputSelectLocalizacao";
+import InputSelectSetor from "../Inputs/inputSelectSetor";
+import InputSelectStatus from "../Inputs/inputSelectStatus";
+import Input from "../Inputs/inputText";
 
 export default function ModalInserirItem({ insereItemEstoque }) {
   const [showModalAddItem, setShowModalAddItem] = React.useState(false);
 
   const [item, setitem] = useState({
-    item: "Prenchido via select",
-    setor: "",
-    status: "",
     nf: "",
     imagemNf: "",
     quantidade: "",
@@ -18,7 +20,6 @@ export default function ModalInserirItem({ insereItemEstoque }) {
     solicitante: "",
     agente: "Automatico Via sistema",
     retirado: 0,
-    localizacao: "A2",
   });
   function handleChange(event) {
     const value = event.target.value;
@@ -31,8 +32,9 @@ export default function ModalInserirItem({ insereItemEstoque }) {
   return (
     <>
       <button
-        className="  mr-1 mb-1 ease-linear transition-all duration-150 hover:scale-125"
+        className="ml-4 mb-1 ease-linear transition-all duration-150 hover:scale-125"
         type="button"
+        data-tooltip-target="tooltip-default"
         onClick={() => setShowModalAddItem(true)}
       >
         <PlusCircleIcon
@@ -40,6 +42,7 @@ export default function ModalInserirItem({ insereItemEstoque }) {
           aria-hidden="true"
         />
       </button>
+
       {showModalAddItem ? (
         <>
           <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
@@ -66,25 +69,15 @@ export default function ModalInserirItem({ insereItemEstoque }) {
                     Qual item você deseja inserir?
                   </p>
                   <div className="flex w-full justify-around flex-wrap h-96 items-center ">
-                    <span>InputSelect ITEM "NotebookG15"</span>
+                    <InputSelectItem />
                     <Input
                       name={"Quem solicitou"}
                       onChange={handleChange}
                       value={item.solicitante}
                       htmlName={"solicitante"}
                     />
-                    <Input
-                      name={"Qual o setor destino"}
-                      onChange={handleChange}
-                      value={item.setor}
-                      htmlName={"setor"}
-                    />
-                    <Input
-                      name={"Status"}
-                      onChange={handleChange}
-                      value={item.status}
-                      htmlName={"status"}
-                    />
+                    <InputSelectSetor />
+                    <InputSelectStatus />
                     {/* CRIAR A LSITA */}
                     <Input
                       name={"Nota Fiscal"}
@@ -92,24 +85,14 @@ export default function ModalInserirItem({ insereItemEstoque }) {
                       value={item.nf}
                       htmlName={"nf"}
                     />
-                    <Input
-                      name={"Imagem NF"}
-                      onChange={handleChange}
-                      value={item.imagemNf}
-                      htmlName={"imagemNf"}
-                    />
+                    <InputFile />
                     <Input
                       name={"Quantidade"}
                       onChange={handleChange}
                       value={item.quantidade}
                       htmlName={"quantidade"}
                     />
-                    <Input
-                      name={"Localização"}
-                      onChange={handleChange}
-                      value={item.localizacao}
-                      htmlName={"localizacao"}
-                    />
+                    <InputSelectLocalizacao />
                   </div>
                 </div>
                 {/*footer*/}

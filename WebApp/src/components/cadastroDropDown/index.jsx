@@ -39,7 +39,7 @@ const Cadastro = [
 export default function CadastroDropDown() {
   return (
     <Popover className="relative">
-      <Popover.Button className="inline-flex items-center gap-x-1 text-gran-blue text-3xl hover:opacity-70 max-sm:text-xl ">
+      <Popover.Button className="inline-flex items-center gap-x-1 text-gran-blue text-2xl hover:opacity-70 max-sm:text-xl ">
         <span>Cadastro</span>
         <ChevronDownIcon className="h-8 w-6" aria-hidden="true" />
       </Popover.Button>

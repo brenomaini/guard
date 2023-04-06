@@ -47,7 +47,9 @@ export default function modalEditarStatus({ item }) {
                   <p className="my-4 text-slate-500 text-lg leading-relaxed">
                     Você está editando o item: {item.item}.
                   </p>
-                  <div className="flex w-full justify-around flex-wrap h-96 items-center "></div>
+                  <div className="flex w-full justify-around flex-wrap h-96 items-center ">
+                    Selecione o novo Status:
+                  </div>
                 </div>
                 {/*footer*/}
                 <div className="flex items-center justify-around p-6 border-t border-solid border-slate-200 rounded-b">

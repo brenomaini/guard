@@ -1,7 +1,7 @@
 import React from "react";
 import CadastroButton from "../../../components/cadastroButton";
 import HeaderCadastroItem from "../../../components/headerCadastroItem";
-import Input from "../../../components/inputText";
+import Input from "../../../components/inputs/inputText";
 
 export default function CadastroCategoria() {
   return (

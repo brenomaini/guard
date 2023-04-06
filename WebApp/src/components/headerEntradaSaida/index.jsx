@@ -8,6 +8,9 @@ export default function HeaderControle() {
         <div className="text-white font-semibold text-xl bg-gran-blue table-cell  justify-center items-center p-2  max-sm:text-base">
           Item
         </div>
+        <div className="text-white font-semibold text-xl bg-gran-blue table-cell  justify-center items-center p-2  max-sm:text-base">
+          Patrimônio
+        </div>
         <div className="text-white font-semibold text-xl bg-gran-blue table-cell justify-center items-center p-2  max-sm:text-base ">
           Setor(CC)
         </div>

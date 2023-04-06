@@ -17,7 +17,7 @@ export default function InicioDashboard() {
   ];
 
   return (
-    <div className="flex flex-col justify-center items-center bg-black bg-opacity-10  h-full m-4">
+    <div className="flex flex-col justify-center items-center bg-black bg-opacity-40  h-full m-4">
       <div className="grid gap-4 grid-cols-2 grid-rows-1 row-auto h-16 w-full  place-items-center  p-2">
         <div className="text-white font-semibold text-3xl bg-gran-blue w-full h-full flex justify-center items-center">
           VISÃO GERAL

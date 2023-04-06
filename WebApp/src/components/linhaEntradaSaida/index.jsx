@@ -10,6 +10,9 @@ export default function linhaEntradaSaida({ item }) {
         <div className="text-xl table-cell justify-center items-center p-2  max-sm:text-base ">
           {item.item}
         </div>
+        <div className="text-xl table-cell justify-center items-center p-2  max-sm:text-base ">
+          {item.patrimonio}
+        </div>
         <div className="text-xl table-cell justify-center items-center p-2  max-sm:text-base">
           {item.setor}
         </div>

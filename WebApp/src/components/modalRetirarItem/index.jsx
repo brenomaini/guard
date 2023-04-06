@@ -1,6 +1,6 @@
 import { MinusCircleIcon } from "@heroicons/react/24/outline";
 import React, { useState } from "react";
-import Input from "../inputText";
+import Input from "../Inputs/inputText";
 
 export default function ModalRetirarItem({ item }) {
   const [showModal, setShowModal] = React.useState(false);

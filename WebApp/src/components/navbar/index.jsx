@@ -11,32 +11,38 @@ export default function Navbar() {
           className="w-48 ml-2"
         ></img>
         <Link
-          className="text-gran-blue text-3xl hover:opacity-70 max-sm:text-xl "
+          className="text-gran-blue text-2xl hover:opacity-70 max-sm:text-xl "
           to="/"
         >
           Início
         </Link>
         <Link
-          className="text-gran-blue text-3xl hover:opacity-70 max-sm:text-xl "
+          className="text-gran-blue text-2xl hover:opacity-70 max-sm:text-xl "
           to="/controleEstoque"
         >
           Controle de estoque
         </Link>
+        <Link
+          className="text-gran-blue text-2xl hover:opacity-70 max-sm:text-xl "
+          to="/controleEstoque"
+        >
+          GranLover
+        </Link>
         <Cadastro />
         <Link
-          className="text-gran-blue text-3xl hover:opacity-70 max-sm:text-xl "
+          className="text-gran-blue text-2xl hover:opacity-70 max-sm:text-xl "
           to="/entradas"
         >
           Entradas
         </Link>
         <Link
-          className="text-gran-blue text-3xl hover:opacity-70 max-sm:text-xl mr-8 "
+          className="text-gran-blue text-2xl hover:opacity-70 max-sm:text-xl mr-8 "
           to="/saidas"
         >
           Saídas
         </Link>
         <Link
-          className="text-gran-blue text-3xl hover:opacity-70 max-sm:text-xl mr-8 "
+          className="text-gran-blue text-2xl hover:opacity-70 max-sm:text-xl mr-8 "
           to="/login"
         >
           <UsersIcon

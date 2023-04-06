@@ -2,41 +2,10 @@ import React, { useState } from "react";
 import Swal from "sweetalert2";
 import CadastroButton from "../../../components/cadastroButton";
 import HeaderCadastroItem from "../../../components/headerCadastroItem";
-import InputSelect from "../../../components/inputSelect";
-import Input from "../../../components/inputText";
+import InputSelectCategoria from "../../../components/inputs/inputSelectCategoria";
+import Input from "../../../components/inputs/inputText";
 
-const categoryList = [
-  {
-    id: 1,
-    name: "Notebook",
-  },
-  {
-    id: 2,
-    name: "Desktop",
-  },
-  {
-    id: 3,
-    name: "Headset",
-  },
-];
-const statusList = [
-  {
-    id: 1,
-    name: "Dell",
-  },
-  {
-    id: 2,
-    name: "ASUS",
-  },
-  {
-    id: 3,
-    name: "Logitech",
-  },
-  {
-    id: 4,
-    name: "Coisér",
-  },
-];
+import InputSelectMarca from "../../../components/inputs/inputSelectMarca";
 
 export default function Cadastroitem() {
   const [categoriaSelecionada, setCatSelecionada] = useState("");
@@ -74,16 +43,12 @@ export default function Cadastroitem() {
   return (
     <div className="flex flex-col h-screen items-center  bg-black bg-opacity-25 m-4">
       <HeaderCadastroItem name={"ITEM "} />
-      <div className="grid w-full grid-cols-4 content-around h-96  items-center place-items-center">
+      <div className="flex  items-center justify-around h-1/2 w-full flex-wrap p-8 gap-8">
         <Input name={"Nome"} />
-        <InputSelect
-          list={categoryList}
-          type={"Categoria"}
-          checkCategory={checkCategory}
-        />
-        <InputSelect list={statusList} type={"Marca"} />
+        <InputSelectCategoria checkCategory={checkCategory} />
+        <InputSelectMarca />
 
-        <label htmlFor="alertaQtd" className="flex flex-col">
+        <label htmlFor="alertaQtd" className="flex flex-col items-center h-28">
           Alerta quantidade?
           <input type="checkbox" id="alertaQtd" className=" peer"></input>
           <div className="hidden peer-checked:block">
@@ -103,14 +68,6 @@ export default function Cadastroitem() {
                   GB
                 </div>
                 <div className="flex flex-col items-center">
-                  <div>
-                    <label htmlFor="SSD">SSD</label>
-                    <input type={"radio"} name="hdType" id="SSD"></input>
-                    <label htmlFor="HDD">HDD</label>
-                    <input type={"radio"} name="hdType" id="HDD"></input>
-                    <label htmlFor="M2">M2</label>
-                    <input type={"radio"} name="hdType" id="M2"></input>
-                  </div>
                   <div className="flex  items-end">
                     <Input name={"HD"} />
                     GB
