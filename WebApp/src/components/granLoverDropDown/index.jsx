@@ -1,9 +1,9 @@
 import { Popover, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import {
-  DocumentPlusIcon,
-  SwatchIcon,
-  TagIcon,
+  InformationCircleIcon,
+  NoSymbolIcon,
+  UserPlusIcon,
 } from "@heroicons/react/24/outline";
 import { Fragment } from "react";
 const logado = false;
@@ -13,19 +13,19 @@ const GranLover = [
     name: "Informações",
     description: "Busque informações do GranLover",
     href: "/infos",
-    icon: DocumentPlusIcon,
+    icon: InformationCircleIcon,
   },
   {
     name: "Admissão",
     description: "Vincule itens rapidamenta a um novo GranLover",
-    href: "/Admissao",
-    icon: SwatchIcon,
+    href: "/admissao",
+    icon: UserPlusIcon,
   },
   {
     name: "Desligamento",
     description: "Desvincule rapidamente vários itens de um GranLover",
     href: "/desligamento",
-    icon: TagIcon,
+    icon: NoSymbolIcon,
   },
 ];
 
