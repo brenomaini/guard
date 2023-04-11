@@ -5,16 +5,11 @@ import Swal from "sweetalert2";
 import { z } from "zod";
 import CadastroButton from "../../../components/cadastroButton";
 import HeaderCadastroItem from "../../../components/headerCadastroItem";
-<<<<<<< HEAD
 import InputSelectCategoria from "../../../components/Inputs/inputSelectCategoria";
 import Input from "../../../components/Inputs/inputText";
 
 
 import InputSelectMarca from "../../../components/Inputs/inputSelectMarca";
-=======
-import InputSelectCategoria from "../../../components/inputs/inputSelectCategoria";
-import InputSelectMarca from "../../../components/inputs/inputSelectMarca";
->>>>>>> 28e5fb6b5f9366c2cc5dd07694dc569930d73b7e
 
 export default function Cadastroitem() {
   const insereItemSchema = z.object({
