@@ -89,82 +89,86 @@ export default function admissao() {
       <p className="my-4 text-slate-500 text-lg leading-relaxed flex justify-center">
         Insira o e-mail do colaborador admitido.
       </p>
-      <div className="flex w-full justify-around flex-grow flex-wrap gap-6  h-full items-center ">
-        <label className="flex flex-col  text-sm font-medium leading-6 text-black">
-          E-mail do novo GranLover
-          <input
-            className="relative w-72 cursor-default  rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-gran-blue focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6"
-            type="text"
-            id="solicitante"
-            placeholder="Digite aqui"
-            {...register("emailGranLover")}
-          />
-        </label>
+      <div className="flex flex-col w-full justify-around flex-grow flex-wrap gap-6  h-full items-center ">
+        <div className="flex items-center gap-6 justify-around">
+          <label className="flex flex-col text-sm font-medium leading-6 text-black">
+            E-mail do novo GranLover
+            <input
+              className="relative w-72 cursor-default  rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-gran-blue focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6"
+              type="text"
+              id="solicitante"
+              placeholder="Digite aqui"
+              {...register("emailGranLover")}
+            />
+          </label>
 
-        <label className="flex flex-col text-sm font-medium leading-6 text-black">
-          Setor
-          <select
-            {...register("setor")}
-            className="relative w-72 cursor-default font-normal rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-gran-blue focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6"
-          >
-            <InputSelectSetor />
-          </select>
-        </label>
-        <label className="flex flex-col justify-center text-sm font-medium leading-6 text-black">
-          E-mail do GranLover aprovador
-          <input
-            className="relative w-72 cursor-default  rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-gran-blue focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6"
-            type="text"
-            id="solicitante"
-            placeholder="Digite aqui"
-            {...register("emailAprovador")}
-          />
-        </label>
-        <button
-          onClick={adicionarNovoItem}
-          className="bg-gran-blue bg-opacity-50 hover:bg-opacity-80 text-white font-bold py-2 px-4 w-36 rounded"
-        >
-          Adicionar item
-        </button>
-        {fields.map((field, index) => {
-          return (
-            <div
-              key={field.id}
-              className="grid grid-flow-col grid-rows-1 gap-6 border rounded p-4"
+          <label className="flex flex-col text-sm font-medium leading-6 text-black">
+            Setor
+            <select
+              {...register("setor")}
+              className="relative w-72 cursor-default font-normal rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-gran-blue focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6"
             >
-              <label className="flex flex-col  text-sm font-medium leading-6 text-black">
-                Nota fiscal do item
-                <input
-                  className="relative w-72 cursor-default  rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-gran-blue focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6"
-                  type="text"
-                  id="notaItem"
-                  placeholder="NF do item"
-                  {...register(`techs.${index}.notaf`)}
-                />
-                {errors.itens?.[index]?.notaf && (
-                  <span className="text-gran-red opacity-90">
-                    {errors.itens?.[index]?.notaf.message}
-                  </span>
-                )}
-              </label>
-              <label className="flex flex-col  text-sm font-medium leading-6 text-black">
-                Patrimônio do item
-                <input
-                  className="relative w-72 cursor-default  rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-gran-blue focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6"
-                  type="text"
-                  id="Patrimonio"
-                  placeholder="Patrimonio do item"
-                  {...register(`techs.${index}.patrimonio`)}
-                />
-                {errors.itens?.[index]?.patrimonio && (
-                  <span className="text-gran-red opacity-90">
-                    {errors.itens?.[index]?.patrimonio.message}
-                  </span>
-                )}
-              </label>
-            </div>
-          );
-        })}
+              <InputSelectSetor />
+            </select>
+          </label>
+          <label className="flex flex-col justify-center text-sm font-medium leading-6 text-black">
+            E-mail do GranLover aprovador
+            <input
+              className="relative w-72 cursor-default  rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-gran-blue focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6"
+              type="text"
+              id="solicitante"
+              placeholder="Digite aqui"
+              {...register("emailAprovador")}
+            />
+          </label>
+          <button
+            onClick={adicionarNovoItem}
+            className="bg-gran-blue bg-opacity-50 hover:bg-opacity-80 text-white font-bold p-2 mt-5 w-36 rounded"
+          >
+            Adicionar item
+          </button>
+        </div>
+        <div className="flex flex-col items-center gap-6 mb-6">
+          {fields.map((field, index) => {
+            return (
+              <div
+                key={field.id}
+                className="grid grid-flow-col grid-rows-1 gap-6 border rounded p-4"
+              >
+                <label className="flex flex-col  text-sm font-medium leading-6 text-black">
+                  Nota fiscal do item
+                  <input
+                    className="relative w-72 cursor-default  rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-gran-blue focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6"
+                    type="text"
+                    id="notaItem"
+                    placeholder="NF do item"
+                    {...register(`techs.${index}.notaf`)}
+                  />
+                  {errors.itens?.[index]?.notaf && (
+                    <span className="text-gran-red opacity-90">
+                      {errors.itens?.[index]?.notaf.message}
+                    </span>
+                  )}
+                </label>
+                <label className="flex flex-col  text-sm font-medium leading-6 text-black">
+                  Patrimônio do item
+                  <input
+                    className="relative w-72 cursor-default  rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-gran-blue focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6"
+                    type="text"
+                    id="Patrimonio"
+                    placeholder="Patrimonio do item"
+                    {...register(`techs.${index}.patrimonio`)}
+                  />
+                  {errors.itens?.[index]?.patrimonio && (
+                    <span className="text-gran-red opacity-90">
+                      {errors.itens?.[index]?.patrimonio.message}
+                    </span>
+                  )}
+                </label>
+              </div>
+            );
+          })}
+        </div>
       </div>
 
       {/*footer*/}
