@@ -1,32 +1,43 @@
 import { PlusCircleIcon } from "@heroicons/react/24/outline";
-import React, { useState } from "react";
+import React from "react";
+import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
-import InputFile from "../Inputs/inputFile";
 import InputSelectItem from "../Inputs/inputSelectItem";
 import InputSelectLocalizacao from "../Inputs/inputSelectLocalizacao";
 import InputSelectSetor from "../Inputs/inputSelectSetor";
 import InputSelectStatus from "../Inputs/inputSelectStatus";
-import Input from "../Inputs/inputText";
 
 export default function ModalInserirItem({ insereItemEstoque }) {
+  const { register, handleSubmit } = useForm();
+
   const [showModalAddItem, setShowModalAddItem] = React.useState(false);
 
-  const [item, setitem] = useState({
-    nf: "",
-    imagemNf: "",
-    quantidade: "",
-    disponivel: "",
-    data: "Automatico via sistema",
-    solicitante: "",
-    agente: "Automatico Via sistema",
-    retirado: 0,
-  });
-  function handleChange(event) {
-    const value = event.target.value;
-    setitem({
-      ...item,
-      [event.target.name]: value,
-    });
+  function insereEstoque(data) {
+    let estaVazio = true;
+    for (const info in data) {
+      if (data[info] == "" && info != "retirado" && info != "disponivel") {
+        estaVazio = `O campo ${info} não pode estar vazio`;
+      }
+    }
+    if (estaVazio === true) {
+      insereItemEstoque(data);
+      Swal.fire({
+        title: "Confirmado",
+        text: "Item cadastrado no estoque!",
+        icon: "success",
+        confirmButtonColor: "#0D134C",
+        confirmButtonText: "OK",
+      });
+      setShowModalAddItem(false);
+    } else {
+      Swal.fire({
+        title: "Atenção",
+        text: `${estaVazio}`,
+        icon: "warning",
+        confirmButtonColor: "#DD303E",
+        confirmButtonText: "OK",
+      });
+    }
   }
 
   return (
@@ -38,7 +49,7 @@ export default function ModalInserirItem({ insereItemEstoque }) {
         onClick={() => setShowModalAddItem(true)}
       >
         <PlusCircleIcon
-          className="h-12 w-12 text-gran-blue  "
+          className="h-12 w-12 text-gran-blue "
           aria-hidden="true"
         />
       </button>
@@ -69,30 +80,82 @@ export default function ModalInserirItem({ insereItemEstoque }) {
                     Qual item você deseja inserir?
                   </p>
                   <div className="flex w-full justify-around flex-wrap h-96 items-center ">
-                    <InputSelectItem />
-                    <Input
-                      name={"Quem solicitou"}
-                      onChange={handleChange}
-                      value={item.solicitante}
-                      htmlName={"solicitante"}
-                    />
-                    <InputSelectSetor />
-                    <InputSelectStatus />
-                    {/* CRIAR A LSITA */}
-                    <Input
-                      name={"Nota Fiscal"}
-                      onChange={handleChange}
-                      value={item.nf}
-                      htmlName={"nf"}
-                    />
-                    <InputFile />
-                    <Input
-                      name={"Quantidade"}
-                      onChange={handleChange}
-                      value={item.quantidade}
-                      htmlName={"quantidade"}
-                    />
-                    <InputSelectLocalizacao />
+                    <label className="flex flex-col  text-sm font-medium leading-6 text-black">
+                      Item
+                      <select
+                        {...register("item")}
+                        className="relative w-72 cursor-default font-normal rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-gran-blue focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6"
+                      >
+                        <InputSelectItem />
+                      </select>
+                    </label>
+                    <label className="flex flex-col  text-sm font-medium leading-6 text-black">
+                      E-Mail do solicitante
+                      <input
+                        className="relative w-72 cursor-default  rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-gran-blue focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6"
+                        type="text"
+                        id="solicitante"
+                        placeholder="Digite aqui"
+                        {...register("solicitante")}
+                      />
+                    </label>
+                    <label className="flex flex-col  text-sm font-medium leading-6 text-black">
+                      Setor
+                      <select
+                        {...register("setor")}
+                        className="relative w-72 cursor-default font-normal rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-gran-blue focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6"
+                      >
+                        <InputSelectSetor />
+                      </select>
+                    </label>
+                    <label className="flex flex-col  text-sm font-medium leading-6 text-black">
+                      Status
+                      <select
+                        {...register("status")}
+                        className="relative w-72 cursor-default font-normal rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-gran-blue focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6"
+                      >
+                        <InputSelectStatus />
+                      </select>
+                    </label>
+
+                    <label className="flex flex-col  text-sm font-medium leading-6 text-black">
+                      Nota fiscal
+                      <input
+                        className="relative w-72 cursor-default  rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-gran-blue focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6"
+                        type="text"
+                        id="nf"
+                        placeholder="00000"
+                        {...register("nf")}
+                      />
+                    </label>
+                    <label className="flex flex-col  text-sm font-medium leading-6 text-black">
+                      Imagem NF
+                      <input
+                        type="file"
+                        name=""
+                        id=""
+                        className="relative w-72 cursor-default font-normal rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-gran-blue focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6"
+                      />
+                    </label>
+                    <label className="flex flex-col w-72 text-sm font-medium leading-6 text-black">
+                      Quantidade
+                      <input
+                        className="relative w-24 cursor-default  rounded-md bg-white py-1.5 pl-3 pr-4 text-left text-black shadow-sm ring-1 ring-inset ring-gran-blue focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6"
+                        type="number"
+                        id="nf"
+                        placeholder="00"
+                        {...register("quantidade")}
+                      />
+                    </label>
+                    <label className="flex flex-col  text-sm font-medium leading-6 text-black">
+                      Localização
+                      <select
+                        {...register("localizacao")}
+                        className="relative w-72 cursor-default font-normal rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-gran-blue focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6"
+                      >
+                        <InputSelectLocalizacao />
+                      </select>
+                    </label>
                   </div>
                 </div>
                 {/*footer*/}
@@ -107,37 +170,7 @@ export default function ModalInserirItem({ insereItemEstoque }) {
                   <button
                     className="text-white bg-gran-blue bg-opacity-90 font-bold uppercase px-6 py-2 text-sm rounded mr-1 mb-1 ease-linear transition-all duration-150 hover:scale-105"
                     type="button"
-                    onClick={() => {
-                      let estaVazio = true;
-                      for (const info in item) {
-                        if (
-                          item[info] == "" &&
-                          info != "retirado" &&
-                          info != "disponivel"
-                        ) {
-                          estaVazio = `O campo ${info} não pode estar vazio`;
-                        }
-                      }
-                      if (estaVazio === true) {
-                        insereItemEstoque(item);
-                        Swal.fire({
-                          title: "Confirmado",
-                          text: "Item cadastrado no estoque!",
-                          icon: "success",
-                          confirmButtonColor: "#0D134C",
-                          confirmButtonText: "OK",
-                        });
-                        setShowModalAddItem(false);
-                      } else {
-                        Swal.fire({
-                          title: "Atenção",
-                          text: `${estaVazio}`,
-                          icon: "warning",
-                          confirmButtonColor: "#DD303E",
-                          confirmButtonText: "OK",
-                        });
-                      }
-                    }}
+                    onClick={handleSubmit(insereEstoque)}
                   >
                     Inserir
                   </button>
