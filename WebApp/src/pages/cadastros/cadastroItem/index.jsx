@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import Swal from "sweetalert2";
 import CadastroButton from "../../../components/cadastroButton";
 import HeaderCadastroItem from "../../../components/headerCadastroItem";
-import InputSelectCategoria from "../../../components/inputs/inputSelectCategoria";
-import Input from "../../../components/inputs/inputText";
+import InputSelectCategoria from "../../../components/Inputs/inputSelectCategoria";
+import Input from "../../../components/Inputs/inputText";
 
-import InputSelectMarca from "../../../components/inputs/inputSelectMarca";
+
+import InputSelectMarca from "../../../components/Inputs/inputSelectMarca";
 
 export default function Cadastroitem() {
   const [categoriaSelecionada, setCatSelecionada] = useState("");

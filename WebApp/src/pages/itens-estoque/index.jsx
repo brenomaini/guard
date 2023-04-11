@@ -1,6 +1,6 @@
 import { useState } from "react";
 import HeaderControle from "../../components/headerControleEstoque";
-import InputExemple from "../../components/inputs/inputText";
+import InputText from "../../components/Inputs/inputText";
 import LinhaControle from "../../components/linhaControleDeEstoque";
 import ModalInserirItem from "../../components/modalInserirNoEstoque";
 
@@ -73,19 +73,19 @@ export default function ItensEstoque() {
     <>
       <div className="flex flex-col items-center mt-4">
         <div className="flex h-16  gap-8">
-          <InputExemple
+          <InputText
             name={"Setor/CC"}
             onChange={handleChange}
             value={filter.setor}
             htmlName={"setor"}
           />
-          <InputExemple
+          <InputText
             name={"Solicitante"}
             onChange={handleChange}
             value={filter.solicitante}
             htmlName={"solicitante"}
           />
-          <InputExemple
+          <InputText
             name={"Ítem"}
             onChange={handleChange}
             value={filter.item}
@@ -93,25 +93,25 @@ export default function ItensEstoque() {
           />
         </div>
         <div className="flex h-28 gap-8">
-          <InputExemple
+          <InputText
             name={"Nota"}
             onChange={handleChange}
             value={filter.nf}
             htmlName={"nf"}
           />
-          <InputExemple
+          <InputText
             name={"Patrimônio"}
             onChange={handleChange}
             value={filter.patrimonio}
             htmlName={"patrimonio"}
           />
-          <InputExemple
+          <InputText
             name={"Status"}
             onChange={handleChange}
             value={filter.status}
             htmlName={"status"}
           />
-          <InputExemple
+          <InputText
             name={"Recebedor"}
             onChange={handleChange}
             value={filter.recebedor}
