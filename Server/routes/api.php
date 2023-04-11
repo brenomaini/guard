@@ -14,6 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::Apiresource('marca', 'App\Http\Controllers\MarcaController');
+Route::Apiresource('categoria', 'App\Http\Controllers\CategoriaController');
+Route::Apiresource('item', 'App\Http\Controllers\ItemController');
