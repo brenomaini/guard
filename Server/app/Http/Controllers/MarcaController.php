@@ -47,30 +47,78 @@ class MarcaController extends Controller
      */
     public function store(StoreMarcaRequest $request)
     {
-        //
+        $request->validate($this->marca->rules(), $this->marca->feedback());
+        $marca = Marca::create([
+            'nome' => $request->nome
+        ]);
+
+        return response()->json($marca, 201);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Marca $marca)
+    public function show($id)
     {
-        //
+        $marca = $this->marca->find($id);
+
+        if($marca === null) {
+            return response()->json(['erro' => 'Marca pesquisada não existe'], 404);
+        }
+        return response()->json($marca, 200);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateMarcaRequest $request, Marca $marca)
+    public function update(UpdateMarcaRequest $request, $id)
     {
-        //
+        $marca = $this->marca->find($id);
+
+        if($marca === null) {
+            return response()->json(['erro' => 'Erro na atualização, marca não existe.'], 404);
+        }
+
+        if($request->method() === 'patch') {
+            //coletar apenas as regras aplicáveis aos parâmetros parciais da requisição PATCH
+            $regrasDinamicas = array();
+
+            //percorrendo todas as regras definidas no Model
+            foreach($marca->rules() as $input => $regra) {
+                //coletar apenas as regras aplicáveis aos parâmetros parciais da requisição PATCH
+                if(array_key_exists($input, $request->all())) {
+                    $regrasDinamicas[$input] = $regra;
+                }
+            }
+
+            $request->validate($regrasDinamicas, $marca->feedback());
+        } else {
+            $request->validate($marca->rules(), $marca->feedback());
+        }
+
+        $marca->fill($request->all());
+        $marca->save();
+        return response()->json($marca, 200);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Marca $marca)
+    public function destroy($id)
     {
-        //
+        $marca = $this->marca->find($id);
+
+        try {
+            if($marca === null)
+            {
+                return response()->json(['msg' => 'Erro ao deletar, marca não existe em nosso banco.'], 404);
+            }
+            
+            $marca->delete();
+
+            return response()->json(['msg' => 'Marca removida com sucesso.'], 200);
+        } catch (\PDOException $e) {
+            return response()->json(['msg' => 'Erro: '.$e->getMessage()], 500);
+        }
     }
 }
