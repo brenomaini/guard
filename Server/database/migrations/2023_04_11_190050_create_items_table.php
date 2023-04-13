@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('nome', 50);
             $table->text('descricao');
             $table->boolean('alerta_quantidade')->default('0');
+            $table->integer('alerta_valor')->nullable();
             $table->timestamps();
             //foreign key (constraints)
             $table->foreign('marca_id')->references('id')->on('marcas');

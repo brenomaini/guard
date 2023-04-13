@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +15,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Route::controller(AuthController::class)->group(function () {
+//     Route::post('login', 'login');
+//     Route::post('register', 'register');
+//     Route::post('refresh', 'App\Http\Controllers\AuthController@refresh');
+// });
+
 Route::Apiresource('marca', 'App\Http\Controllers\MarcaController');
 Route::Apiresource('categoria', 'App\Http\Controllers\CategoriaController');
 Route::Apiresource('item', 'App\Http\Controllers\ItemController');
+Route::Apiresource('perfil', 'App\Http\Controllers\PerfilController');

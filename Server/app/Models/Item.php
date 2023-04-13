@@ -16,7 +16,8 @@ class Item extends Model
         'categoria_id',
         'nome',
         'descricao',
-        'alerta_quantidade'
+        'alerta_quantidade',
+        'alerta_valor'
     ];
 
     public function rules() {
@@ -25,7 +26,7 @@ class Item extends Model
             'categoria_id' => 'exists:categorias,id',
             'nome' => 'required|unique:itens,nome,'.$this->id,
             'descricao' => 'required',
-            'alerta_quantidade' => 'required|boolean'
+            'alerta_quantidade' => 'boolean'
         ];
     }
 
