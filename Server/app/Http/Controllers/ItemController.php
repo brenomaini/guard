@@ -83,16 +83,54 @@ class ItemController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateItemRequest $request, Item $item)
+    public function update(UpdateItemRequest $request, $id)
     {
-        //
+        $item = $this->item->find($id);
+
+        if($item === null) {
+            return response()->json(['erro' => 'Erro na atualização, item não existe no banco.'], 404);
+        }
+
+        if($request->method() === 'patch') {
+            //coletar apenas as regras aplicáveis aos parâmetros parciais da requisição PATCH
+            $regrasDinamicas = array();
+
+            //percorrendo todas as regras definidas no Model
+            foreach($item->rules() as $input => $regra) {
+                //coletar apenas as regras aplicáveis aos parâmetros parciais da requisição PATCH
+                if(array_key_exists($input, $request->all())) {
+                    $regrasDinamicas[$input] = $regra;
+                }
+            }
+
+            $request->validate($regrasDinamicas, $item->feedback());
+        } else {
+            $request->validate($item->rules(), $item->feedback());
+        }
+
+        $item->fill($request->all());
+        $item->save();
+        return response()->json($item, 200);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Item $item)
+    public function destroy($id)
     {
-        //
+        $item = $this->item->find($id);
+
+        try {
+            if($item === null)
+            {
+                return response()->json(['msg' => 'Erro ao deletar, item não existe em nosso banco.'], 404);
+            }
+            
+            $item->delete();
+
+            return response()->json(['msg' => 'Item removido com sucesso.'], 200);
+        } catch (\PDOException $e) {
+            return response()->json(['msg' => 'Erro: '.$e->getMessage()], 500);
+        }
     }
 }
