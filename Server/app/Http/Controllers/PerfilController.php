@@ -73,7 +73,12 @@ class PerfilController extends Controller
      */
     public function show($id)
     {
-        
+        $perfil = $this->perfil->find($id);
+        if($perfil === null)
+        {
+            return response()->json(['erro' => 'Perfil pesquisado não existe.'], 404);
+        }
+        return response()->json($perfil, 200);
     }
 
     /**
@@ -81,7 +86,32 @@ class PerfilController extends Controller
      */
     public function update(UpdatePerfilRequest $request, $id)
     {
-        //
+        $perfil = $this->perfil->find($id);
+
+        if($perfil === null) {
+            return response()->json(['erro' => 'Erro na atualização, perfil não existe.'], 404);
+        }
+
+        if($request->method() === 'patch') {
+            //coletar apenas as regras aplicáveis aos parâmetros parciais da requisição PATCH
+            $regrasDinamicas = array();
+
+            //percorrendo todas as regras definidas no Model
+            foreach($perfil->rules() as $input => $regra) {
+                //coletar apenas as regras aplicáveis aos parâmetros parciais da requisição PATCH
+                if(array_key_exists($input, $request->all())) {
+                    $regrasDinamicas[$input] = $regra;
+                }
+            }
+
+            $request->validate($regrasDinamicas, $perfil->feedback());
+        } else {
+            $request->validate($perfil->rules(), $perfil->feedback());
+        }
+
+        $perfil->fill($request->all());
+        $perfil->save();
+        return response()->json($perfil, 200);
     }
 
     /**
@@ -89,6 +119,19 @@ class PerfilController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $perfil = $this->perfil->find($id);
+
+        try {
+            if($perfil === null)
+            {
+                return response()->json(['msg' => 'Erro ao deletar, perfil não existe em nosso banco.'], 404);
+            }
+            
+            $perfil->delete();
+
+            return response()->json(['msg' => 'Perfil removido com sucesso.'], 200);
+        } catch (\PDOException $e) {
+            return response()->json(['msg' => 'Erro: '.$e->getMessage()], 500);
+        }
     }
 }
