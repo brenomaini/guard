@@ -31,4 +31,9 @@ class Marca extends Model
             'nome.unique' => 'A marca já existe no banco.',
         ];
     }
+
+    public function itens() {
+        //UMA marca POSSUI MUITOS itens
+        return $this->hasMany('App\Models\Item');
+    }
 }

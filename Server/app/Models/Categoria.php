@@ -31,4 +31,9 @@ class Categoria extends Model
             'nome.unique' => 'A categoria já existe no banco.',
         ];
     }
+
+    public function itens() {
+        //UMA categoria POSSUI MUITOS itens
+        return $this->hasMany('App\Models\Item');
+    }
 }
