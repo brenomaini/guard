@@ -39,44 +39,26 @@ export default function admissao() {
   }
 
   function vincular(data) {
-    let estaVazio = true;
-
-    for (const info in data) {
-      if (data[info] == "" && info != "retirado" && info != "disponivel") {
-        estaVazio = `O campo ${info} não pode estar vazio`;
+    Swal.fire({
+      title: "Você tem certeza?",
+      text: "Não será possível reverter essa alteração!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#0D134C",
+      cancelButtonColor: "#DD303E",
+      confirmButtonText: "Sim, vincular itens!",
+      cancelButtonText: "Não, cancelar",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: "Confirmado",
+          text: "Itens vinculados",
+          icon: "success",
+          confirmButtonColor: "#0D134C",
+          confirmButtonText: "OK",
+        });
       }
-    }
-
-    if (estaVazio === true) {
-      Swal.fire({
-        title: "Você tem certeza?",
-        text: "Não será possível reverter essa alteração!",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#0D134C",
-        cancelButtonColor: "#DD303E",
-        confirmButtonText: "Sim, vincular itens!",
-        cancelButtonText: "Não, cancelar",
-      }).then((result) => {
-        if (result.isConfirmed) {
-          Swal.fire({
-            title: "Confirmado",
-            text: "Itens vinculados",
-            icon: "success",
-            confirmButtonColor: "#0D134C",
-            confirmButtonText: "OK",
-          });
-        }
-      });
-    } else {
-      Swal.fire({
-        title: "Atenção",
-        text: `${estaVazio}`,
-        icon: "warning",
-        confirmButtonColor: "#DD303E",
-        confirmButtonText: "OK",
-      });
-    }
+    });
   }
   return (
     <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
