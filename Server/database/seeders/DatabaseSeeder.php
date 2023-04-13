@@ -31,5 +31,9 @@ class DatabaseSeeder extends Seeder
         $this->call([
             SetorSeeder::class,
         ]);
+
+        $this->call([
+            StatusSeeder::class,
+        ]);
     }
 }
