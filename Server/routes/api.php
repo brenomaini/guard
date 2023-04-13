@@ -25,3 +25,4 @@ Route::Apiresource('marca', 'App\Http\Controllers\MarcaController');
 Route::Apiresource('categoria', 'App\Http\Controllers\CategoriaController');
 Route::Apiresource('item', 'App\Http\Controllers\ItemController');
 Route::Apiresource('perfil', 'App\Http\Controllers\PerfilController');
+Route::Apiresource('setor', 'App\Http\Controllers\SetorController');
