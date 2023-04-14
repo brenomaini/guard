@@ -1,23 +1,27 @@
-const marcasList = [
-  {
-    id: 1,
-    name: "Dell",
-  },
-  {
-    id: 2,
-    name: "ASUS",
-  },
-  {
-    id: 3,
-    name: "Logitech",
-  },
-  {
-    id: 4,
-    name: "Coisér",
-  },
-];
+import React from "react";
+
+import { useEffect, useState } from "react";
 
 export default function inputSelectMarca() {
+  const [marcasList, setMarcasList] = useState([
+    {
+      id: 1,
+      nome: "Carregando..",
+    },
+  ]);
+  useEffect(() => {
+    buscarMarcas();
+  }, []);
+
+  async function buscarMarcas() {
+    const lista = await fetch("http://127.0.0.1:8000/api/marca").then((res) => {
+      let filtrada = res.json();
+      return filtrada;
+    });
+    const marcas = lista.data;
+
+    setMarcasList([...marcas]);
+  }
   return (
     <>
       <option value="" hidden className="font-light">
@@ -25,8 +29,8 @@ export default function inputSelectMarca() {
       </option>
       {marcasList.map((item) => {
         return (
-          <option value={item.name} id={item.id} key={item.id}>
-            {item.name}
+          <option value={item.nome} id={item.id} key={item.id}>
+            {item.nome}
           </option>
         );
       })}

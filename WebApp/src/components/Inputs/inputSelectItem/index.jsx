@@ -49,3 +49,45 @@ export default function inputSelectItem() {
     </>
   );
 }
+
+// import React, { useEffect, useState } from "react";
+
+// const [itemList,setItemList] = useState([
+//   {
+//     id: 1,
+//     name: "Carregando..",
+//   },
+// ]);
+
+// useEffect(() => {
+//   buscarItens();
+// }, []);
+
+// async function buscarItens() {
+//   const lista = await fetch("http://127.0.0.1:8000/api/item").then(
+//     (res) => {
+//       let filtrada = res.json();
+//       return filtrada;
+//     }
+//   );
+//   const teste2 = lista.data;
+
+//   setItemList([...teste2]);
+// }
+
+// export default function inputSelectItem() {
+//   return (
+//     <>
+//       <option value="" hidden>
+//         Selecione o item
+//       </option>
+//       {itemList.map((item) => {
+//         return (
+//           <option value={item.name} id={item.id} key={item.id}>
+//             {item.name}
+//           </option>
+//         );
+//       })}
+//     </>
+//   );
+// }

@@ -3,11 +3,9 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import { z } from "zod";
+import InputSelectCategoria from "../../../components/Inputs/inputSelectCategoria";
 import CadastroButton from "../../../components/cadastroButton";
 import HeaderCadastroItem from "../../../components/headerCadastroItem";
-import InputSelectCategoria from "../../../components/Inputs/inputSelectCategoria";
-import Input from "../../../components/Inputs/inputText";
-
 
 import InputSelectMarca from "../../../components/Inputs/inputSelectMarca";
 
