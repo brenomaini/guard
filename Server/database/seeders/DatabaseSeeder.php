@@ -23,5 +23,17 @@ class DatabaseSeeder extends Seeder
         $this->call([
             ItemSeeder::class,
         ]);
+
+        $this->call([
+            PerfilSeeder::class,
+        ]);
+
+        $this->call([
+            SetorSeeder::class,
+        ]);
+
+        $this->call([
+            StatusSeeder::class,
+        ]);
     }
 }

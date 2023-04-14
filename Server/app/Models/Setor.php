@@ -5,17 +5,21 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Marca extends Model
+class Setor extends Model
 {
     use HasFactory;
 
+    protected $table = 'setores';
+    
     protected $fillable = [
-        'nome'
+        'nome',
+        'centro_de_custo',
     ];
 
     public function rules() {
         return [
-            'nome' => 'required|unique:marcas,nome,'.$this->id,
+            'nome' => 'required|unique:setores,nome,'.$this->id,
+            'centro_de_custo' => 'required|unique:setores,centro_de_custo,'.$this->id,
         ];
 
         /*
@@ -28,12 +32,8 @@ class Marca extends Model
     public function feedback() {
         return [
             'required' => 'O campo :attribute é obrigatório',
-            'nome.unique' => 'A marca já existe no banco.',
+            'nome.unique' => 'O perfil já existe no banco.',
+            'centro_de_custo.unique' => 'O centro de custo já existe no banco.',
         ];
-    }
-
-    public function itens() {
-        //UMA marca POSSUI MUITOS itens
-        return $this->hasMany('App\Models\Item');
     }
 }

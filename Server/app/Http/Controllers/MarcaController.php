@@ -24,6 +24,14 @@ class MarcaController extends Controller
     {
         $marcaRepository = new MarcaRepository($this->marca);
 
+        // condição caso exista o atributo atributos_marca na url
+        if ($request->has('atributos_itens')) {
+            $atributos_itens = 'itens:id,'.$request->atributos_itens;
+            $marcaRepository->selectAtributosRegistrosRelacionados($atributos_itens);
+        } else {
+            $marcaRepository->selectAtributosRegistrosRelacionados('itens');
+        }
+
         // filtro multiplo
         if ($request->has('filtro')) {
             $marcaRepository->filtro($request->filtro);

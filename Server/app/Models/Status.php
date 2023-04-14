@@ -5,9 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Marca extends Model
+class Status extends Model
 {
     use HasFactory;
+
+    protected $table = 'status';
 
     protected $fillable = [
         'nome'
@@ -15,7 +17,7 @@ class Marca extends Model
 
     public function rules() {
         return [
-            'nome' => 'required|unique:marcas,nome,'.$this->id,
+            'nome' => 'required|unique:status,nome,'.$this->id
         ];
 
         /*
@@ -28,12 +30,7 @@ class Marca extends Model
     public function feedback() {
         return [
             'required' => 'O campo :attribute é obrigatório',
-            'nome.unique' => 'A marca já existe no banco.',
+            'nome.unique' => 'O status já existe no banco.',
         ];
-    }
-
-    public function itens() {
-        //UMA marca POSSUI MUITOS itens
-        return $this->hasMany('App\Models\Item');
     }
 }
