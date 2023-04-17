@@ -12,12 +12,12 @@ export default function inputSelectCategoria() {
   }, []);
 
   async function buscarCategorias() {
-    const lista = await fetch("http://127.0.0.1:8000/api/categoria").then(
-      (res) => {
-        let filtrada = res.json();
-        return filtrada;
-      }
-    );
+    const baseURL = import.meta.env.VITE_BASE_URL;
+    const url = `${baseURL}/categoria`;
+    const lista = await fetch(url).then((res) => {
+      let filtrada = res.json();
+      return filtrada;
+    });
     const teste2 = lista.data;
 
     setCategoryList([...teste2]);
@@ -29,7 +29,7 @@ export default function inputSelectCategoria() {
       </option>
       {categoryList.map((item) => {
         return (
-          <option value={item.nome} id={item.id} key={item.id}>
+          <option value={item.nome + "!" + item.id} id={item.id} key={item.id}>
             {item.nome}
           </option>
         );

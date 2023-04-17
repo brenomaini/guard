@@ -1,4 +1,5 @@
-import { TrashIcon } from "@heroicons/react/24/outline";
+import { InformationCircleIcon, TrashIcon } from "@heroicons/react/24/outline";
+import { Tooltip } from "@material-tailwind/react";
 import ModalEditarStatus from "../modalEditarStatus";
 import Modal from "../modalRetirarItem";
 import ModalItensRetirados from "../modalVerRetirados";
@@ -22,9 +23,17 @@ export default function LinhaControle({ item }) {
         >
           {item.nf}
         </div>
-        <div className="text-xl table-cell justify-center items-center p-2 max-sm:text-base w-2/6">
+
+        <div className="text-xl flex items-center justify-center p-2 max-sm:text-base">
           {item.item}
+          <Tooltip content={`Descriçao do item: ${item.item}`} placement="top">
+            <InformationCircleIcon
+              className="h-5 w-5 text-gran-blue cursor-pointer m-2 hover:scale-110"
+              aria-hidden="true"
+            />
+          </Tooltip>
         </div>
+
         <div className="text-xl table-cell justify-center items-center p-2 max-sm:text-base 3/6">
           {item.setor}
         </div>

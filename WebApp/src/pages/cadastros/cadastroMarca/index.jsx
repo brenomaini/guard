@@ -1,23 +1,46 @@
+import { zodResolver } from "@hookform/resolvers/zod";
 import React from "react";
 import { useForm } from "react-hook-form";
+import Swal from "sweetalert2";
+import { z } from "zod";
 import CadastroButton from "../../../components/cadastroButton";
 import HeaderCadastroItem from "../../../components/headerCadastroItem";
 
 export default function CadastroMarca() {
-  const { register, handleSubmit } = useForm();
+  const insereMarcaSchema = z.object({
+    nomeMarca: z.string().nonempty("Nome da marca é obrigatório"),
+  });
+
+  const baseURL = import.meta.env.VITE_BASE_URL;
+  const {
+    register,
+    handleSubmit,
+    resetField,
+
+    formState: { errors },
+  } = useForm({ resolver: zodResolver(insereMarcaSchema) });
   function cadastrar(data) {
     const options = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ nome: `${data.nomeMarca}` }),
     };
-    const baseURL = `http://127.0.0.1:8000/api/marca`;
+    const url = `${baseURL}/marca`;
     try {
-      fetch(baseURL, options)
-        .then((response) => response.json())
-        .then((data) => console.log(data));
+      fetch(url, options).then((response) => {
+        if (response.ok) {
+          resetField("nomeMarca");
+          Swal.fire({
+            title: "Sucesso",
+            text: `Marca ${data.nomeMarca} cadastrada.`,
+            icon: "success",
+            confirmButtonColor: "#0D134C",
+            confirmButtonText: "OK",
+          });
+        }
+      });
     } catch (e) {
-      console.log(e);
+      Swal.showValidationMessage(`Erro no cadastro: ${e.message}`);
     }
   }
 
@@ -34,6 +57,11 @@ export default function CadastroMarca() {
             placeholder="Digite aqui"
             {...register("nomeMarca")}
           />
+          {errors.nomeMarca && (
+            <span className="text-gran-red opacity-90">
+              {errors.nomeMarca.message}
+            </span>
+          )}
         </label>
       </div>
       <CadastroButton confirmarCadastro={handleSubmit(cadastrar)} />

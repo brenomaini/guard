@@ -14,7 +14,9 @@ export default function inputSelectMarca() {
   }, []);
 
   async function buscarMarcas() {
-    const lista = await fetch("http://127.0.0.1:8000/api/marca").then((res) => {
+    const baseURL = import.meta.env.VITE_BASE_URL;
+    const url = `${baseURL}/marca`;
+    const lista = await fetch(url).then((res) => {
       let filtrada = res.json();
       return filtrada;
     });
@@ -29,7 +31,7 @@ export default function inputSelectMarca() {
       </option>
       {marcasList.map((item) => {
         return (
-          <option value={item.nome} id={item.id} key={item.id}>
+          <option value={item.nome + "!" + item.id} id={item.id} key={item.id}>
             {item.nome}
           </option>
         );

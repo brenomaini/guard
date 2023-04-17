@@ -1,4 +1,5 @@
 import { PlusCircleIcon } from "@heroicons/react/24/outline";
+import { Tooltip } from "@material-tailwind/react";
 import React from "react";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
@@ -42,17 +43,19 @@ export default function ModalInserirItem({ insereItemEstoque }) {
 
   return (
     <>
-      <button
-        className="ml-4 mb-1 ease-linear transition-all duration-150 hover:scale-125"
-        type="button"
-        data-tooltip-target="tooltip-default"
-        onClick={() => setShowModalAddItem(true)}
-      >
-        <PlusCircleIcon
-          className="h-12 w-12 text-gran-blue "
-          aria-hidden="true"
-        />
-      </button>
+      <Tooltip content="Inserir item no estoque" placement="top-end">
+        <button
+          className="ml-4 mb-1 ease-linear transition-all duration-150 hover:scale-125"
+          type="button"
+          data-tooltip-target="tooltip-default"
+          onClick={() => setShowModalAddItem(true)}
+        >
+          <PlusCircleIcon
+            className="h-12 w-12 text-gran-blue "
+            aria-hidden="true"
+          />
+        </button>
+      </Tooltip>
 
       {showModalAddItem ? (
         <>

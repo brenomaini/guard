@@ -1,6 +1,6 @@
 import { useState } from "react";
-import HeaderControle from "../../components/headerControleEstoque";
 import InputText from "../../components/Inputs/inputText";
+import HeaderControle from "../../components/headerControleEstoque";
 import LinhaControle from "../../components/linhaControleDeEstoque";
 import ModalInserirItem from "../../components/modalInserirNoEstoque";
 
@@ -40,83 +40,45 @@ export default function ItensEstoque() {
       localizacao: "B2",
     },
   ]);
-  const [filter, setFilter] = useState({
-    setor: "",
-    solicitante: "",
-    item: "",
-    nf: "",
-    patrimonio: "",
-    status: "",
-    recebedor: "",
-  });
+
   function insereItemEstoque(item) {
     setItemEstoque((itemsEstoque) => [...itemsEstoque, item]);
   }
 
-  function handleChange(event) {
-    const value = event.target.value;
-    setFilter({
-      ...filter,
-      [event.target.name]: value,
-    });
-  }
   function filtrarEstoque() {
     let selectText = `SELECT * FROM ItensEstoque WHERE `;
-    for (const item in filter) {
-      if (filter[item] != "") {
-        selectText = selectText + `${item} = ${filter[item]} AND `;
-      }
-    }
+    // for (const item in filter) {
+    //   if (filter[item] != "") {
+    //     selectText = selectText + `${item} = ${filter[item]} AND `;
+    //   }
+    // }
+    console.log("Filtrando");
   }
+  // useEffect(() => {
+  //   buscarEstoque();
+  // }, []);
 
   return (
     <>
       <div className="flex flex-col items-center mt-4">
         <div className="flex h-16  gap-8">
-          <InputText
-            name={"Setor/CC"}
-            onChange={handleChange}
-            value={filter.setor}
-            htmlName={"setor"}
-          />
+          <InputText name={"Setor/CC"} onChange={""} htmlName={"setor"} />
           <InputText
             name={"Solicitante"}
-            onChange={handleChange}
-            value={filter.solicitante}
+            onChange={""}
             htmlName={"solicitante"}
           />
-          <InputText
-            name={"Ítem"}
-            onChange={handleChange}
-            value={filter.item}
-            htmlName={"item"}
-          />
+          <InputText name={"Ítem"} onChange={""} htmlName={"item"} />
         </div>
         <div className="flex h-28 gap-8">
-          <InputText
-            name={"Nota"}
-            onChange={handleChange}
-            value={filter.nf}
-            htmlName={"nf"}
-          />
+          <InputText name={"Nota"} onChange={""} htmlName={"nf"} />
           <InputText
             name={"Patrimônio"}
-            onChange={handleChange}
-            value={filter.patrimonio}
+            onChange={""}
             htmlName={"patrimonio"}
           />
-          <InputText
-            name={"Status"}
-            onChange={handleChange}
-            value={filter.status}
-            htmlName={"status"}
-          />
-          <InputText
-            name={"Recebedor"}
-            onChange={handleChange}
-            value={filter.recebedor}
-            htmlName={"recebedor"}
-          />
+          <InputText name={"Status"} onChange={""} htmlName={"status"} />
+          <InputText name={"Recebedor"} onChange={""} htmlName={"recebedor"} />
         </div>
         <button
           className="mb-8 bg-gran-red bg-opacity-70 hover:scale-105 text-white font-semibold py-1 px-2 rounded hover:shadow-xl   "
