@@ -59,24 +59,67 @@ class StatusController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Status $status)
+    public function show($id)
     {
-        //
+        $status = $this->status->find($id);
+        if($status === null)
+        {
+            return response()->json(['erro' => 'Status pesquisado não existe.'], 404);
+        }
+        return response()->json($status, 200);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateStatusRequest $request, Status $status)
+    public function update(UpdateStatusRequest $request, $id)
     {
-        //
+        $status = $this->status->find($id);
+
+        if($status === null) {
+            return response()->json(['erro' => 'Erro na atualização, status não existe.'], 404);
+        }
+
+        if($request->method() === 'PATCH') {
+            //coletar apenas as regras aplicáveis aos parâmetros parciais da requisição PATCH
+            $regrasDinamicas = array();
+
+            //percorrendo todas as regras definidas no Model
+            foreach($status->rules() as $input => $regra) {
+                //coletar apenas as regras aplicáveis aos parâmetros parciais da requisição PATCH
+                if(array_key_exists($input, $request->all())) {
+                    $regrasDinamicas[$input] = $regra;
+                }
+            }
+
+            $request->validate($regrasDinamicas, $status->feedback());
+        } else {
+            $request->validate($status->rules(), $status->feedback());
+        }
+
+        $status->fill($request->all());
+        $status->save();
+        return response()->json($status, 200);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Status $status)
+    public function destroy($id)
     {
-        //
+        $status = $this->status->find($id);
+
+        try {
+            if($status === null)
+            {
+                return response()->json(['msg' => 'Erro ao deletar, status não existe em nosso banco.'], 404);
+            }
+            
+            $status->delete();
+
+            return response()->json(['msg' => 'Status removido com sucesso.'], 200);
+        } catch (\PDOException $e) {
+            return response()->json(['msg' => 'Erro: '.$e->getMessage()], 500);
+        }
     }
 }
