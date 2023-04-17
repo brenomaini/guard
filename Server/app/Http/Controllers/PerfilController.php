@@ -92,7 +92,7 @@ class PerfilController extends Controller
             return response()->json(['erro' => 'Erro na atualização, perfil não existe.'], 404);
         }
 
-        if($request->method() === 'patch') {
+        if($request->method() === 'PATCH') {
             //coletar apenas as regras aplicáveis aos parâmetros parciais da requisição PATCH
             $regrasDinamicas = array();
 
