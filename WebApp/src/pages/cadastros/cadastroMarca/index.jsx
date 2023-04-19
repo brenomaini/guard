@@ -25,7 +25,7 @@ export default function CadastroMarca() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ nome: `${data.nomeMarca}` }),
     };
-    const url = `${baseURL}/marca`;
+    const url = `${baseURL}/marca?all`;
     try {
       fetch(url, options).then((response) => {
         if (response.ok) {

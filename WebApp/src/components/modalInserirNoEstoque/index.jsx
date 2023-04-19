@@ -135,9 +135,9 @@ export default function ModalInserirItem({ insereItemEstoque }) {
                       Imagem NF
                       <input
                         type="file"
-                        name=""
-                        id=""
+                        id="imagemNF"
                         className="relative w-72 cursor-default font-normal rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-gran-blue focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6"
+                        {...register("imagemNF")}
                       />
                     </label>
                     <label className="flex flex-col w-72 text-sm font-medium leading-6 text-black">

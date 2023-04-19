@@ -13,14 +13,14 @@ export default function inputSelectCategoria() {
 
   async function buscarCategorias() {
     const baseURL = import.meta.env.VITE_BASE_URL;
-    const url = `${baseURL}/categoria`;
+    const url = `${baseURL}/categoria?all`;
     const lista = await fetch(url).then((res) => {
       let filtrada = res.json();
       return filtrada;
     });
-    const teste2 = lista.data;
+    const categorias = lista;
 
-    setCategoryList([...teste2]);
+    setCategoryList([...categorias]);
   }
   return (
     <>

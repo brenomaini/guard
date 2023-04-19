@@ -53,6 +53,7 @@ export default function LinhaControle({ item }) {
         >
           <div className="flex items-center justify-between text-center">
             {item.status}
+
             <ModalEditarStatus item={item} />
           </div>
         </div>

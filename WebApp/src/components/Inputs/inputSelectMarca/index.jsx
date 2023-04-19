@@ -15,12 +15,12 @@ export default function inputSelectMarca() {
 
   async function buscarMarcas() {
     const baseURL = import.meta.env.VITE_BASE_URL;
-    const url = `${baseURL}/marca`;
+    const url = `${baseURL}/marca?all`;
     const lista = await fetch(url).then((res) => {
       let filtrada = res.json();
       return filtrada;
     });
-    const marcas = lista.data;
+    const marcas = lista;
 
     setMarcasList([...marcas]);
   }

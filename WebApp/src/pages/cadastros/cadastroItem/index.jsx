@@ -22,6 +22,7 @@ export default function Cadastroitem() {
   const {
     register,
     handleSubmit,
+    resetField,
 
     formState: { errors },
   } = useForm({
@@ -36,6 +37,16 @@ export default function Cadastroitem() {
   function confirmarCadastro(data) {
     let marcaid = data.marca.split("!");
     let categoriaid = data.categoria.split("!");
+    let alerta = 0;
+    let valDescricao = "Item sem descrição";
+    {
+      if (data.alerta) {
+        alerta = 1;
+      }
+      if (data.descricao) {
+        valDescricao = data.descricao;
+      }
+    }
 
     const options = {
       method: "POST",
@@ -44,19 +55,26 @@ export default function Cadastroitem() {
         marca_id: parseInt(marcaid[1]),
         categoria_id: parseInt(categoriaid[1]),
         nome: data.nome,
-        descricao: data.descricao,
-        alerta_quantidade: 1,
+        descricao: valDescricao,
+        alerta_quantidade: alerta,
+        alerta_valor: parseInt(data.alertaQtd),
       }),
     };
-    // alerta_valor: data.alertaQtd,
 
-    const url = `${baseURL}/item`;
+    const url = `${baseURL}/item?all`;
     try {
       fetch(url, options).then((response) => {
         if (response.ok) {
+          resetField("nome");
+          resetField("categoria");
+          resetField("marca");
+          resetField("alerta");
+          resetField("alertaQtd");
+          resetField("descricao");
+
           Swal.fire({
             title: "Sucesso",
-            text: `Marca ${data.nome} cadastrada.`,
+            text: `Item ${data.nome} cadastrado.`,
             icon: "success",
             confirmButtonColor: "#0D134C",
             confirmButtonText: "OK",

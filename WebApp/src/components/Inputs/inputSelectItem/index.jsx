@@ -1,5 +1,4 @@
-import React from "react";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 export default function inputSelectItem() {
   const [itemList, setItemList] = useState([
@@ -10,12 +9,13 @@ export default function inputSelectItem() {
   ]);
   async function buscarItens() {
     const baseURL = import.meta.env.VITE_BASE_URL;
-    const url = `${baseURL}/item`;
+    const url = `${baseURL}/item?all`;
     const lista = await fetch(url).then((res) => {
       let filtrada = res.json();
+
       return filtrada;
     });
-    const items = lista.data;
+    const items = lista;
 
     setItemList([...items]);
   }

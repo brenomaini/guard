@@ -10,12 +10,21 @@ export default function admissao() {
   const admissaoSchema = z.object({
     emailGranLover: z
       .string()
-      .nonempty("E-mail do novo GranLover é obrigatório"),
+      .nonempty("E-mail do novo GranLover é obrigatório")
+      .email("Formato de e-mail inválido")
+      .toLowerCase()
+      .refine((emailGranLover) => {
+        return emailGranLover.endsWith("@grancursosonline.com.br");
+      }, "O e-mail deve ser @grancursosonline.com.br"),
     setor: z.string().nonempty("Setor do GranLover é obrigatório"),
     emailAprovador: z
       .string()
-      .email()
-      .nonempty("E-mail do aprovador é obrigatório"),
+      .nonempty("E-mail do aprovador é obrigatório")
+      .email("Formato de e-mail inválido")
+      .toLowerCase()
+      .refine((email) => {
+        return email.endsWith("@grancursosonline.com.br");
+      }, "O e-mail deve ser @grancursosonline.com.br"),
     itens: z.array(
       z.object({
         notaf: z.string().nonempty("Nota é obrigatório"),
@@ -85,6 +94,11 @@ export default function admissao() {
               placeholder="Digite aqui"
               {...register("emailGranLover")}
             />
+            {errors.emailGranLover && (
+              <span className="text-gran-red opacity-90">
+                {errors.emailGranLover.message}
+              </span>
+            )}
           </label>
 
           <label className="flex flex-col text-sm font-medium leading-6 text-black">
@@ -95,6 +109,11 @@ export default function admissao() {
             >
               <InputSelectSetor />
             </select>
+            {errors.setor && (
+              <span className="text-gran-red opacity-90">
+                {errors.setor.message}
+              </span>
+            )}
           </label>
           <label className="flex flex-col justify-center text-sm font-medium leading-6 text-black">
             E-mail do GranLover aprovador
@@ -105,6 +124,11 @@ export default function admissao() {
               placeholder="Digite aqui"
               {...register("emailAprovador")}
             />
+            {errors.emailAprovador && (
+              <span className="text-gran-red opacity-90">
+                {errors.emailAprovador.message}
+              </span>
+            )}
           </label>
           <button
             onClick={adicionarNovoItem}
