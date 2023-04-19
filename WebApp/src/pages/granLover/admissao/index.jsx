@@ -12,11 +12,14 @@ export default function admissao() {
       .string()
       .nonempty("E-mail do novo GranLover é obrigatório"),
     setor: z.string().nonempty("Setor do GranLover é obrigatório"),
-    emailAprovador: z.string().nonempty("E-mail do aprovador é obrigatório"),
+    emailAprovador: z
+      .string()
+      .email()
+      .nonempty("E-mail do aprovador é obrigatório"),
     itens: z.array(
       z.object({
         notaf: z.string().nonempty("Nota é obrigatório"),
-        patrimonio: z.string().nonempty("Patrimônio é obrigatório"),
+        patrimonio: z.string(),
       })
     ),
   });
