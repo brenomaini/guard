@@ -27,3 +27,4 @@ Route::Apiresource('item', 'App\Http\Controllers\ItemController');
 Route::Apiresource('perfil', 'App\Http\Controllers\PerfilController');
 Route::Apiresource('setor', 'App\Http\Controllers\SetorController');
 Route::Apiresource('status', 'App\Http\Controllers\StatusController');
+Route::Apiresource('estoque', 'App\Http\Controllers\EstoqueController');
