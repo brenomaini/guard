@@ -1,43 +1,99 @@
 import { PlusCircleIcon } from "@heroicons/react/24/outline";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { Tooltip } from "@material-tailwind/react";
 import React from "react";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
+import { z } from "zod";
 import InputSelectItem from "../Inputs/inputSelectItem";
 import InputSelectLocalizacao from "../Inputs/inputSelectLocalizacao";
 import InputSelectSetor from "../Inputs/inputSelectSetor";
 import InputSelectStatus from "../Inputs/inputSelectStatus";
 
-export default function ModalInserirItem({ insereItemEstoque }) {
-  const { register, handleSubmit } = useForm();
+export default function ModalInserirItem() {
+  const baseURL = import.meta.env.VITE_BASE_URL;
+  const MAX_FILE_SIZE = 500000;
+  const ACCEPTED_IMAGE_TYPES = ["application/pdf", "image/png"];
+  const itemEstoqueSchema = z.object({
+    item: z.string().nonempty("E-mail do novo GranLover é obrigatório"),
+    setor: z.string().nonempty("Setor do GranLover é obrigatório"),
+    status: z.string().nonempty("Selecione o Status do item"),
+    quantidade: z.string().nonempty("Quantidade é obrigatório"),
+    nf: z.string(),
+    imagemNF: z
+      .any()
+      .refine(
+        (files) => files?.[0]?.size <= MAX_FILE_SIZE,
+        `Tamanho máximo do arquivo é 5MB.`
+      )
+      .refine(
+        (files) => ACCEPTED_IMAGE_TYPES.includes(files?.[0]?.type),
+        "Só são aceitos arquivos .pdf e .png"
+      ),
+    localizacao: z.string().nonempty("Selecione onde o item está separado"),
+    solicitante: z.string().nonempty("Quem solicitou a compra?"),
+  });
+
+  const {
+    register,
+    handleSubmit,
+    resetField,
+    formState: { errors },
+  } = useForm({
+    resolver: zodResolver(itemEstoqueSchema),
+  });
 
   const [showModalAddItem, setShowModalAddItem] = React.useState(false);
 
   function insereEstoque(data) {
-    let estaVazio = true;
-    for (const info in data) {
-      if (data[info] == "" && info != "retirado" && info != "disponivel") {
-        estaVazio = `O campo ${info} não pode estar vazio`;
-      }
-    }
-    if (estaVazio === true) {
-      insereItemEstoque(data);
-      Swal.fire({
-        title: "Confirmado",
-        text: "Item cadastrado no estoque!",
-        icon: "success",
-        confirmButtonColor: "#0D134C",
-        confirmButtonText: "OK",
+    let item = data.item.split("!");
+    let itemID = item[1];
+    let status = data.status.split("!");
+    let statusID = status[1];
+    let setor = data.setor.split("!");
+    let setorID = setor[1];
+    const boundary = Math.random().toString(16).substr(2);
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": `multipart/form-data;boundary=---${boundary}`,
+      },
+      body: JSON.stringify({
+        item_id: parseInt(itemID),
+        status_id: parseInt(statusID),
+        setor_id: parseInt(setorID),
+        quantidade: parseInt(data.quantidade),
+        localizacao: data.localizacao,
+        agente: "teste@email.com",
+        notafiscal: data.nf,
+        imgnota: data.imagemNF[0],
+      }),
+    };
+
+    const url = `${baseURL}/estoque`;
+    try {
+      fetch(url, options).then((response) => {
+        if (response.ok) {
+          setShowModalAddItem(false);
+          resetField("item");
+          resetField("status");
+          resetField("setor");
+          resetField("quantidade");
+          resetField("nf");
+          resetField("imagemNF");
+          resetField("solicitante");
+
+          Swal.fire({
+            title: "Sucesso",
+            text: `Item inserido com sucesso.`,
+            icon: "success",
+            confirmButtonColor: "#0D134C",
+            confirmButtonText: "OK",
+          });
+        }
       });
-      setShowModalAddItem(false);
-    } else {
-      Swal.fire({
-        title: "Atenção",
-        text: `${estaVazio}`,
-        icon: "warning",
-        confirmButtonColor: "#DD303E",
-        confirmButtonText: "OK",
-      });
+    } catch (e) {
+      Swal.showValidationMessage(`Erro: ${e.message}`);
     }
   }
 
@@ -51,7 +107,7 @@ export default function ModalInserirItem({ insereItemEstoque }) {
           onClick={() => setShowModalAddItem(true)}
         >
           <PlusCircleIcon
-            className="h-12 w-12 text-gran-blue "
+            className="h-12 w-12 text-gran-blue"
             aria-hidden="true"
           />
         </button>
@@ -91,6 +147,11 @@ export default function ModalInserirItem({ insereItemEstoque }) {
                       >
                         <InputSelectItem />
                       </select>
+                      {errors.item && (
+                        <span className="text-gran-red opacity-90">
+                          {errors.item.message}
+                        </span>
+                      )}
                     </label>
                     <label className="flex flex-col  text-sm font-medium leading-6 text-black">
                       E-Mail do solicitante
@@ -101,6 +162,11 @@ export default function ModalInserirItem({ insereItemEstoque }) {
                         placeholder="Digite aqui"
                         {...register("solicitante")}
                       />
+                      {errors.solicitante && (
+                        <span className="text-gran-red opacity-90">
+                          {errors.solicitante.message}
+                        </span>
+                      )}
                     </label>
                     <label className="flex flex-col  text-sm font-medium leading-6 text-black">
                       Setor
@@ -110,6 +176,11 @@ export default function ModalInserirItem({ insereItemEstoque }) {
                       >
                         <InputSelectSetor />
                       </select>
+                      {errors.setor && (
+                        <span className="text-gran-red opacity-90">
+                          {errors.setor.message}
+                        </span>
+                      )}
                     </label>
                     <label className="flex flex-col  text-sm font-medium leading-6 text-black">
                       Status
@@ -119,6 +190,11 @@ export default function ModalInserirItem({ insereItemEstoque }) {
                       >
                         <InputSelectStatus />
                       </select>
+                      {errors.status && (
+                        <span className="text-gran-red opacity-90">
+                          {errors.status.message}
+                        </span>
+                      )}
                     </label>
 
                     <label className="flex flex-col  text-sm font-medium leading-6 text-black">
@@ -130,6 +206,11 @@ export default function ModalInserirItem({ insereItemEstoque }) {
                         placeholder="00000"
                         {...register("nf")}
                       />
+                      {errors.nf && (
+                        <span className="text-gran-red opacity-90">
+                          {errors.nf.message}
+                        </span>
+                      )}
                     </label>
                     <label className="flex flex-col  text-sm font-medium leading-6 text-black">
                       Imagem NF
@@ -139,16 +220,26 @@ export default function ModalInserirItem({ insereItemEstoque }) {
                         className="relative w-72 cursor-default font-normal rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-gran-blue focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6"
                         {...register("imagemNF")}
                       />
+                      {errors.imagemNF && (
+                        <span className="text-gran-red opacity-90">
+                          {errors.imagemNF.message}
+                        </span>
+                      )}
                     </label>
                     <label className="flex flex-col w-72 text-sm font-medium leading-6 text-black">
                       Quantidade
                       <input
                         className="relative w-24 cursor-default  rounded-md bg-white py-1.5 pl-3 pr-4 text-left text-black shadow-sm ring-1 ring-inset ring-gran-blue focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6"
                         type="number"
-                        id="nf"
+                        id="quantidade"
                         placeholder="00"
                         {...register("quantidade")}
                       />
+                      {errors.quantidade && (
+                        <span className="text-gran-red opacity-90">
+                          {errors.quantidade.message}
+                        </span>
+                      )}
                     </label>
                     <label className="flex flex-col  text-sm font-medium leading-6 text-black">
                       Localização
@@ -158,6 +249,11 @@ export default function ModalInserirItem({ insereItemEstoque }) {
                       >
                         <InputSelectLocalizacao />
                       </select>
+                      {errors.localizacao && (
+                        <span className="text-gran-red opacity-90">
+                          {errors.localizacao.message}
+                        </span>
+                      )}
                     </label>
                   </div>
                 </div>
