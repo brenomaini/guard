@@ -26,12 +26,12 @@ class EstoqueController extends Controller
         $estoqueRepository = new EstoqueRepository($this->estoque);
 
         // condição caso exista o atributo atributos_modelo na url
-        // if ($request->has('atributos_item')) {
-        //     $atributos_item = 'item:id,' . $request->atributos_item;
-        //     $estoqueRepository->selectAtributosRegistrosRelacionados($atributos_item);
-        // } else {
-        //     $estoqueRepository->selectAtributosRegistrosRelacionados('item', 'setor', 'status');
-        // }
+        if ($request->has('atributos_item')) {
+            $atributos_item = 'item:id,' . $request->atributos_item;
+            $estoqueRepository->selectAtributosRegistrosRelacionados($atributos_item);
+        } else {
+            $estoqueRepository->selectAtributosRegistrosRelacionados('item', 'setor', 'status');
+        }
 
         // filtro multiplo
         if ($request->has('filtro')) {
