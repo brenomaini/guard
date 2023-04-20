@@ -15,6 +15,7 @@ class Estoque extends Model
         'setor_id',
         'status_id',
         'quantidade',
+        'localizacao',
         'agente',
         'notafiscal',
         'imgnota'
@@ -26,16 +27,16 @@ class Estoque extends Model
             'setor_id' => 'exists:setores,id',
             'status_id' => 'exists:status,id',
             'quantidade' => 'required',
+            'localizacao' => 'required',
             'agente' => 'required',
-            'notafiscal' => 'required',
-            'imgnota' => 'required|file|mimes:png,pdf'
+            'imgnota' => 'file|mimes:png,pdf'
         ];
     }
 
     public function feedback() {
         return [
             'required' => 'O campo :attribute é obrigatório.',
-            'imgnota.mimes' => 'O arquivo deve ser uma imagem do tipo PNG ou PDF',
+            'imgnota.mimes' => 'O arquivo deve ser uma imagem do tipo PNG ou PDF.',
         ];
     }
 

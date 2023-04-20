@@ -65,6 +65,7 @@ class EstoqueController extends Controller
             'setor_id' => $request->setor_id,
             'status_id' => $request->status_id,
             'quantidade' => $request->quantidade,
+            'localizacao' => $request->localizacao,
             'agente' => $request->agente,
             'notafiscal' => $request->notafiscal,
             'imgnota' => $arquivo_urn
