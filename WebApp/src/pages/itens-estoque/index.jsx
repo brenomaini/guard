@@ -21,7 +21,7 @@ export default function ItensEstoque() {
   }
   useEffect(() => {
     buscarItensEstoque();
-  }, []);
+  }, [itemsEstoque]);
 
   function filtrarEstoque() {
     let selectText = `SELECT * FROM ItensEstoque WHERE `;

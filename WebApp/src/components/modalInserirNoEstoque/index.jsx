@@ -15,7 +15,7 @@ export default function ModalInserirItem() {
   const MAX_FILE_SIZE = 500000;
   const ACCEPTED_IMAGE_TYPES = ["application/pdf", "image/png"];
   const itemEstoqueSchema = z.object({
-    item: z.string().nonempty("E-mail do novo GranLover é obrigatório"),
+    item: z.string().nonempty("Item é obrigatório"),
     setor: z.string().nonempty("Setor do GranLover é obrigatório"),
     status: z.string().nonempty("Selecione o Status do item"),
     quantidade: z.string().nonempty("Quantidade é obrigatório"),
@@ -37,7 +37,7 @@ export default function ModalInserirItem() {
   const {
     register,
     handleSubmit,
-    resetField,
+    reset,
     formState: { errors },
   } = useForm({
     resolver: zodResolver(itemEstoqueSchema),
@@ -46,42 +46,36 @@ export default function ModalInserirItem() {
   const [showModalAddItem, setShowModalAddItem] = React.useState(false);
 
   function insereEstoque(data) {
-    let item = data.item.split("!");
-    let itemID = item[1];
-    let status = data.status.split("!");
-    let statusID = status[1];
-    let setor = data.setor.split("!");
-    let setorID = setor[1];
-    const boundary = Math.random().toString(16).substr(2);
+    const item = data.item.split("!");
+    const itemID = item[1];
+    const status = data.status.split("!");
+    const statusID = status[1];
+    const setor = data.setor.split("!");
+    const setorID = setor[1];
+    const form = new FormData();
+    form.append("item_id", itemID);
+    form.append("status_id", statusID);
+    form.append("setor_id", setorID);
+    form.append("quantidade", data.quantidade);
+    form.append("notafiscal", data.nf);
+    form.append("agente", "teste@email.com");
+    form.append("imgnota", data.imagemNF?.[0]);
+    form.append("localizacao", data.localizacao);
+
     const options = {
       method: "POST",
-      headers: {
-        "Content-Type": `multipart/form-data;boundary=---${boundary}`,
-      },
-      body: JSON.stringify({
-        item_id: parseInt(itemID),
-        status_id: parseInt(statusID),
-        setor_id: parseInt(setorID),
-        quantidade: parseInt(data.quantidade),
-        localizacao: data.localizacao,
-        agente: "teste@email.com",
-        notafiscal: data.nf,
-        imgnota: data.imagemNF[0],
-      }),
+      body: form,
     };
+    options.headers = new Headers({
+      Accept: "application/json",
+    });
 
     const url = `${baseURL}/estoque`;
     try {
       fetch(url, options).then((response) => {
         if (response.ok) {
           setShowModalAddItem(false);
-          resetField("item");
-          resetField("status");
-          resetField("setor");
-          resetField("quantidade");
-          resetField("nf");
-          resetField("imagemNF");
-          resetField("solicitante");
+          reset();
 
           Swal.fire({
             title: "Sucesso",

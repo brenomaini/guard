@@ -49,7 +49,7 @@ export default function LinhaControle({ item }) {
         <div
           className={
             item.status.nome == "Disponível"
-              ? `text-xl table-cell justify-around items-center text-center p-2 max-sm:text-base w-2/12 bg-green `
+              ? `text-xl table-cell justify-around border-b border-b-gran-blue items-center text-center p-2 max-sm:text-base w-2/12 bg-green `
               : item.status.nome == "Aguardando fornecedor"
               ? `text-base table-cell justify-around text-center items-center p-2 max-sm:text-base w-2/12 bg-yellow`
               : item.status.nome == "Em falta"

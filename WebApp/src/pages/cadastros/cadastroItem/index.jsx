@@ -60,6 +60,7 @@ export default function Cadastroitem() {
         alerta_valor: parseInt(data.alertaQtd),
       }),
     };
+    console.log(options);
 
     const url = `${baseURL}/item?all`;
     try {
