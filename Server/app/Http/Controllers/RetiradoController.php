@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreRetiradoRequest;
 use App\Http\Requests\UpdateRetiradoRequest;
+use App\Http\Requests\UpdateEstoqueRequest;
 use App\Models\Retirado;
+use App\Models\Estoque;
 use Illuminate\Http\Request;
 use App\Repositories\RetiradoRepository;
 
@@ -16,7 +18,7 @@ class RetiradoController extends Controller
     {
         $this->retirado = $retirado;
     }
-    
+
     /**
      * Display a listing of the resource.
      */
@@ -30,7 +32,18 @@ class RetiradoController extends Controller
      */
     public function store(StoreRetiradoRequest $request)
     {
-        //
+        $request->validate($this->retirado->rules(), $this->retirado->feedback());
+        $retirado = Retirado::create([
+            'estoque_id' => $request->estoque_id,
+            'item_id' => $request->item_id,
+            'setor_id' => $request->setor_id,
+            'agente' => $request->agente,
+            'recebedor' => $request->recebedor,
+            'email_aprovador' => $request->email_aprovador,
+            'quantidade_retirado' => $request->quantidade_retirado
+        ]);
+        
+        return response()->json($retirado, 201);
     }
 
     /**
