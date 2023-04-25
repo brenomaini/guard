@@ -25,7 +25,24 @@ class RetiradoController extends Controller
      */
     public function index(Request $request)
     {
-        
+        $retiradoRepository = new RetiradoRepository($this->retirado);
+
+        // filtro multiplo
+        if ($request->has('filtro')) {
+            $retiradoRepository->filtro($request->filtro);
+        }
+
+        // condição caso exista o atributo atributos na url
+        if ($request->has('atributos')) {
+            $retiradoRepository->selectAtributos($request->atributos);
+        }
+
+        // condição caso exista o atributo atributos na url
+        if ($request->has('all')) {
+            return response()->json($retiradoRepository->getResultado(), 200);
+        } else {
+            return response()->json($retiradoRepository->getResultadoPaginado(10), 200);
+        }
     }
 
     /**
