@@ -97,7 +97,7 @@ class StatusController extends Controller
             $request->validate($status->rules(), $status->feedback());
         }
 
-        dd($status->fill($request->all()));
+        $status->fill($request->all());
         $status->save();
         return response()->json($status, 200);
     }
