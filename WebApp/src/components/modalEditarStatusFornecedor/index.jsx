@@ -58,14 +58,14 @@ export default function modalEditarStatusFornecedor({ item }) {
       setor_id: item.setor_id,
       item_id: item.item_id,
       nota: item.item.nf,
-      status_id: "ID do novo status a ser atribuido",
+      status_id: "Aguardando Patrimoniamento",
       patrimonios: data.patrimonios,
     };
     console.log(enviarBD);
     console.log(
       "Ao enviar isso aqui, o ideal é criar a quantidade correspondente de patrimonios enviados em ITENS cada um com seu status e informaçoes Ex: pat 10, 20 e 30, criaria os items 10 20 e 30 pra poder vincular esses itens a alguem posteriormente"
     );
-    console.log(item);
+
     // const url = `${baseURL}/estoque`;
     // try {
     //   fetch(url, options).then((response) => {

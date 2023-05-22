@@ -70,7 +70,7 @@ export default function modalEditarStatusPatrimonio({ item }) {
       pedido_id: item.id,
       setor_id: item.setor_id,
       item_id: item.item_id,
-      status_id: "ID do novo status a ser atribuido ao pedido",
+      status_id: "Aguardando fornecedor (ID do status aqui)",
       notas: data.notas,
       qtd_notas: data.numeroDeNotas,
     };

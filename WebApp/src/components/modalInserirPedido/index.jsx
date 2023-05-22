@@ -9,25 +9,12 @@ import InputSelectSetor from "../Inputs/inputSelectSetor";
 
 export default function modalInserirPedido() {
   const baseURL = import.meta.env.VITE_BASE_URL;
-  const MAX_FILE_SIZE = 500000;
-  const ACCEPTED_IMAGE_TYPES = ["application/pdf", "image/png"];
   const itemEstoqueSchema = z.object({
     item: z.string().nonempty("Item é obrigatório"),
     setor: z.string().nonempty("Setor é obrigatório"),
     quantidade: z.string().nonempty("Quantidade é obrigatório"),
-    // nf: z.string(),
-    // imagemNF: z
-    //   .any()
-    //   .refine(
-    //     (files) => files?.[0]?.size <= MAX_FILE_SIZE,
-    //     `Tamanho máximo do arquivo é 5MB.`
-    //   )
-    //   .refine(
-    //     (files) => ACCEPTED_IMAGE_TYPES.includes(files?.[0]?.type),
-    //     "Só são aceitos arquivos .pdf e .png"
-    //   ),
-    // localizacao: z.string().nonempty("Selecione onde o item está separado"),
     solicitante: z.string().nonempty("Quem solicitou a compra?"),
+    aprovador: z.string().nonempty("Quem aprovou a compra?"),
   });
 
   const {
@@ -64,13 +51,15 @@ export default function modalInserirPedido() {
       Accept: "application/json",
     });
     const enviarBD = {
+      id_pedido: "bd cria",
+      data_criacao: "bd cria",
+      data_update: "bd cria",
       setor_id: setorID,
       item_id: itemID,
-      status_id:
-        statusID +
-        "Provavelmente vai ser ser Aguardando financeiro/Fornecedor devo deixar fixado apenas essas duas opçoes",
+      status_id: statusID + "Aguardando financeiro",
       quantidade: data.quantidade,
       solicitante: data.solicitante,
+      aprovador: data.aprovador,
       agente: "email@email.com",
     };
     console.log(enviarBD);
@@ -168,6 +157,21 @@ export default function modalInserirPedido() {
                       )}
                     </label>
                     <label className="flex flex-col  text-sm font-medium leading-6 text-black">
+                      E-Mail do aprovador
+                      <input
+                        className="relative w-72 cursor-default  rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-gran-blue focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6"
+                        type="text"
+                        id="aprovador"
+                        placeholder="Digite aqui"
+                        {...register("aprovador")}
+                      />
+                      {errors.aprovador && (
+                        <span className="text-gran-red opacity-90">
+                          {errors.aprovador.message}
+                        </span>
+                      )}
+                    </label>
+                    <label className="flex flex-col  text-sm font-medium leading-6 text-black">
                       Setor
                       <select
                         {...register("setor")}
@@ -188,35 +192,6 @@ export default function modalInserirPedido() {
                       </span>
                     </label>
 
-                    {/* <label className="flex flex-col  text-sm font-medium leading-6 text-black">
-                      Nota fiscal
-                      <input
-                        className="relative w-72 cursor-default  rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-gran-blue focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6"
-                        type="text"
-                        id="nf"
-                        placeholder="00000"
-                        {...register("nf")}
-                      />
-                      {errors.nf && (
-                        <span className="text-gran-red opacity-90">
-                          {errors.nf.message}
-                        </span>
-                      )}
-                    </label>
-                    <label className="flex flex-col  text-sm font-medium leading-6 text-black">
-                      Imagem NF
-                      <input
-                        type="file"
-                        id="imagemNF"
-                        className="relative w-72 cursor-default font-normal rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-gran-blue focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6"
-                        {...register("imagemNF")}
-                      />
-                      {errors.imagemNF && (
-                        <span className="text-gran-red opacity-90">
-                          {errors.imagemNF.message}
-                        </span>
-                      )}
-                    </label> */}
                     <label className="flex flex-col w-72 text-sm font-medium leading-6 text-black">
                       Quantidade
                       <input
@@ -232,20 +207,6 @@ export default function modalInserirPedido() {
                         </span>
                       )}
                     </label>
-                    {/* <label className="flex flex-col  text-sm font-medium leading-6 text-black">
-                      Localização
-                      <select
-                        {...register("localizacao")}
-                        className="relative w-72 cursor-default font-normal rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-gran-blue focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6"
-                      >
-                        <InputSelectLocalizacao />
-                      </select>
-                      {errors.localizacao && (
-                        <span className="text-gran-red opacity-90">
-                          {errors.localizacao.message}
-                        </span>
-                      )}
-                    </label> */}
                   </div>
                 </div>
                 {/*footer*/}
