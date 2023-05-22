@@ -88,7 +88,7 @@ export default function Cadastroitem() {
   }
 
   return (
-    <form className="flex flex-col h-screen items-center  bg-black bg-opacity-25 m-4">
+    <form className="flex flex-col h-full items-center  bg-black bg-opacity-25 m-4">
       <HeaderCadastroItem name={"ITEM "} />
       <div className="flex flex-col items-center justify-around h-1/2 w-full flex-wrap p-8 gap-8">
         <label className="flex flex-col  text-sm font-medium leading-6 text-black">
@@ -120,6 +120,13 @@ export default function Cadastroitem() {
               {errors.categoria.message}
             </span>
           )}
+          <a
+            href="/cadastroCategoria"
+            target="_blank"
+            className="text-gran-blue opacity-90 text-xs hover:font-bold"
+          >
+            Cadastrar nova categoria
+          </a>
         </label>
         <label className="flex flex-col  text-sm font-medium leading-6 text-black">
           Marca
@@ -134,6 +141,13 @@ export default function Cadastroitem() {
               {errors.marca.message}
             </span>
           )}
+          <a
+            href="/cadastroMarca"
+            target="_blank"
+            className="text-gran-blue opacity-90 text-xs hover:font-bold "
+          >
+            Cadastrar nova marca
+          </a>
         </label>
         <label
           htmlFor="descricao"
@@ -161,7 +175,7 @@ export default function Cadastroitem() {
             className=" peer"
           />
           <div className="hidden peer-checked:block">
-            <label className="flex flex-col w-72 text-sm font-medium leading-6 text-black">
+            <label className="flex flex-col w-72 text-sm font-medium items-center leading-6 text-black">
               Quantidade
               <input
                 className="relative w-24 cursor-default  rounded-md bg-white py-1.5 pl-3 pr-4 text-left text-black shadow-sm ring-1 ring-inset ring-gran-blue focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6"

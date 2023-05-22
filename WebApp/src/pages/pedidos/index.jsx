@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import InputText from "../../components/Inputs/inputText";
-import HeaderControle from "../../components/headerControleEstoque";
-import LinhaControle from "../../components/linhaControleDeEstoque";
-import ModalInserirItem from "../../components/modalInserirNoEstoque";
+import HeaderControlePedidos from "../../components/headerControlePedidos";
+import LinhaControlePedidos from "../../components/linhaControlePedidos";
+import ModalInserirPedido from "../../components/modalInserirPedido";
 
-export default function ItensEstoque() {
+export default function pedidos() {
   const [itemsEstoque, setItemEstoque] = useState([]);
   const [page, setPage] = useState(1);
   async function buscarItensEstoque() {
@@ -58,12 +58,12 @@ export default function ItensEstoque() {
         </button>
       </div>
 
-      <ModalInserirItem />
+      <ModalInserirPedido />
 
       <div className="table  gap-2 row-auto h-16 w-full  place-items-center p-2 ">
-        <HeaderControle />
+        <HeaderControlePedidos />
         {itemsEstoque.map((item) => {
-          return <LinhaControle item={item} key={item.id} />;
+          return <LinhaControlePedidos item={item} key={item.id} />;
         })}
       </div>
     </>

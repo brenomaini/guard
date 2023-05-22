@@ -3,34 +3,33 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Tooltip } from "@material-tailwind/react";
 import React from "react";
 import { useForm } from "react-hook-form";
-import Swal from "sweetalert2";
 import { z } from "zod";
 import InputSelectItem from "../Inputs/inputSelectItem";
-import InputSelectLocalizacao from "../Inputs/inputSelectLocalizacao";
 import InputSelectSetor from "../Inputs/inputSelectSetor";
 import InputSelectStatus from "../Inputs/inputSelectStatus";
 
-export default function ModalInserirItem() {
+export default function modalInserirPedido() {
   const baseURL = import.meta.env.VITE_BASE_URL;
   const MAX_FILE_SIZE = 500000;
   const ACCEPTED_IMAGE_TYPES = ["application/pdf", "image/png"];
   const itemEstoqueSchema = z.object({
     item: z.string().nonempty("Item é obrigatório"),
-    setor: z.string().nonempty("Setor do GranLover é obrigatório"),
+    solicitante: z.string().nonempty("Setor solicitante é obrigatório"),
+    setor: z.string().nonempty("Setor é obrigatório"),
     status: z.string().nonempty("Selecione o Status do item"),
     quantidade: z.string().nonempty("Quantidade é obrigatório"),
-    nf: z.string(),
-    imagemNF: z
-      .any()
-      .refine(
-        (files) => files?.[0]?.size <= MAX_FILE_SIZE,
-        `Tamanho máximo do arquivo é 5MB.`
-      )
-      .refine(
-        (files) => ACCEPTED_IMAGE_TYPES.includes(files?.[0]?.type),
-        "Só são aceitos arquivos .pdf e .png"
-      ),
-    localizacao: z.string().nonempty("Selecione onde o item está separado"),
+    // nf: z.string(),
+    // imagemNF: z
+    //   .any()
+    //   .refine(
+    //     (files) => files?.[0]?.size <= MAX_FILE_SIZE,
+    //     `Tamanho máximo do arquivo é 5MB.`
+    //   )
+    //   .refine(
+    //     (files) => ACCEPTED_IMAGE_TYPES.includes(files?.[0]?.type),
+    //     "Só são aceitos arquivos .pdf e .png"
+    //   ),
+    // localizacao: z.string().nonempty("Selecione onde o item está separado"),
     solicitante: z.string().nonempty("Quem solicitou a compra?"),
   });
 
@@ -55,12 +54,10 @@ export default function ModalInserirItem() {
     const form = new FormData();
     form.append("item_id", itemID);
     form.append("status_id", statusID);
+    form.append("solicitante", data.solicitante);
     form.append("setor_id", setorID);
     form.append("quantidade", data.quantidade);
-    form.append("notafiscal", data.nf);
     form.append("agente", "teste@email.com");
-    form.append("imgnota", data.imagemNF?.[0]);
-    form.append("localizacao", data.localizacao);
 
     const options = {
       method: "POST",
@@ -69,31 +66,42 @@ export default function ModalInserirItem() {
     options.headers = new Headers({
       Accept: "application/json",
     });
+    const enviarBD = {
+      setor_id: setorID,
+      item_id: itemID,
+      status_id:
+        statusID +
+        "Provavelmente vai ser ser Aguardando financeiro/Fornecedor devo deixar fixado apenas essas duas opçoes",
+      quantidade: data.quantidade,
+      solicitante: data.solicitante,
+      agente: "email@email.com",
+    };
+    console.log(enviarBD);
 
-    const url = `${baseURL}/estoque`;
-    try {
-      fetch(url, options).then((response) => {
-        if (response.ok) {
-          setShowModalAddItem(false);
-          reset();
+    // const url = `${baseURL}/estoque`;
+    // try {
+    //   fetch(url, options).then((response) => {
+    //     if (response.ok) {
+    //       setShowModalAddItem(false);
+    //       reset();
 
-          Swal.fire({
-            title: "Sucesso",
-            text: `Item inserido com sucesso.`,
-            icon: "success",
-            confirmButtonColor: "#0D134C",
-            confirmButtonText: "OK",
-          });
-        }
-      });
-    } catch (e) {
-      Swal.showValidationMessage(`Erro: ${e.message}`);
-    }
+    //       Swal.fire({
+    //         title: "Sucesso",
+    //         text: `Item inserido com sucesso.`,
+    //         icon: "success",
+    //         confirmButtonColor: "#0D134C",
+    //         confirmButtonText: "OK",
+    //       });
+    //     }
+    //   });
+    // } catch (e) {
+    //   Swal.showValidationMessage(`Erro: ${e.message}`);
+    // }
   }
 
   return (
     <>
-      <Tooltip content="Inserir item no estoque" placement="top-end">
+      <Tooltip content="Inserir pedido no estoque" placement="top-end">
         <button
           className="ml-4 mb-1 ease-linear transition-all duration-150 hover:scale-125"
           type="button"
@@ -116,7 +124,7 @@ export default function ModalInserirItem() {
                 {/*header*/}
                 <div className="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
                   <h3 className="text-3xl font-semibold">
-                    Inserir item no estoque
+                    Inserir um novo pedido
                   </h3>
                   <button
                     className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
@@ -130,7 +138,7 @@ export default function ModalInserirItem() {
                 {/*body*/}
                 <div className="relative p-6 flex-auto">
                   <p className="my-4 text-slate-500 text-lg leading-relaxed">
-                    Qual item você deseja inserir?
+                    Qual item você deseja inserir o pedido?
                   </p>
                   <div className="flex w-full justify-around flex-wrap h-96 items-center ">
                     <label className="flex flex-col  text-sm font-medium leading-6 text-black">
@@ -191,7 +199,7 @@ export default function ModalInserirItem() {
                       )}
                     </label>
 
-                    <label className="flex flex-col  text-sm font-medium leading-6 text-black">
+                    {/* <label className="flex flex-col  text-sm font-medium leading-6 text-black">
                       Nota fiscal
                       <input
                         className="relative w-72 cursor-default  rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-gran-blue focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6"
@@ -219,7 +227,7 @@ export default function ModalInserirItem() {
                           {errors.imagemNF.message}
                         </span>
                       )}
-                    </label>
+                    </label> */}
                     <label className="flex flex-col w-72 text-sm font-medium leading-6 text-black">
                       Quantidade
                       <input
@@ -235,7 +243,7 @@ export default function ModalInserirItem() {
                         </span>
                       )}
                     </label>
-                    <label className="flex flex-col  text-sm font-medium leading-6 text-black">
+                    {/* <label className="flex flex-col  text-sm font-medium leading-6 text-black">
                       Localização
                       <select
                         {...register("localizacao")}
@@ -248,7 +256,7 @@ export default function ModalInserirItem() {
                           {errors.localizacao.message}
                         </span>
                       )}
-                    </label>
+                    </label> */}
                   </div>
                 </div>
                 {/*footer*/}

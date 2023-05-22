@@ -1,26 +1,9 @@
 import { MinusCircleIcon } from "@heroicons/react/24/outline";
-import React, { useState } from "react";
+import React from "react";
 import Input from "../Inputs/inputText";
 
 export default function ModalRetirarItem({ item }) {
   const [showModal, setShowModal] = React.useState(false);
-  const [valuePat, setValuePat] = useState("");
-  const [valueApr, setValueApr] = useState("");
-  const [valueRec, setValueRec] = useState("");
-
-  function handleChange(event) {
-    if (event.target.id == "E-mail do recebedor") {
-      setValueRec(event.target.value);
-    }
-    if (event.target.id == "E-mail do aprovador") {
-      setValueApr(event.target.value);
-    }
-    if (event.target.id == "Patrimônio") {
-      setValuePat(event.target.value);
-    } else {
-      return;
-    }
-  }
 
   return (
     <>
@@ -55,24 +38,12 @@ export default function ModalRetirarItem({ item }) {
                 {/*body*/}
                 <div className="relative p-6 flex-auto">
                   <p className="my-4 text-slate-500 text-lg leading-relaxed">
-                    Você deseja retirar um {item.item}?
+                    Você deseja retirar um {item.item.nome}?
                   </p>
                   <div className="flex w-full justify-around flex-wrap h-96 items-center ">
-                    <Input
-                      name={"E-mail do recebedor"}
-                      onChange={handleChange}
-                      value={valueRec}
-                    />
-                    <Input
-                      name={"E-mail do aprovador"}
-                      onChange={handleChange}
-                      value={valueApr}
-                    />
-                    <Input
-                      name={"Patrimônio"}
-                      onChange={handleChange}
-                      value={valuePat}
-                    />
+                    <Input name={"E-mail do recebedor"} />
+                    <Input name={"E-mail do aprovador"} />
+                    <Input name={"Patrimônio"} />
                   </div>
                 </div>
                 {/*footer*/}
@@ -90,15 +61,10 @@ export default function ModalRetirarItem({ item }) {
                     onClick={() => {
                       alert(
                         "Items retirados para: " +
-                          valueRec +
-                          "Aprovado por: " +
-                          valueApr +
-                          "Patrimônio:" +
-                          valuePat +
-                          "Item:" +
-                          item.item +
-                          "Setor:" +
-                          item.setor
+                          +"Aprovado por: " +
+                          +"Patrimônio:" +
+                          +"Item:" +
+                          +"Setor:"
                       );
                       setShowModal(false);
                     }}

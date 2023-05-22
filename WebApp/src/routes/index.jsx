@@ -9,8 +9,8 @@ import Admissao from "../pages/granLover/admissao";
 import Desligamento from "../pages/granLover/desligamento";
 import Infos from "../pages/granLover/infos";
 import Inicio from "../pages/inicio";
-import ItensEstoque from "../pages/itens-estoque";
 import Login from "../pages/login";
+import Pedidos from "../pages/pedidos";
 import Saidas from "../pages/saidas";
 import "../styles/global.css";
 
@@ -20,7 +20,7 @@ export default function BlogRoutes() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Inicio />} />
-        <Route path="/controleEstoque" element={<ItensEstoque />} />
+        <Route path="/controlePedidos" element={<Pedidos />} />
         <Route path="/cadastroItem" element={<Cadastroitem />} />
         <Route path="/cadastroCategoria" element={<CadastroCategoria />} />
         <Route path="/cadastroMarca" element={<CadastroMarca />} />

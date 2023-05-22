@@ -1,9 +1,10 @@
 import { InformationCircleIcon, TrashIcon } from "@heroicons/react/24/outline";
 import { Tooltip } from "@material-tailwind/react";
 import React, { useEffect } from "react";
-import ModalEditarStatus from "../modalEditarStatus";
+import ModalEditarStatusFornecedor from "../modalEditarStatusFornecedor";
+import ModalEditarStatusPat from "../modalEditarStatusPat";
+import ModalNotasPedidos from "../modalNotasPedidos";
 import Modal from "../modalRetirarItem";
-import ModalItensRetirados from "../modalVerRetirados";
 
 export default function LinhaControle({ item }) {
   useEffect(() => {}, []);
@@ -19,13 +20,11 @@ export default function LinhaControle({ item }) {
         <div
           className={`text-xl text-black table-cell items-center  max-sm:text-base `}
         >
-          <ModalItensRetirados item={item} />
+          <ModalNotasPedidos item={item} />
         </div>
         <div
           className={`text-xl text-black table-cell justify-center items-center p-2 max-sm:text-base w-1/12 `}
-        >
-          {item.notafiscal}
-        </div>
+        ></div>
 
         <div className="text-xl flex items-center justify-center p-2 max-sm:text-base">
           {item.item.nome}
@@ -40,12 +39,10 @@ export default function LinhaControle({ item }) {
           </Tooltip>
         </div>
 
-        <div className="text-xl table-cell justify-center items-center p-2 max-sm:text-base 3/6">
+        <div className="text-lg table-cell justify-center items-center p-2 max-sm:text-base 3/6">
           {item.setor.nome}
         </div>
-        <div className="text-xl table-cell justify-center items-center p-2 max-sm:text-base w-1/12">
-          {item.quantidade - 0}
-        </div>
+
         <div
           className={
             item.status.nome == "Disponível"
@@ -59,20 +56,24 @@ export default function LinhaControle({ item }) {
         >
           <div className="flex items-center justify-between text-center">
             {item.status.nome}
-
-            <ModalEditarStatus item={item} nome={item.nome} />
+            {item.status.nome == "Aguardando fornecedor" ? (
+              <ModalEditarStatusPat item={item} nome={item.nome} />
+            ) : item.status.nome == "Aguardando patrimoniamento" ? (
+              <ModalEditarStatusFornecedor item={item} nome={item.nome} />
+            ) : null}
           </div>
+        </div>
+        <div className="text-xl table-cell justify-center items-center p-2 max-sm:text-base w-1/12">
+          {item.quantidade - 0}
         </div>
         <div className="text-xl table-cell justify-center items-center p-2 max-sm:text-base w-1/12">
           {item.quantidade}
         </div>
         <div className="text-xl table-cell justify-center items-center p-2 max-sm:text-base w-1/12">
-          {"Val"}
+          0
         </div>
 
-        <div className="text-xl table-cell justify-center items-center p-2 max-sm:text-base w-1/12">
-          {item.localizacao}
-        </div>
+        <div className="text-xl table-cell justify-center items-center p-2 max-sm:text-base w-1/12"></div>
         <div className="text-xl table-cell justify-center items-center p-2 max-sm:text-base w-1/12">
           <TrashIcon
             className="h-6 w-6 text-gran-blue cursor-pointer  hover:scale-110"

@@ -9,25 +9,19 @@ export default function HeaderControle() {
           Item
         </div>
         <div className="text-white font-semibold text-xl bg-gran-blue table-cell  justify-center items-center p-2  max-sm:text-base">
-          Patrimônio
+          Disponivel
         </div>
         <div className="text-white font-semibold text-xl bg-gran-blue table-cell justify-center items-center p-2  max-sm:text-base ">
-          Setor(CC)
+          Retirados
         </div>
 
         <div className="text-white font-semibold text-xl bg-gran-blue table-cell justify-center items-center p-2 max-sm:text-base ">
-          Aprovador
+          Comprados
         </div>
 
-        <div className="text-white font-semibold text-xl bg-gran-blue table-cell justify-center items-center p-2  max-sm:text-base ">
-          Responsável
-        </div>
-        <div className="text-white font-semibold text-xl bg-gran-blue table-cell justify-center items-center p-2  max-sm:text-base ">
-          Agente
-        </div>
-        <div className="text-white font-semibold text-xl bg-gran-blue table-cell justify-center items-center p-2 rounded-tr-md max-sm:text-base ">
-          Data
-        </div>
+        <div className="text-white font-semibold text-xl bg-gran-blue table-cell justify-center items-center p-2  max-sm:text-base "></div>
+        <div className="text-white font-semibold text-xl bg-gran-blue table-cell justify-center items-center p-2  max-sm:text-base "></div>
+        <div className="text-white font-semibold text-xl bg-gran-blue table-cell justify-center items-center p-2 rounded-tr-md max-sm:text-base "></div>
       </div>
     </div>
   );

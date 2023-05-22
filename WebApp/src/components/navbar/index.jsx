@@ -1,6 +1,7 @@
 import { UsersIcon } from "@heroicons/react/24/solid";
 import { Link } from "react-router-dom";
 import Cadastro from "../cadastroDropDown";
+import Controle from "../controleDropDown";
 import GranLoverDropDown from "../granLoverDropDown";
 
 export default function Navbar() {
@@ -17,12 +18,8 @@ export default function Navbar() {
         >
           Início
         </Link>
-        <Link
-          className="text-gran-blue text-2xl hover:opacity-70 max-sm:text-xl "
-          to="/controleEstoque"
-        >
-          Controle de estoque
-        </Link>
+
+        <Controle />
         <GranLoverDropDown />
         <Cadastro />
         <Link
