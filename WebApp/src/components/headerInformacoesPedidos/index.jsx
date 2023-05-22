@@ -1,10 +1,7 @@
-export default function HeaderControle() {
+export default function HeaderInformacoesPedidos() {
   return (
     <div className="table-header-group ">
       <div className="table-row text-center">
-        <div className="text-white table-cell font-semibold text-xl bg-gran-blue  justify-center items-center p-2 rounded-tl-md max-sm:text-base ">
-          Pedido
-        </div>
         <div className="text-white table-cell font-semibold text-xl bg-gran-blue  justify-center items-center p-2 rounded-tl-md max-sm:text-base ">
           Nota
         </div>
@@ -12,25 +9,19 @@ export default function HeaderControle() {
           Item
         </div>
         <div className="text-white font-semibold text-xl bg-gran-blue table-cell  justify-center items-center p-2  max-sm:text-base">
-          Patrimonio
+          Disponivel
         </div>
         <div className="text-white font-semibold text-xl bg-gran-blue table-cell justify-center items-center p-2  max-sm:text-base ">
-          Setor
+          Retirados
         </div>
 
         <div className="text-white font-semibold text-xl bg-gran-blue table-cell justify-center items-center p-2 max-sm:text-base ">
-          Aprovador
+          Comprados
         </div>
 
-        <div className="text-white font-semibold text-xl bg-gran-blue table-cell justify-center items-center p-2  max-sm:text-base ">
-          Recebdor
-        </div>
-        <div className="text-white font-semibold text-xl bg-gran-blue table-cell justify-center items-center p-2  max-sm:text-base ">
-          Agente
-        </div>
-        <div className="text-white font-semibold text-xl bg-gran-blue table-cell justify-center items-center p-2 rounded-tr-md max-sm:text-base ">
-          Data
-        </div>
+        <div className="text-white font-semibold text-xl bg-gran-blue table-cell justify-center items-center p-2  max-sm:text-base "></div>
+        <div className="text-white font-semibold text-xl bg-gran-blue table-cell justify-center items-center p-2  max-sm:text-base "></div>
+        <div className="text-white font-semibold text-xl bg-gran-blue table-cell justify-center items-center p-2 rounded-tr-md max-sm:text-base "></div>
       </div>
     </div>
   );

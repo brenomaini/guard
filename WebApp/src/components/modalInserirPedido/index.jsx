@@ -6,7 +6,6 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import InputSelectItem from "../Inputs/inputSelectItem";
 import InputSelectSetor from "../Inputs/inputSelectSetor";
-import InputSelectStatus from "../Inputs/inputSelectStatus";
 
 export default function modalInserirPedido() {
   const baseURL = import.meta.env.VITE_BASE_URL;
@@ -14,9 +13,7 @@ export default function modalInserirPedido() {
   const ACCEPTED_IMAGE_TYPES = ["application/pdf", "image/png"];
   const itemEstoqueSchema = z.object({
     item: z.string().nonempty("Item é obrigatório"),
-    solicitante: z.string().nonempty("Setor solicitante é obrigatório"),
     setor: z.string().nonempty("Setor é obrigatório"),
-    status: z.string().nonempty("Selecione o Status do item"),
     quantidade: z.string().nonempty("Quantidade é obrigatório"),
     // nf: z.string(),
     // imagemNF: z
@@ -47,8 +44,8 @@ export default function modalInserirPedido() {
   function insereEstoque(data) {
     const item = data.item.split("!");
     const itemID = item[1];
-    const status = data.status.split("!");
-    const statusID = status[1];
+    const status = "Aguardando financeiro";
+    const statusID = 2;
     const setor = data.setor.split("!");
     const setorID = setor[1];
     const form = new FormData();
@@ -185,18 +182,10 @@ export default function modalInserirPedido() {
                       )}
                     </label>
                     <label className="flex flex-col  text-sm font-medium leading-6 text-black">
-                      Status
-                      <select
-                        {...register("status")}
-                        className="relative w-72 cursor-default font-normal rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-gran-blue focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6"
-                      >
-                        <InputSelectStatus />
-                      </select>
-                      {errors.status && (
-                        <span className="text-gran-red opacity-90">
-                          {errors.status.message}
-                        </span>
-                      )}
+                      Novo status
+                      <span className="relative w-72 cursor-default font-normal rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset  focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6">
+                        Aguardando financeiro
+                      </span>
                     </label>
 
                     {/* <label className="flex flex-col  text-sm font-medium leading-6 text-black">

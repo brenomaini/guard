@@ -1,4 +1,5 @@
-import { PencilIcon } from "@heroicons/react/24/outline";
+import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
+import { Tooltip } from "@material-tailwind/react";
 
 export default function linhaRetirados({ item }) {
   return (
@@ -14,10 +15,16 @@ export default function linhaRetirados({ item }) {
       <div className="table-cell align-middle"> </div>
       <div className="table-cell align-middle"> </div>
       <div className="table-cell align-middle">
-        <PencilIcon
-          className="h-6 w-6 text-gran-blue cursor-pointer hover:scale-110"
-          aria-hidden="true"
-        />
+        <Tooltip
+          content={`Buscar item no estoque`}
+          placement="top"
+          className="z-50"
+        >
+          <MagnifyingGlassIcon
+            className="h-6 w-6 text-gran-blue cursor-pointer hover:scale-110"
+            aria-hidden="true"
+          />
+        </Tooltip>
       </div>
     </div>
   );

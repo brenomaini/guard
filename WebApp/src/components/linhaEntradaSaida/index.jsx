@@ -5,6 +5,11 @@ export default function linhaEntradaSaida({ item }) {
         <div
           className={`text-xl text-black table-cell justify-center items-center p-2  max-sm:text-base `}
         >
+          {item.pedido}
+        </div>
+        <div
+          className={`text-xl text-black table-cell justify-center items-center p-2  max-sm:text-base `}
+        >
           {item.nf}
         </div>
         <div className="text-xl table-cell justify-center items-center p-2  max-sm:text-base ">

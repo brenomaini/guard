@@ -1,11 +1,13 @@
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/20/solid";
 import { useState } from "react";
+import { CSVLink } from "react-csv";
 import HeaderEntradaSaida from "../../components/headerEntradaSaida";
 import LinhaEntradaSaida from "../../components/linhaEntradaSaida";
 
 export default function entradas() {
   const [itemsEstoque, setItemEstoque] = useState([
     {
+      pedido: "2",
       nf: "1234321",
       item: "NOTEBOOK G15",
       setor: "Comercial",
@@ -16,6 +18,8 @@ export default function entradas() {
       patrimonio: 102031,
     },
     {
+      pedido: "3",
+
       nf: "1234321",
       item: "NOTEBOOK G15",
       setor: "Comercial",
@@ -26,6 +30,8 @@ export default function entradas() {
       patrimonio: 102030,
     },
     {
+      pedido: "1",
+
       nf: "123555",
       item: "NOTEBOOK G15",
       setor: "Customer Success",
@@ -64,7 +70,7 @@ export default function entradas() {
           })}
         </div>
       </div>
-      <div className="flex flex-row-reverse">
+      <div className="flex flex-row-reverse items-center">
         <button className=" hover:scale-110">
           <ChevronRightIcon
             className="h-12 w-12 bg-gran-blue bg-opacity-70 text-white rounded-md m-8"
@@ -73,10 +79,18 @@ export default function entradas() {
         </button>
         <button className=" hover:scale-110 ">
           <ChevronLeftIcon
-            className="h-12 w-12 bg-gran-blue bg-opacity-70 text-white rounded-md "
+            className="h-12 w-12 bg-gran-blue bg-opacity-70 text-white rounded-md ml-4 "
             aria-hidden="true"
           />
         </button>
+
+        <CSVLink
+          data={itemsEstoque}
+          filename="ultimasEntradasDATA.csv"
+          className="h-12 w-24 p-4 bg-black bg-opacity-70 text-white text-center flex items-center rounded-md hover:scale-110"
+        >
+          Exportar CSV
+        </CSVLink>
       </div>
     </>
   );

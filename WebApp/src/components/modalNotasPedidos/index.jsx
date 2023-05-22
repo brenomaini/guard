@@ -1,6 +1,6 @@
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import React from "react";
-import HeaderEntradaSaida from "../headerEntradaSaida";
+import HeaderInformacoesPedidos from "../headerInformacoesPedidos";
 import LinhaNotasPedido from "../linhaNotasPedido";
 
 export default function ModalNotasPedidos({ item }) {
@@ -64,7 +64,7 @@ export default function ModalNotasPedidos({ item }) {
                 {/*body*/}
                 <div className="relative p-6 flex-auto">
                   <div className="table  gap-4 row-auto h-20 w-full  place-items-center ">
-                    <HeaderEntradaSaida />
+                    <HeaderInformacoesPedidos />
                     {itemsRetirados.map((item) => {
                       return <LinhaNotasPedido item={item} key={item.nota} />;
                     })}

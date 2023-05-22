@@ -1,6 +1,7 @@
 import { InformationCircleIcon, TrashIcon } from "@heroicons/react/24/outline";
 import { Tooltip } from "@material-tailwind/react";
 import React, { useEffect } from "react";
+import ModalEditarStatusFin from "../modalEditarStatusFin";
 import ModalEditarStatusFornecedor from "../modalEditarStatusFornecedor";
 import ModalEditarStatusPat from "../modalEditarStatusPat";
 import ModalNotasPedidos from "../modalNotasPedidos";
@@ -60,6 +61,8 @@ export default function LinhaControle({ item }) {
               <ModalEditarStatusPat item={item} nome={item.nome} />
             ) : item.status.nome == "Aguardando patrimoniamento" ? (
               <ModalEditarStatusFornecedor item={item} nome={item.nome} />
+            ) : item.status.nome == "Aguardando financeiro" ? (
+              <ModalEditarStatusFin item={item} nome={item.nome} />
             ) : null}
           </div>
         </div>
