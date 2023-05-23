@@ -47,11 +47,15 @@ export default function LinhaControle({ item }) {
         <div
           className={
             item.status.nome == "Disponível"
-              ? `text-xl table-cell justify-around border-b border-b-gran-blue items-center text-center p-2 max-sm:text-base w-2/12 bg-green `
+              ? `text-base table-cell justify-around border-b border-b-gran-blue items-center text-center p-2 max-sm:text-base w-2/12 bg-green `
               : item.status.nome == "Aguardando fornecedor"
-              ? `text-base table-cell justify-around text-center items-center p-2 max-sm:text-base w-2/12 bg-yellow`
+              ? `text-base table-cell justify-around text-center border-b items-center p-2 max-sm:text-base w-2/12 bg-orange`
               : item.status.nome == "Em falta"
-              ? `text-xl table-cell text-white justify-around text-center items-center p-2 max-sm:text-base w-2/12 bg-gran-red`
+              ? `text-base table-cell text-white justify-around border-b text-center items-center p-2 max-sm:text-base w-2/12 bg-gran-red`
+              : item.status.nome == "Aguardando financeiro"
+              ? `text-base table-cell justify-around text-center border-b items-center p-2 max-sm:text-base w-2/12 bg-orange`
+              : item.status.nome == "Aguardando patrimoniamento"
+              ? `text-base table-cell justify-around text-center border-b items-center p-2 max-sm:text-base w-2/12 bg-orange`
               : null
           }
         >
