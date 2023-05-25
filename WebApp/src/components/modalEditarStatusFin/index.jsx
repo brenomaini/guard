@@ -18,16 +18,11 @@ export default function modalEditarStatusFin({ item }) {
   const [showModalAddItem, setShowModalAddItem] = React.useState(false);
 
   function editarPedido(data) {
-    const form = new FormData();
-    form.append("status", "Aguardando fornecedor");
-    form.append("agente", "agenteQueEditou@email.com");
     const options = {
       method: "PATCH",
-      body: form,
+      headers: { "Content-Type": "application/json" },
+      body: '{"status":"Aguardando fornecedor","agente":"novoagente2@email.com"}',
     };
-    options.headers = new Headers({
-      Accept: "application/json",
-    });
 
     Swal.fire({
       title: "O Time do financeiro realizou a compra deste item?",
