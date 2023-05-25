@@ -24,16 +24,16 @@ class DatabaseSeeder extends Seeder
             ItemSeeder::class,
         ]);
 
-        $this->call([
-            PerfilSeeder::class,
-        ]);
+        // $this->call([
+        //     PerfilSeeder::class,
+        // ]);
 
-        $this->call([
-            SetorSeeder::class,
-        ]);
+        // $this->call([
+        //     SetorSeeder::class,
+        // ]);
 
-        $this->call([
-            StatusSeeder::class,
-        ]);
+        // $this->call([
+        //     StatusSeeder::class,
+        // ]);
     }
 }

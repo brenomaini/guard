@@ -46,4 +46,9 @@ class Item extends Model
         //UM modelo PERTENCE a UMA categoria
         return $this->belongsTo('App\Models\Categoria');
     }
+
+    public function pedido() {
+        //UM item POSSUI MUITOS pedidos
+        return $this->hasMany('App\Models\Pedido');
+    }
 }

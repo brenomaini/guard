@@ -11,15 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('perfis', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('nome', 100);
-            $table->boolean('cadastrar')->default('0');
-            $table->boolean('atualizar')->default('0');
-            $table->boolean('deletar')->default('0');
-            $table->boolean('vizualizar')->default('0');
-            $table->timestamps();
-        });
+        // Schema::create('perfis', function (Blueprint $table) {
+        //     $table->bigIncrements('id');
+        //     $table->string('nome', 100);
+        //     $table->boolean('cadastrar')->default('0');
+        //     $table->boolean('atualizar')->default('0');
+        //     $table->boolean('deletar')->default('0');
+        //     $table->boolean('vizualizar')->default('0');
+        //     $table->timestamps();
+        // });
     }
 
     /**

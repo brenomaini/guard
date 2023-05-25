@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('status', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('nome', 100);
-            $table->timestamps();
-        });
+        // Schema::create('status', function (Blueprint $table) {
+        //     $table->bigIncrements('id');
+        //     $table->string('nome', 100);
+        //     $table->timestamps();
+        // });
     }
 
     /**
