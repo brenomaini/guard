@@ -23,7 +23,7 @@ export default function modalEditarStatusFin({ item }) {
     form.append("agente", "agenteQueEditou@email.com");
     form.append("id", item.id);
     const options = {
-      method: "POST",
+      method: "PATCH",
       body: form,
     };
     options.headers = new Headers({
