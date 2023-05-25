@@ -62,9 +62,14 @@ class PedidoController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Pedido $pedido)
+    public function show($id)
     {
-        //
+        $pedido = $this->pedido->find($id);
+
+        if($pedido === null) {
+            return response()->json(['erro' => 'Pedido pesquisado não existe no banco.'], 404);
+        }
+        return response()->json($pedido, 200);
     }
 
     /**
