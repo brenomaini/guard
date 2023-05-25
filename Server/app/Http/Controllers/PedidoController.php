@@ -24,10 +24,10 @@ class PedidoController extends Controller
     {
         $pedidoRepository = new PedidoRepository($this->pedido);
 
-        // // condição caso exista o atributo atributos_item na url
-        if ($request->has('atributos_item')) {
-            $atributos_item = 'item:id,' . $request->atributos_item;
-            $pedidoRepository->selectAtributosRegistrosRelacionados($atributos_item);
+        // // condição caso exista o atributo atributos_pedido na url
+        if ($request->has('atributos_pedido')) {
+            $atributos_pedido = 'pedido:id,' . $request->atributos_pedido;
+            $pedidoRepository->selectAtributosRegistrosRelacionados($atributos_pedido);
         } else {
             $pedidoRepository->selectAtributosRegistrosRelacionados('item', 'setor');
         }
@@ -75,15 +75,40 @@ class PedidoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdatePedidoRequest $request, Pedido $pedido)
+    public function update(UpdatePedidoRequest $request, $id)
     {
-        //
+        $pedido = $this->pedido->find($id);
+
+        if($pedido === null) {
+            return response()->json(['erro' => 'Erro na atualização, pedido não existe no banco.'], 404);
+        }
+
+        if($request->method() === 'PATCH') {
+            //coletar apenas as regras aplicáveis aos parâmetros parciais da requisição PATCH
+            $regrasDinamicas = array();
+
+            //percorrendo todas as regras definidas no Model
+            foreach($pedido->rules() as $input => $regra) {
+                //coletar apenas as regras aplicáveis aos parâmetros parciais da requisição PATCH
+                if(array_key_exists($input, $request->all())) {
+                    $regrasDinamicas[$input] = $regra;
+                }
+            }
+
+            $request->validate($regrasDinamicas, $pedido->feedback());
+        } else {
+            $request->validate($pedido->rules(), $pedido->feedback());
+        }
+
+        $pedido->fill($request->all());
+        $pedido->save();
+        return response()->json($pedido, 200);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Pedido $pedido)
+    public function destroy($id)
     {
         //
     }
