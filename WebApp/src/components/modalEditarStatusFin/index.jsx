@@ -21,7 +21,6 @@ export default function modalEditarStatusFin({ item }) {
     const form = new FormData();
     form.append("status", "Aguardando fornecedor");
     form.append("agente", "agenteQueEditou@email.com");
-    form.append("id", item.id);
     const options = {
       method: "PATCH",
       body: form,
@@ -42,12 +41,11 @@ export default function modalEditarStatusFin({ item }) {
     }).then((result) => {
       if (result.isConfirmed) {
         const url = `${baseURL}/pedido/${item.id}`;
-        console.log(url);
+
         try {
           fetch(url, options).then((response) => {
             if (response.ok) {
               setShowModalAddItem(false);
-              reset();
 
               Swal.fire({
                 title: "Confirmado",
