@@ -36,4 +36,9 @@ class Setor extends Model
             'centro_de_custo.unique' => 'O centro de custo já existe no banco.',
         ];
     }
+
+    public function pedido() {
+        //UM setor POSSUI MUITOS pedidos
+        return $this->hasMany('App\Models\Pedido');
+    }
 }

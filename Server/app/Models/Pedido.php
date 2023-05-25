@@ -47,4 +47,9 @@ class Pedido extends Model
         //UM pedido PERTENCE a UM item
         return $this->belongsTo('App\Models\Item');
     }
+
+    public function setor() {
+        //UM pedido PERTENCE a UM setor
+        return $this->belongsTo('App\Models\Setor');
+    }
 }
