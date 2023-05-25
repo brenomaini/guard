@@ -18,21 +18,17 @@ export default function modalEditarStatusFin({ item }) {
   const [showModalAddItem, setShowModalAddItem] = React.useState(false);
 
   function editarPedido(data) {
+    const form = new FormData();
+    form.append("status", "Aguardando fornecedor");
+    form.append("agente", "agenteQueEditou@email.com");
+    form.append("id", item.id);
     const options = {
       method: "POST",
-      // body: form,
+      body: form,
     };
     options.headers = new Headers({
       Accept: "application/json",
     });
-    const enviarBD = {
-      pedido_id: item.id,
-      setor_id: item.setor_id,
-      item_id: item.item_id,
-      status_id: "Id do Status (Aguardando fornecedor)",
-      agente:
-        "teste@email.com ( Email do agente que informou que foi comprado)",
-    };
 
     Swal.fire({
       title: "O Time do financeiro realizou a compra deste item?",
@@ -45,14 +41,26 @@ export default function modalEditarStatusFin({ item }) {
       cancelButtonText: "Não, cancelar",
     }).then((result) => {
       if (result.isConfirmed) {
-        console.log(enviarBD);
-        Swal.fire({
-          title: "Confirmado",
-          text: JSON.stringify(enviarBD),
-          icon: "success",
-          confirmButtonColor: "#0D134C",
-          confirmButtonText: "OK",
-        });
+        const url = `${baseURL}/pedido`;
+        console.log(url);
+        try {
+          fetch(url, options).then((response) => {
+            if (response.ok) {
+              setShowModalAddItem(false);
+              reset();
+
+              Swal.fire({
+                title: "Confirmado",
+                text: "Status editado com sucesso",
+                icon: "success",
+                confirmButtonColor: "#0D134C",
+                confirmButtonText: "OK",
+              });
+            }
+          });
+        } catch (e) {
+          Swal.showValidationMessage(`Erro: ${e.message}`);
+        }
       }
     });
   }
@@ -78,7 +86,9 @@ export default function modalEditarStatusFin({ item }) {
               <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                 {/*header*/}
                 <div className="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
-                  <h3 className="text-3xl font-semibold">Editar pedido</h3>
+                  <h3 className="text-3xl font-semibold">
+                    Editar pedido ID: {item.id}
+                  </h3>
                   <button
                     className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
                     onClick={() => setShowModalAddItem(false)}

@@ -31,16 +31,15 @@ export default function modalInserirPedido() {
   function insereEstoque(data) {
     const item = data.item.split("!");
     const itemID = item[1];
-    const status = "Aguardando financeiro";
-    const statusID = 2;
     const setor = data.setor.split("!");
     const setorID = setor[1];
     const form = new FormData();
     form.append("item_id", itemID);
-    form.append("status_id", statusID);
-    form.append("solicitante", data.solicitante);
     form.append("setor_id", setorID);
+    form.append("status", "Aguardando financeiro");
+    form.append("aprovador", data.aprovador);
     form.append("quantidade", data.quantidade);
+    form.append("solicitante", data.solicitante);
     form.append("agente", "teste@email.com");
 
     const options = {
@@ -50,39 +49,39 @@ export default function modalInserirPedido() {
     options.headers = new Headers({
       Accept: "application/json",
     });
-    const enviarBD = {
-      id_pedido: "bd cria",
-      data_criacao: "bd cria",
-      data_update: "bd cria",
-      setor_id: setorID,
-      item_id: itemID,
-      status_id: statusID + "Aguardando financeiro",
-      quantidade: data.quantidade,
-      solicitante: data.solicitante,
-      aprovador: data.aprovador,
-      agente: "email@email.com",
-    };
-    console.log(enviarBD);
+    // const enviarBD = {
+    //   id_pedido: "bd cria",
+    //   data_criacao: "bd cria",
+    //   data_update: "bd cria",
+    //   setor_id: setorID,
+    //   item_id: itemID,
+    //   status_id: statusID + "Aguardando financeiro",
+    //   quantidade: data.quantidade,
+    //   solicitante: data.solicitante,
+    //   aprovador: data.aprovador,
+    //   agente: "email@email.com",
+    // };
+    // console.log(enviarBD);
 
-    // const url = `${baseURL}/estoque`;
-    // try {
-    //   fetch(url, options).then((response) => {
-    //     if (response.ok) {
-    //       setShowModalAddItem(false);
-    //       reset();
+    const url = `${baseURL}/pedido`;
+    try {
+      fetch(url, options).then((response) => {
+        if (response.ok) {
+          setShowModalAddItem(false);
+          reset();
 
-    //       Swal.fire({
-    //         title: "Sucesso",
-    //         text: `Item inserido com sucesso.`,
-    //         icon: "success",
-    //         confirmButtonColor: "#0D134C",
-    //         confirmButtonText: "OK",
-    //       });
-    //     }
-    //   });
-    // } catch (e) {
-    //   Swal.showValidationMessage(`Erro: ${e.message}`);
-    // }
+          Swal.fire({
+            title: "Sucesso",
+            text: `Item inserido com sucesso.`,
+            icon: "success",
+            confirmButtonColor: "#0D134C",
+            confirmButtonText: "OK",
+          });
+        }
+      });
+    } catch (e) {
+      Swal.showValidationMessage(`Erro: ${e.message}`);
+    }
   }
 
   return (

@@ -5,23 +5,25 @@ import LinhaControlePedidos from "../../components/linhaControlePedidos";
 import ModalInserirPedido from "../../components/modalInserirPedido";
 
 export default function pedidos() {
-  const [itemsEstoque, setItemEstoque] = useState([]);
+  const [listaPedidos, setPedidos] = useState([]);
   const [page, setPage] = useState(1);
   async function buscarItensEstoque() {
     const baseURL = import.meta.env.VITE_BASE_URL;
-    const url = `${baseURL}/estoque?page=${page}`;
+    const url = `${baseURL}/pedido?page=${page}`;
+
     const lista = await fetch(url)
       .then((res) => {
         return res.json();
       })
       .then((res) => {
-        const items = res.data;
-        setItemEstoque([...items]);
+        const pedidos = res.data;
+
+        setPedidos([...pedidos]);
       });
   }
   useEffect(() => {
     buscarItensEstoque();
-  }, [itemsEstoque]);
+  }, []);
 
   function filtrarEstoque() {
     let selectText = `SELECT * FROM ItensEstoque WHERE `;
@@ -62,8 +64,8 @@ export default function pedidos() {
 
       <div className="table  gap-2 row-auto h-16 w-full  place-items-center p-2 ">
         <HeaderControlePedidos />
-        {itemsEstoque.map((item) => {
-          return <LinhaControlePedidos item={item} key={item.id} />;
+        {listaPedidos.map((pedido) => {
+          return <LinhaControlePedidos pedido={pedido} key={pedido.id} />;
         })}
       </div>
     </>
