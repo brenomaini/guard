@@ -4,6 +4,7 @@ import Navbar from "../components/navbar";
 import CadastroCategoria from "../pages/cadastros/cadastroCategoria";
 import Cadastroitem from "../pages/cadastros/cadastroItem";
 import CadastroMarca from "../pages/cadastros/cadastroMarca";
+import CadastroSetor from "../pages/cadastros/cadastroSetor";
 import Entradas from "../pages/entradas";
 import Admissao from "../pages/granLover/admissao";
 import Desligamento from "../pages/granLover/desligamento";
@@ -26,6 +27,7 @@ export default function BlogRoutes() {
         <Route path="/itemAvulso" element={<CadastroItemAvulso />} />
         <Route path="/cadastroCategoria" element={<CadastroCategoria />} />
         <Route path="/cadastroMarca" element={<CadastroMarca />} />
+        <Route path="/cadastroSetor" element={<CadastroSetor />} />
         <Route path="/entradas" element={<Entradas />} />
         <Route path="/saidas" element={<Saidas />} />
         <Route path="/login" element={<Login />} />

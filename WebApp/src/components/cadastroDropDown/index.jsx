@@ -1,6 +1,7 @@
 import { Popover, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import {
+  Cog6ToothIcon,
   DocumentPlusIcon,
   SwatchIcon,
   TagIcon,
@@ -27,6 +28,12 @@ const Cadastro = [
     description: "Cadastre novas marcas de equipamentos",
     href: "/cadastroMarca",
     icon: TagIcon,
+  },
+  {
+    name: "Setor",
+    description: "Cadastre novos setores e CC",
+    href: "/cadastroSetor",
+    icon: Cog6ToothIcon,
   },
   {
     name: "Agente",

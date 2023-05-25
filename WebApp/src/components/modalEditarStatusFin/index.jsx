@@ -41,7 +41,7 @@ export default function modalEditarStatusFin({ item }) {
       cancelButtonText: "Não, cancelar",
     }).then((result) => {
       if (result.isConfirmed) {
-        const url = `${baseURL}/pedido`;
+        const url = `${baseURL}/pedido/${item.id}`;
         console.log(url);
         try {
           fetch(url, options).then((response) => {
