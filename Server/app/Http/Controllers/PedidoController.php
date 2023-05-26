@@ -5,16 +5,19 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StorePedidoRequest;
 use App\Http\Requests\UpdatePedidoRequest;
 use App\Models\Pedido;
+use App\Models\NotaFiscal;
 use Illuminate\Http\Request;
 use App\Repositories\PedidoRepository;
 
 class PedidoController extends Controller
 {
     protected $pedido;
+    protected $notaFiscal;
 
-    public function __construct(Pedido $pedido)
+    public function __construct(Pedido $pedido, NotaFiscal $notaFiscal)
     {
         $this->pedido = $pedido;
+        $this->notaFiscal = $notaFiscal;
     }
 
     /**
@@ -110,6 +113,19 @@ class PedidoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $pedido = $this->pedido->find($id);
+
+        try {
+            if($pedido === null)
+            {
+                return response()->json(['msg' => 'Erro ao deletar, pedido não existe em nosso banco.'], 404);
+            }
+            
+            $pedido->delete();
+
+            return response()->json(['msg' => 'pedido removido com sucesso.'], 200);
+        } catch (\PDOException $e) {
+            return response()->json(['msg' => 'Erro: '.$e->getMessage()], 500);
+        }
     }
 }

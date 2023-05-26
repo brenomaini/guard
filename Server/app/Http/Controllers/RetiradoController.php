@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreRetiradoRequest;
 use App\Http\Requests\UpdateRetiradoRequest;
-use App\Http\Requests\UpdateEstoqueRequest;
 use App\Models\Retirado;
 use App\Models\Estoque;
 use Illuminate\Http\Request;
