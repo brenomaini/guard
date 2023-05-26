@@ -80,6 +80,7 @@ class PedidoController extends Controller
      */
     public function update(UpdatePedidoRequest $request, $id)
     {
+        // atualizando dados da tabela pedido
         $pedido = $this->pedido->find($id);
 
         if($pedido === null) {
@@ -103,9 +104,11 @@ class PedidoController extends Controller
             $request->validate($pedido->rules(), $pedido->feedback());
         }
 
-        $pedido->fill($request->all());
-        $pedido->save();
-        return response()->json($pedido, 200);
+        // inserção de notas na tabela nota_fiscais
+        
+        // $pedido->fill($request->all());
+        // $pedido->save();
+        // return response()->json($pedido, 200);
     }
 
     /**
