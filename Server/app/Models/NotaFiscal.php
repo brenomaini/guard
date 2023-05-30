@@ -15,7 +15,9 @@ class NotaFiscal extends Model
     protected $fillable = [
         'item_id',
         'pedido_id',
-        'path'
+        'nf',
+        'file',
+        'quantidade'
     ];
 
     public function rules() {

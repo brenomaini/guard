@@ -16,7 +16,8 @@ class Pedido extends Model
         'agente',
         'aprovador',
         'quantidade',
-        'solicitante'
+        'solicitante',
+        'qtdNotas'
     ];
 
     public function rules() {
