@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('agente', 100);
             $table->string('aprovador', 100);
             $table->integer('quantidade');
+            $table->integer('qtdNotas')->nullable();;
             $table->string('solicitante', 100);
             $table->timestamps();
             //foreign key (constraints)

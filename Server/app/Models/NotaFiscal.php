@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class NotaFiscal extends Model
 {
     use HasFactory;
+    protected $connection = 'mysql';
+
+    protected $table = 'nota_fiscais';
 
     protected $fillable = [
         'item_id',

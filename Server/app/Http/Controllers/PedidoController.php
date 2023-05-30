@@ -104,11 +104,23 @@ class PedidoController extends Controller
             $request->validate($pedido->rules(), $pedido->feedback());
         }
 
-        // inserção de notas na tabela nota_fiscais
+        if(isset($request->file)){
+            // armazenar nota 
+            $arquivoNota = $request->file('file');
+            $arquivo_urn = $arquivoNota->store('files/notas/pedido'.$id, 'public');
+            exit;
+        }
         
-        // $pedido->fill($request->all());
-        // $pedido->save();
-        // return response()->json($pedido, 200);
+        // // inserção de caminho do arquivo de notas na tabela nota_fiscais
+        // $notaFiscal = NotaFiscal::create([
+        //     'pedido_id' => $id,
+        //     'item_id' => $request->item_id,
+        //     'path' => $arquivo_urn
+        // ]);
+        
+        $pedido->fill($request->all());
+        $pedido->save();
+        return response()->json($pedido, 200);
     }
 
     /**

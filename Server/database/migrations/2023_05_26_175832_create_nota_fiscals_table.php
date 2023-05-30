@@ -15,7 +15,9 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('pedido_id');
             $table->unsignedBigInteger('item_id');
-            $table->string('path', 200)->nullable();
+            $table->string('nf', 250);
+            $table->string('file', 200)->nullable();
+            $table->string('quantidade', 50);
             $table->timestamps();
             //foreign key (constraints)
             $table->foreign('pedido_id')->references('id')->on('pedidos');
@@ -25,7 +27,7 @@ return new class extends Migration
 
     /**
      * Reverse the migrations.
-     */
+    */
     public function down(): void
     {
         Schema::dropIfExists('nota_fiscals');
