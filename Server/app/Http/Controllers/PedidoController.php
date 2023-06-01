@@ -8,6 +8,7 @@ use App\Models\Pedido;
 use App\Models\NotaFiscal;
 use Illuminate\Http\Request;
 use App\Repositories\PedidoRepository;
+use Illuminate\Support\Facades\Storage;
 
 class PedidoController extends Controller
 {
@@ -103,23 +104,23 @@ class PedidoController extends Controller
         } else {
             $request->validate($pedido->rules(), $pedido->feedback());
         }
-
-        if(isset($request->file)){
-            // armazenar nota 
-            $arquivoNota = $request->file('file');
-            $arquivo_urn = $arquivoNota->store('files/notas/pedido'.$id, 'public');
-        }
-
-        if(isset($request->item_id, $request->nf, $request->qtd)){
-            // // inserção de caminho do arquivo de notas na tabela nota_fiscais
-            $notaFiscal = NotaFiscal::create([
-                'pedido_id' => $id,
-                'item_id' => $request->item_id,
-                'file' => $arquivo_urn,
-                'nf' => $request->nf,
-                'quantidade' => $request->qtd
-            ]);
-        }
+        
+        // armazenando notas
+        if(isset($request->file) || isset($request->nf) || isset($request->qtd)){
+            $nfs = count($request->allFiles()['file']);
+            for($i = 0; $i < $nfs; $i++) {
+                $notas = $request->allFiles()['file'][$i];
+                $nota_urn = $notas->store('files/notas/pedido'.$id, 'public');
+                $notaFiscal = NotaFiscal::create([
+                    'pedido_id' => $id,
+                    'item_id' => $request->item_id,
+                    'file' => $nota_urn,
+                    'nf' => $request->nf,
+                    'quantidade' => $request->qtd
+                ]);
+            } 
+        }   
+        
         
         $pedido->fill($request->all());
         $pedido->save();
