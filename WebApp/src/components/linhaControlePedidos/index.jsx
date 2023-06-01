@@ -2,7 +2,7 @@ import { InformationCircleIcon, TrashIcon } from "@heroicons/react/24/outline";
 import { Tooltip } from "@material-tailwind/react";
 import React from "react";
 import ModalEditarStatusFin from "../modalEditarStatusFin";
-import ModalEditarStatusFornecedor from "../modalEditarStatusFornecedor";
+import ModalEditarStatusForn from "../modalEditarStatusForn";
 import ModalEditarStatusPat from "../modalEditarStatusPat";
 import ModalNotasPedidos from "../modalNotasPedidos";
 import Modal from "../modalRetirarItem";
@@ -14,12 +14,12 @@ export default function LinhaControle({ pedido }) {
         <div
           className={`text-xl text-black table-cell items-center max-sm:text-base `}
         >
-          <Modal item={pedido} />
+          <Modal pedido={pedido} />
         </div>
         <div
           className={`text-xl text-black table-cell items-center  max-sm:text-base `}
         >
-          <ModalNotasPedidos item={pedido} />
+          <ModalNotasPedidos pedido={pedido} />
         </div>
         <div
           className={`text-xl text-black table-cell justify-center items-center p-2 max-sm:text-base w-1/12 `}
@@ -29,10 +29,7 @@ export default function LinhaControle({ pedido }) {
 
         <div className="text-xl flex items-center justify-center p-2 max-sm:text-base">
           {pedido.item.nome}
-          <Tooltip
-            content={`Descriçao do item: ${pedido.item.descricao}`}
-            placement="top"
-          >
+          <Tooltip content={`${pedido.item.descricao}`} placement="top">
             <InformationCircleIcon
               className="h-5 w-5 text-gran-blue cursor-pointer m-2 hover:scale-110"
               aria-hidden="true"
@@ -41,7 +38,7 @@ export default function LinhaControle({ pedido }) {
         </div>
 
         <div className="text-lg table-cell justify-center items-center p-2 max-sm:text-base 3/6">
-          {pedido.setor_id}
+          {pedido.setor.nome}
         </div>
 
         <div
@@ -62,14 +59,11 @@ export default function LinhaControle({ pedido }) {
           <div className="flex items-center justify-between text-center">
             {pedido.status}
             {pedido.status == "Aguardando fornecedor" ? (
-              <ModalEditarStatusPat item={pedido} nome={pedido.item.nome} />
+              <ModalEditarStatusForn pedido={pedido} nome={pedido.item.nome} />
             ) : pedido.status == "Aguardando patrimoniamento" ? (
-              <ModalEditarStatusFornecedor
-                item={pedido}
-                nome={pedido.item.nome}
-              />
+              <ModalEditarStatusPat item={pedido} nome={pedido.item.nome} />
             ) : pedido.status == "Aguardando financeiro" ? (
-              <ModalEditarStatusFin item={pedido} nome={pedido.item.nome} />
+              <ModalEditarStatusFin pedido={pedido} nome={pedido.item.nome} />
             ) : null}
           </div>
         </div>

@@ -1,30 +1,17 @@
 import { PencilIcon } from "@heroicons/react/24/outline";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Tooltip } from "@material-tailwind/react";
-import React from "react";
+import React, { useEffect } from "react";
 import { useFieldArray, useForm } from "react-hook-form";
 import { z } from "zod";
 
-export default function modalEditarStatusPatrimonio({ item }) {
+export default function modalEditarStatusPat({ pedido }) {
   const baseURL = import.meta.env.VITE_BASE_URL;
-  const MAX_FILE_SIZE = 500000;
-  const ACCEPTED_IMAGE_TYPES = ["application/pdf", "image/png"];
+
   const itemEstoqueSchema = z.object({
-    numeroDeNotas: z.string().nonempty("Quantidade de notas é obrigatório"),
-    notas: z.array(
+    patrimonios: z.array(
       z.object({
-        notaf: z.string().nonempty("Nota é obrigatório"),
-        imagemNF: z
-          .any()
-          .refine(
-            (files) => files?.[0]?.size <= MAX_FILE_SIZE,
-            `Tamanho máximo do arquivo é 5MB.`
-          )
-          .refine(
-            (files) => ACCEPTED_IMAGE_TYPES.includes(files?.[0]?.type),
-            "Só são aceitos arquivos .pdf e .png"
-          ),
-        quantidadeNaNF: z.string().nonempty("Quantidade é obrigatório"),
+        patrimonio: z.string().nonempty("Patrimonio é obrigatório"),
       })
     ),
   });
@@ -40,23 +27,22 @@ export default function modalEditarStatusPatrimonio({ item }) {
   });
   const { fields, append, remove } = useFieldArray({
     control,
-    name: "notas",
+    name: "patrimonios",
   });
-  function adicionarNovaNota() {
-    append({ notaf: "", imagemNF: "", quantidadeNaNF: "" });
+  function adicionarPatrimonio() {
+    for (let index = 1; index <= pedido.quantidade; index++) {
+      append({ patrimonio: "" });
+    }
   }
-  function removerNota() {
-    let index = fields.lastIndexOf();
-    remove(index);
-  }
-
+  useEffect(() => {
+    adicionarPatrimonio();
+  }, []);
   const [showModalAddItem, setShowModalAddItem] = React.useState(false);
 
   function editarPedido(data) {
     const form = new FormData();
-    // form.append("item_id", itemID);
-    // form.append("status_id", statusID);
-    // form.append("setor_id", setorID);
+    form.append("quantidade", data.quantidade);
+    form.append("patrimonio", data.patrimonios);
     form.append("agente", "teste@email.com");
 
     const options = {
@@ -66,17 +52,21 @@ export default function modalEditarStatusPatrimonio({ item }) {
     options.headers = new Headers({
       Accept: "application/json",
     });
+
     const enviarBD = {
-      pedido_id: item.id,
-      setor_id: item.setor_id,
-      item_id: item.item_id,
-      status_id: "Aguardando fornecedor (ID do status aqui)",
-      notas: data.notas,
-      qtd_notas: data.numeroDeNotas,
+      pedido_id: pedido.id,
+      setor_id: pedido.setor_id,
+      item_id: pedido.item_id,
+      nota: pedido.item.nf,
+      status: "Aguardando Patrimoniamento",
+      patrimonios: data.patrimonios,
     };
     console.log(enviarBD);
+    console.log(
+      "Ao enviar isso aqui, o ideal é criar a quantidade correspondente de patrimonios enviados em ITENS cada um com seu status e informaçoes Ex: pat 10, 20 e 30, criaria os items 10 20 e 30 pra poder vincular esses itens a alguem posteriormente"
+    );
 
-    // const url = `${baseURL}/estoque`;
+    // const url = `${baseURL}/pedido/${item.id}`;
     // try {
     //   fetch(url, options).then((response) => {
     //     if (response.ok) {
@@ -118,7 +108,9 @@ export default function modalEditarStatusPatrimonio({ item }) {
               <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                 {/*header*/}
                 <div className="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
-                  <h3 className="text-3xl font-semibold">Editar pedido</h3>
+                  <h3 className="text-3xl font-semibold">
+                    Inserir patrimonios
+                  </h3>
                   <button
                     className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
                     onClick={() => setShowModalAddItem(false)}
@@ -131,33 +123,21 @@ export default function modalEditarStatusPatrimonio({ item }) {
                 {/*body*/}
                 <div className="relative flex p-6 flex-col items-center justify-center overflow-y-scroll overflow-x-hidden">
                   <label className="flex flex-col   font-medium my-4 text-slate-500 text-lg leading-relaxed text-black">
-                    Quantas notas o pedido gerou?
-                    <input
-                      className="relative cursor-default  rounded-md bg-white py-1.5 pl-3 pr-4 text-left text-black shadow-sm ring-1 ring-inset ring-gran-blue focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6"
-                      type="number"
-                      id="numeroDeNotas"
-                      placeholder="00"
-                      {...register("numeroDeNotas")}
-                    />
-                    {errors.numeroDeNotas && (
-                      <span className="text-gran-red opacity-90">
-                        {errors.numeroDeNotas.message}
-                      </span>
-                    )}
+                    Informe os patrimônios dos itens
                   </label>
 
                   <div className="flex w-full justify-around flex-wrap h-full items-center ">
                     <label className="flex flex-col  text-sm font-medium leading-6 text-black">
                       Item
                       <span className="relative w-72 cursor-default font-normal rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset  focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6">
-                        {item.item.nome}
+                        {pedido.item.nome}
                       </span>
                     </label>
 
                     <label className="flex flex-col  text-sm font-medium leading-6 text-black">
                       Novo status
                       <span className="relative w-72 cursor-default font-normal rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset  focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6">
-                        Aguardando patrimoniamento
+                        Disponível
                       </span>
                     </label>
 
@@ -168,66 +148,26 @@ export default function modalEditarStatusPatrimonio({ item }) {
                           className="grid grid-flow-col grid-rows-1 gap-6 border rounded p-4 m-2"
                         >
                           <label className="flex flex-col  text-sm font-medium leading-6 text-black">
-                            Nota fiscal
+                            Patrimonio
                             <input
                               className="relative w-72 cursor-default  rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-gran-blue focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6"
                               type="text"
-                              id="notaItem"
-                              placeholder="NF do item"
-                              {...register(`notas.${index}.notaf`)}
+                              id="patrimonio"
+                              placeholder="patrimônio do item"
+                              {...register(`patrimonios.${index}.patrimonio`)}
                             />
-                            {errors.notas?.[index]?.notaf && (
+                            {errors.patrimonios?.[index]?.patrimonio && (
                               <span className="text-gran-red opacity-90">
-                                {errors.notas?.[index]?.notaf.message}
-                              </span>
-                            )}
-                          </label>
-
-                          <label className="flex flex-col  text-sm font-medium leading-6 text-black">
-                            Imagem NF
-                            <input
-                              type="file"
-                              id="imagemNF"
-                              className="relative w-72 cursor-default font-normal rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-gran-blue focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6"
-                              {...register(`notas.${index}.imagemNF`)}
-                            />
-                            {errors.notas?.[index]?.imagemNF && (
-                              <span className="text-gran-red opacity-90">
-                                {errors.notas?.[index]?.imagemNF.message}
-                              </span>
-                            )}
-                          </label>
-                          <label className="flex flex-col  text-sm font-medium leading-6 text-black">
-                            Quantidade
-                            <input
-                              type="number"
-                              id="quantidadeNaNF"
-                              className="relative w-24 cursor-default  rounded-md bg-white py-1.5 pl-3 pr-4 text-left text-black shadow-sm ring-1 ring-inset ring-gran-blue focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6"
-                              {...register(`notas.${index}.quantidadeNaNF`)}
-                            />
-                            {errors.notas?.[index]?.quantidadeNaNF && (
-                              <span className="text-gran-red opacity-90">
-                                {errors.notas?.[index]?.quantidadeNaNF.message}
+                                {
+                                  errors.patrimonios?.[index]?.patrimonio
+                                    .message
+                                }
                               </span>
                             )}
                           </label>
                         </div>
                       );
                     })}
-                    <div>
-                      <button
-                        onClick={adicionarNovaNota}
-                        className="bg-gran-blue bg-opacity-80 hover:bg-opacity-100 text-white font-bold p-2 mt-5 w-36 rounded m-2"
-                      >
-                        Adicionar NF
-                      </button>
-                      <button
-                        onClick={removerNota}
-                        className="bg-gran-red bg-opacity-80 hover:bg-opacity-100 text-white font-bold p-2 mt-5 w-36 rounded"
-                      >
-                        Remover NF
-                      </button>
-                    </div>
                   </div>
                 </div>
                 {/*footer*/}
