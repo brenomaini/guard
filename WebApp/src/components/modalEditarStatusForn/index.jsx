@@ -58,18 +58,18 @@ export default function modalEditarStatusForn({ pedido }) {
     const quantidadeNaNf = data.notas[0].quantidadeNaNF;
     const fileNF = data.notas[0].imagemNF[0];
     const form = new FormData();
-    console.log(fileNF);
 
-    form.append("status", "Aguardando Patrimoniamento");
+    form.append("status", "Aguardando patrimoniamento");
     // form.append("notas", data.notas);
     form.append("qtdNotas", data.numeroDeNotas);
     form.append("qtd", quantidadeNaNf);
     form.append("nf", nfSeparada);
     form.append("file", fileNF);
+    form.append("_method", "PATCH");
     // form.append("agente", "deFornecedorParaPat@email.com");
 
     const options = {
-      method: "PATCH",
+      method: "POST",
       body: form,
     };
 

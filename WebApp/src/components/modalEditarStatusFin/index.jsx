@@ -4,7 +4,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 
-export default function modalEditarStatusFin({ item }) {
+export default function modalEditarStatusFin({ pedido }) {
   const baseURL = import.meta.env.VITE_BASE_URL;
 
   const {
@@ -35,7 +35,7 @@ export default function modalEditarStatusFin({ item }) {
       cancelButtonText: "Não, cancelar",
     }).then((result) => {
       if (result.isConfirmed) {
-        const url = `${baseURL}/pedido/${item.id}`;
+        const url = `${baseURL}/pedido/${pedido.id}`;
 
         try {
           fetch(url, options).then((response) => {
@@ -80,7 +80,7 @@ export default function modalEditarStatusFin({ item }) {
                 {/*header*/}
                 <div className="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
                   <h3 className="text-3xl font-semibold">
-                    Editar pedido ID: {item.id}
+                    Editar pedido ID: {pedido.id}
                   </h3>
                   <button
                     className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
@@ -97,7 +97,7 @@ export default function modalEditarStatusFin({ item }) {
                     <label className="flex flex-col  text-sm font-medium leading-6 text-black">
                       Item
                       <span className="relative w-72 cursor-default font-normal rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset  focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6">
-                        {item.item.nome}
+                        {pedido.item.nome}
                       </span>
                     </label>
 
