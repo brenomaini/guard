@@ -70,7 +70,7 @@ class PedidoController extends Controller
     {
         $pedido = $this->pedido->find($id);
 
-        if($pedido === null) {
+        if ($pedido === null) {
             return response()->json(['erro' => 'Pedido pesquisado não existe no banco.'], 404);
         }
         return response()->json($pedido, 200);
@@ -84,18 +84,18 @@ class PedidoController extends Controller
         // atualizando dados da tabela pedido
         $pedido = $this->pedido->find($id);
 
-        if($pedido === null) {
+        if ($pedido === null) {
             return response()->json(['erro' => 'Erro na atualização, pedido não existe no banco.'], 404);
         }
 
-        if($request->method() === 'PATCH') {
+        if ($request->method() === 'PATCH') {
             //coletar apenas as regras aplicáveis aos parâmetros parciais da requisição PATCH
             $regrasDinamicas = array();
 
             //percorrendo todas as regras definidas no Model
-            foreach($pedido->rules() as $input => $regra) {
+            foreach ($pedido->rules() as $input => $regra) {
                 //coletar apenas as regras aplicáveis aos parâmetros parciais da requisição PATCH
-                if(array_key_exists($input, $request->all())) {
+                if (array_key_exists($input, $request->all())) {
                     $regrasDinamicas[$input] = $regra;
                 }
             }
@@ -104,13 +104,13 @@ class PedidoController extends Controller
         } else {
             $request->validate($pedido->rules(), $pedido->feedback());
         }
-        
+
         // armazenando notas
-        if(isset($request->file) || isset($request->nf) || isset($request->qtd)){
+        if (isset($request->file) || isset($request->nf) || isset($request->qtd)) {
             $nfs = count($request->allFiles()['file']);
-            for($i = 0; $i < $nfs; $i++) {
+            for ($i = 0; $i < $nfs; $i++) {
                 $notas = $request->allFiles()['file'][$i];
-                $nota_urn = $notas->store('files/notas/pedido'.$id, 'public');
+                $nota_urn = $notas->store('files/notas/pedido' . $id, 'public');
                 $notaFiscal = NotaFiscal::create([
                     'pedido_id' => $id,
                     'item_id' => $request->item_id,
@@ -118,16 +118,15 @@ class PedidoController extends Controller
                     'nf' => $request->nf,
                     'quantidade' => $request->qtd
                 ]);
-            } 
-        }   
-        
-        
+            }
+        }
+
         $pedido->fill($request->all());
         $pedido->save();
         return response()->json($pedido, 200);
     }
 
-    /**
+    /**b
      * Remove the specified resource from storage.
      */
     public function destroy($id)
@@ -135,16 +134,15 @@ class PedidoController extends Controller
         $pedido = $this->pedido->find($id);
 
         try {
-            if($pedido === null)
-            {
+            if ($pedido === null) {
                 return response()->json(['msg' => 'Erro ao deletar, pedido não existe em nosso banco.'], 404);
             }
-            
+
             $pedido->delete();
 
             return response()->json(['msg' => 'pedido removido com sucesso.'], 200);
         } catch (\PDOException $e) {
-            return response()->json(['msg' => 'Erro: '.$e->getMessage()], 500);
+            return response()->json(['msg' => 'Erro: ' . $e->getMessage()], 500);
         }
     }
 }
