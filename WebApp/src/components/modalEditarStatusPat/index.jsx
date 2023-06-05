@@ -11,7 +11,7 @@ export default function modalEditarStatusPat({ pedido }) {
   const itemEstoqueSchema = z.object({
     patrimonios: z.array(
       z.object({
-        patrimonio: z.string().nonempty("Patrimonio é obrigatório"),
+        patrimonio: z.string(),
       })
     ),
   });
@@ -40,8 +40,8 @@ export default function modalEditarStatusPat({ pedido }) {
   const [showModalAddItem, setShowModalAddItem] = React.useState(false);
 
   function editarPedido(data) {
+    console.log(data);
     const form = new FormData();
-    form.append("quantidade", data.quantidade);
     form.append("patrimonio", data.patrimonios);
     form.append("agente", "teste@email.com");
 

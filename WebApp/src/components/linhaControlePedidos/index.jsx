@@ -53,19 +53,17 @@ export default function LinhaControle({ pedido }) {
               ? `text-base table-cell justify-around text-center border-b items-center p-2 max-sm:text-base w-2/12 bg-orange`
               : pedido.status == "Aguardando patrimoniamento"
               ? `text-base table-cell justify-around text-center border-b items-center p-2 max-sm:text-base w-2/12 bg-orange`
-              : null
+              : "null"
           }
         >
-          <div className="flex items-center justify-between text-center">
-            {pedido.status}
-            {pedido.status == "Aguardando fornecedor" ? (
-              <ModalEditarStatusForn pedido={pedido} nome={pedido.item.nome} />
-            ) : pedido.status == "Aguardando patrimoniamento" ? (
-              <ModalEditarStatusPat item={pedido} nome={pedido.item.nome} />
-            ) : pedido.status == "Aguardando financeiro" ? (
-              <ModalEditarStatusFin pedido={pedido} nome={pedido.item.nome} />
-            ) : null}
-          </div>
+          {pedido.status}
+          {pedido.status == "Aguardando fornecedor" ? (
+            <ModalEditarStatusForn pedido={pedido} nome={pedido.item.nome} />
+          ) : pedido.status == "Aguardando patrimoniamento" ? (
+            <ModalEditarStatusPat pedido={pedido} nome={pedido.item.nome} />
+          ) : pedido.status == "Aguardando financeiro" ? (
+            <ModalEditarStatusFin pedido={pedido} nome={pedido.item.nome} />
+          ) : null}
         </div>
         <div className="text-xl table-cell justify-center items-center p-2 max-sm:text-base w-1/12">
           {pedido.quantidade - 0}

@@ -3,7 +3,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Tooltip } from "@material-tailwind/react";
 import React from "react";
 import { useFieldArray, useForm } from "react-hook-form";
-import Swal from "sweetalert2";
 import { z } from "zod";
 
 export default function modalEditarStatusForn({ pedido }) {
@@ -14,8 +13,8 @@ export default function modalEditarStatusForn({ pedido }) {
     numeroDeNotas: z.string().nonempty("Quantidade de notas é obrigatório"),
     notas: z.array(
       z.object({
-        notaf: z.string().nonempty("Nota é obrigatório"),
-        imagemNF: z
+        nf: z.string().nonempty("Nota é obrigatório"),
+        file: z
           .any()
           .refine(
             (files) => files?.[0]?.size <= MAX_FILE_SIZE,
@@ -25,7 +24,7 @@ export default function modalEditarStatusForn({ pedido }) {
             (files) => ACCEPTED_IMAGE_TYPES.includes(files?.[0]?.type),
             "Só são aceitos arquivos .pdf e .png"
           ),
-        quantidadeNaNF: z.string().nonempty("Quantidade é obrigatório"),
+        qtd: z.string().nonempty("Quantidade é obrigatório"),
       })
     ),
   });
@@ -44,7 +43,7 @@ export default function modalEditarStatusForn({ pedido }) {
     name: "notas",
   });
   function adicionarNovaNota() {
-    append({ notaf: "", imagemNF: "", quantidadeNaNF: "" });
+    append({ nf: "", file: "", qtd: "" });
   }
   function removerNota() {
     let index = fields.lastIndexOf();
@@ -54,48 +53,54 @@ export default function modalEditarStatusForn({ pedido }) {
   const [showModalAddItem, setShowModalAddItem] = React.useState(false);
 
   function editarPedido(data) {
-    const nfSeparada = data.notas[0].notaf;
-    const quantidadeNaNf = data.notas[0].quantidadeNaNF;
-    const fileNF = data.notas[0].imagemNF[0];
+    const nfSeparada = data.notas[0].nf;
+    const qtd = data.notas[0].qtd;
+    const Notas = data.notas;
     const form = new FormData();
+
+    // for (const arquivo in Notas) {
+    //   const element = Notas[arquivo];
+    //   console.log(element);
+    // }
+    console.log(Notas);
 
     form.append("status", "Aguardando patrimoniamento");
     // form.append("notas", data.notas);
     form.append("qtdNotas", data.numeroDeNotas);
-    form.append("qtd", quantidadeNaNf);
-    form.append("nf", nfSeparada);
-    form.append("file", fileNF);
+    // form.append("qtd", qtd);
+    // form.append("nf", nfSeparada);
+    form.append("file", Notas);
     form.append("_method", "PATCH");
-    // form.append("agente", "deFornecedorParaPat@email.com");
+    form.append("agente", "deFornecedorParaPat@email.com");
 
-    const options = {
-      method: "POST",
-      body: form,
-    };
+    // const options = {
+    //   method: "POST",
+    //   body: form,
+    // };
 
-    const url = `${baseURL}/pedido/${pedido.id}`;
-    try {
-      fetch(url, options)
-        .then((response) => {
-          if (response.ok) {
-            setShowModalAddItem(false);
-            reset();
+    // const url = `${baseURL}/pedido/${pedido.id}`;
+    // try {
+    //   fetch(url, options)
+    //     .then((response) => {
+    //       if (response.ok) {
+    //         setShowModalAddItem(false);
+    //         reset();
 
-            Swal.fire({
-              title: "Sucesso",
-              text: `Pedido editado com sucesso.`,
-              icon: "success",
-              confirmButtonColor: "#0D134C",
-              confirmButtonText: "OK",
-            });
-          }
-        })
-        .catch((error) => {
-          console.log(error.message);
-        });
-    } catch (e) {
-      Swal.showValidationMessage(`Erro: ${e.message}`);
-    }
+    //         Swal.fire({
+    //           title: "Sucesso",
+    //           text: `Pedido editado com sucesso.`,
+    //           icon: "success",
+    //           confirmButtonColor: "#0D134C",
+    //           confirmButtonText: "OK",
+    //         });
+    //       }
+    //     })
+    //     .catch((error) => {
+    //       console.log(error.message);
+    //     });
+    // } catch (e) {
+    //   Swal.showValidationMessage(`Erro: ${e.message}`);
+    // }
   }
 
   return (
@@ -175,11 +180,11 @@ export default function modalEditarStatusForn({ pedido }) {
                               type="text"
                               id="notaItem"
                               placeholder="NF do item"
-                              {...register(`notas.${index}.notaf`)}
+                              {...register(`notas.${index}.nf`)}
                             />
-                            {errors.notas?.[index]?.notaf && (
+                            {errors.notas?.[index]?.nf && (
                               <span className="text-gran-red opacity-90">
-                                {errors.notas?.[index]?.notaf.message}
+                                {errors.notas?.[index]?.nf.message}
                               </span>
                             )}
                           </label>
@@ -188,13 +193,13 @@ export default function modalEditarStatusForn({ pedido }) {
                             Imagem NF
                             <input
                               type="file"
-                              id="imagemNF"
+                              id="file"
                               className="relative w-72 cursor-default font-normal rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-gran-blue focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6"
-                              {...register(`notas.${index}.imagemNF`)}
+                              {...register(`notas.${index}.file`)}
                             />
-                            {errors.notas?.[index]?.imagemNF && (
+                            {errors.notas?.[index]?.file && (
                               <span className="text-gran-red opacity-90">
-                                {errors.notas?.[index]?.imagemNF.message}
+                                {errors.notas?.[index]?.file.message}
                               </span>
                             )}
                           </label>
@@ -202,13 +207,13 @@ export default function modalEditarStatusForn({ pedido }) {
                             Quantidade
                             <input
                               type="number"
-                              id="quantidadeNaNF"
+                              id="qtd"
                               className="relative w-24 cursor-default  rounded-md bg-white py-1.5 pl-3 pr-4 text-left text-black shadow-sm ring-1 ring-inset ring-gran-blue focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6"
-                              {...register(`notas.${index}.quantidadeNaNF`)}
+                              {...register(`notas.${index}.qtd`)}
                             />
-                            {errors.notas?.[index]?.quantidadeNaNF && (
+                            {errors.notas?.[index]?.qtd && (
                               <span className="text-gran-red opacity-90">
-                                {errors.notas?.[index]?.quantidadeNaNF.message}
+                                {errors.notas?.[index]?.qtd.message}
                               </span>
                             )}
                           </label>
