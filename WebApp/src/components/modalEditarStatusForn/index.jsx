@@ -3,6 +3,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Tooltip } from "@material-tailwind/react";
 import React from "react";
 import { useFieldArray, useForm } from "react-hook-form";
+import Swal from "sweetalert2";
 import { z } from "zod";
 
 export default function modalEditarStatusForn({ pedido }) {
@@ -58,49 +59,48 @@ export default function modalEditarStatusForn({ pedido }) {
     const Notas = data.notas;
     const form = new FormData();
 
-    // for (const arquivo in Notas) {
-    //   const element = Notas[arquivo];
-    //   console.log(element);
-    // }
-    console.log(Notas);
-
     form.append("status", "Aguardando patrimoniamento");
-    // form.append("notas", data.notas);
     form.append("qtdNotas", data.numeroDeNotas);
-    // form.append("qtd", qtd);
-    // form.append("nf", nfSeparada);
-    form.append("file", Notas);
+    form.append("notas", Notas);
     form.append("_method", "PATCH");
     form.append("agente", "deFornecedorParaPat@email.com");
 
-    // const options = {
-    //   method: "POST",
-    //   body: form,
-    // };
+    console.log(
+      `Tu recebe assim:Notas (Todas as informaçoes de forma individual`
+    );
+    console.log(Notas);
+    console.log(`qtdNotas (quantidade de notas geradas) ${data.numeroDeNotas}
+    status: "Aguardando patrimoniamento"
+    Agente: "agente que fez essa ultima modificaçao"`);
 
-    // const url = `${baseURL}/pedido/${pedido.id}`;
-    // try {
-    //   fetch(url, options)
-    //     .then((response) => {
-    //       if (response.ok) {
-    //         setShowModalAddItem(false);
-    //         reset();
+    const options = {
+      method: "POST",
+      body: form,
+    };
 
-    //         Swal.fire({
-    //           title: "Sucesso",
-    //           text: `Pedido editado com sucesso.`,
-    //           icon: "success",
-    //           confirmButtonColor: "#0D134C",
-    //           confirmButtonText: "OK",
-    //         });
-    //       }
-    //     })
-    //     .catch((error) => {
-    //       console.log(error.message);
-    //     });
-    // } catch (e) {
-    //   Swal.showValidationMessage(`Erro: ${e.message}`);
-    // }
+    const url = `${baseURL}/pedido/${pedido.id}`;
+    try {
+      fetch(url, options)
+        .then((response) => {
+          if (response.ok) {
+            setShowModalAddItem(false);
+            reset();
+
+            Swal.fire({
+              title: "Sucesso",
+              text: `Pedido editado com sucesso.`,
+              icon: "success",
+              confirmButtonColor: "#0D134C",
+              confirmButtonText: "OK",
+            });
+          }
+        })
+        .catch((error) => {
+          console.log(error.message);
+        });
+    } catch (e) {
+      Swal.showValidationMessage(`Erro: ${e.message}`);
+    }
   }
 
   return (
