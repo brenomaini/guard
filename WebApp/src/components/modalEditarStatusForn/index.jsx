@@ -6,7 +6,7 @@ import { useFieldArray, useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import { z } from "zod";
 
-export default function modalEditarStatusForn({ pedido }) {
+export default function modalEditarStatusForn({ pedido, atualizar }) {
   const baseURL = import.meta.env.VITE_BASE_URL;
   const MAX_FILE_SIZE = 500000;
   const ACCEPTED_IMAGE_TYPES = ["application/pdf", "image/png"];
@@ -54,24 +54,21 @@ export default function modalEditarStatusForn({ pedido }) {
   const [showModalAddItem, setShowModalAddItem] = React.useState(false);
 
   function editarPedido(data) {
-    const nfSeparada = data.notas[0].nf;
-    const qtd = data.notas[0].qtd;
     const Notas = data.notas;
     const form = new FormData();
+    const dadosUpload = [
+      Notas,
+      data.numeroDeNotas,
+      "Aguardando patrimoniamento",
+      "emaildocolab",
+    ];
 
-    form.append("status", "Aguardando patrimoniamento");
-    form.append("qtdNotas", data.numeroDeNotas);
-    form.append("notas", Notas);
+    // form.append("status", "Aguardando patrimoniamento");
+    // form.append("qtdNotas", data.numeroDeNotas);
+    form.append("upload", dadosUpload);
     form.append("_method", "PATCH");
-    form.append("agente", "deFornecedorParaPat@email.com");
-
-    console.log(
-      `Tu recebe assim:Notas (Todas as informaçoes de forma individual`
-    );
-    console.log(Notas);
-    console.log(`qtdNotas (quantidade de notas geradas) ${data.numeroDeNotas}
-    status: "Aguardando patrimoniamento"
-    Agente: "agente que fez essa ultima modificaçao"`);
+    // form.append("agente", "deFornecedorParaPat@email.com");
+    console.log(dadosUpload);
 
     const options = {
       method: "POST",
