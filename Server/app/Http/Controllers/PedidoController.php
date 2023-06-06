@@ -81,7 +81,6 @@ class PedidoController extends Controller
      */
     public function update(UpdatePedidoRequest $request, $id)
     {
-        // atualizando dados da tabela pedido
         $pedido = $this->pedido->find($id);
 
         if ($pedido === null) {
@@ -106,24 +105,23 @@ class PedidoController extends Controller
         }
 
         // armazenando notas
-        if (isset($request->file) || isset($request->nf) || isset($request->qtd)) {
-            $nfs = count($request->allFiles()['file']);
-            for ($i = 0; $i < $nfs; $i++) {
-                $notas = $request->allFiles()['file'][$i];
-                $nota_urn = $notas->store('files/notas/pedido' . $id, 'public');
-                $notaFiscal = NotaFiscal::create([
-                    'pedido_id' => $id,
-                    'item_id' => $request->item_id,
-                    'file' => $nota_urn,
-                    'nf' => $request->nf,
-                    'quantidade' => $request->qtd
-                ]);
-            }
-        }
+        // $nfs = count($request->allFiles()['file']);
+        // for ($i = 0; $i < $nfs; $i++) {
+        //     $notas = $request->allFiles()['file'][$i];
+        //     $nota_urn = $notas->store('files/notas/pedido' . $id, 'public');
+        //     $notaFiscal = NotaFiscal::create([
+        //         'pedido_id' => $id,
+        //         'item_id' => $request->item_id,
+        //         'file' => $nota_urn,
+        //         'nf' => $request->nf,
+        //         'quantidade' => $request->qtd
+        //     ]);
+        // }
 
-        $pedido->fill($request->all());
-        $pedido->save();
-        return response()->json($pedido, 200);
+        //$pedido->fill($request->all());
+        //$pedido->save();
+        $qtdNotas = $request->qtdNotas;
+        return response()->json(['msg' => 'total de notas: ' . $qtdNotas]);
     }
 
     /**b
