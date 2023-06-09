@@ -16,11 +16,12 @@ class NotaFiscal extends Model
         'item_id',
         'pedido_id',
         'nf',
-        'file',
+        'notafile',
         'quantidade'
     ];
 
-    public function rules() {
+    public function rules()
+    {
         return [
             'item_id' => 'exists:itens,id',
             'pedido_id' => 'exists:pedidos,id'

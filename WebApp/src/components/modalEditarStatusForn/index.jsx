@@ -56,12 +56,11 @@ export default function modalEditarStatusForn({ pedido, atualizar }) {
   function editarPedido(data) {
     const Notas = data.notas;
     const form = new FormData();
-    const dadosUpload = [
-      Notas,
-      data.numeroDeNotas,
-      "Aguardando patrimoniamento",
-      "emaildocolab",
-    ];
+    const dadosUpload = {
+      "notasData": Notas,
+      "qtdNotas": data.numeroDeNotas,
+      "status": "Aguardando patrimoniamento"
+    }
 
     // form.append("status", "Aguardando patrimoniamento");
     // form.append("qtdNotas", data.numeroDeNotas);
@@ -69,7 +68,6 @@ export default function modalEditarStatusForn({ pedido, atualizar }) {
     form.append("_method", "PATCH");
     // form.append("agente", "deFornecedorParaPat@email.com");
     console.log(dadosUpload);
-
     const options = {
       method: "POST",
       body: form,
@@ -77,12 +75,11 @@ export default function modalEditarStatusForn({ pedido, atualizar }) {
 
     const url = `${baseURL}/pedido/${pedido.id}`;
     try {
-      fetch(url, options)
+      fetch(url, options, form)
         .then((response) => {
           if (response.ok) {
             setShowModalAddItem(false);
             reset();
-
             Swal.fire({
               title: "Sucesso",
               text: `Pedido editado com sucesso.`,

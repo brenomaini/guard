@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('pedido_id');
             $table->unsignedBigInteger('item_id');
             $table->string('nf', 250);
-            $table->string('file', 200)->nullable();
+            $table->string('notafile', 200)->nullable();
             $table->string('quantidade', 50);
             $table->timestamps();
             //foreign key (constraints)
@@ -27,7 +27,7 @@ return new class extends Migration
 
     /**
      * Reverse the migrations.
-    */
+     */
     public function down(): void
     {
         Schema::dropIfExists('nota_fiscals');

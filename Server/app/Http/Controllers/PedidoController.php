@@ -104,24 +104,30 @@ class PedidoController extends Controller
             $request->validate($pedido->rules(), $pedido->feedback());
         }
 
-        // armazenando notas
-        // $nfs = count($request->allFiles()['file']);
-        // for ($i = 0; $i < $nfs; $i++) {
-        //     $notas = $request->allFiles()['file'][$i];
-        //     $nota_urn = $notas->store('files/notas/pedido' . $id, 'public');
-        //     $notaFiscal = NotaFiscal::create([
-        //         'pedido_id' => $id,
-        //         'item_id' => $request->item_id,
-        //         'file' => $nota_urn,
-        //         'nf' => $request->nf,
-        //         'quantidade' => $request->qtd
-        //     ]);
-        // }
 
-        //$pedido->fill($request->all());
-        //$pedido->save();
-        $qtdNotas = $request->qtdNotas;
-        return response()->json(['msg' => 'total de notas: ' . $qtdNotas]);
+        // dados da tabela nota_fiscais
+        if ($request->status == 'Aguardando patrimoniamento') {
+            // armazenando notas
+            $nfs = $request->qtdNotas;
+            for ($i = 0; $i < $nfs; $i++) {
+                $notas = $request->allFiles()['notafile'][$i];
+                $nota_urn = $notas->store('files/notas/pedido' . $id, 'public');
+                $notaFiscal = NotaFiscal::create([
+                    'pedido_id' => $id, // id do pedido resgatado da url
+                    'item_id' => $request->item_id, // id do item resgatado 
+                    'notafile' => $nota_urn, // caminho relativo da nota
+                    'nf' => $request->nf, // número da nota
+                    'quantidade' => $request->quantidadeItem // quantidade de itens por nota
+                ]);
+                echo '<pre>';
+                print_r($nfs);
+            }
+        }
+
+
+        $pedido->fill($request->all());
+        $pedido->save();
+        return response()->json($notaFiscal, 200);
     }
 
     /**b
