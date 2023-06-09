@@ -57,10 +57,10 @@ export default function modalEditarStatusForn({ pedido, atualizar }) {
     const Notas = data.notas;
     const form = new FormData();
     const dadosUpload = {
-      "notasData": Notas,
-      "qtdNotas": data.numeroDeNotas,
-      "status": "Aguardando patrimoniamento"
-    }
+      notasData: Notas,
+      qtdNotas: data.numeroDeNotas,
+      status: "Aguardando patrimoniamento",
+    };
 
     // form.append("status", "Aguardando patrimoniamento");
     // form.append("qtdNotas", data.numeroDeNotas);
@@ -78,6 +78,7 @@ export default function modalEditarStatusForn({ pedido, atualizar }) {
       fetch(url, options, form)
         .then((response) => {
           if (response.ok) {
+            console.log(response);
             setShowModalAddItem(false);
             reset();
             Swal.fire({
@@ -87,12 +88,16 @@ export default function modalEditarStatusForn({ pedido, atualizar }) {
               confirmButtonColor: "#0D134C",
               confirmButtonText: "OK",
             });
+          } else {
+            console.log(response); //MUDA AQUI OH
           }
         })
+
         .catch((error) => {
           console.log(error.message);
         });
     } catch (e) {
+      console.log(e.message);
       Swal.showValidationMessage(`Erro: ${e.message}`);
     }
   }
