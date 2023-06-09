@@ -127,7 +127,7 @@ class PedidoController extends Controller
 
         $pedido->fill($request->all());
         $pedido->save();
-        return response()->json($notaFiscal, 200);
+        return response()->json($notaFiscal);
     }
 
     /**b
