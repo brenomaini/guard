@@ -13,9 +13,15 @@ export default function modalInserirPedido() {
   const itemEstoqueSchema = z.object({
     item: z.string().nonempty("Item é obrigatório"),
     setor: z.string().nonempty("Setor é obrigatório"),
-    quantidade: z.string().nonempty("Quantidade é obrigatório"),
-    solicitante: z.string().nonempty("Quem solicitou a compra?"),
-    aprovador: z.string().nonempty("Quem aprovou a compra?"),
+    quantidade: z.string().nonempty(`Quantos itens serão comprados?`),
+    solicitante: z
+      .string()
+      .email("Digite o e-mail do GranLover")
+      .nonempty("Quem solicitou a compra?"),
+    aprovador: z
+      .string()
+      .email("Digite o e-mail do GranLover")
+      .nonempty("Quem aprovou a compra?"),
   });
 
   const {
@@ -78,6 +84,7 @@ export default function modalInserirPedido() {
             confirmButtonColor: "#0D134C",
             confirmButtonText: "OK",
           });
+          //colocar um reload na pagina uns 1s depois
         }
       });
     } catch (e) {

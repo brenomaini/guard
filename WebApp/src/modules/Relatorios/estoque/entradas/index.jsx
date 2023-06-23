@@ -1,41 +1,43 @@
-import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/20/solid";
 import { useState } from "react";
 import { CSVLink } from "react-csv";
-import HeaderEntradaSaida from "../../components/headerEntradaSaida";
-import LinhaEntradaSaida from "../../components/linhaEntradaSaida";
+import BotaoPaginacao from "../components/botaoPaginacao";
+import HeaderEntradaSaida from "../components/headerEntradaSaida";
+import LinhaEntradaSaida from "../components/linhaEntradaSaida";
 
-export default function saidas() {
+export default function entradas() {
   const [itemsEstoque, setItemEstoque] = useState([
     {
-      pedido: "4",
+      pedido: "2",
       nf: "1234321",
       item: "NOTEBOOK G15",
       setor: "Comercial",
       aprovador: "Zé",
       responsavel: "Maria",
-      agente: "asadsa",
-      data: "15/02/2023",
+      agente: "Tamus",
+      data: "10/02/2023",
       patrimonio: 102031,
     },
     {
-      pedido: "5",
+      pedido: "3",
+
       nf: "1234321",
       item: "NOTEBOOK G15",
       setor: "Comercial",
       aprovador: "Zé",
       responsavel: "Maria",
-      agente: "Sua",
-      data: "12/02/2023",
+      agente: "Tamus",
+      data: "10/02/2023",
       patrimonio: 102030,
     },
     {
-      pedido: "6",
+      pedido: "1",
+
       nf: "123555",
       item: "NOTEBOOK G15",
       setor: "Customer Success",
       aprovador: "Jão",
-      responsavel: "Lalala",
-      agente: "Nois",
+      responsavel: "Ana",
+      agente: "Tamus",
       data: "10/02/2023",
       patrimonio: 102032,
     },
@@ -69,18 +71,7 @@ export default function saidas() {
         </div>
       </div>
       <div className="flex flex-row-reverse items-center">
-        <button className=" hover:scale-110">
-          <ChevronRightIcon
-            className="h-12 w-12 bg-gran-blue bg-opacity-70 text-white rounded-md m-8"
-            aria-hidden="true"
-          />
-        </button>
-        <button className=" hover:scale-110 ">
-          <ChevronLeftIcon
-            className="h-12 w-12 bg-gran-blue bg-opacity-70 text-white rounded-md ml-4 "
-            aria-hidden="true"
-          />
-        </button>
+        <BotaoPaginacao />
 
         <CSVLink
           data={itemsEstoque}

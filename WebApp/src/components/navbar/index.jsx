@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Cadastro from "../cadastroDropDown";
 import Controle from "../controleDropDown";
 import GranLoverDropDown from "../granLoverDropDown";
+import RelatoriosDropDown from "../relatoriosDropDown";
 
 export default function Navbar() {
   return (
@@ -22,18 +23,7 @@ export default function Navbar() {
         <Controle />
         <GranLoverDropDown />
         <Cadastro />
-        <Link
-          className="text-gran-blue text-2xl hover:opacity-70 max-sm:text-xl "
-          to="/entradas"
-        >
-          Entradas
-        </Link>
-        <Link
-          className="text-gran-blue text-2xl hover:opacity-70 max-sm:text-xl mr-8 "
-          to="/saidas"
-        >
-          Saídas
-        </Link>
+        <RelatoriosDropDown />
         <Link
           className="text-gran-blue text-2xl hover:opacity-70 max-sm:text-xl mr-8 "
           to="/login"

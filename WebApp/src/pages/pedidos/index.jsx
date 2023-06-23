@@ -19,6 +19,8 @@ export default function pedidos() {
         const pedidos = res.data;
 
         setPedidos([...pedidos]);
+
+        //colocar um reload na pagina no final da query
       });
   }
   useEffect(() => {
@@ -53,7 +55,7 @@ export default function pedidos() {
           <InputText name={"Recebedor"} htmlName={"recebedor"} />
         </div>
         <button
-          className="mb-8 bg-gran-red bg-opacity-70 hover:scale-105 text-white font-semibold py-1 px-2 rounded hover:shadow-xl   "
+          className="mb-8 bg-gran-red bg-opacity-70 hover:scale-105 text-white font-semibold py-1 px-2 rounded hover:shadow-xl"
           onClick={filtrarEstoque}
         >
           Pesquisar
@@ -62,7 +64,7 @@ export default function pedidos() {
 
       <ModalInserirPedido />
 
-      <div className="table  gap-2 row-auto h-16 w-full  place-items-center p-2 ">
+      <div className="table  gap-2 row-auto h-16 w-full  place-items-center p-2">
         <HeaderControlePedidos />
         {listaPedidos.map((pedido) => {
           return <LinhaControlePedidos pedido={pedido} key={pedido.id} />;

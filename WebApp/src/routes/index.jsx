@@ -1,11 +1,13 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Navbar from "../components/navbar";
 
+import Entradas from "../modules/Relatorios/estoque/entradas";
+import Saidas from "../modules/Relatorios/estoque/saidas";
+import CadastroAgente from "../modules/Usuarios/estoque/pages";
 import CadastroCategoria from "../pages/cadastros/cadastroCategoria";
 import Cadastroitem from "../pages/cadastros/cadastroItem";
 import CadastroMarca from "../pages/cadastros/cadastroMarca";
 import CadastroSetor from "../pages/cadastros/cadastroSetor";
-import Entradas from "../pages/entradas";
 import Admissao from "../pages/granLover/admissao";
 import Desligamento from "../pages/granLover/desligamento";
 import Infos from "../pages/granLover/infos";
@@ -13,7 +15,6 @@ import Inicio from "../pages/inicio";
 import CadastroItemAvulso from "../pages/itemAvulso";
 import Login from "../pages/login";
 import Pedidos from "../pages/pedidos";
-import Saidas from "../pages/saidas";
 import "../styles/global.css";
 
 export default function BlogRoutes() {
@@ -34,6 +35,7 @@ export default function BlogRoutes() {
         <Route path="/desligamento" element={<Desligamento />} />
         <Route path="/admissao" element={<Admissao />} />
         <Route path="/infos" element={<Infos />} />
+        <Route path="/cadastroAgente" element={<CadastroAgente />} />
       </Routes>
     </BrowserRouter>
   );
