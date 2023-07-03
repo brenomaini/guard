@@ -4,7 +4,6 @@ import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import { z } from "zod";
 import CadastroButton from "../../../../components/cadastroButton";
-import HeaderCadastroItem from "../../../../components/headerCadastroItem";
 
 export default function cadastroAgente() {
   const baseURL = import.meta.env.VITE_BASE_URL;
@@ -12,7 +11,7 @@ export default function cadastroAgente() {
   const inseteUserSchema = z.object({
     nome: z.string().nonempty("Nome é obrigatório"),
     cargo: z.string().nonempty("Cargo do GranLover é obrigatório"),
-    acesso: z.string().nonempty("Nível de é obrigatório"),
+    acesso: z.string().nonempty("Nível de acesso é obrigatório"),
   });
   const {
     register,
@@ -65,7 +64,9 @@ export default function cadastroAgente() {
 
   return (
     <form className="flex flex-col h-screen items-center  bg-black bg-opacity-25 m-4">
-      <HeaderCadastroItem name={"AGENTE"} />
+      <div className="text-white font-semibold text-4xl bg-gran-blue  flex justify-center items-center p-6 w-full">
+        CADASTRO DE AGENTE
+      </div>
       <div className="flex flex-col items-center justify-around h-1/2 w-full flex-wrap gap-2">
         <label className="flex flex-col  text-sm font-medium leading-6 text-black">
           Nome do novo usuário

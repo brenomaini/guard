@@ -1,13 +1,13 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Navbar from "../components/navbar";
 
+import CadastroCategoria from "../modules/Cadastros/estoque/categoria";
+import Cadastroitem from "../modules/Cadastros/estoque/item";
+import CadastroMarca from "../modules/Cadastros/estoque/marca";
+import CadastroSetor from "../modules/Cadastros/estoque/setor";
 import Entradas from "../modules/Relatorios/estoque/entradas";
 import Saidas from "../modules/Relatorios/estoque/saidas";
-import CadastroAgente from "../modules/Usuarios/estoque/pages";
-import CadastroCategoria from "../pages/cadastros/cadastroCategoria";
-import Cadastroitem from "../pages/cadastros/cadastroItem";
-import CadastroMarca from "../pages/cadastros/cadastroMarca";
-import CadastroSetor from "../pages/cadastros/cadastroSetor";
+import CadastroAgente from "../modules/Usuarios/estoque/cadastroAgente";
 import Admissao from "../pages/granLover/admissao";
 import Desligamento from "../pages/granLover/desligamento";
 import Infos from "../pages/granLover/infos";

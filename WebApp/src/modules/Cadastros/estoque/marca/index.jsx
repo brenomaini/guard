@@ -3,8 +3,8 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import { z } from "zod";
-import CadastroButton from "../../../components/cadastroButton";
-import HeaderCadastroItem from "../../../components/headerCadastroItem";
+import CadastroButton from "../../../../components/cadastroButton";
+import HeaderCadastroItem from "../components/headerCadastroItem";
 
 export default function CadastroMarca() {
   const insereMarcaSchema = z.object({

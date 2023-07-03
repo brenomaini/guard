@@ -35,13 +35,15 @@ const Cadastro = [
     href: "/cadastroSetor",
     icon: Cog6ToothIcon,
   },
-  {
+];
+if (logado) {
+  Cadastro.push({
     name: "Agente",
     description: "Cadastre novos agentes no sistema",
     href: "/cadastroAgente",
     icon: UserIcon,
-  },
-];
+  });
+}
 
 export default function CadastroDropDown() {
   return (
