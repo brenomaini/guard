@@ -60,6 +60,8 @@ export default function modalEditarStatusForn({ pedido, atualizar }) {
       notasData: Notas,
       qtdNotas: data.numeroDeNotas,
       status: "Aguardando patrimoniamento",
+      idPedido: pedido.id,
+      idItem: pedido.item_id,
     };
 
     // form.append("status", "Aguardando patrimoniamento");
