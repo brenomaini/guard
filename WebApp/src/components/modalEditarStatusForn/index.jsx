@@ -26,6 +26,8 @@ export default function modalEditarStatusForn({ pedido, atualizar }) {
             "Só são aceitos arquivos .pdf e .png"
           ),
         qtd: z.string().nonempty("Quantidade é obrigatório"),
+        idItem: z.any(),
+        idPedido: z.any(),
       })
     ),
   });
@@ -44,7 +46,13 @@ export default function modalEditarStatusForn({ pedido, atualizar }) {
     name: "notas",
   });
   function adicionarNovaNota() {
-    append({ nf: "", file: "", qtd: "" });
+    append({
+      nf: "",
+      file: "",
+      qtd: "",
+      idItem: pedido.item_id,
+      idPedido: pedido.id,
+    });
   }
   function removerNota() {
     let index = fields.lastIndexOf();
@@ -54,14 +62,13 @@ export default function modalEditarStatusForn({ pedido, atualizar }) {
   const [showModalAddItem, setShowModalAddItem] = React.useState(false);
 
   function editarPedido(data) {
+    console.log(data.notas);
     const Notas = data.notas;
     const form = new FormData();
     const dadosUpload = {
       notasData: Notas,
       qtdNotas: data.numeroDeNotas,
       status: "Aguardando patrimoniamento",
-      idPedido: pedido.id,
-      idItem: pedido.item_id,
     };
 
     // form.append("status", "Aguardando patrimoniamento");
