@@ -110,13 +110,13 @@ class PedidoController extends Controller
                 $notasData = $request->notasData;
                 $notasCount = count($notasData);
                 for ($i = 0; $i < $notasCount; $i++) {
-                    $notaFile = $notasData[$i]['file'];
-                    $notaFileUrn = Storage::disk('local')->put($notaFile, 'Contents');
+                    //$notaFile = $notasData[$i]['file'];
+                    //$notaFileUrn = Storage::disk('local')->put($notaFile, 'Contents');
                     $notas = NotaFiscal::create([
                         'item_id' => $notasData[$i]['idItem'],
                         'pedido_id' => $notasData[$i]['idPedido'],
                         'nf' => $notasData[$i]['nf'],
-                        'notafile' => $notaFileUrn,
+                        'notafile' => $notasData[$i]['nf'],
                         'quantidade' => $notasData[$i]['qtd']
                     ]);
                 }
