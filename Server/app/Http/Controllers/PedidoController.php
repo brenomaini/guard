@@ -81,53 +81,53 @@ class PedidoController extends Controller
      */
     public function update(UpdatePedidoRequest $request, $id)
     {
-        $pedido = $this->pedido->find($id);
+        try {
+            $pedido = $this->pedido->find($id);
 
-        if ($pedido === null) {
-            return response()->json(['erro' => 'Erro na atualização, pedido não existe no banco.'], 404);
-        }
+            if ($pedido === null) {
+                return response()->json(['erro' => 'Erro na atualização, pedido não existe no banco.'], 404);
+            }
 
-        if ($request->method() === 'PATCH') {
-            //coletar apenas as regras aplicáveis aos parâmetros parciais da requisição PATCH
-            $regrasDinamicas = array();
-
-            //percorrendo todas as regras definidas no Model
-            foreach ($pedido->rules() as $input => $regra) {
+            if ($request->method() === 'PATCH') {
                 //coletar apenas as regras aplicáveis aos parâmetros parciais da requisição PATCH
-                if (array_key_exists($input, $request->all())) {
-                    $regrasDinamicas[$input] = $regra;
+                $regrasDinamicas = array();
+
+                //percorrendo todas as regras definidas no Model
+                foreach ($pedido->rules() as $input => $regra) {
+                    //coletar apenas as regras aplicáveis aos parâmetros parciais da requisição PATCH
+                    if (array_key_exists($input, $request->all())) {
+                        $regrasDinamicas[$input] = $regra;
+                    }
+                }
+
+                $request->validate($regrasDinamicas, $pedido->feedback());
+            } else {
+                $request->validate($pedido->rules(), $pedido->feedback());
+            }
+
+            // dados da tabela nota_fiscais
+            if ($request->status == 'Aguardando patrimoniamento') {
+                $notasData = $request->notasData;
+                $notasCount = count($notasData);
+                for ($i = 0; $i < $notasCount; $i++) {
+                    $notaFile = $notasData[$i]['file'];
+                    $notaFileUrn = Storage::disk('local')->put($notaFile, 'Contents');
+                    $notas = NotaFiscal::create([
+                        'item_id' => $notasData[$i]['idItem'],
+                        'pedido_id' => $notasData[$i]['idPedido'],
+                        'nf' => $notasData[$i]['nf'],
+                        'notafile' => $notaFileUrn,
+                        'quantidade' => $notasData[$i]['qtd']
+                    ]);
                 }
             }
 
-            $request->validate($regrasDinamicas, $pedido->feedback());
-        } else {
-            $request->validate($pedido->rules(), $pedido->feedback());
+            $pedido->fill($request->all());
+            $pedido->save();
+            return response()->json($pedido, 200);
+        } catch (\PDOException $e) {
+            return response()->json($e->getMessage());
         }
-
-
-        // // dados da tabela nota_fiscais
-        // if ($request->status == 'Aguardando patrimoniamento') {
-        //     // armazenando notas
-        //     $nfs = $request->qtdNotas;
-        //     for ($i = 0; $i < $nfs; $i++) {
-        //         $notas = $request->allFiles()['notafile'][$i];
-        //         $nota_urn = $notas->store('files/notas/pedido' . $id, 'public');
-        //         $notaFiscal = NotaFiscal::create([
-        //             'pedido_id' => $id, // id do pedido resgatado da url
-        //             'item_id' => $request->item_id, // id do item resgatado 
-        //             'notafile' => $nota_urn, // caminho relativo da nota
-        //             'nf' => $request->nf, // número da nota
-        //             'quantidade' => $request->quantidadeItem // quantidade de itens por nota
-        //         ]);
-        //         echo '<pre>';
-        //         print_r($nfs);
-        //     }
-        // }
-
-
-        // $pedido->fill($request->all());
-        // $pedido->save();
-        return response()->json($pedido);
     }
 
     /**b
