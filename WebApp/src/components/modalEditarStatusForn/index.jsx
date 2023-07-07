@@ -62,21 +62,15 @@ export default function modalEditarStatusForn({ pedido, atualizar }) {
   const [showModalAddItem, setShowModalAddItem] = React.useState(false);
 
   function editarPedido(data) {
-    console.log(data.notas);
-    const Notas = data.notas;
+    const notas = data.notas;
     const form = new FormData();
-    const dadosUpload = {
-      notasData: Notas,
-      qtdNotas: data.numeroDeNotas,
-      status: "Aguardando patrimoniamento",
-    };
-
-    // form.append("status", "Aguardando patrimoniamento");
-    // form.append("qtdNotas", data.numeroDeNotas);
-    form.append("upload", dadosUpload);
+    form.append("qtdNotas", data.numeroDeNotas);
+    form.append("status", "Aguardando patrimoniamento");
     form.append("_method", "PATCH");
-    // form.append("agente", "deFornecedorParaPat@email.com");
-    console.log(dadosUpload);
+    notas.forEach((nota) => {
+      form.append(`notasData`, nota);
+    });
+
     const options = {
       method: "POST",
       body: form,
@@ -84,7 +78,7 @@ export default function modalEditarStatusForn({ pedido, atualizar }) {
 
     const url = `${baseURL}/pedido/${pedido.id}`;
     try {
-      fetch(url, options, form)
+      fetch(url, options)
         .then((response) => {
           if (response.ok) {
             console.log(response);
@@ -97,13 +91,10 @@ export default function modalEditarStatusForn({ pedido, atualizar }) {
               confirmButtonColor: "#0D134C",
               confirmButtonText: "OK",
             });
-          } else {
-            console.log(response); //MUDA AQUI OH
           }
         })
-
         .catch((error) => {
-          console.log(error.message);
+          console.log(error);
         });
     } catch (e) {
       console.log(e.message);
