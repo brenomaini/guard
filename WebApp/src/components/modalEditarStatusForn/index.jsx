@@ -64,11 +64,13 @@ export default function modalEditarStatusForn({ pedido, atualizar }) {
   function editarPedido(data) {
     const notas = data.notas;
     const form = new FormData();
+    var notasFile = [];
     form.append("qtdNotas", data.numeroDeNotas);
     form.append("status", "Aguardando patrimoniamento");
     form.append("_method", "PATCH");
     notas.forEach((nota) => {
-      form.append(`notasData`, nota);
+      notasFile.push(nota["file"][0]);
+      form.append(`notasData`, notasFile);
     });
 
     const options = {
@@ -77,29 +79,27 @@ export default function modalEditarStatusForn({ pedido, atualizar }) {
     };
 
     const url = `${baseURL}/pedido/${pedido.id}`;
-    try {
-      fetch(url, options)
-        .then((response) => {
-          if (response.ok) {
-            console.log(response);
-            setShowModalAddItem(false);
-            reset();
-            Swal.fire({
-              title: "Sucesso",
-              text: `Pedido editado com sucesso.`,
-              icon: "success",
-              confirmButtonColor: "#0D134C",
-              confirmButtonText: "OK",
-            });
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    } catch (e) {
-      console.log(e.message);
-      Swal.showValidationMessage(`Erro: ${e.message}`);
-    }
+
+    fetch(url, options)
+      .then((response) => {
+        if (response.ok) {
+          console.log(response);
+          setShowModalAddItem(false);
+          reset();
+          Swal.fire({
+            title: "Sucesso",
+            text: `Pedido editado com sucesso.`,
+            icon: "success",
+            confirmButtonColor: "#0D134C",
+            confirmButtonText: "OK",
+          });
+        }
+      })
+      .catch((error) => {
+        console.log(error.message);
+        console.log(error);
+        Swal.showValidationMessage(`Erro: ${error}`);
+      });
   }
 
   return (
