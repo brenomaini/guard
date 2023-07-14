@@ -62,16 +62,6 @@ export default function modalEditarStatusForn({ pedido, atualizar }) {
   const [showModalAddItem, setShowModalAddItem] = React.useState(false);
 
   function editarPedido(data) {
-    // const notas = data.notas;
-    // const form = new FormData();
-    // var notasFile = [];
-    // form.append("qtdNotas", data.numeroDeNotas);
-    // form.append("status", "Aguardando patrimoniamento");
-    // form.append("_method", "PATCH");
-    // notas.forEach((nota, i) => {
-    //   console.log(nota);
-    //   form.append(`notasData${i}`, nota);
-    // });
     const notas = JSON.stringify(data.notas);
     const form = new FormData();
     form.append("qtdNotas", data.numeroDeNotas);
@@ -92,7 +82,6 @@ export default function modalEditarStatusForn({ pedido, atualizar }) {
     fetch(url, options)
       .then((response) => {
         if (response.ok) {
-          console.log(response.json());
           setShowModalAddItem(false);
           reset();
           Swal.fire({
