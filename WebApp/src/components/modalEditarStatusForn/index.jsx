@@ -69,7 +69,7 @@ export default function modalEditarStatusForn({ pedido, atualizar }) {
     form.append("_method", "PATCH");
     form.append("notasData", notas);
     data.notas.forEach((file, i) => {
-      form.append(`notasFile${i + 1}`, file["file"][0]);
+      form.append(`notasFile${i}`, file["file"][0]);
     });
 
     const options = {
@@ -80,24 +80,9 @@ export default function modalEditarStatusForn({ pedido, atualizar }) {
     const url = `${baseURL}/pedido/${pedido.id}`;
 
     fetch(url, options)
-      .then((response) => {
-        if (response.ok) {
-          setShowModalAddItem(false);
-          reset();
-          Swal.fire({
-            title: "Sucesso",
-            text: `Pedido editado com sucesso.`,
-            icon: "success",
-            confirmButtonColor: "#0D134C",
-            confirmButtonText: "OK",
-          });
-        }
-      })
-      .catch((error) => {
-        console.log(error.message);
-        console.log(error);
-        Swal.showValidationMessage(`Erro: ${error}`);
-      });
+      .then(response => response.json())
+      .then(result => console.log(result))
+      .catch(error => console.log('error', error));
   }
 
   return (

@@ -108,28 +108,22 @@ class PedidoController extends Controller
             // dados da tabela nota_fiscais
             if ($request->qtdNotas != '') {
                 $dataNotas = json_decode($request->notasData);
-                $notasData = $dataNotas;
-                $notasCount = count($notasData);
-                // obter o tipe de dado q chega do front e exibe no console do browser
-                //$files = gettype($request->notasFile);
-                $notaFile = $request->notasFile;
-                $nota_urn = $notaFile->store('notasPDF/produtos', 'public');
-                return response()->json($nota_urn);
+                $notasCount = count($dataNotas);
                 for ($i = 0; $i < $notasCount; $i++) {
-                    $notaFile = $request->notaFiles;
-                    // $nota_urn = $notaFile->store('notasPDF/produtos', 'public');
-                    // $notas = NotaFiscal::create([
-                    //     'item_id' => $notasData[$i]->idItem,
-                    //     'pedido_id' => $notasData[$i]->idPedido,
-                    //     'nf' => $notasData[$i]->nf,
-                    //     'notafile' => $nota_urn,
-                    //     'quantidade' => $notasData[$i]->qtd
-                    // ]);
+                    $notaFile = $request->file("notasFile{$i}");
+                    $nota_urn = $notaFile->store('notasPDF', 'public');
+                    $notas = NotaFiscal::create([
+                        'item_id' => $dataNotas[$i]->idItem,
+                        'pedido_id' => $dataNotas[$i]->idPedido,
+                        'nf' => $dataNotas[$i]->nf,
+                        'notafile' => $nota_urn,
+                        'quantidade' => $dataNotas[$i]->qtd
+                    ]);
                 }
             }
-            // $pedido->fill($request->all());
-            // $pedido->save();
-            // return response()->json($pedido, 200);
+            $pedido->fill($request->all());
+            $pedido->save();
+            return response()->json($pedido, 200);
         } catch (\PDOException $e) {
             return response()->json($e->getMessage(), 500);
         }
