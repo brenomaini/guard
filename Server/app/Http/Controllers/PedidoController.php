@@ -5,22 +5,18 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StorePedidoRequest;
 use App\Http\Requests\UpdatePedidoRequest;
 use App\Models\Pedido;
-use App\Models\NotaFiscal;
+use App\Models\NotasFiscais;
 use Illuminate\Http\Request;
 use App\Repositories\PedidoRepository;
-use Illuminate\Support\Facades\Storage;
 
 class PedidoController extends Controller
 {
     protected $pedido;
-    protected $notaFiscal;
 
-    public function __construct(Pedido $pedido, NotaFiscal $notaFiscal)
+    public function __construct(Pedido $pedido)
     {
         $this->pedido = $pedido;
-        $this->notaFiscal = $notaFiscal;
     }
-
     /**
      * Display a listing of the resource.
      */
@@ -28,7 +24,7 @@ class PedidoController extends Controller
     {
         $pedidoRepository = new PedidoRepository($this->pedido);
 
-        // // condição caso exista o atributo atributos_pedido na url
+        // condição caso exista o atributo atributos_pedido na url
         if ($request->has('atributos_pedido')) {
             $atributos_pedido = 'pedido:id,' . $request->atributos_pedido;
             $pedidoRepository->selectAtributosRegistrosRelacionados($atributos_pedido);
@@ -111,8 +107,8 @@ class PedidoController extends Controller
                 $notasCount = count($dataNotas);
                 for ($i = 0; $i < $notasCount; $i++) {
                     $notaFile = $request->file("notasFile{$i}");
-                    $nota_urn = $notaFile->store('notasPDF', 'public');
-                    $notas = NotaFiscal::create([
+                    $nota_urn = $notaFile->store('notasPDF/' . $id, 'public');
+                    $notas = NotasFiscais::create([
                         'item_id' => $dataNotas[$i]->idItem,
                         'pedido_id' => $dataNotas[$i]->idPedido,
                         'nf' => $dataNotas[$i]->nf,

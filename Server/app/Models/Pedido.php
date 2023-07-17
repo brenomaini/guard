@@ -20,7 +20,8 @@ class Pedido extends Model
         'qtdNotas'
     ];
 
-    public function rules() {
+    public function rules()
+    {
         return [
             'item_id' => 'exists:itens,id',
             'setor_id' => 'exists:setores,id',
@@ -38,18 +39,21 @@ class Pedido extends Model
         */
     }
 
-    public function feedback() {
+    public function feedback()
+    {
         return [
             'required' => 'O campo :attribute é obrigatório'
         ];
     }
 
-    public function item() {
+    public function item()
+    {
         //UM pedido PERTENCE a UM item
         return $this->belongsTo('App\Models\Item');
     }
 
-    public function setor() {
+    public function setor()
+    {
         //UM pedido PERTENCE a UM setor
         return $this->belongsTo('App\Models\Setor');
     }

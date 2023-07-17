@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class NotaFiscal extends Model
+class NotasFiscais extends Model
 {
     use HasFactory;
     protected $connection = 'mysql';
@@ -32,5 +32,17 @@ class NotaFiscal extends Model
             2) nome da coluna que será pesquisada na tabela3
             3) id do registro que será desconsiderado na pesquisa
         */
+    }
+
+    public function pedido()
+    {
+        //UM pedido PERTENCE a UM setor
+        return $this->belongsTo('App\Models\Pedido');
+    }
+
+    public function item()
+    {
+        //UM pedido PERTENCE a UM setor
+        return $this->belongsTo('App\Models\Item');
     }
 }
