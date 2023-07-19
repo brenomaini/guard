@@ -12,6 +12,7 @@ export default function modalEditarStatusPat({ pedido }) {
     patrimonios: z.array(
       z.object({
         patrimonio: z.string(),
+        nota: z.string(),
       })
     ),
   });
@@ -30,8 +31,9 @@ export default function modalEditarStatusPat({ pedido }) {
     name: "patrimonios",
   });
   function adicionarPatrimonio() {
+    console.log(pedido);
     for (let index = 1; index <= pedido.quantidade; index++) {
-      append({ patrimonio: "" });
+      append({ patrimonio: "", nota: "NumeroNota" });
     }
   }
   useEffect(() => {
@@ -62,9 +64,6 @@ export default function modalEditarStatusPat({ pedido }) {
       patrimonios: data.patrimonios,
     };
     console.log(enviarBD);
-    console.log(
-      "Ao enviar isso aqui, o ideal é criar a quantidade correspondente de patrimonios enviados em ITENS cada um com seu status e informaçoes Ex: pat 10, 20 e 30, criaria os items 10 20 e 30 pra poder vincular esses itens a alguem posteriormente"
-    );
 
     // const url = `${baseURL}/pedido/${item.id}`;
     // try {
@@ -96,7 +95,10 @@ export default function modalEditarStatusPat({ pedido }) {
           data-tooltip-target="tooltip-default"
           onClick={() => setShowModalAddItem(true)}
         >
-          <PencilIcon className="h-4 w-4 text-gran-blue" aria-hidden="true" />
+          <PencilIcon
+            className="h-4 w-4 text-gran-blue hover:text-white"
+            aria-hidden="true"
+          />
         </button>
       </Tooltip>
 
@@ -147,6 +149,7 @@ export default function modalEditarStatusPat({ pedido }) {
                           key={field.id}
                           className="grid grid-flow-col grid-rows-1 gap-6 border rounded p-4 m-2"
                         >
+                          Nota: {field.nota}
                           <label className="flex flex-col  text-sm font-medium leading-6 text-black">
                             Patrimonio
                             <input

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import InputText from "../../components/Inputs/inputText";
-import HeaderControlePedidos from "../../components/headerControlePedidos";
-import LinhaControlePedidos from "../../components/linhaControlePedidos";
-import ModalInserirPedido from "../../components/modalInserirPedido";
+import InputText from "../../../../components/Inputs/inputText";
+import HeaderControlePedidos from "../components/headerControlePedidos";
+import LinhaControlePedidos from "../components/linhaControlePedidos";
+import ModalInserirPedido from "../components/modalInserirPedido";
 
 export default function pedidos() {
   const [listaPedidos, setPedidos] = useState([]);

@@ -67,7 +67,10 @@ export default function modalEditarStatusFin({ pedido }) {
           data-tooltip-target="tooltip-default"
           onClick={() => setShowModalAddItem(true)}
         >
-          <PencilIcon className="h-4 w-4 text-gran-blue" aria-hidden="true" />
+          <PencilIcon
+            className="h-4 w-4 text-gran-blue hover:text-white"
+            aria-hidden="true"
+          />
         </button>
       </Tooltip>
 

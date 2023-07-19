@@ -1,4 +1,4 @@
-export default function HeaderInformacoesPedidos() {
+export default function HeaderInformacoesNotasPedidos() {
   return (
     <div className="table-header-group ">
       <div className="table-row text-center">

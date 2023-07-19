@@ -31,7 +31,7 @@ export default function LinhaControle({ pedido }) {
           {pedido.item.nome}
           <Tooltip content={`${pedido.item.descricao}`} placement="top">
             <InformationCircleIcon
-              className="h-5 w-5 text-gran-blue cursor-pointer m-2 hover:scale-110"
+              className="h-5 w-5 text-gran-blue cursor-pointer m-2 hover:scale-110 hover:opacity-50"
               aria-hidden="true"
             />
           </Tooltip>
@@ -78,7 +78,7 @@ export default function LinhaControle({ pedido }) {
         <div className="text-xl table-cell justify-center items-center p-2 max-sm:text-base w-1/12"></div>
         <div className="text-xl table-cell justify-center items-center p-2 max-sm:text-base w-1/12">
           <TrashIcon
-            className="h-6 w-6 text-gran-blue cursor-pointer  hover:scale-110"
+            className="h-6 w-6 text-gran-blue cursor-pointer  hover:scale-110 hover:opacity-50"
             aria-hidden="true"
           />
         </div>

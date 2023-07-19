@@ -5,8 +5,8 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import { z } from "zod";
-import InputSelectItem from "../Inputs/inputSelectItem";
-import InputSelectSetor from "../Inputs/inputSelectSetor";
+import InputSelectItem from "../../../../../components/Inputs/inputSelectItem";
+import InputSelectSetor from "../../../../../components/Inputs/inputSelectSetor";
 
 export default function modalInserirPedido() {
   const baseURL = import.meta.env.VITE_BASE_URL;

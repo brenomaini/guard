@@ -3,9 +3,9 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import { z } from "zod";
-import InputSelectItem from "../../components/Inputs/inputSelectItem";
-import InputSelectLocalizacao from "../../components/Inputs/inputSelectLocalizacao";
-import InputSelectSetor from "../../components/Inputs/inputSelectSetor";
+import InputSelectItem from "../../../../components/Inputs/inputSelectItem";
+import InputSelectLocalizacao from "../../../../components/Inputs/inputSelectLocalizacao";
+import InputSelectSetor from "../../../../components/Inputs/inputSelectSetor";
 
 export default function cadastroItemAvulso() {
   const baseURL = import.meta.env.VITE_BASE_URL;
@@ -16,7 +16,7 @@ export default function cadastroItemAvulso() {
     setor: z.string().nonempty("Setor é obrigatório"),
     quantidade: z.string().nonempty("Quantidade é obrigatório"),
     patrimonio: z.string().nonempty("Patrimônio é obrigatório"),
-    descricao: z.string(),
+    descricaoExtra: z.string(),
     localizacao: z.string().nonempty("Selecione onde o item está separado"),
   });
 
@@ -42,7 +42,7 @@ export default function cadastroItemAvulso() {
     form.append("setor_id", setorID);
     form.append("quantidade", data.quantidade);
     form.append("patrimonio", data.patrimonio);
-    form.append("descricao", data.descricao);
+    form.append("descricao", data.descricaoExtra);
     form.append("status", "Disponível");
     form.append("agente", "teste@email.com");
 
@@ -204,17 +204,17 @@ export default function cadastroItemAvulso() {
                   )}
                 </label>
                 <label
-                  htmlFor="descricao"
+                  htmlFor="descricaoExtra"
                   className="flex flex-col  text-sm font-medium leading-6 text-black items-center h-36"
                 >
                   Descrição
                   <textarea
-                    id="descricao"
+                    id="descricaoExtra"
                     cols="30"
                     rows="10"
                     placeholder="Informaçoes extras"
                     className="cursor-default rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-gran-blue focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6"
-                    {...register("descricao")}
+                    {...register("descricaoExtra")}
                   ></textarea>
                 </label>
               </div>
@@ -222,7 +222,7 @@ export default function cadastroItemAvulso() {
             {/*footer*/}
             <div className="flex items-center justify-around p-6 border-t border-solid border-slate-200 rounded-b">
               <button
-                className="text-white bg-gran-blue bg-opacity-90 font-bold uppercase px-6 py-2 text-sm rounded mr-1 mb-1 ease-linear transition-all duration-150 hover:scale-105"
+                className="text-white bg-gran-blue bg-opacity-90 font-bold uppercase px-6 py-2 text-sm rounded mr-1 mb-1 ease-linear transition-all duration-150 hover:scale-105 hover:opacity-80"
                 type="button"
                 onClick={handleSubmit(insereEstoque)}
               >

@@ -5,6 +5,9 @@ import CadastroCategoria from "../modules/Cadastros/estoque/categoria";
 import Cadastroitem from "../modules/Cadastros/estoque/item";
 import CadastroMarca from "../modules/Cadastros/estoque/marca";
 import CadastroSetor from "../modules/Cadastros/estoque/setor";
+import Itens from "../modules/Controles/items/page";
+import CadastroItemAvulso from "../modules/Controles/itemsAvulsos/page";
+import Pedidos from "../modules/Controles/pedidos/page";
 import Entradas from "../modules/Relatorios/estoque/entradas";
 import Saidas from "../modules/Relatorios/estoque/saidas";
 import CadastroAgente from "../modules/Usuarios/estoque/cadastroAgente";
@@ -12,9 +15,7 @@ import Admissao from "../pages/granLover/admissao";
 import Desligamento from "../pages/granLover/desligamento";
 import Infos from "../pages/granLover/infos";
 import Inicio from "../pages/inicio";
-import CadastroItemAvulso from "../pages/itemAvulso";
 import Login from "../pages/login";
-import Pedidos from "../pages/pedidos";
 import "../styles/global.css";
 
 export default function BlogRoutes() {
@@ -24,6 +25,7 @@ export default function BlogRoutes() {
       <Routes>
         <Route path="/" element={<Inicio />} />
         <Route path="/controlePedidos" element={<Pedidos />} />
+        <Route path="/controleItens" element={<Itens />} />
         <Route path="/cadastroItem" element={<Cadastroitem />} />
         <Route path="/itemAvulso" element={<CadastroItemAvulso />} />
         <Route path="/cadastroCategoria" element={<CadastroCategoria />} />

@@ -80,9 +80,21 @@ export default function modalEditarStatusForn({ pedido, atualizar }) {
     const url = `${baseURL}/pedido/${pedido.id}`;
 
     fetch(url, options)
-      .then(response => response.json())
-      .then(result => console.log(result))
-      .catch(error => console.log('error', error));
+      .then((response) => {
+        if (response.ok) {
+          setShowModalAddItem(false);
+          reset();
+          Swal.fire({
+            title: "Sucesso",
+            text: `Pedido editado com sucesso.`,
+            icon: "success",
+            confirmButtonColor: "#0D134C",
+            confirmButtonText: "OK",
+          });
+        }
+      })
+      .then((result) => console.log(result))
+      .catch((error) => Swal.showValidationMessage(`Erro: ${error}`));
   }
 
   return (
@@ -94,7 +106,10 @@ export default function modalEditarStatusForn({ pedido, atualizar }) {
           data-tooltip-target="tooltip-default"
           onClick={() => setShowModalAddItem(true)}
         >
-          <PencilIcon className="h-4 w-4 text-gran-blue" aria-hidden="true" />
+          <PencilIcon
+            className="h-4 w-4 text-gran-blue hover:text-white"
+            aria-hidden="true"
+          />
         </button>
       </Tooltip>
 
