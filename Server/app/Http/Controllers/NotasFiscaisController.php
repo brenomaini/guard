@@ -44,42 +44,17 @@ class NotasFiscaisController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreNotasFiscaisRequest $request)
-    {
-        //
-    }
-
-    /**
      * Display the specified resource.
      */
-    public function show(NotasFiscais $notasFiscais)
+    public function show($id)
     {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(NotasFiscais $notasFiscais)
-    {
-        //
-    }
+        $notasFiscais = $this->notasFiscais->find($id);
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateNotasFiscaisRequest $request, NotasFiscais $notasFiscais)
-    {
-        //
-    }
+        if ($notasFiscais === null) {
+            return response()->json(['erro' => 'Nota pesquisado não existe no banco.'], 404);
+        }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(NotasFiscais $notasFiscais)
-    {
-        //
+        return response()->json($notasFiscais, 200);
     }
 }
