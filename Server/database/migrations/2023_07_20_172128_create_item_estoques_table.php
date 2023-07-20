@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('item_estoques', function (Blueprint $table) {
+        Schema::create('itens_estoque', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('pedido_id');
             $table->unsignedBigInteger('item_id');
             $table->unsignedBigInteger('nota_id');
             $table->string('status', 50);
             $table->string('patrimonio', 50);
-            $table->integer('quantidade')->default('1');
+            $table->integer('quantidade')->default('1')->nullable();
             $table->string('localização', 10);
             $table->timestamps();
             //foreign key (constraints)
@@ -33,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('item_estoques');
+        Schema::dropIfExists('itens_estoque');
     }
 };
