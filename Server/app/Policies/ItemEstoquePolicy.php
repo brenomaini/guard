@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Models\Retirado;
 use App\Models\User;
+use App\Models\itemEstoque;
 use Illuminate\Auth\Access\Response;
 
-class RetiradoPolicy
+class ItemEstoquePolicy
 {
     /**
      * Determine whether the user can view any models.
@@ -19,7 +19,7 @@ class RetiradoPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, Retirado $retirado): bool
+    public function view(User $user, itemEstoque $itemEstoque): bool
     {
         //
     }
@@ -35,7 +35,7 @@ class RetiradoPolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, Retirado $retirado): bool
+    public function update(User $user, itemEstoque $itemEstoque): bool
     {
         //
     }
@@ -43,7 +43,7 @@ class RetiradoPolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, Retirado $retirado): bool
+    public function delete(User $user, itemEstoque $itemEstoque): bool
     {
         //
     }
@@ -51,7 +51,7 @@ class RetiradoPolicy
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, Retirado $retirado): bool
+    public function restore(User $user, itemEstoque $itemEstoque): bool
     {
         //
     }
@@ -59,7 +59,7 @@ class RetiradoPolicy
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, Retirado $retirado): bool
+    public function forceDelete(User $user, itemEstoque $itemEstoque): bool
     {
         //
     }
