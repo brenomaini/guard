@@ -6,6 +6,7 @@ use App\Http\Requests\StoreitemEstoqueRequest;
 use App\Http\Requests\UpdateitemEstoqueRequest;
 use App\Models\itemEstoque;
 use Illuminate\Http\Request;
+use App\Repositories\ItemEstoqueRepository;
 
 class ItemEstoqueController extends Controller
 {

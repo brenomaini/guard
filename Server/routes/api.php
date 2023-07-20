@@ -26,7 +26,6 @@ Route::Apiresource('categoria', 'App\Http\Controllers\CategoriaController');
 Route::Apiresource('item', 'App\Http\Controllers\ItemController');
 Route::Apiresource('pedido', 'App\Http\Controllers\PedidoController');
 Route::Apiresource('setor', 'App\Http\Controllers\SetorController');
-Route::Apiresource('status', 'App\Http\Controllers\StatusController');
 Route::Apiresource('notas', 'App\Http\Controllers\NotasFiscaisController');
 Route::Apiresource('itemestoque', 'App\Http\Controllers\ItemEstoqueController');
 //Route::Apiresource('retirado', 'App\Http\Controllers\RetiradoController');
