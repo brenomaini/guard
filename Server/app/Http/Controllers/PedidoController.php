@@ -32,6 +32,16 @@ class PedidoController extends Controller
             $pedidoRepository->selectAtributosRegistrosRelacionados('item', 'setor');
         }
 
+        // filtro multiplo
+        if ($request->has('filtro')) {
+            $pedidoRepository->filtro($request->filtro);
+        }
+
+        // condição caso exista o atributo atributos na url
+        if ($request->has('atributos')) {
+            $pedidoRepository->selectAtributos($request->atributos);
+        }
+
         // condição caso exista o atributo atributos na url
         if ($request->has('all')) {
             return response()->json($pedidoRepository->getResultado(), 200);
