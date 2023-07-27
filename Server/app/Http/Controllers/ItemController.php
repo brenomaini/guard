@@ -46,7 +46,7 @@ class ItemController extends Controller
         if ($request->has('all')) {
             return response()->json($itemRepository->getResultado(), 200);
         } else {
-            return response()->json($itemRepository->getResultadoPaginado(10), 200);
+            return response()->json($itemRepository->getResultadoPaginado(20), 200);
         }
     }
 
