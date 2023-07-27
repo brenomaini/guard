@@ -7,11 +7,13 @@ import ModalInserirPedido from "../components/modalInserirPedido";
 
 export default function pedidos() {
   const [listaPedidos, setPedidos] = useState([]);
-  const [page, setPage] = useState(1);
+  const [firstPage, setFirstPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState("");
+  const [lastPage, setLastPage] = useState("");
   const [prevPage, setPrevPage] = useState("");
   const [nextPage, setNextPage] = useState("");
   const baseURL = import.meta.env.VITE_BASE_URL;
-  const url = `${baseURL}/pedido?page=${page}`;
+  const url = `${baseURL}/pedido?page=${firstPage}`;
   async function buscarItensEstoque(link) {
     const lista = await fetch(link)
       .then((res) => {
@@ -19,12 +21,14 @@ export default function pedidos() {
       })
       .then((res) => {
         const pedidos = res.data;
-        const links = res.links;
-
-        setPrevPage(links[0].url);
-
-        setNextPage(links[3].url);
-
+        const nextLink = res.next_page_url;
+        const prevLink = res.prev_page_url;
+        const lastPage = res.last_page;
+        const currentPage = res.current_page;
+        setCurrentPage(currentPage);
+        setLastPage(lastPage);
+        setPrevPage(prevLink);
+        setNextPage(nextLink);
         setPedidos([...pedidos]);
 
         //colocar um reload na pagina no final da query
@@ -77,10 +81,13 @@ export default function pedidos() {
           return <LinhaControlePedidos pedido={pedido} key={pedido.id} />;
         })}
       </div>
+
       <BotaoNextPrev
         next={nextPage}
         prev={prevPage}
+        last={lastPage}
         atualizaLista={buscarItensEstoque}
+        current={currentPage}
       />
     </>
   );
