@@ -24,10 +24,13 @@ class PedidoController extends Controller
     {
         $pedidoRepository = new PedidoRepository($this->pedido);
 
-        // condição caso exista o atributo atributos_pedido na url
-        if ($request->has('atributos_pedido')) {
-            $atributos_pedido = 'pedido:id,' . $request->atributos_pedido;
-            $pedidoRepository->selectAtributosRegistrosRelacionados($atributos_pedido);
+        // condição caso exista o atributos na url
+        if ($request->has('atributos_item')) {
+            $atributos_item = 'item:id,' . $request->atributos_item;
+            $pedidoRepository->selectAtributosRegistrosRelacionados($atributos_item);
+        } elseif ($request->has('atributos_setor')) {
+            $atributos_setor = 'setor:id,' . $request->atributos_setor;
+            $pedidoRepository->selectAtributosRegistrosRelacionados($atributos_setor);
         } else {
             $pedidoRepository->selectAtributosRegistrosRelacionados('item', 'setor');
         }
