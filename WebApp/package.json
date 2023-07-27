@@ -19,7 +19,7 @@
     "react-hook-form": "^7.43.9",
     "react-query": "^3.39.3",
     "react-router-dom": "^6.9.0",
-    "sweetalert2": "^11.7.3",
+    "sweetalert2": "^11.6.13",
     "zod": "^3.21.4"
   },
   "devDependencies": {

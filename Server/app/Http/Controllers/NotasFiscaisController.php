@@ -32,6 +32,16 @@ class NotasFiscaisController extends Controller
                 $notasFiscaisRepository->selectAtributosRegistrosRelacionados('item', 'pedido');
             }
 
+            // filtro multiplo
+            if ($request->has('filtro')) {
+                $notasFiscaisRepository->filtro($request->filtro);
+            }
+
+            // condição caso exista o atributo atributos na url
+            if ($request->has('atributos')) {
+                $notasFiscaisRepository->selectAtributos($request->atributos);
+            }
+
             // condição caso exista o atributo atributos na url
             if ($request->has('all')) {
                 return response()->json($notasFiscaisRepository->getResultado(), 200);
