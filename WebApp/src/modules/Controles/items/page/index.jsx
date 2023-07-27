@@ -4,14 +4,23 @@ import HeaderItens from "../components/headerItens";
 
 export default function itens() {
   const listaItem = [
-    { nome: "item", status: "Disponível", localizacao: "A2", setor: "TI" },
     {
+      patrimonio: "5553",
+      nome: "item",
+      status: "Disponível",
+      localizacao: "A2",
+      setor: "TI",
+    },
+    {
+      patrimonio: "33311",
+      responsavel: "Joaozim",
       nome: "MouseTeclado",
       status: "Retirado",
       localizacao: "E2",
       setor: "Administrativo",
     },
     {
+      patrimonio: "11122",
       nome: "Headset",
       status: "Disponível",
       localizacao: "F2",
@@ -46,16 +55,25 @@ export default function itens() {
         <HeaderItens />
         {listaItem.map((item) => {
           return (
-            <div className="table-row">
-              <div className="table-cell">{item.nome} </div>
-              <div className="table-cell"> {item.status} </div>
-              <div className="table-cell"> {item.setor} </div>
-              <div className="table-cell">
-                ae
-                <PencilIcon
-                  className="h-4 w-4 text-gran-blue hover:text-white"
-                  aria-hidden="true"
-                />
+            <div className="table-row-group group text-center border even:bg-black even:bg-opacity-20">
+              <div className="table-row group-hover:bg-gran-blue group-hover:bg-opacity-25 ">
+                <div className="table-cell">{item.patrimonio} </div>
+                <div className="table-cell">{item.nome} </div>
+                <div
+                  className={
+                    item.status == "Disponível" ? "bg-green" : "bg-orange"
+                  }
+                >
+                  {item.status.toUpperCase()}
+                </div>
+                <div className="table-cell"> {item.setor} </div>
+                <div className="table-cell"> {item?.responsavel} </div>
+                <div className="table-cell ">
+                  <PencilIcon
+                    className="h-4 w-4 text-gran-blue hover:text-white"
+                    aria-hidden="true"
+                  />
+                </div>
               </div>
             </div>
           );

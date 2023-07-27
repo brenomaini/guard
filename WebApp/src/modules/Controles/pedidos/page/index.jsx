@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import InputText from "../../../../components/Inputs/inputText";
+import BotaoNextPrev from "../components/botaoNextPrev";
 import HeaderControlePedidos from "../components/headerControlePedidos";
 import LinhaControlePedidos from "../components/linhaControlePedidos";
 import ModalInserirPedido from "../components/modalInserirPedido";
@@ -7,16 +8,22 @@ import ModalInserirPedido from "../components/modalInserirPedido";
 export default function pedidos() {
   const [listaPedidos, setPedidos] = useState([]);
   const [page, setPage] = useState(1);
-  async function buscarItensEstoque() {
-    const baseURL = import.meta.env.VITE_BASE_URL;
-    const url = `${baseURL}/pedido?page=${page}`;
-
-    const lista = await fetch(url)
+  const [prevPage, setPrevPage] = useState("");
+  const [nextPage, setNextPage] = useState("");
+  const baseURL = import.meta.env.VITE_BASE_URL;
+  const url = `${baseURL}/pedido?page=${page}`;
+  async function buscarItensEstoque(link) {
+    const lista = await fetch(link)
       .then((res) => {
         return res.json();
       })
       .then((res) => {
         const pedidos = res.data;
+        const links = res.links;
+
+        setPrevPage(links[0].url);
+
+        setNextPage(links[3].url);
 
         setPedidos([...pedidos]);
 
@@ -24,7 +31,7 @@ export default function pedidos() {
       });
   }
   useEffect(() => {
-    buscarItensEstoque();
+    buscarItensEstoque(url);
   }, []);
 
   function filtrarEstoque() {
@@ -70,6 +77,11 @@ export default function pedidos() {
           return <LinhaControlePedidos pedido={pedido} key={pedido.id} />;
         })}
       </div>
+      <BotaoNextPrev
+        next={nextPage}
+        prev={prevPage}
+        atualizaLista={buscarItensEstoque}
+      />
     </>
   );
 }

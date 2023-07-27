@@ -44,15 +44,15 @@ export default function LinhaControle({ pedido }) {
         <div
           className={
             pedido.status == "Disponível"
-              ? `text-base table-cell justify-around border-b border-b-gran-blue items-center text-center p-2 max-sm:text-base w-2/12 bg-green `
+              ? `text-base table-cell border-b border-b-gran-blue items-center text-center p-1 max-sm:text-base w-3/12 bg-green `
               : pedido.status == "Aguardando fornecedor"
-              ? `text-base table-cell justify-around text-center border-b items-center p-2 max-sm:text-base w-2/12 bg-orange`
+              ? `text-base table-cell text-center border-b items-center p-1 max-sm:text-base w-3/12 bg-orange`
               : pedido.status == "Em falta"
-              ? `text-base table-cell text-white justify-around border-b text-center items-center p-2 max-sm:text-base w-2/12 bg-gran-red`
+              ? `text-base table-cell text-white border-b text-center items-center p-1 max-sm:text-base w-3/12 bg-gran-red`
               : pedido.status == "Aguardando financeiro"
-              ? `text-base table-cell justify-around text-center border-b items-center p-2 max-sm:text-base w-2/12 bg-orange`
+              ? `text-base table-cell text-center border-b items-center p-1 max-sm:text-base w-3/12 bg-orange`
               : pedido.status == "Aguardando patrimoniamento"
-              ? `text-base table-cell justify-around text-center border-b items-center p-2 max-sm:text-base w-2/12 bg-orange`
+              ? `text-base table-cell text-center border-b items-center p-1 max-sm:text-base w-3/12 bg-orange`
               : "null"
           }
         >
