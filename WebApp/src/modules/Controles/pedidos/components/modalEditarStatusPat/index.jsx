@@ -11,7 +11,6 @@ export default function modalEditarStatusPat({ pedido }) {
     const form = new FormData();
     form.append("patrimonios", data.patrimonios);
     form.append("item_id", pedido.item_id);
-    form.append("nota_id", pedido.nota_id);
     form.append("pedido_id", pedido.id);
     form.append("setor_id", pedido.setor_id);
     form.append("status", "Disponível");
