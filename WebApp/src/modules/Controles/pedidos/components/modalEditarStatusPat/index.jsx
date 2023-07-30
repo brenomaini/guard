@@ -9,7 +9,7 @@ export default function modalEditarStatusPat({ pedido }) {
 
   function editarPedido(data) {
     const form = new FormData();
-    form.append("patrimonios", data.patrimonios);
+    form.append("patrimonios", JSON.stringify(data.patrimonios));
     form.append("item_id", pedido.item_id);
     form.append("pedido_id", pedido.id);
     form.append("setor_id", pedido.setor_id);
