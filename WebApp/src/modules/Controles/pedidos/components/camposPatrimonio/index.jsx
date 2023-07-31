@@ -43,7 +43,7 @@ export default function camposPatrimonio({
           append({
             patrimonio: "",
             nota: nota.numNota,
-            nota_id: nota.id,
+            nota_id: nota.notaID,
             localizacao: "",
           });
         }
