@@ -21,4 +21,29 @@ class ItemEstoque extends Model
         'quantidade',
         'localizacao'
     ];
+
+    public function pedido()
+    {
+        //UM ItemEstoque PERTENCE a UM item
+        return $this->belongsTo('App\Models\Pedido');
+    }
+
+    public function item()
+    {
+        //UM ItemEstoque PERTENCE a UM item
+        return $this->belongsTo('App\Models\Item');
+    }
+
+
+    public function nota()
+    {
+        //UM ItemEstoque PERTENCE a UM item
+        return $this->belongsTo('App\Models\NotasFiscais');
+    }
+
+    public function setor()
+    {
+        //UM ItemEstoque PERTENCE a UM item
+        return $this->belongsTo('App\Models\Setor');
+    }
 }

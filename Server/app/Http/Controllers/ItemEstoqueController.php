@@ -23,7 +23,35 @@ class ItemEstoqueController extends Controller
      */
     public function index(Request $request)
     {
-        //
+        $itemEstoqueRepository = new ItemEstoqueRepository($this->itemEstoque);
+
+        // condição caso exista o atributos na url
+        if ($request->has('atributos_item')) {
+            $atributos_item = 'item:id,' . $request->atributos_item;
+            $itemEstoqueRepository->selectAtributosRegistrosRelacionados($atributos_item);
+        } elseif ($request->has('atributos_setor')) {
+            $atributos_setor = 'setor:id,' . $request->atributos_setor;
+            $itemEstoqueRepository->selectAtributosRegistrosRelacionados($atributos_setor);
+        } else {
+            $itemEstoqueRepository->selectAtributosRegistrosRelacionados('pedido', 'item', 'nota', 'setor');
+        }
+
+        // filtro multiplo
+        if ($request->has('filtro')) {
+            $itemEstoqueRepository->filtro($request->filtro);
+        }
+
+        // condição caso exista o atributo atributos na url
+        if ($request->has('atributos')) {
+            $itemEstoqueRepository->selectAtributos($request->atributos);
+        }
+
+        // condição caso exista o atributo atributos na url
+        if ($request->has('all')) {
+            return response()->json($itemEstoqueRepository->getResultado(), 200);
+        } else {
+            return response()->json($itemEstoqueRepository->getResultadoPaginado(20), 200);
+        }
     }
 
     /**
