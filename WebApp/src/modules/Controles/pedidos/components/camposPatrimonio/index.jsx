@@ -18,6 +18,7 @@ export default function camposPatrimonio({
         patrimonio: z.string(),
         nota: z.string(),
         nota_id: z.number(),
+        numero_serie: z.string(),
         localizacao: z.string().nonempty("Selecione onde o item está separado"),
       })
     ),
@@ -45,6 +46,7 @@ export default function camposPatrimonio({
             nota: nota.numNota,
             nota_id: nota.notaID,
             localizacao: "",
+            numero_serie: "",
           });
         }
       });
@@ -113,6 +115,21 @@ export default function camposPatrimonio({
                         {errors.patrimonios?.[index]?.patrimonio && (
                           <span className="text-gran-red opacity-90">
                             {errors.patrimonios?.[index]?.patrimonio.message}
+                          </span>
+                        )}
+                      </label>
+                      <label className="flex flex-col  text-sm font-medium leading-6 text-black">
+                        Número de série
+                        <input
+                          className="relative w-72 cursor-default  rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-gran-blue focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6"
+                          type="text"
+                          id="numero_surie"
+                          placeholder="Número de série"
+                          {...register(`patrimonios.${index}.numero_serie`)}
+                        />
+                        {errors.patrimonios?.[index]?.numero_serie && (
+                          <span className="text-gran-red opacity-90">
+                            {errors.patrimonios?.[index]?.numero_serie.message}
                           </span>
                         )}
                       </label>
