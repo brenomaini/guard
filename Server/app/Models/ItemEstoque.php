@@ -18,6 +18,7 @@ class ItemEstoque extends Model
         'setor_id',
         'status',
         'patrimonio',
+        'numeroSerie',
         'quantidade',
         'localizacao'
     ];

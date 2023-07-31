@@ -80,10 +80,12 @@ class ItemEstoqueController extends Controller
                 "status" => $request->status,
                 "nota_id" => $patrimonios[$i]->nota_id,
                 "localizacao" => $patrimonios[$i]->localizacao,
-                "patrimonio" => $patrimonios[$i]->patrimonio
+                "patrimonio" => $patrimonios[$i]->patrimonio,
+                "numeroSerie" => $patrimonios[$i]->numero_serie
             ]);
         }
 
+        // atualizando status do pedido referente ao $request->pedido_id
         $pedidoUpdateStatus = Pedido::where('id', $request->pedido_id)->update([
             "status" => $request->status
         ]);
