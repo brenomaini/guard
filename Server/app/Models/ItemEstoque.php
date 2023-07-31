@@ -20,8 +20,35 @@ class ItemEstoque extends Model
         'patrimonio',
         'numeroSerie',
         'quantidade',
-        'localizacao'
+        'localizacao',
+        'responsavel'
     ];
+
+    public function rules()
+    {
+        return [
+            'pedido_id' => 'exists:pedidos,id',
+            'item_id' => 'exists:itens,id',
+            'nota_id' => 'exists:nota_fiscais,id',
+            'setor_id' => 'exists:setores,id',
+            'status' => 'required',
+            'localizacao' => 'required',
+            'numeroSerie' => 'required'
+        ];
+
+        /*
+            1) tabela
+            2) nome da coluna que será pesquisada na tabela3
+            3) id do registro que será desconsiderado na pesquisa
+        */
+    }
+
+    public function feedback()
+    {
+        return [
+            'required' => 'O campo :attribute é obrigatório',
+        ];
+    }
 
     public function pedido()
     {

@@ -22,6 +22,7 @@ return new class extends Migration
             $table->integer('quantidade')->default('1')->nullable();
             $table->string('localizacao', 10);
             $table->string('numeroSerie', 50);
+            $table->string('responsavel', 50)->nullable();
             $table->timestamps();
             //foreign key (constraints)
             $table->foreign('pedido_id')->references('id')->on('pedidos');

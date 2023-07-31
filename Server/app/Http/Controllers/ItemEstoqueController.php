@@ -106,7 +106,32 @@ class ItemEstoqueController extends Controller
      */
     public function update(UpdateitemEstoqueRequest $request, $id)
     {
-        //
+        $itemEstoque = $this->itemEstoque->find($id);
+
+        if ($itemEstoque === null) {
+            return response()->json(['erro' => 'Erro na atualização, item não existe no estoque.'], 404);
+        }
+
+        if ($request->method() === 'PATCH') {
+            //coletar apenas as regras aplicáveis aos parâmetros parciais da requisição PATCH
+            $regrasDinamicas = array();
+
+            //percorrendo todas as regras definidas no Model
+            foreach ($itemEstoque->rules() as $input => $regra) {
+                //coletar apenas as regras aplicáveis aos parâmetros parciais da requisição PATCH
+                if (array_key_exists($input, $request->all())) {
+                    $regrasDinamicas[$input] = $regra;
+                }
+            }
+
+            $request->validate($regrasDinamicas, $itemEstoque->feedback());
+        } else {
+            $request->validate($itemEstoque->rules(), $itemEstoque->feedback());
+        }
+
+        $itemEstoque->fill($request->all());
+        $itemEstoque->save();
+        return response()->json($itemEstoque, 200);
     }
 
     /**
