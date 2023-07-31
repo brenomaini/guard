@@ -15,6 +15,7 @@ class ItemEstoque extends Model
         'pedido_id',
         'item_id',
         'nota_id',
+        'setor_id',
         'status',
         'patrimonio',
         'quantidade',

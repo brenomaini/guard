@@ -16,15 +16,17 @@ return new class extends Migration
             $table->unsignedBigInteger('pedido_id');
             $table->unsignedBigInteger('item_id');
             $table->unsignedBigInteger('nota_id');
+            $table->unsignedBigInteger('setor_id');
             $table->string('status', 50);
-            $table->string('patrimonio', 50);
+            $table->string('patrimonio', 50)->nullable();
             $table->integer('quantidade')->default('1')->nullable();
-            $table->string('localização', 10);
+            $table->string('localizacao', 10);
             $table->timestamps();
             //foreign key (constraints)
             $table->foreign('pedido_id')->references('id')->on('pedidos');
             $table->foreign('item_id')->references('id')->on('itens');
             $table->foreign('nota_id')->references('id')->on('nota_fiscais');
+            $table->foreign('setor_id')->references('id')->on('setores');
         });
     }
 
