@@ -29,6 +29,7 @@ export default function modalEditarStatusPat({ pedido }) {
     try {
       fetch(url, options).then((response) => {
         if (response.ok) {
+          console.log(response.json());
           setShowModalAddItem(false);
 
           Swal.fire({
