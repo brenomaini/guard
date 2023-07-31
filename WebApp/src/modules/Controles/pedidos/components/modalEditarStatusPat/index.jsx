@@ -1,6 +1,7 @@
 import { PencilIcon } from "@heroicons/react/24/outline";
 import { Tooltip } from "@material-tailwind/react";
 import React from "react";
+import Swal from "sweetalert2";
 import CamposPatrimonio from "../camposPatrimonio";
 
 export default function modalEditarStatusPat({ pedido }) {
