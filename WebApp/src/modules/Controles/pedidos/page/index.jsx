@@ -14,7 +14,7 @@ export default function pedidos() {
   const [nextPage, setNextPage] = useState("");
   const baseURL = import.meta.env.VITE_BASE_URL;
   const url = `${baseURL}/pedido?page=${firstPage}`;
-  async function buscarItensEstoque(link) {
+  async function buscarPedidos(link) {
     const lista = await fetch(link)
       .then((res) => {
         return res.json();
@@ -35,7 +35,7 @@ export default function pedidos() {
       });
   }
   useEffect(() => {
-    buscarItensEstoque(url);
+    buscarPedidos(url);
   }, []);
 
   function filtrarEstoque() {
@@ -86,7 +86,7 @@ export default function pedidos() {
         next={nextPage}
         prev={prevPage}
         last={lastPage}
-        atualizaLista={buscarItensEstoque}
+        atualizaLista={buscarPedidos}
         current={currentPage}
       />
     </>
