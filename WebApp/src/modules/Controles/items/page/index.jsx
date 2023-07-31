@@ -1,6 +1,6 @@
-import { PencilIcon } from "@heroicons/react/24/outline";
 import React, { useEffect, useState } from "react";
 import BotaoNextPrev from "../components/botaoNextPrev";
+import EditarResponsavel from "../components/editarResponsavel";
 import HeaderItens from "../components/headerItens";
 
 export default function itens() {
@@ -12,6 +12,7 @@ export default function itens() {
   const [nextPage, setNextPage] = useState("");
   const baseURL = import.meta.env.VITE_BASE_URL;
   const url = `${baseURL}/itemestoque?page=${firstPage}`;
+  const [showModalAddItem, setShowModalAddItem] = React.useState(false);
 
   async function buscarItensEstoque(link) {
     const lista = await fetch(link)
@@ -48,12 +49,15 @@ export default function itens() {
               className="table-row-group group text-center border even:bg-black even:bg-opacity-20"
             >
               <div className="table-row group-hover:bg-gran-blue group-hover:bg-opacity-25 ">
+                <div className="table-cell">{item.numeroSerie} </div>
                 <div className="table-cell">{item.patrimonio} </div>
                 <div className="table-cell">{item.item.nome} </div>
                 <div
                   className={
-                    item.status == "Disponível"
+                    item.status == "DISPONÍVEL"
                       ? "bg-green border-b"
+                      : item.status == "QUEBRADO"
+                      ? "bg-gran-red text-white border-b border-black"
                       : "bg-orange border-b"
                   }
                 >
@@ -62,10 +66,7 @@ export default function itens() {
                 <div className="table-cell"> {item.setor.nome} </div>
                 <div className="table-cell"> {item?.responsavel} </div>
                 <div className="table-cell ">
-                  <PencilIcon
-                    className="h-4 w-4 text-gran-blue hover:text-white"
-                    aria-hidden="true"
-                  />
+                  <EditarResponsavel item={item} />
                 </div>
               </div>
             </div>

@@ -56,19 +56,6 @@ export default function modalInserirPedido() {
     options.headers = new Headers({
       Accept: "application/json",
     });
-    // const enviarBD = {
-    //   id_pedido: "bd cria",
-    //   data_criacao: "bd cria",
-    //   data_update: "bd cria",
-    //   setor_id: setorID,
-    //   item_id: itemID,
-    //   status_id: statusID + "Aguardando financeiro",
-    //   quantidade: data.quantidade,
-    //   solicitante: data.solicitante,
-    //   aprovador: data.aprovador,
-    //   agente: "email@email.com",
-    // };
-    // console.log(enviarBD);
 
     const url = `${baseURL}/pedido`;
     try {

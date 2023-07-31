@@ -9,10 +9,12 @@ export default function Navbar() {
   return (
     <>
       <nav className="flex justify-between font-semibold items-center h-24 w-full bg-black bg-opacity-25 ">
-        <img
-          src="../src/assets/gran_corporativa.png"
-          className="w-48 ml-2"
-        ></img>
+        <Link to="/">
+          <img
+            src="../src/assets/gran_corporativa.png"
+            className="w-48 ml-2"
+          ></img>
+        </Link>
         <Link
           className="text-gran-blue text-2xl hover:opacity-70 max-sm:text-xl "
           to="/"
