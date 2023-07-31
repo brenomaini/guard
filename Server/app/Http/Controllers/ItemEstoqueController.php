@@ -32,6 +32,12 @@ class ItemEstoqueController extends Controller
         } elseif ($request->has('atributos_setor')) {
             $atributos_setor = 'setor:id,' . $request->atributos_setor;
             $itemEstoqueRepository->selectAtributosRegistrosRelacionados($atributos_setor);
+        } elseif ($request->has('atributos_notas')) {
+            $atributos_notas = 'nota:id,' . $request->atributos_notas;
+            $itemEstoqueRepository->selectAtributosRegistrosRelacionados($atributos_notas);
+        } elseif ($request->has('atributos_pedido')) {
+            $atributos_pedido = 'pedido:id,' . $request->atributos_pedido;
+            $itemEstoqueRepository->selectAtributosRegistrosRelacionados($atributos_pedido);
         } else {
             $itemEstoqueRepository->selectAtributosRegistrosRelacionados('pedido', 'item', 'nota', 'setor');
         }
