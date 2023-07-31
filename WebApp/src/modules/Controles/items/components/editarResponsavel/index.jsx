@@ -45,7 +45,7 @@ export default function editarResponsavel({ item }) {
     form.append("responsavel", data?.responsavel ?? "");
     form.append("status", data.status);
     form.append("_method", "PATCH");
-    form.append("agente", "emailagente");
+    form.append("agente", "emailagente@gran.com");
 
     const options = {
       method: "POST",

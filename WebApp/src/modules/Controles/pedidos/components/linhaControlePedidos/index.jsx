@@ -56,7 +56,7 @@ export default function LinhaControle({ pedido }) {
               : "null"
           }
         >
-          {pedido.status}
+          {pedido.status.toUpperCase()}
           {pedido.status == "Aguardando fornecedor" ? (
             <ModalEditarStatusForn pedido={pedido} nome={pedido.item.nome} />
           ) : pedido.status == "Aguardando patrimoniamento" ? (

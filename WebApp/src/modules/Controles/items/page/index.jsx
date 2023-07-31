@@ -54,15 +54,16 @@ export default function itens() {
                 <div className="table-cell">{item.item.nome} </div>
                 <div
                   className={
-                    item.status == "DISPONÍVEL"
+                    item.status === "DISPONÍVEL" || item.status === "Disponível"
                       ? "bg-green border-b"
-                      : item.status == "QUEBRADO"
+                      : item.status === "QUEBRADO"
                       ? "bg-gran-red text-white border-b border-black"
                       : "bg-orange border-b"
                   }
                 >
                   {item.status.toUpperCase()}
                 </div>
+                <div className="table-cell"> {item.localizacao} </div>
                 <div className="table-cell"> {item.setor.nome} </div>
                 <div className="table-cell"> {item?.responsavel} </div>
                 <div className="table-cell ">

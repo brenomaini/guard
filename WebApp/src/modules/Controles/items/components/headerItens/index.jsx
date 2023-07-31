@@ -15,6 +15,9 @@ export default function HeaderItens() {
           Status
         </div>
         <div className="text-white font-semibold text-xl bg-gran-blue table-cell  p-2  max-sm:text-base">
+          Localização
+        </div>
+        <div className="text-white font-semibold text-xl bg-gran-blue table-cell  p-2  max-sm:text-base">
           Setor pertencente
         </div>
         <div className="text-white font-semibold text-xl bg-gran-blue table-cell  p-2  max-sm:text-base">

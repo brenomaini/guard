@@ -1,12 +1,13 @@
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
-import React from "react";
+import React, { useEffect, useState } from "react";
+
 import HeaderInformacoesPedidos from "../headerInformacoesNotasPedidos";
 import LinhaNotasPedido from "../linhaNotasPedido";
+import useFiltrarNotasPedido from "../useFiltrarNotasPedido";
 
-export default function ModalNotasPedidos({ item }) {
+export default function ModalNotasPedidos({ pedido }) {
   const [showModal, setShowModal] = React.useState(false);
   //Fazer uma consulta no banco e puxar todos os itens retirados onde a NOTA e o SETOR foram iguais.
-  //Listar patrimonio, quem pegou, quem aprovou e quem entregou.
   const itemsRetirados = [
     {
       nota: "1234321",
@@ -30,6 +31,25 @@ export default function ModalNotasPedidos({ item }) {
       comprados: "10",
     },
   ];
+  const [listaNotas, setListaNotas] = useState([""]);
+  function definirNotas() {
+    if (notas != "") {
+      notas.map((nota, index) => {
+        console.log(nota);
+        setListaNotas((listaAntiga) => [
+          ...listaAntiga,
+          { nota: nota.numNota, comprados: nota.qtdNota },
+        ]);
+      });
+    }
+  }
+
+  const notas = useFiltrarNotasPedido(pedido.id);
+  useEffect(() => {
+    if (showModal) {
+      definirNotas();
+    }
+  }, [showModal]);
 
   return (
     <>
