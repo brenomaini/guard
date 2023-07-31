@@ -17,7 +17,7 @@ export default function camposPatrimonio({
       z.object({
         patrimonio: z.string(),
         nota: z.string(),
-        nota_id: z.string(),
+        nota_id: z.number(),
         localizacao: z.string().nonempty("Selecione onde o item está separado"),
       })
     ),
