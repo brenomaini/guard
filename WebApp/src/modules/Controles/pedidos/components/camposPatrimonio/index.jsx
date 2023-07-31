@@ -17,6 +17,7 @@ export default function camposPatrimonio({
       z.object({
         patrimonio: z.string(),
         nota: z.string(),
+        nota_id: z.string(),
         localizacao: z.string().nonempty("Selecione onde o item está separado"),
       })
     ),
@@ -39,7 +40,12 @@ export default function camposPatrimonio({
     if (notas != "") {
       notas.map((nota, index) => {
         for (let index = 1; index <= nota.qtdNota; index++) {
-          append({ patrimonio: "", nota: nota.numNota, localizacao: "" });
+          append({
+            patrimonio: "",
+            nota: nota.numNota,
+            nota_id: nota.id,
+            localizacao: "",
+          });
         }
       });
     }
