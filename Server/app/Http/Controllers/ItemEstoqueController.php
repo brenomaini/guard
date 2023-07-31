@@ -98,7 +98,12 @@ class ItemEstoqueController extends Controller
      */
     public function show($id)
     {
-        //
+        $itemEstoque = $this->itemEstoque->find($id);
+
+        if ($itemEstoque === null) {
+            return response()->json(['erro' => 'item pesquisada não existe no estoque'], 404);
+        }
+        return response()->json($itemEstoque, 200);
     }
 
     /**
