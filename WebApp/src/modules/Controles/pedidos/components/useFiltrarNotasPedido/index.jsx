@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 export default function useFiltrarNotasPedido(pedidoID) {
   const baseURL = import.meta.env.VITE_BASE_URL;
-  const puxarTodasNotas = `${baseURL}/notas?all`;
+  const puxarTodasNotas = `${baseURL}/notas?filtro=pedido_id:like:${pedidoID}%`;
   const [notasPedido, setNotasPedido] = useState([]);
 
   async function loadNotas() {
@@ -10,17 +10,15 @@ export default function useFiltrarNotasPedido(pedidoID) {
         return response.json();
       })
       .then((todasNotas) => {
-        for (const nota of todasNotas) {
-          if (nota.pedido.id == pedidoID) {
-            setNotasPedido((notas) => [
-              ...notas,
-              {
-                notaID: nota.id,
-                numNota: nota.nf,
-                qtdNota: nota.quantidade,
-              },
-            ]);
-          }
+        for (const nota of todasNotas.data) {
+          setNotasPedido((notas) => [
+            ...notas,
+            {
+              notaID: nota.id,
+              numNota: nota.nf,
+              qtdNota: nota.quantidade,
+            },
+          ]);
         }
       });
   }
