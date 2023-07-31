@@ -59,10 +59,10 @@ export default function camposPatrimonio({
 
   return (
     <>
-      <div className="justify-center items-center flex overflow-x-hidden overflow-y-scroll fixed inset-0 z-50 outline-none focus:outline-none">
-        <div className="relative w-auto my-6 mx-auto max-w-4xl">
+      <div className="justify-center items-center flex fixed inset-0 z-50 outline-none focus:outline-none overflow-hidden">
+        <div className="relative w-auto my-6 mx-auto max-w-4xl max-h-screen overflow-y-scroll">
           {/*content*/}
-          <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+          <div className="border-0 rounded-lg shadow-lg relativeflex flex-col w-full bg-white outline-none focus:outline-none ">
             {/*header*/}
             <div className="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
               <h3 className="text-3xl font-semibold">Inserir patrimonios</h3>
@@ -70,19 +70,17 @@ export default function camposPatrimonio({
                 className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
                 onClick={() => setShowModalAddItem(false)}
               >
-                <span className="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">
-                  ×
-                </span>
+                <span className="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none"></span>
               </button>
             </div>
             {/*body*/}
-            <div className="relative flex p-6 flex-col items-center justify-center overflow-y-scroll overflow-x-hidden">
+            <div className="relative flex p-4 flex-col items-center justify-center ">
               <label className="flex flex-col   font-medium my-4 text-slate-500 text-lg leading-relaxed text-black">
                 Informe os patrimônios dos itens
               </label>
 
               <div className="flex w-full justify-around flex-wrap h-full items-center ">
-                <label className="flex flex-col  text-sm font-medium leading-6 text-black">
+                <label className="flex flex-col  text-sm font-medium leading-6 text-black ">
                   Item
                   <span className="relative w-72 cursor-default font-normal rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset  focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6">
                     {pedido.item.nome}
@@ -100,9 +98,23 @@ export default function camposPatrimonio({
                   return (
                     <div
                       key={field.id}
-                      className="grid grid-flow-col grid-rows-1 gap-6 border rounded p-4 m-2"
+                      className="grid grid-flow-col grid-rows-2 gap-6 border rounded p-4 m-2"
                     >
-                      Nota: {field.nota}
+                      <label className="flex flex-col  text-sm font-medium leading-6 text-black">
+                        Número de série
+                        <input
+                          className="relative w-72 cursor-default  rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-gran-blue focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6"
+                          type="text"
+                          id="numero_surie"
+                          placeholder="Número de série"
+                          {...register(`patrimonios.${index}.numero_serie`)}
+                        />
+                        {errors.patrimonios?.[index]?.numero_serie && (
+                          <span className="text-gran-red opacity-90">
+                            {errors.patrimonios?.[index]?.numero_serie.message}
+                          </span>
+                        )}
+                      </label>
                       <label className="flex flex-col  text-sm font-medium leading-6 text-black">
                         Patrimonio
                         <input
@@ -119,20 +131,12 @@ export default function camposPatrimonio({
                         )}
                       </label>
                       <label className="flex flex-col  text-sm font-medium leading-6 text-black">
-                        Número de série
-                        <input
-                          className="relative w-72 cursor-default  rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-gran-blue focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6"
-                          type="text"
-                          id="numero_surie"
-                          placeholder="Número de série"
-                          {...register(`patrimonios.${index}.numero_serie`)}
-                        />
-                        {errors.patrimonios?.[index]?.numero_serie && (
-                          <span className="text-gran-red opacity-90">
-                            {errors.patrimonios?.[index]?.numero_serie.message}
-                          </span>
-                        )}
+                        Número da nota
+                        <span className="relative w-72 cursor-default font-normal rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset  focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6">
+                          {field.nota}
+                        </span>
                       </label>
+
                       <label className="flex flex-col  text-sm font-medium leading-6 text-black">
                         Localização
                         <select
