@@ -6,6 +6,7 @@ import ModalEditarStatusForn from "../modalEditarStatusForn";
 import ModalEditarStatusPat from "../modalEditarStatusPat";
 import ModalNotasPedidos from "../modalNotasPedidos";
 import Modal from "../modalRetirarItem";
+import ContarRetiradosPedido from "./contarRetiradosPedido";
 
 export default function LinhaControle({ pedido }) {
   return (
@@ -44,15 +45,15 @@ export default function LinhaControle({ pedido }) {
         <div
           className={
             pedido.status == "Disponível"
-              ? `text-base table-cell border-b border-b-gran-blue items-center text-center p-1 max-sm:text-base w-3/12 bg-green `
+              ? `text-base table-cell border-b border-b-gran-blue items-center text-center p-1 max-sm:text-base w-3/12 bg-green font-bold `
               : pedido.status == "Aguardando fornecedor"
-              ? `text-base table-cell text-center border-b items-center p-1 max-sm:text-base w-3/12 bg-orange`
+              ? `text-base table-cell text-center border-b items-center p-1 max-sm:text-base w-3/12 bg-orange font-bold`
               : pedido.status == "Em falta"
-              ? `text-base table-cell text-white border-b text-center items-center p-1 max-sm:text-base w-3/12 bg-gran-red`
+              ? `text-base table-cell text-white border-b text-center items-center p-1 max-sm:text-base w-3/12 bg-gran-red font-bold`
               : pedido.status == "Aguardando financeiro"
-              ? `text-base table-cell text-center border-b items-center p-1 max-sm:text-base w-3/12 bg-orange`
+              ? `text-base table-cell text-center border-b items-center p-1 max-sm:text-base w-3/12 bg-orange font-bold`
               : pedido.status == "Aguardando patrimoniamento"
-              ? `text-base table-cell text-center border-b items-center p-1 max-sm:text-base w-3/12 bg-orange`
+              ? `text-base table-cell text-center border-b items-center p-1 max-sm:text-base w-3/12 bg-orange font-bold`
               : "null"
           }
         >
@@ -65,15 +66,10 @@ export default function LinhaControle({ pedido }) {
             <ModalEditarStatusFin pedido={pedido} nome={pedido.item.nome} />
           ) : null}
         </div>
-        <div className="text-xl table-cell justify-center items-center p-2 max-sm:text-base w-1/12">
-          {pedido.quantidade - 0}
-        </div>
-        <div className="text-xl table-cell justify-center items-center p-2 max-sm:text-base w-1/12">
-          {pedido.quantidade}
-        </div>
-        <div className="text-xl table-cell justify-center items-center p-2 max-sm:text-base w-1/12">
-          0
-        </div>
+        <ContarRetiradosPedido
+          idPedido={pedido.id}
+          quantidade={pedido.quantidade}
+        />
 
         <div className="text-xl table-cell justify-center items-center p-2 max-sm:text-base w-1/12"></div>
         <div className="text-xl table-cell justify-center items-center p-2 max-sm:text-base w-1/12">

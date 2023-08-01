@@ -4,7 +4,7 @@ const baseURL = import.meta.env.VITE_BASE_URL;
 const fetchItensRetirados = async (idNota) => {
   let response;
   const request = await fetch(
-    `http://127.0.0.1:8000/api/itemestoque?filtro=status:like:RETIRADO;nota_id:like:${idNota.queryKey[1].idNota}`
+    `${baseURL}/itemestoque?filtro=status:not%20like:Disponível;nota_id:like:${idNota.queryKey[1].idNota}`
   )
     .then((res) => res.json())
     .then((res) => {

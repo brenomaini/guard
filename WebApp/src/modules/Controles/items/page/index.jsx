@@ -55,10 +55,10 @@ export default function itens() {
                 <div
                   className={
                     item.status === "DISPONÍVEL" || item.status === "Disponível"
-                      ? "bg-green border-b"
+                      ? "bg-green border-b font-semibold"
                       : item.status === "QUEBRADO"
-                      ? "bg-gran-red text-white border-b border-black"
-                      : "bg-orange border-b"
+                      ? "bg-gran-red text-white border-b border-black font-semibold"
+                      : "bg-orange border-b font-semibold"
                   }
                 >
                   {item.status.toUpperCase()}
