@@ -1,19 +1,17 @@
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { Tooltip } from "@material-tailwind/react";
+import BuscarItensRetirados from "../buscaItensRetirados";
 
-export default function linhaRetirados({ item }) {
+export default function linhaRetirados({ nota }) {
   return (
     <div className="table-row-group group text-center odd:bg-black odd:bg-opacity-20 h-16 ">
       <div className="text-xl text-black table-cell align-middle max-sm:text-base">
-        {item.nota}
+        {nota.nf}
       </div>
-      <div className="table-cell align-middle"> {item.item}</div>
-      <div className="table-cell align-middle"> {item.disponivel}</div>
-      <div className="table-cell align-middle"> {item.retirados}</div>
-      <div className="table-cell align-middle"> {item.comprados}</div>
-      <div className="table-cell align-middle"> </div>
-      <div className="table-cell align-middle"> </div>
-      <div className="table-cell align-middle"> </div>
+      <div className="table-cell align-middle"> {nota.item.nome}</div>
+      <BuscarItensRetirados idNota={nota.id} quantidade={nota.quantidade} />
+      <div className="table-cell align-middle"> {nota.quantidade}</div>
+
       <div className="table-cell align-middle">
         <Tooltip
           content={`Buscar item no estoque`}

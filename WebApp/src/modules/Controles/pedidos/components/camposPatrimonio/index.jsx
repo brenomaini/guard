@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { useFieldArray, useForm } from "react-hook-form";
 import { z } from "zod";
 import InputSelectLocalizacao from "../../../../../components/Inputs/inputSelectLocalizacao";
-import useFiltrarNotasPedido from "../useFiltrarNotasPedido";
+import useFiltrarNotasPedido from "./useFiltrarNotasPedido";
 
 export default function camposPatrimonio({
   pedido,
