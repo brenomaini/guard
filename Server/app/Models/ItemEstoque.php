@@ -21,7 +21,8 @@ class ItemEstoque extends Model
         'numeroSerie',
         'quantidade',
         'localizacao',
-        'responsavel'
+        'responsavel',
+        'agente'
     ];
 
     public function rules()
@@ -33,7 +34,8 @@ class ItemEstoque extends Model
             'setor_id' => 'exists:setores,id',
             'status' => 'required',
             'localizacao' => 'required',
-            'numeroSerie' => 'required'
+            'numeroSerie' => 'required',
+            'agente' => 'required'
         ];
 
         /*
