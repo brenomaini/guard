@@ -17,7 +17,8 @@ class NotasFiscais extends Model
         'pedido_id',
         'nf',
         'notafile',
-        'quantidade'
+        'quantidade',
+        'agente'
     ];
 
     public function rules()

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('nf', 250);
             $table->string('notafile', 200)->nullable();
             $table->string('quantidade', 50);
+            $table->string('agente', 50);
             $table->timestamps();
             //foreign key (constraints)
             $table->foreign('pedido_id')->references('id')->on('pedidos');

@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('localizacao', 10);
             $table->string('numeroSerie', 50);
             $table->string('responsavel', 50)->nullable();
+            $table->string('agente', 50);
             $table->timestamps();
             //foreign key (constraints)
             $table->foreign('pedido_id')->references('id')->on('pedidos');
