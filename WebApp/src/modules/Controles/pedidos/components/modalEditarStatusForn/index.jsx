@@ -66,6 +66,7 @@ export default function modalEditarStatusForn({ pedido, atualizar }) {
     const form = new FormData();
     form.append("qtdNotas", data.numeroDeNotas);
     form.append("status", "Aguardando patrimoniamento");
+    form.append("agente", "agente@email.com");
     form.append("_method", "PATCH");
     form.append("notasData", notas);
     data.notas.forEach((file, i) => {
