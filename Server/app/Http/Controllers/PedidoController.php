@@ -127,7 +127,7 @@ class PedidoController extends Controller
                         'nf' => $dataNotas[$i]->nf,
                         'notafile' => $nota_urn,
                         'quantidade' => $dataNotas[$i]->qtd,
-                        'agente' => $dataNotas[$i]->agente
+                        'agente' => $request->agente
                     ]);
                 }
             }

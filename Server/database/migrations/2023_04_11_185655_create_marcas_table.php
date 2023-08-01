@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('marcas', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nome', 50);
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent();
         });
     }
 

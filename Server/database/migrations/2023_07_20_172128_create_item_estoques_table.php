@@ -24,7 +24,8 @@ return new class extends Migration
             $table->string('numeroSerie', 50);
             $table->string('responsavel', 50)->nullable();
             $table->string('agente', 50);
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent();
             //foreign key (constraints)
             $table->foreign('pedido_id')->references('id')->on('pedidos');
             $table->foreign('item_id')->references('id')->on('itens');

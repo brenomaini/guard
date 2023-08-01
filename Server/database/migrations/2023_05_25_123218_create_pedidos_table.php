@@ -21,7 +21,8 @@ return new class extends Migration
             $table->integer('quantidade');
             $table->integer('qtdNotas')->nullable();;
             $table->string('solicitante', 100);
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent();
             //foreign key (constraints)
             $table->foreign('item_id')->references('id')->on('itens');
             $table->foreign('setor_id')->references('id')->on('setores');
