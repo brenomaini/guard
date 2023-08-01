@@ -38,7 +38,7 @@ export default function LinhaControle({ pedido }) {
           </Tooltip>
         </div>
 
-        <div className="text-lg table-cell justify-center items-center p-2 max-sm:text-base 3/6">
+        <div className="text-base table-cell font-semibold justify-center items-center p-2 max-sm:text-base 3/6">
           {pedido.setor.nome}
         </div>
 

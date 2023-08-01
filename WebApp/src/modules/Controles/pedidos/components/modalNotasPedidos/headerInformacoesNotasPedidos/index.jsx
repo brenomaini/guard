@@ -12,7 +12,7 @@ export default function HeaderInformacoesNotasPedidos() {
           Disponivel
         </div>
         <div className="text-white font-semibold text-xl bg-gran-blue table-cell justify-center items-center p-2  max-sm:text-base ">
-          Retirados
+          Retirados/Quebrados/Manutenção
         </div>
 
         <div className="text-white font-semibold text-xl bg-gran-blue table-cell justify-center items-center p-2 max-sm:text-base ">
