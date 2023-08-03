@@ -1,4 +1,7 @@
 import React from "react";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
+
 import { useQuery } from "react-query";
 import BotaoNextPrev from "../components/botaoNextPrev";
 import EditarResponsavel from "../components/editarResponsavel";
@@ -36,7 +39,15 @@ export default function itens() {
   return (
     <>
       {isLoading ? (
-        <div>Loading...</div>
+        <>
+          <div className="table gap-2 row-auto h-16 w-full  text-center p-2">
+            <HeaderItens />
+          </div>
+
+          <div className="m-2 gap-2">
+            <Skeleton count={20} height={25} />
+          </div>
+        </>
       ) : isError ? (
         <div>Error: {error.message}</div>
       ) : (

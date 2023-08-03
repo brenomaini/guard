@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 import { useQuery } from "react-query";
 import InputText from "../../../../components/Inputs/inputText";
 import BotaoNextPrev from "../components/botaoNextPrev";
@@ -33,11 +35,38 @@ export default function pedidos() {
       queryFn: () => buscarPedidos(page),
       keepPreviousData: true,
     });
-
+  //CRIAR Componente para filtros.
   return (
     <>
       {isLoading ? (
-        <div>Loading...</div>
+        <>
+          <div className="flex flex-col items-center mt-4">
+            <div className="flex h-16  gap-8">
+              <InputText name={"Setor/CC"} htmlName={"setor"} />
+              <InputText name={"Solicitante"} htmlName={"solicitante"} />
+              <InputText name={"Ítem"} htmlName={"item"} />
+            </div>
+            <div className="flex h-28 gap-8">
+              <InputText name={"Nota"} htmlName={"nf"} />
+              <InputText name={"Patrimônio"} htmlName={"patrimonio"} />
+              <InputText name={"Status"} htmlName={"status"} />
+              <InputText name={"Recebedor"} htmlName={"recebedor"} />
+            </div>
+            <button
+              className="mb-8 bg-gran-red bg-opacity-70 hover:scale-105 text-white font-semibold py-1 px-2 rounded hover:shadow-xl"
+              onClick={() => console.log("CriarFuncaoDoFiltro")}
+            >
+              Pesquisar
+            </button>
+          </div>
+
+          <ModalInserirPedido />
+
+          <div className="p-16 row-auto h-16 w-screen  place-items-center">
+            <HeaderControlePedidos />
+          </div>
+          <Skeleton count={20} height={25} />
+        </>
       ) : isError ? (
         <div>Error: {error.message}</div>
       ) : (
