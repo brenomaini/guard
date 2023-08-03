@@ -3,10 +3,13 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Tooltip } from "@material-tailwind/react";
 import React from "react";
 import { useFieldArray, useForm } from "react-hook-form";
+import { useQueryClient } from "react-query";
 import Swal from "sweetalert2";
 import { z } from "zod";
 
 export default function modalEditarStatusForn({ pedido, atualizar }) {
+  const queryClient = useQueryClient();
+
   const baseURL = import.meta.env.VITE_BASE_URL;
   const MAX_FILE_SIZE = 500000;
   const ACCEPTED_IMAGE_TYPES = ["application/pdf", "image/png"];
@@ -85,6 +88,7 @@ export default function modalEditarStatusForn({ pedido, atualizar }) {
         if (response.ok) {
           setShowModalAddItem(false);
           reset();
+          queryClient.invalidateQueries({ queryKey: ["pedidos"] });
           Swal.fire({
             title: "Sucesso",
             text: `Pedido editado com sucesso.`,

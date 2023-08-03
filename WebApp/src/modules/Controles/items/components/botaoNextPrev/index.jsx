@@ -1,5 +1,4 @@
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/20/solid";
-const baseURL = import.meta.env.VITE_BASE_URL;
 
 export default function botaoNextPrev({
   setPrevPagina,

@@ -27,12 +27,11 @@ export default function itens() {
   function setPrevPagina() {
     setPage((old) => Math.max(old - 1, 0));
   }
-  const { isLoading, isError, error, data, isFetching, isPreviousData } =
-    useQuery({
-      queryKey: ["itensEstoque", page],
-      queryFn: () => buscarItensEstoque(page),
-      keepPreviousData: true,
-    });
+  const { isLoading, isError, error, data, isFetching } = useQuery({
+    queryKey: ["itensEstoqueItens", page],
+    queryFn: () => buscarItensEstoque(page),
+    keepPreviousData: true,
+  });
 
   return (
     <>
@@ -75,16 +74,19 @@ export default function itens() {
               </div>
             );
           })}
+          <BotaoNextPrev
+            setPrimeiraPagina={setPrimeiraPagina}
+            setPrevPagina={setPrevPagina}
+            setProxPagina={setProxPagina}
+            isPreviousData={
+              data.last_page === data.current_page &&
+              data.current_page !== data.first_page
+            }
+            page={page}
+            dataHasMore={data.last_page !== data.current_page}
+          />
         </div>
       )}
-      <BotaoNextPrev
-        setPrimeiraPagina={setPrimeiraPagina}
-        setPrevPagina={setPrevPagina}
-        setProxPagina={setProxPagina}
-        isPreviousData={isPreviousData}
-        page={page}
-        dataHasMore={data?.hasMore}
-      />
     </>
   );
 }

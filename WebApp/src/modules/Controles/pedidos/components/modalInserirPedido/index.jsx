@@ -3,12 +3,15 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Tooltip } from "@material-tailwind/react";
 import React from "react";
 import { useForm } from "react-hook-form";
+import { useQueryClient } from "react-query";
 import Swal from "sweetalert2";
 import { z } from "zod";
 import InputSelectItem from "../../../../../components/Inputs/inputSelectItem";
 import InputSelectSetor from "../../../../../components/Inputs/inputSelectSetor";
 
 export default function modalInserirPedido() {
+  const queryClient = useQueryClient();
+
   const baseURL = import.meta.env.VITE_BASE_URL;
   const itemEstoqueSchema = z.object({
     item: z.string().nonempty("Item é obrigatório"),
@@ -61,6 +64,7 @@ export default function modalInserirPedido() {
     try {
       fetch(url, options).then((response) => {
         if (response.ok) {
+          queryClient.invalidateQueries({ queryKey: ["pedidos"] });
           setShowModalAddItem(false);
           reset();
 

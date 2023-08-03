@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useQuery } from "react-query";
 import InputText from "../../../../components/Inputs/inputText";
 import BotaoNextPrev from "../components/botaoNextPrev";
@@ -7,7 +7,7 @@ import LinhaControlePedidos from "../components/linhaControlePedidos";
 import ModalInserirPedido from "../components/modalInserirPedido";
 
 export default function pedidos() {
-  const [page, setPage] = React.useState(1);
+  const [page, setPage] = useState(1);
   const baseURL = import.meta.env.VITE_BASE_URL;
   const url = `${baseURL}/pedido?page=`;
   async function buscarPedidos() {
@@ -29,11 +29,11 @@ export default function pedidos() {
   }
   const { isLoading, isError, error, data, isFetching, isPreviousData } =
     useQuery({
-      queryKey: ["itensEstoque", page],
+      queryKey: ["pedidos", page],
       queryFn: () => buscarPedidos(page),
       keepPreviousData: true,
-      notifyOnChangeProps: ["data", "error"],
     });
+
   return (
     <>
       {isLoading ? (
@@ -70,16 +70,20 @@ export default function pedidos() {
               return <LinhaControlePedidos pedido={pedido} key={pedido.id} />;
             })}
           </div>
+
+          <BotaoNextPrev
+            setPrimeiraPagina={setPrimeiraPagina}
+            setPrevPagina={setPrevPagina}
+            setProxPagina={setProxPagina}
+            isPreviousData={
+              data.last_page === data.current_page &&
+              data.current_page !== data.first_page
+            }
+            page={page}
+            dataHasMore={data.last_page !== data.current_page}
+          />
         </>
       )}
-      <BotaoNextPrev
-        setPrimeiraPagina={setPrimeiraPagina}
-        setPrevPagina={setPrevPagina}
-        setProxPagina={setProxPagina}
-        isPreviousData={isPreviousData}
-        page={page}
-        dataHasMore={data?.hasMore}
-      />
     </>
   );
 }

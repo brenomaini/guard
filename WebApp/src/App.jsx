@@ -4,7 +4,8 @@ import "./styles/global.css";
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      notifyOnChangeProps: "tracked",
+      // ✅ globally default to 10 seconds
+      staleTime: 1000 * 30,
     },
   },
 });

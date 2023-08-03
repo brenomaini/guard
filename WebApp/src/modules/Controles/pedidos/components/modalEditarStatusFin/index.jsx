@@ -2,9 +2,11 @@ import { PencilIcon } from "@heroicons/react/24/outline";
 import { Tooltip } from "@material-tailwind/react";
 import React from "react";
 import { useForm } from "react-hook-form";
+import { useQueryClient } from "react-query";
 import Swal from "sweetalert2";
 
 export default function modalEditarStatusFin({ pedido }) {
+  const queryClient = useQueryClient();
   const baseURL = import.meta.env.VITE_BASE_URL;
 
   const {
@@ -40,6 +42,7 @@ export default function modalEditarStatusFin({ pedido }) {
         try {
           fetch(url, options).then((response) => {
             if (response.ok) {
+              queryClient.invalidateQueries({ queryKey: ["pedidos"] });
               setShowModalAddItem(false);
 
               Swal.fire({

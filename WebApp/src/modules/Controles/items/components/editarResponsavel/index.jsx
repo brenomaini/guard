@@ -3,11 +3,14 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Tooltip } from "@material-tailwind/react";
 import React from "react";
 import { useForm } from "react-hook-form";
+import { useQueryClient } from "react-query";
 import Swal from "sweetalert2";
 import { z } from "zod";
 import SelectOptions from "../selectOptions";
 
 export default function editarResponsavel({ item }) {
+  const queryClient = useQueryClient();
+
   const baseURL = import.meta.env.VITE_BASE_URL;
   const itemResponsavelSchema = z
     .object({
@@ -57,6 +60,7 @@ export default function editarResponsavel({ item }) {
     fetch(url, options)
       .then((response) => {
         if (response.ok) {
+          queryClient.invalidateQueries({ queryKey: ["itensEstoqueItens"] });
           setShowModalAddItem(false);
           reset();
           Swal.fire({

@@ -1,10 +1,13 @@
 import { PencilIcon } from "@heroicons/react/24/outline";
 import { Tooltip } from "@material-tailwind/react";
 import React from "react";
+import { useQueryClient } from "react-query";
 import Swal from "sweetalert2";
 import CamposPatrimonio from "../camposPatrimonio";
 
 export default function modalEditarStatusPat({ pedido }) {
+  const queryClient = useQueryClient();
+
   const [showModalAddItem, setShowModalAddItem] = React.useState(false);
   const baseURL = import.meta.env.VITE_BASE_URL;
 
@@ -28,6 +31,7 @@ export default function modalEditarStatusPat({ pedido }) {
     try {
       fetch(url, options).then((response) => {
         if (response.ok) {
+          queryClient.invalidateQueries({ queryKey: ["pedidos"] });
           setShowModalAddItem(false);
 
           Swal.fire({
