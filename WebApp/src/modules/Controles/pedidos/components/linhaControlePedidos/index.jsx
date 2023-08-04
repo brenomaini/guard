@@ -47,13 +47,13 @@ export default function LinhaControle({ pedido }) {
             pedido.status == "Disponível"
               ? `text-base table-cell border-b border-b-gran-blue items-center text-center p-1 max-sm:text-base w-3/12 bg-green font-bold `
               : pedido.status == "Aguardando fornecedor"
-              ? `text-base table-cell text-center border-b items-center p-1 max-sm:text-base w-3/12 bg-orange font-bold`
+              ? `text-base table-cell text-center border-b items-center p-1 max-sm:text-base w-3/12 bg-yellow font-bold`
               : pedido.status == "Em falta"
               ? `text-base table-cell text-white border-b text-center items-center p-1 max-sm:text-base w-3/12 bg-gran-red font-bold`
               : pedido.status == "Aguardando financeiro"
               ? `text-base table-cell text-center border-b items-center p-1 max-sm:text-base w-3/12 bg-orange font-bold`
               : pedido.status == "Aguardando patrimoniamento"
-              ? `text-base table-cell text-center border-b items-center p-1 max-sm:text-base w-3/12 bg-orange font-bold`
+              ? `text-base table-cell text-center border-b items-center p-1 max-sm:text-base w-3/12 bg-yellow font-bold`
               : "null"
           }
         >

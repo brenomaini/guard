@@ -65,7 +65,7 @@ export default function pedidos() {
           <div className="p-16 row-auto h-16 w-screen  place-items-center">
             <HeaderControlePedidos />
           </div>
-          <Skeleton count={20} height={25} />
+          <Skeleton count={20} height={40} />
         </>
       ) : isError ? (
         <div>Error: {error.message}</div>
