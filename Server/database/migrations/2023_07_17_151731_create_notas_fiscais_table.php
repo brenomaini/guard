@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('notafile', 200)->nullable();
             $table->string('quantidade', 50);
             $table->string('agente', 50);
+            $table->string('data_update', 100);
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();
             //foreign key (constraints)

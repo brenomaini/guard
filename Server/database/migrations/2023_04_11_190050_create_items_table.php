@@ -19,6 +19,7 @@ return new class extends Migration
             $table->text('descricao');
             $table->boolean('alerta_quantidade')->default('0');
             $table->integer('alerta_valor')->nullable();
+            $table->string('data_update', 100);
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();
             //foreign key (constraints)
