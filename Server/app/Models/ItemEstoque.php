@@ -33,8 +33,9 @@ class ItemEstoque extends Model
             'nota_id' => 'exists:nota_fiscais,id',
             'setor_id' => 'exists:setores,id',
             'status' => 'required',
+            'patrimonio' => 'required|unique',
             'localizacao' => 'required',
-            'numeroSerie' => 'required',
+            'numeroSerie' => 'required|unique',
             'agente' => 'required'
         ];
 
