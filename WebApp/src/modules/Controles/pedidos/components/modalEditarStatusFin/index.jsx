@@ -20,10 +20,12 @@ export default function modalEditarStatusFin({ pedido }) {
   const [showModalAddItem, setShowModalAddItem] = React.useState(false);
 
   function editarPedido(data) {
+    const novaData = Intl.DateTimeFormat("pt-BR").format(new Date());
+
     const options = {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
-      body: '{"status":"Aguardando fornecedor","agente":"novoagente2@email.com"}',
+      body: `{"status":"Aguardando fornecedor","agente":"novoagente2@email.com","data_update":${novaData}}}`,
     };
 
     Swal.fire({
