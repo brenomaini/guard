@@ -21,6 +21,8 @@ return new class extends Migration
             $table->integer('quantidade');
             $table->integer('qtdNotas')->nullable();;
             $table->string('solicitante', 100);
+            $table->string('data_update', 100);
+            $table->integer('qtdRetirados')->default('0');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();
             //foreign key (constraints)
