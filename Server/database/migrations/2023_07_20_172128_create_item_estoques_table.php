@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('numeroSerie', 50);
             $table->string('responsavel', 50)->nullable();
             $table->string('agente', 50);
-            $table->string('data_update', 100);
+            $table->string('data_update', 100)->default('0');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();
             //foreign key (constraints)
