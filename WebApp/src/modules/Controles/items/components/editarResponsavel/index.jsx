@@ -9,6 +9,7 @@ import { z } from "zod";
 import SelectOptions from "../selectOptions";
 
 export default function editarResponsavel({ item }) {
+  const retirados = item.pedido.qtdRetirados + 1;
   const queryClient = useQueryClient();
 
   const baseURL = import.meta.env.VITE_BASE_URL;
@@ -50,19 +51,22 @@ export default function editarResponsavel({ item }) {
     form.append("_method", "PATCH");
     form.append("agente", "emailagente@gran.com");
     const novaData = Intl.DateTimeFormat("pt-BR").format(new Date());
-
+    const formPedido = new FormData();
+    formPedido.append("_method", "PATCH");
+    formPedido.append("agente", "emailagente@gran.com");
+    formPedido.append("data_update", novaData);
+    formPedido.append("qtdRetirados", retirados);
     const options = {
       method: "POST",
       body: form,
     };
     const optionsPedido = {
-      method: "PATCH",
-      headers: { "Content-Type": "application/json" },
-      body: `{"agente":"novoagente2@email.com","data_update":${novaData}}}`,
+      method: "POST",
+      body: formPedido,
     };
 
     const url = `${baseURL}/itemestoque/${item.id}`;
-    const urlPedido = `${baseURL}/pedido/${pedido.id}`;
+    const urlPedido = `${baseURL}/pedido/${item.pedido_id}`;
 
     fetch(url, options)
       .then((response) => {
@@ -71,6 +75,7 @@ export default function editarResponsavel({ item }) {
 
           fetch(urlPedido, optionsPedido).then((response) => {
             if (response.ok) {
+              console.log(response.json());
               queryClient.invalidateQueries({ queryKey: ["pedidos"] });
             }
           });

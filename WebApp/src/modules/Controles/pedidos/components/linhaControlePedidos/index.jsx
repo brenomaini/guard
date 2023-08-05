@@ -66,7 +66,7 @@ export default function LinhaControle({ pedido }) {
           ) : null}
         </div>
         <div className="text-xl table-cell justify-center items-center p-2 max-sm:text-base w-1/12">
-          {pedido.qtdRetirados - pedido.quantidade}
+          {pedido.quantidade - pedido.qtdRetirados}
         </div>
         <div className="text-xl table-cell justify-center items-center p-2 max-sm:text-base w-1/12">
           {pedido.quantidade}
