@@ -128,7 +128,8 @@ class PedidoController extends Controller
                         'notafile' => $nota_urn,
                         'quantidade' => $dataNotas[$i]->qtd,
                         'agente' => $request->agente,
-                        'data_update' => $request->data_update
+                        'data_update' => $request->data_update,
+                        'qtdRetirados' => $request->qtdRetirados
                     ]);
                 }
             }
