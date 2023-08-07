@@ -17,7 +17,9 @@ class Pedido extends Model
         'aprovador',
         'quantidade',
         'solicitante',
-        'qtdNotas'
+        'qtdNotas',
+        'data_update',
+        'qtdRetirados'
     ];
 
     public function rules()
