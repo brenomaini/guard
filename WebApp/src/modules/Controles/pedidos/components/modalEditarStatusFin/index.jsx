@@ -45,24 +45,22 @@ export default function modalEditarStatusFin({ pedido }) {
       if (result.isConfirmed) {
         const url = `${baseURL}/pedido/${pedido.id}`;
 
-        try {
-          fetch(url, options).then((response) => {
-            if (response.ok) {
-              queryClient.invalidateQueries({ queryKey: ["pedidos"] });
-              setShowModalAddItem(false);
+        fetch(url, options).then((response) => {
+          if (response.ok) {
+            queryClient.invalidateQueries({ queryKey: ["pedidos"] });
+            setShowModalAddItem(false);
 
-              Swal.fire({
-                title: "Confirmado",
-                text: "Status editado com sucesso",
-                icon: "success",
-                confirmButtonColor: "#0D134C",
-                confirmButtonText: "OK",
-              });
-            }
-          });
-        } catch (e) {
-          Swal.showValidationMessage(`Erro: ${e.message}`);
-        }
+            Swal.fire({
+              title: "Confirmado",
+              text: "Status editado com sucesso",
+              icon: "success",
+              confirmButtonColor: "#0D134C",
+              confirmButtonText: "OK",
+            });
+          } else {
+            Swal.showValidationMessage(`Erro: ${response.statusText}`);
+          }
+        });
       }
     });
   }

@@ -1,25 +1,18 @@
 import React, { useState } from "react";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-import { useQuery } from "react-query";
 import InputText from "../../../../components/Inputs/inputText";
 import BotaoNextPrev from "../components/botaoNextPrev";
 import HeaderControlePedidos from "../components/headerControlePedidos";
 import LinhaControlePedidos from "../components/linhaControlePedidos";
 import ModalInserirPedido from "../components/modalInserirPedido";
+import useBuscaPedidos from "../hooks/useBuscaPedidos";
 
 export default function pedidos() {
+  const [listaPedido, setListaPedido] = useState([""]);
   const [page, setPage] = useState(1);
-  const baseURL = import.meta.env.VITE_BASE_URL;
-  const url = `${baseURL}/pedido?page=`;
-  async function buscarPedidos() {
-    const response = await fetch(url + page);
-    if (response.ok) {
-      return response.json();
-    } else {
-      throw new Error(response.statusText);
-    }
-  }
+  const pedidos = useBuscaPedidos(page);
+
   function setPrimeiraPagina() {
     setPage(1);
   }
@@ -29,16 +22,11 @@ export default function pedidos() {
   function setPrevPagina() {
     setPage((old) => Math.max(old - 1, 0));
   }
-  const { isLoading, isError, error, data, isFetching, isPreviousData } =
-    useQuery({
-      queryKey: ["pedidos", page],
-      queryFn: () => buscarPedidos(page),
-      keepPreviousData: true,
-    });
+
   //CRIAR Componente para filtros.
   return (
     <>
-      {isLoading ? (
+      {pedidos.isLoading ? (
         <>
           <div className="flex flex-col items-center mt-4">
             <div className="flex h-16  gap-8">
@@ -67,8 +55,8 @@ export default function pedidos() {
           </div>
           <Skeleton count={20} height={40} />
         </>
-      ) : isError ? (
-        <div>Error: {error.message}</div>
+      ) : pedidos.isError ? (
+        <div>Error: {pedidos.error.message}</div>
       ) : (
         <>
           <div className="flex flex-col items-center mt-4">
@@ -95,8 +83,8 @@ export default function pedidos() {
 
           <div className="table  gap-2 row-auto h-16 w-full  place-items-center p-2">
             <HeaderControlePedidos />
-            {data.data.map((pedido) => {
-              return <LinhaControlePedidos pedido={pedido} key={pedido.id} />;
+            {pedidos.data.map((pedido, index) => {
+              return <LinhaControlePedidos pedido={pedido} key={index} />;
             })}
           </div>
 
@@ -105,11 +93,11 @@ export default function pedidos() {
             setPrevPagina={setPrevPagina}
             setProxPagina={setProxPagina}
             isPreviousData={
-              data.last_page === data.current_page &&
-              data.current_page !== data.first_page
+              pedidos?.data.last_page === pedidos?.data.current_page &&
+              pedidos?.data.current_page !== pedidos?.data.first_page
             }
             page={page}
-            dataHasMore={data.last_page !== data.current_page}
+            dataHasMore={pedidos?.data.last_page !== pedidos?.data.current_page}
           />
         </>
       )}

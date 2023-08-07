@@ -63,26 +63,24 @@ export default function modalInserirPedido() {
     });
 
     const url = `${baseURL}/pedido`;
-    try {
-      fetch(url, options).then((response) => {
-        if (response.ok) {
-          queryClient.invalidateQueries({ queryKey: ["pedidos"] });
-          setShowModalAddItem(false);
-          reset();
 
-          Swal.fire({
-            title: "Sucesso",
-            text: `Item inserido com sucesso.`,
-            icon: "success",
-            confirmButtonColor: "#0D134C",
-            confirmButtonText: "OK",
-          });
-          //colocar um reload na pagina uns 1s depois
-        }
-      });
-    } catch (e) {
-      Swal.showValidationMessage(`Erro: ${e.message}`);
-    }
+    fetch(url, options).then((response) => {
+      if (response.ok) {
+        queryClient.invalidateQueries({ queryKey: ["pedidos"] });
+        setShowModalAddItem(false);
+        reset();
+
+        Swal.fire({
+          title: "Sucesso",
+          text: `Item inserido com sucesso.`,
+          icon: "success",
+          confirmButtonColor: "#0D134C",
+          confirmButtonText: "OK",
+        });
+      } else {
+        Swal.showValidationMessage(`Erro: ${response.statusText}`);
+      }
+    });
   }
 
   return (

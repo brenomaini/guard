@@ -13,27 +13,56 @@ export default function modalEditarStatusForn({ pedido, atualizar }) {
   const baseURL = import.meta.env.VITE_BASE_URL;
   const MAX_FILE_SIZE = 500000;
   const ACCEPTED_IMAGE_TYPES = ["application/pdf", "image/png"];
-  const itemEstoqueSchema = z.object({
-    numeroDeNotas: z.string().nonempty("Quantidade de notas é obrigatório"),
-    notas: z.array(
-      z.object({
-        nf: z.string().nonempty("Nota é obrigatório"),
-        file: z
-          .any()
-          .refine(
-            (files) => files?.[0]?.size <= MAX_FILE_SIZE,
-            `Tamanho máximo do arquivo é 5MB.`
-          )
-          .refine(
-            (files) => ACCEPTED_IMAGE_TYPES.includes(files?.[0]?.type),
-            "Só são aceitos arquivos .pdf e .png"
-          ),
-        qtd: z.string().nonempty("Quantidade é obrigatório"),
-        idItem: z.any(),
-        idPedido: z.any(),
-      })
-    ),
-  });
+  const itemEstoqueSchema = z
+    .object({
+      numeroDeNotas: z.string().nonempty("Quantidade de notas é obrigatório"),
+      notas: z.array(
+        z.object({
+          nf: z.string().nonempty("Nota é obrigatório"),
+          file: z
+            .any()
+            .refine(
+              (files) => files?.[0]?.size <= MAX_FILE_SIZE,
+              `Tamanho máximo do arquivo é 5MB.`
+            )
+            .refine(
+              (files) => ACCEPTED_IMAGE_TYPES.includes(files?.[0]?.type),
+              "Só são aceitos arquivos .pdf e .png"
+            ),
+          qtd: z.string().nonempty("Quantidade é obrigatório"),
+          idItem: z.any(),
+          idPedido: z.any(),
+        })
+      ),
+    })
+    .refine(
+      (array) => {
+        if (array.notas.length == array.numeroDeNotas) {
+          return true;
+        }
+      },
+      {
+        message: "Número de notas diferente do informado.",
+        path: ["numeroDeNotas"],
+      }
+    )
+    .refine(
+      (array) => {
+        let qtdTotal = 0;
+        for (const nota of array.notas) {
+          qtdTotal = qtdTotal + parseInt(nota.qtd, 10);
+        }
+
+        if (qtdTotal == pedido.quantidade) {
+          return true;
+        }
+      },
+      {
+        message:
+          "Soma de itens diferente do total informado no pedido. Verifique as quantidades",
+        path: ["notas[0].qtd"],
+      }
+    );
 
   const {
     register,
@@ -100,7 +129,6 @@ export default function modalEditarStatusForn({ pedido, atualizar }) {
           });
         }
       })
-      .then((result) => console.log(result))
       .catch((error) => Swal.showValidationMessage(`Erro: ${error}`));
   }
 

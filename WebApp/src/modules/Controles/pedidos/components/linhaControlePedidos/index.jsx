@@ -7,7 +7,7 @@ import ModalEditarStatusPat from "../modalEditarStatusPat";
 import ModalNotasPedidos from "../modalNotasPedidos";
 import Modal from "../modalRetirarItem";
 
-export default function LinhaControle({ pedido }) {
+export default function LinhaControle({ pedido, ...props }) {
   return (
     <div className="table-row-group group text-center border even:bg-black even:bg-opacity-20 ">
       <div className="table-row group-hover:bg-gran-blue group-hover:bg-opacity-25 ">

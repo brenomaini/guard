@@ -1,7 +1,7 @@
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import React from "react";
-import BuscarNotasPedido from "./buscarNotasPedido";
 import HeaderInformacoesPedidos from "./headerInformacoesNotasPedidos";
+import LinhaRetirados from "./linhaNotasPedido";
 
 export default function ModalNotasPedidos({ pedido }) {
   const [showModal, setShowModal] = React.useState(false);
@@ -41,7 +41,7 @@ export default function ModalNotasPedidos({ pedido }) {
                 <div className="relative p-6 flex-auto">
                   <div className="table  gap-4 row-auto h-20 w-full  place-items-center ">
                     <HeaderInformacoesPedidos />
-                    <BuscarNotasPedido pedido={pedido.id} />
+                    <LinhaRetirados pedidoID={pedido.id} />
                   </div>
                 </div>
                 {/*footer*/}

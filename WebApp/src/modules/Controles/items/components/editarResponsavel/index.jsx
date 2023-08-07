@@ -9,13 +9,26 @@ import { z } from "zod";
 import SelectOptions from "../selectOptions";
 
 export default function editarResponsavel({ item }) {
-  const retirados = item.pedido.qtdRetirados + 1;
+  let retiradosAtual = item.pedido.qtdRetirados;
+  let statusAtual = item.status.toUpperCase();
   const queryClient = useQueryClient();
 
   const baseURL = import.meta.env.VITE_BASE_URL;
   const itemResponsavelSchema = z
     .object({
-      status: z.string().nonempty("Selecione o novo status do item."),
+      status: z
+        .string()
+        .nonempty("Selecione o novo status do item.")
+        .refine(
+          (status) => {
+            if (status == statusAtual) {
+              return false;
+            } else {
+              return true;
+            }
+          },
+          { message: `O Status atual já é ${statusAtual}` }
+        ),
       responsavel: z
         .string()
         .email("Digite um e-mail válido")
@@ -46,37 +59,47 @@ export default function editarResponsavel({ item }) {
 
   function editarItem(data) {
     const form = new FormData();
+    const url = `${baseURL}/itemestoque/${item.id}`;
     form.append("responsavel", data?.responsavel ?? "");
     form.append("status", data.status);
     form.append("_method", "PATCH");
     form.append("agente", "emailagente@gran.com");
     const novaData = Intl.DateTimeFormat("pt-BR").format(new Date());
-    const formPedido = new FormData();
-    formPedido.append("_method", "PATCH");
-    formPedido.append("agente", "emailagente@gran.com");
-    formPedido.append("data_update", novaData);
-    formPedido.append("qtdRetirados", retirados);
     const options = {
       method: "POST",
       body: form,
     };
+    const formPedido = new FormData();
+    const urlPedido = `${baseURL}/pedido/${item.pedido_id}`;
+    formPedido.append("_method", "PATCH");
+    formPedido.append("agente", "emailagente@gran.com");
+    formPedido.append("data_update", novaData);
+    if (data.status == "DISPONÍVEL") {
+      let diminuiRetirados = 0;
+      diminuiRetirados = item.pedido.qtdRetirados - 1;
+
+      formPedido.append("qtdRetirados", diminuiRetirados);
+    } else if (data.status != "DISPONÍVEL" && statusAtual === "DISPONÍVEL") {
+      let aumentaRetirados = 0;
+      aumentaRetirados = item.pedido.qtdRetirados + 1;
+
+      formPedido.append("qtdRetirados", aumentaRetirados);
+    }
+
     const optionsPedido = {
       method: "POST",
       body: formPedido,
     };
 
-    const url = `${baseURL}/itemestoque/${item.id}`;
-    const urlPedido = `${baseURL}/pedido/${item.pedido_id}`;
-
     fetch(url, options)
       .then((response) => {
         if (response.ok) {
-          queryClient.invalidateQueries({ queryKey: ["itensEstoqueItens"] });
-
           fetch(urlPedido, optionsPedido).then((response) => {
             if (response.ok) {
-              console.log(response.json());
               queryClient.invalidateQueries({ queryKey: ["pedidos"] });
+              queryClient.invalidateQueries({
+                queryKey: ["itensEstoqueItens"],
+              });
             }
           });
           setShowModalAddItem(false);
@@ -90,7 +113,6 @@ export default function editarResponsavel({ item }) {
           });
         }
       })
-      .then((result) => console.log(result))
       .catch((error) => Swal.showValidationMessage(`Erro: ${error}`));
   }
 

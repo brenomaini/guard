@@ -30,26 +30,23 @@ export default function modalEditarStatusPat({ pedido }) {
     });
 
     const url = `${baseURL}/itemestoque`;
-    try {
-      fetch(url, options).then((response) => {
-        if (response.ok) {
-          queryClient.invalidateQueries({ queryKey: ["pedidos"] });
-          setShowModalAddItem(false);
 
-          Swal.fire({
-            title: "Sucesso",
-            text: `Pedido editado com sucesso.`,
-            icon: "success",
-            confirmButtonColor: "#0D134C",
-            confirmButtonText: "OK",
-          });
-        } else {
-          console.log(response.json());
-        }
-      });
-    } catch (e) {
-      Swal.showValidationMessage(`Erro: ${e.message}`);
-    }
+    fetch(url, options).then((response) => {
+      if (response.ok) {
+        queryClient.invalidateQueries({ queryKey: ["pedidos"] });
+        setShowModalAddItem(false);
+
+        Swal.fire({
+          title: "Sucesso",
+          text: `Pedido editado com sucesso.`,
+          icon: "success",
+          confirmButtonColor: "#0D134C",
+          confirmButtonText: "OK",
+        });
+      } else {
+        Swal.showValidationMessage(`Erro: ${response.statusText}`);
+      }
+    });
   }
 
   return (

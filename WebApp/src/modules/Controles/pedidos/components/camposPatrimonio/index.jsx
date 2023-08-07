@@ -4,6 +4,7 @@ import { useFieldArray, useForm } from "react-hook-form";
 import { z } from "zod";
 import InputSelectLocalizacao from "../../../../../components/Inputs/inputSelectLocalizacao";
 import useFiltrarNotasPedido from "./useFiltrarNotasPedido";
+const baseURL = import.meta.env.VITE_BASE_URL;
 
 export default function camposPatrimonio({
   pedido,
@@ -15,7 +16,20 @@ export default function camposPatrimonio({
   const itemEstoqueSchema = z.object({
     patrimonios: z.array(
       z.object({
-        patrimonio: z.string(),
+        patrimonio: z.string().refine(
+          (pat) => {
+            if (
+              (pedido.item.categoria_id == 1 && pat !== "") ||
+              pedido.item.categoria_id != 1
+            ) {
+              //colocar para que seja retorne TRUE quando for diferente dos IDs que requerem patrimonio.
+              return true;
+            }
+          },
+          {
+            message: "Patrimônios devem ser preenchidos",
+          }
+        ),
         nota: z.string(),
         nota_id: z.number(),
         numero_serie: z.string(),

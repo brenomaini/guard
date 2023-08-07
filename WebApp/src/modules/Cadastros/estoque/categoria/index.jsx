@@ -27,22 +27,20 @@ export default function CadastroCategoria() {
       body: JSON.stringify({ nome: `${data.nomeCategoria}` }),
     };
 
-    try {
-      fetch(url, options).then((response) => {
-        if (response.ok) {
-          resetField("nomeCategoria");
-          Swal.fire({
-            title: "Sucesso",
-            text: `Categoria ${data.nomeCategoria} cadastrada.`,
-            icon: "success",
-            confirmButtonColor: "#0D134C",
-            confirmButtonText: "OK",
-          });
-        }
-      });
-    } catch (e) {
-      Swal.showValidationMessage(`Erro no cadastro: ${e.message}`);
-    }
+    fetch(url, options).then((response) => {
+      if (response.ok) {
+        resetField("nomeCategoria");
+        Swal.fire({
+          title: "Sucesso",
+          text: `Categoria ${data.nomeCategoria} cadastrada.`,
+          icon: "success",
+          confirmButtonColor: "#0D134C",
+          confirmButtonText: "OK",
+        });
+      } else {
+        Swal.showValidationMessage(`Erro no cadastro: ${e.message}`);
+      }
+    });
   }
 
   return (
