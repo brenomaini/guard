@@ -82,7 +82,9 @@ class ItemEstoqueController extends Controller
                 "localizacao" => $patrimonios[$i]->localizacao,
                 "patrimonio" => $patrimonios[$i]->patrimonio,
                 "numeroSerie" => $patrimonios[$i]->numero_serie,
-                "agente" => $request->agente
+                "agente" => $request->agente,
+                'data_update' => $request->data_update,
+                'qtdRetirados' => $request->qtdRetirados
             ]);
         }
 

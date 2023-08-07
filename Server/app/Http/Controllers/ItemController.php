@@ -11,7 +11,7 @@ use App\Repositories\ItemRepository;
 class ItemController extends Controller
 {
     protected $item;
-    
+
     public function __construct(Item $item)
     {
         $this->item = $item;
@@ -62,7 +62,8 @@ class ItemController extends Controller
             'nome' => $request->nome,
             'descricao' => $request->descricao,
             'alerta_quantidade' => $request->alerta_quantidade,
-            'alerta_valor' => $request->alerta_valor
+            'alerta_valor' => $request->alerta_valor,
+            'data_update' => $request->data_update
         ]);
 
         return response()->json($item, 201);
@@ -75,7 +76,7 @@ class ItemController extends Controller
     {
         $item = $this->item->find($id);
 
-        if($item === null) {
+        if ($item === null) {
             return response()->json(['erro' => 'Item pesquisado não existe no banco.'], 404);
         }
         return response()->json($item, 200);
@@ -88,18 +89,18 @@ class ItemController extends Controller
     {
         $item = $this->item->find($id);
 
-        if($item === null) {
+        if ($item === null) {
             return response()->json(['erro' => 'Erro na atualização, item não existe no banco.'], 404);
         }
 
-        if($request->method() === 'PATCH') {
+        if ($request->method() === 'PATCH') {
             //coletar apenas as regras aplicáveis aos parâmetros parciais da requisição PATCH
             $regrasDinamicas = array();
 
             //percorrendo todas as regras definidas no Model
-            foreach($item->rules() as $input => $regra) {
+            foreach ($item->rules() as $input => $regra) {
                 //coletar apenas as regras aplicáveis aos parâmetros parciais da requisição PATCH
-                if(array_key_exists($input, $request->all())) {
+                if (array_key_exists($input, $request->all())) {
                     $regrasDinamicas[$input] = $regra;
                 }
             }
@@ -122,16 +123,15 @@ class ItemController extends Controller
         $item = $this->item->find($id);
 
         try {
-            if($item === null)
-            {
+            if ($item === null) {
                 return response()->json(['msg' => 'Erro ao deletar, item não existe em nosso banco.'], 404);
             }
-            
+
             $item->delete();
 
             return response()->json(['msg' => 'Item removido com sucesso.'], 200);
         } catch (\PDOException $e) {
-            return response()->json(['msg' => 'Erro: '.$e->getMessage()], 500);
+            return response()->json(['msg' => 'Erro: ' . $e->getMessage()], 500);
         }
     }
 }

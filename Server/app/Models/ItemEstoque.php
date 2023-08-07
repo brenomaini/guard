@@ -22,7 +22,8 @@ class ItemEstoque extends Model
         'quantidade',
         'localizacao',
         'responsavel',
-        'agente'
+        'agente',
+        'data_update'
     ];
 
     public function rules()

@@ -17,37 +17,43 @@ class Item extends Model
         'nome',
         'descricao',
         'alerta_quantidade',
-        'alerta_valor'
+        'alerta_valor',
+        'data_update'
     ];
 
-    public function rules() {
+    public function rules()
+    {
         return [
             'marca_id' => 'exists:marcas,id',
             'categoria_id' => 'exists:categorias,id',
-            'nome' => 'required|unique:itens,nome,'.$this->id,
+            'nome' => 'required|unique:itens,nome,' . $this->id,
             'descricao' => 'required',
             'alerta_quantidade' => 'boolean'
         ];
     }
 
-    public function feedback() {
+    public function feedback()
+    {
         return [
             'required' => 'O campo :attribute é obrigatório.',
             'nome.unique' => 'O item já existe no banco.',
         ];
     }
 
-    public function marca() {
+    public function marca()
+    {
         //UM modelo PERTENCE a UMA marca
         return $this->belongsTo('App\Models\Marca');
     }
 
-    public function categoria() {
+    public function categoria()
+    {
         //UM modelo PERTENCE a UMA categoria
         return $this->belongsTo('App\Models\Categoria');
     }
 
-    public function pedido() {
+    public function pedido()
+    {
         //UM item POSSUI MUITOS pedidos
         return $this->hasMany('App\Models\Pedido');
     }
