@@ -6,7 +6,6 @@ import ModalEditarStatusForn from "../modalEditarStatusForn";
 import ModalEditarStatusPat from "../modalEditarStatusPat";
 import ModalNotasPedidos from "../modalNotasPedidos";
 import Modal from "../modalRetirarItem";
-import ContarRetiradosPedido from "./contarRetiradosPedido";
 
 export default function LinhaControle({ pedido }) {
   return (
@@ -66,10 +65,15 @@ export default function LinhaControle({ pedido }) {
             <ModalEditarStatusFin pedido={pedido} nome={pedido.item.nome} />
           ) : null}
         </div>
-        <ContarRetiradosPedido
-          idPedido={pedido.id}
-          quantidade={pedido.quantidade}
-        />
+        <div className="text-xl table-cell justify-center items-center p-2 max-sm:text-base w-1/12">
+          {pedido.qtdRetirados - pedido.quantidade}
+        </div>
+        <div className="text-xl table-cell justify-center items-center p-2 max-sm:text-base w-1/12">
+          {pedido.quantidade}
+        </div>
+        <div className="text-xl table-cell justify-center items-center p-2 max-sm:text-base w-1/12">
+          {pedido.qtdRetirados}
+        </div>
 
         <div className="text-xl table-cell justify-center items-center p-2 max-sm:text-base w-1/12"></div>
         <div className="text-xl table-cell justify-center items-center p-2 max-sm:text-base w-1/12">

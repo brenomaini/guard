@@ -43,6 +43,7 @@ export default function modalInserirPedido() {
     const itemID = item[1];
     const setor = data.setor.split("!");
     const setorID = setor[1];
+    const novaData = Intl.DateTimeFormat("pt-BR").format(new Date());
     const form = new FormData();
     form.append("item_id", itemID);
     form.append("setor_id", setorID);
@@ -51,6 +52,7 @@ export default function modalInserirPedido() {
     form.append("quantidade", data.quantidade);
     form.append("solicitante", data.solicitante);
     form.append("agente", "teste@email.com");
+    form.append("data_update", novaData);
 
     const options = {
       method: "POST",

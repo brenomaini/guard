@@ -49,18 +49,31 @@ export default function editarResponsavel({ item }) {
     form.append("status", data.status);
     form.append("_method", "PATCH");
     form.append("agente", "emailagente@gran.com");
+    const novaData = Intl.DateTimeFormat("pt-BR").format(new Date());
 
     const options = {
       method: "POST",
       body: form,
     };
+    const optionsPedido = {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: `{"agente":"novoagente2@email.com","data_update":${novaData}}}`,
+    };
 
     const url = `${baseURL}/itemestoque/${item.id}`;
+    const urlPedido = `${baseURL}/pedido/${pedido.id}`;
 
     fetch(url, options)
       .then((response) => {
         if (response.ok) {
           queryClient.invalidateQueries({ queryKey: ["itensEstoqueItens"] });
+
+          fetch(urlPedido, optionsPedido).then((response) => {
+            if (response.ok) {
+              queryClient.invalidateQueries({ queryKey: ["pedidos"] });
+            }
+          });
           setShowModalAddItem(false);
           reset();
           Swal.fire({

@@ -13,10 +13,12 @@ export default function modalEditarStatusPat({ pedido }) {
 
   function editarPedido(data) {
     const form = new FormData();
+    const novaData = Intl.DateTimeFormat("pt-BR").format(new Date());
     form.append("patrimonios", JSON.stringify(data.patrimonios));
     form.append("item_id", pedido.item_id);
     form.append("pedido_id", pedido.id);
     form.append("setor_id", pedido.setor_id);
+    form.append("data_update", novaData);
     form.append("status", "Disponível");
     form.append("agente", "emaildoagente@email.com");
     const options = {

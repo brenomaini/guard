@@ -67,10 +67,12 @@ export default function modalEditarStatusForn({ pedido, atualizar }) {
   function editarPedido(data) {
     const notas = JSON.stringify(data.notas);
     const form = new FormData();
+    const novaData = Intl.DateTimeFormat("pt-BR").format(new Date());
     form.append("qtdNotas", data.numeroDeNotas);
     form.append("status", "Aguardando patrimoniamento");
     form.append("agente", "agente@email.com");
     form.append("_method", "PATCH");
+    form.append("data_update", novaData);
     form.append("notasData", notas);
     data.notas.forEach((file, i) => {
       form.append(`notasFile${i}`, file["file"][0]);
