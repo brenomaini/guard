@@ -41,7 +41,7 @@ export default function ModalNotasPedidos({ pedido }) {
                 <div className="relative p-6 flex-auto">
                   <div className="table  gap-4 row-auto h-20 w-full  place-items-center ">
                     <HeaderInformacoesPedidos />
-                    <LinhaRetirados pedidoID={pedido.id} />
+                    <LinhaRetirados pedido={pedido} />
                   </div>
                 </div>
                 {/*footer*/}

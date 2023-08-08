@@ -1,8 +1,6 @@
 import React from "react";
-import DashboardGridLineBlue from "../../components/dashbordGridLineBlue";
-import DashboardGridLineRed from "../../components/dashbordGridLineRed";
-
-//// http://127.0.0.1:8000/api/itemestoque?filtro=status:not%20like:DISPONIVEL;created_at:%3E=:2023-07-01;created_at:%3C=:2023-08-01
+import DashboardGridLineBlue from "../../../../components/dashbordGridLineBlue";
+import DashboardGridLineRed from "../../../../components/dashbordGridLineRed";
 
 export default function InicioDashboard() {
   const mockLineBlue = [
