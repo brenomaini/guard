@@ -45,6 +45,16 @@ class PedidoController extends Controller
             $pedidoRepository->selectAtributos($request->atributos);
         }
 
+        // condição caso exista o atributo ordenarAsc
+        if ($request->has('ordenarAsc')) {
+            $pedidoRepository->ordenarAsc($request->ordenarAsc);
+        }
+
+        // condição caso exista o atributo ordenarDesc
+        if ($request->has('ordenarDesc')) {
+            $pedidoRepository->ordenarDesc($request->ordenarDesc);
+        }
+
         // condição caso exista o atributo atributos na url
         if ($request->has('all')) {
             return response()->json($pedidoRepository->getResultado(), 200);
