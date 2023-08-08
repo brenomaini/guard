@@ -1,10 +1,11 @@
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-import useBuscaItensRetirados from "../../../../../hooks/useBuscaRetirados";
+import useBuscaItensRetiradosHOJE from "../../../../../hooks/useBuscaRetiradosHOJE";
 import LinhasEntradaSaida from "../linhasEntradaSaida";
 
 export default function ultimasSaidas() {
-  const retirados = useBuscaItensRetirados();
+  const retirados = useBuscaItensRetiradosHOJE();
+  const dataHoje = Intl.DateTimeFormat("pt-BR").format(new Date());
 
   return (
     <>
@@ -20,7 +21,6 @@ export default function ultimasSaidas() {
             const dataDoUpdate = Intl.DateTimeFormat("pt-BR").format(
               new Date(retirado.updated_at)
             );
-            const dataHoje = Intl.DateTimeFormat("pt-BR").format(new Date());
 
             if (dataDoUpdate == dataHoje) {
               return (

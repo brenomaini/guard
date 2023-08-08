@@ -1,10 +1,10 @@
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-import useBuscaItensinseridos from "../../../../../hooks/useBuscaInseridos";
+import useBuscaItensinseridosHOJE from "../../../../../hooks/useBuscaInseridosHOJE";
 import LinhasEntradaSaida from "../linhasEntradaSaida";
 
 export default function ultimasEntradas() {
-  const inseridos = useBuscaItensinseridos();
+  const inseridos = useBuscaItensinseridosHOJE();
 
   return (
     <>

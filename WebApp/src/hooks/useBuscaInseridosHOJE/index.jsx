@@ -1,7 +1,8 @@
 import { useQuery } from "react-query";
-function useBuscaInseridos() {
+function useBuscaInseridosHOJE() {
   const baseURL = import.meta.env.VITE_BASE_URL;
-  const url = `${baseURL}/itemestoque?filtro=status:like:DISPONÍVEL`;
+  const dataHoje = Intl.DateTimeFormat("pt-BR").format(new Date());
+  const url = `${baseURL}/itemestoque?filtro=status:like:DISPONÍVEL;data_update:like:${dataHoje}`;
 
   return useQuery({
     queryKey: ["inseridos"],
@@ -12,4 +13,4 @@ function useBuscaInseridos() {
   });
 }
 
-export default useBuscaInseridos;
+export default useBuscaInseridosHOJE;

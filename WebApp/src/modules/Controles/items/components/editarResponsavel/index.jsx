@@ -59,12 +59,14 @@ export default function editarResponsavel({ item }) {
 
   function editarItem(data) {
     const form = new FormData();
+    const novaData = Intl.DateTimeFormat("pt-BR").format(new Date());
     const url = `${baseURL}/itemestoque/${item.id}`;
     form.append("responsavel", data?.responsavel ?? "");
     form.append("status", data.status);
     form.append("_method", "PATCH");
+    form.append("data_update", novaData);
+
     form.append("agente", "emailagente@gran.com");
-    const novaData = Intl.DateTimeFormat("pt-BR").format(new Date());
     const options = {
       method: "POST",
       body: form,
