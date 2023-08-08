@@ -78,7 +78,7 @@ class ItemEstoqueController extends Controller
                 "setor_id" => $request->setor_id,
                 "pedido_id" => $request->pedido_id,
                 "status" => $request->status,
-                "nota_id" => $patrimonios[$i]->nota_id,
+                "notas_fiscais_id" => $patrimonios[$i]->nota_id,
                 "localizacao" => $patrimonios[$i]->localizacao,
                 "patrimonio" => $patrimonios[$i]->patrimonio,
                 "numeroSerie" => $patrimonios[$i]->numero_serie,

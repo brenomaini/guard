@@ -46,4 +46,10 @@ class NotasFiscais extends Model
         //UM pedido PERTENCE a UM setor
         return $this->belongsTo('App\Models\Item');
     }
+
+    public function itensEstoque()
+    {
+        //UMA marca POSSUI MUITOS itens
+        return $this->hasMany('App\Models\ItemEstoque');
+    }
 }

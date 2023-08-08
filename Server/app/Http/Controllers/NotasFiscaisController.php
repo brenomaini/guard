@@ -29,7 +29,7 @@ class NotasFiscaisController extends Controller
                 $atributos_notas = 'notas:id,' . $request->atributos_notas;
                 $notasFiscaisRepository->selectAtributosRegistrosRelacionados($atributos_notas);
             } else {
-                $notasFiscaisRepository->selectAtributosRegistrosRelacionados('item', 'pedido');
+                $notasFiscaisRepository->selectAtributosRegistrosRelacionados('item', 'pedido', 'itensEstoque');
             }
 
             // filtro multiplo

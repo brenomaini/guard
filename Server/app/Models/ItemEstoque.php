@@ -14,7 +14,7 @@ class ItemEstoque extends Model
     protected $fillable = [
         'pedido_id',
         'item_id',
-        'nota_id',
+        'notas_fiscais_id',
         'setor_id',
         'status',
         'patrimonio',
@@ -31,7 +31,7 @@ class ItemEstoque extends Model
         return [
             'pedido_id' => 'exists:pedidos,id',
             'item_id' => 'exists:itens,id',
-            'nota_id' => 'exists:nota_fiscais,id',
+            'notas_fiscais_id' => 'exists:nota_fiscais,id',
             'setor_id' => 'exists:setores,id',
             'status' => 'required',
             'patrimonio' => 'required|unique',

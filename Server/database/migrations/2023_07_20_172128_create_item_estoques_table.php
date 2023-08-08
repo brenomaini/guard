@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('pedido_id');
             $table->unsignedBigInteger('item_id');
-            $table->unsignedBigInteger('nota_id');
+            $table->unsignedBigInteger('notas_fiscais_id');
             $table->unsignedBigInteger('setor_id');
             $table->string('status', 50);
             $table->string('patrimonio', 50)->nullable();
@@ -30,7 +30,7 @@ return new class extends Migration
             //foreign key (constraints)
             $table->foreign('pedido_id')->references('id')->on('pedidos');
             $table->foreign('item_id')->references('id')->on('itens');
-            $table->foreign('nota_id')->references('id')->on('nota_fiscais');
+            $table->foreign('notas_fiscais_id')->references('id')->on('nota_fiscais');
             $table->foreign('setor_id')->references('id')->on('setores');
         });
     }

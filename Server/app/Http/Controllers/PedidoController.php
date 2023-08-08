@@ -32,7 +32,7 @@ class PedidoController extends Controller
             $atributos_setor = 'setor:id,' . $request->atributos_setor;
             $pedidoRepository->selectAtributosRegistrosRelacionados($atributos_setor);
         } else {
-            $pedidoRepository->selectAtributosRegistrosRelacionados('item', 'setor');
+            $pedidoRepository->selectAtributosRegistrosRelacionados('item', 'setor', 'notas');
         }
 
         // filtro multiplo

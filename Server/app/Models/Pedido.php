@@ -59,4 +59,10 @@ class Pedido extends Model
         //UM pedido PERTENCE a UM setor
         return $this->belongsTo('App\Models\Setor');
     }
+
+    public function notas()
+    {
+        //UMA marca POSSUI MUITOS itens
+        return $this->hasMany('App\Models\NotasFiscais');
+    }
 }
