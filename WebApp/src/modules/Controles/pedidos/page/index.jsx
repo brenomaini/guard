@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import InputText from "../../../../components/Inputs/inputText";
+import useBuscaPedidos from "../../../../hooks/useBuscaPedidos";
 import BotaoNextPrev from "../components/botaoNextPrev";
 import HeaderControlePedidos from "../components/headerControlePedidos";
 import LinhaControlePedidos from "../components/linhaControlePedidos";
 import ModalInserirPedido from "../components/modalInserirPedido";
-import useBuscaPedidos from "../hooks/useBuscaPedidos";
 
 export default function pedidos() {
   const [listaPedido, setListaPedido] = useState([""]);

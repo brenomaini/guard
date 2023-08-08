@@ -1,5 +1,5 @@
 import { useQuery } from "react-query";
-function useBuscarNotas(notaID) {
+function useBuscaItensRetiradosNota(notaID) {
   const baseURL = import.meta.env.VITE_BASE_URL;
   const url = `${baseURL}/itemestoque?filtro=notas_fiscais_id:like:${notaID};status:not%20like:DISPONÍVEL`;
 
@@ -12,4 +12,4 @@ function useBuscarNotas(notaID) {
   });
 }
 
-export default useBuscarNotas;
+export default useBuscaItensRetiradosNota;
