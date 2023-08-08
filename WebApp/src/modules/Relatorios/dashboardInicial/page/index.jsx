@@ -12,14 +12,16 @@ export default function InicioDashboard() {
         <div className="text-white font-semibold text-3xl bg-gran-red w-full h-full flex justify-center items-center">
           ÚLTIMAS SAÍDAS
         </div>
-        <div className="grid gap-2 grid-cols-4 h-full grid-flow-row w-full place-items-center">
+        <div className="grid gap-2 grid-cols-5 h-full grid-flow-row w-full place-items-center">
           <span>ITEM</span>
+          <span>PATRIMÔNIO</span>
           <span>STATUS</span>
           <span>DATA</span>
           <span>AGENTE</span>
         </div>
-        <div className="grid grid-cols-5 h-full grid-flow-row w-full place-items-center">
+        <div className="grid grid-cols-6 h-full grid-flow-row w-full place-items-center">
           <span>ITEM</span>
+          <span>PATRIMÔNIO</span>
           <span>STATUS</span>
           <span>DATA</span>
           <span>AGENTE</span>
@@ -28,10 +30,10 @@ export default function InicioDashboard() {
       </div>
 
       <div className="grid gap-4 grid-cols-2 row-auto w-full place-items-center p-2 text-sm">
-        <div className="inline-grid gap-1 grid-cols-4 h-full grid-flow-row w-full place-items-center ">
+        <div className="inline-grid gap-1 grid-cols-5 h-full grid-flow-row w-full place-items-center ">
           <UltimasEntradas />
         </div>
-        <div className="inline-grid gap-1 grid-cols-5 h-full grid-flow-row w-full place-items-center ">
+        <div className="inline-grid gap-1 grid-cols-6 h-full grid-flow-row w-full place-items-center ">
           <UltimasSaidas />
         </div>
       </div>

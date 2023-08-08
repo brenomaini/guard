@@ -22,6 +22,11 @@ export default function linhasEntradaSaida({ retirado, cor }) {
       >
         {retirado.item.nome || <Skeleton />}
       </div>
+
+      <div className="w-full h-8 flex items-center justify-center text-center bg-white overflow-x-scroll scrollbar-hide">
+        {retirado.patrimonio || <Skeleton />}
+      </div>
+
       <div className="w-full h-8 flex items-center justify-center text-center bg-white">
         {retirado.status.toUpperCase() || <Skeleton />}
       </div>
