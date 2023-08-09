@@ -11,7 +11,7 @@ use App\Repositories\CategoriaRepository;
 class CategoriaController extends Controller
 {
     protected $categoria;
-    
+
     public function __construct(Categoria $categoria)
     {
         $this->categoria = $categoria;
@@ -34,11 +34,11 @@ class CategoriaController extends Controller
             $categoriaRepository->selectAtributos($request->atributos);
         }
 
-        // condição caso exista o atributo atributos na url
-        if ($request->has('all')) {
-            return response()->json($categoriaRepository->getResultado(), 200);
-        } else {
+        // condição caso exista o parametro de paginação
+        if ($request->has('pages')) {
             return response()->json($categoriaRepository->getResultadoPaginado(10), 200);
+        } else {
+            return response()->json($categoriaRepository->getResultado(), 200);
         }
     }
 
@@ -62,7 +62,7 @@ class CategoriaController extends Controller
     {
         $categoria = $this->categoria->find($id);
 
-        if($categoria === null) {
+        if ($categoria === null) {
             return response()->json(['erro' => 'Categoria pesquisada não existe'], 404);
         }
         return response()->json($categoria, 200);
@@ -75,18 +75,18 @@ class CategoriaController extends Controller
     {
         $categoria = $this->categoria->find($id);
 
-        if($categoria === null) {
+        if ($categoria === null) {
             return response()->json(['erro' => 'Erro na atualização, categoria não existe.'], 404);
         }
 
-        if($request->method() === 'PATCH') {
+        if ($request->method() === 'PATCH') {
             //coletar apenas as regras aplicáveis aos parâmetros parciais da requisição PATCH
             $regrasDinamicas = array();
 
             //percorrendo todas as regras definidas no Model
-            foreach($categoria->rules() as $input => $regra) {
+            foreach ($categoria->rules() as $input => $regra) {
                 //coletar apenas as regras aplicáveis aos parâmetros parciais da requisição PATCH
-                if(array_key_exists($input, $request->all())) {
+                if (array_key_exists($input, $request->all())) {
                     $regrasDinamicas[$input] = $regra;
                 }
             }
@@ -109,16 +109,15 @@ class CategoriaController extends Controller
         $categoria = $this->categoria->find($id);
 
         try {
-            if($categoria === null)
-            {
+            if ($categoria === null) {
                 return response()->json(['msg' => 'Erro ao deletar, categoria não existe em nosso banco.'], 404);
             }
-            
+
             $categoria->delete();
 
             return response()->json(['msg' => 'Categoria removida com sucesso.'], 200);
         } catch (\PDOException $e) {
-            return response()->json(['msg' => 'Erro: '.$e->getMessage()], 500);
+            return response()->json(['msg' => 'Erro: ' . $e->getMessage()], 500);
         }
     }
 }

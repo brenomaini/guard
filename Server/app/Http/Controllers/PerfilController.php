@@ -13,7 +13,7 @@ class PerfilController extends Controller
 
     protected $perfil;
 
-    public function __construct(Perfil $perfil) 
+    public function __construct(Perfil $perfil)
     {
         $this->perfil = $perfil;
     }
@@ -43,11 +43,11 @@ class PerfilController extends Controller
             $perfilRepository->selectAtributos($request->atributos);
         }
 
-        // condição caso exista o atributo atributos na url
-        if ($request->has('all')) {
-            return response()->json($perfilRepository->getResultado(), 200);
-        } else {
+        // condição caso exista o parametro de paginação
+        if ($request->has('pages')) {
             return response()->json($perfilRepository->getResultadoPaginado(10), 200);
+        } else {
+            return response()->json($perfilRepository->getResultado(), 200);
         }
     }
 
@@ -74,8 +74,7 @@ class PerfilController extends Controller
     public function show($id)
     {
         $perfil = $this->perfil->find($id);
-        if($perfil === null)
-        {
+        if ($perfil === null) {
             return response()->json(['erro' => 'Perfil pesquisado não existe.'], 404);
         }
         return response()->json($perfil, 200);
@@ -88,18 +87,18 @@ class PerfilController extends Controller
     {
         $perfil = $this->perfil->find($id);
 
-        if($perfil === null) {
+        if ($perfil === null) {
             return response()->json(['erro' => 'Erro na atualização, perfil não existe.'], 404);
         }
 
-        if($request->method() === 'PATCH') {
+        if ($request->method() === 'PATCH') {
             //coletar apenas as regras aplicáveis aos parâmetros parciais da requisição PATCH
             $regrasDinamicas = array();
 
             //percorrendo todas as regras definidas no Model
-            foreach($perfil->rules() as $input => $regra) {
+            foreach ($perfil->rules() as $input => $regra) {
                 //coletar apenas as regras aplicáveis aos parâmetros parciais da requisição PATCH
-                if(array_key_exists($input, $request->all())) {
+                if (array_key_exists($input, $request->all())) {
                     $regrasDinamicas[$input] = $regra;
                 }
             }
@@ -122,16 +121,15 @@ class PerfilController extends Controller
         $perfil = $this->perfil->find($id);
 
         try {
-            if($perfil === null)
-            {
+            if ($perfil === null) {
                 return response()->json(['msg' => 'Erro ao deletar, perfil não existe em nosso banco.'], 404);
             }
-            
+
             $perfil->delete();
 
             return response()->json(['msg' => 'Perfil removido com sucesso.'], 200);
         } catch (\PDOException $e) {
-            return response()->json(['msg' => 'Erro: '.$e->getMessage()], 500);
+            return response()->json(['msg' => 'Erro: ' . $e->getMessage()], 500);
         }
     }
 }

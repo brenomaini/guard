@@ -55,11 +55,11 @@ class PedidoController extends Controller
             $pedidoRepository->ordenarDesc($request->ordenarDesc);
         }
 
-        // condição caso exista o atributo atributos na url
-        if ($request->has('all')) {
-            return response()->json($pedidoRepository->getResultado(), 200);
+        // condição caso exista o parametro de paginação
+        if ($request->has('pages')) {
+            return response()->json($pedidoRepository->getResultadoPaginado(10), 200);
         } else {
-            return response()->json($pedidoRepository->getResultadoPaginado(20), 200);
+            return response()->json($pedidoRepository->getResultado(), 200);
         }
     }
 

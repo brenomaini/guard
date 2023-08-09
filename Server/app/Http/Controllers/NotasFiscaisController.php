@@ -42,11 +42,11 @@ class NotasFiscaisController extends Controller
                 $notasFiscaisRepository->selectAtributos($request->atributos);
             }
 
-            // condição caso exista o atributo atributos na url
-            if ($request->has('all')) {
-                return response()->json($notasFiscaisRepository->getResultado(), 200);
-            } else {
+            // condição caso exista o parametro de paginação
+            if ($request->has('pages')) {
                 return response()->json($notasFiscaisRepository->getResultadoPaginado(10), 200);
+            } else {
+                return response()->json($notasFiscaisRepository->getResultado(), 200);
             }
         } catch (\PDOException $e) {
             return response()->json($e->getMessage(), 500);

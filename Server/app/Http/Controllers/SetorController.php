@@ -34,11 +34,11 @@ class SetorController extends Controller
             $setorRepository->selectAtributos($request->atributos);
         }
 
-        // condição caso exista o atributo atributos na url
-        if ($request->has('all')) {
-            return response()->json($setorRepository->getResultado(), 200);
-        } else {
+        // condição caso exista o parametro de paginação
+        if ($request->has('pages')) {
             return response()->json($setorRepository->getResultadoPaginado(10), 200);
+        } else {
+            return response()->json($setorRepository->getResultado(), 200);
         }
     }
 
@@ -62,8 +62,7 @@ class SetorController extends Controller
     public function show($id)
     {
         $setor = $this->setor->find($id);
-        if($setor === null)
-        {
+        if ($setor === null) {
             return response()->json(['erro' => 'Setor pesquisado não existe.'], 404);
         }
         return response()->json($setor, 200);
@@ -76,18 +75,18 @@ class SetorController extends Controller
     {
         $setor = $this->setor->find($id);
 
-        if($setor === null) {
+        if ($setor === null) {
             return response()->json(['erro' => 'Erro na atualização, setor não existe.'], 404);
         }
 
-        if($request->method() === 'PATCH') {
+        if ($request->method() === 'PATCH') {
             //coletar apenas as regras aplicáveis aos parâmetros parciais da requisição PATCH
             $regrasDinamicas = array();
 
             //percorrendo todas as regras definidas no Model
-            foreach($setor->rules() as $input => $regra) {
+            foreach ($setor->rules() as $input => $regra) {
                 //coletar apenas as regras aplicáveis aos parâmetros parciais da requisição PATCH
-                if(array_key_exists($input, $request->all())) {
+                if (array_key_exists($input, $request->all())) {
                     $regrasDinamicas[$input] = $regra;
                 }
             }
@@ -110,16 +109,15 @@ class SetorController extends Controller
         $setor = $this->setor->find($id);
 
         try {
-            if($setor === null)
-            {
+            if ($setor === null) {
                 return response()->json(['msg' => 'Erro ao deletar, setor não existe em nosso banco.'], 404);
             }
-            
+
             $setor->delete();
 
             return response()->json(['msg' => 'Setor removido com sucesso.'], 200);
         } catch (\PDOException $e) {
-            return response()->json(['msg' => 'Erro: '.$e->getMessage()], 500);
+            return response()->json(['msg' => 'Erro: ' . $e->getMessage()], 500);
         }
     }
 }

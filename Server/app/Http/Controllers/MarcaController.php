@@ -11,7 +11,7 @@ use App\Repositories\MarcaRepository;
 class MarcaController extends Controller
 {
     protected $marca;
-    
+
     public function __construct(Marca $marca)
     {
         $this->marca = $marca;
@@ -19,14 +19,14 @@ class MarcaController extends Controller
 
     /**
      * Display a listing of the resource.
-    */
+     */
     public function index(Request $request)
     {
         $marcaRepository = new MarcaRepository($this->marca);
 
         // condição caso exista o atributo atributos_marca na url
         if ($request->has('atributos_itens')) {
-            $atributos_itens = 'itens:id,'.$request->atributos_itens;
+            $atributos_itens = 'itens:id,' . $request->atributos_itens;
             $marcaRepository->selectAtributosRegistrosRelacionados($atributos_itens);
         } else {
             $marcaRepository->selectAtributosRegistrosRelacionados('itens');
@@ -42,11 +42,11 @@ class MarcaController extends Controller
             $marcaRepository->selectAtributos($request->atributos);
         }
 
-        // condição caso exista o atributo atributos na url
-        if ($request->has('all')) {
-            return response()->json($marcaRepository->getResultado(), 200);
-        } else {
+        // condição caso exista o parametro de paginação
+        if ($request->has('pages')) {
             return response()->json($marcaRepository->getResultadoPaginado(10), 200);
+        } else {
+            return response()->json($marcaRepository->getResultado(), 200);
         }
     }
 
@@ -70,7 +70,7 @@ class MarcaController extends Controller
     {
         $marca = $this->marca->find($id);
 
-        if($marca === null) {
+        if ($marca === null) {
             return response()->json(['erro' => 'Marca pesquisada não existe'], 404);
         }
         return response()->json($marca, 200);
@@ -83,18 +83,18 @@ class MarcaController extends Controller
     {
         $marca = $this->marca->find($id);
 
-        if($marca === null) {
+        if ($marca === null) {
             return response()->json(['erro' => 'Erro na atualização, marca não existe.'], 404);
         }
 
-        if($request->method() === 'PATCH') {
+        if ($request->method() === 'PATCH') {
             //coletar apenas as regras aplicáveis aos parâmetros parciais da requisição PATCH
             $regrasDinamicas = array();
 
             //percorrendo todas as regras definidas no Model
-            foreach($marca->rules() as $input => $regra) {
+            foreach ($marca->rules() as $input => $regra) {
                 //coletar apenas as regras aplicáveis aos parâmetros parciais da requisição PATCH
-                if(array_key_exists($input, $request->all())) {
+                if (array_key_exists($input, $request->all())) {
                     $regrasDinamicas[$input] = $regra;
                 }
             }
@@ -117,16 +117,15 @@ class MarcaController extends Controller
         $marca = $this->marca->find($id);
 
         try {
-            if($marca === null)
-            {
+            if ($marca === null) {
                 return response()->json(['msg' => 'Erro ao deletar, marca não existe em nosso banco.'], 404);
             }
-            
+
             $marca->delete();
 
             return response()->json(['msg' => 'Marca removida com sucesso.'], 200);
         } catch (\PDOException $e) {
-            return response()->json(['msg' => 'Erro: '.$e->getMessage()], 500);
+            return response()->json(['msg' => 'Erro: ' . $e->getMessage()], 500);
         }
     }
 }
