@@ -6,10 +6,7 @@ function useBuscaInseridosHOJE() {
 
   return useQuery({
     queryKey: ["inseridos"],
-    queryFn: () =>
-      fetch(url)
-        .then((res) => res.json())
-        .then((res) => res.data),
+    queryFn: () => fetch(url).then((res) => res.json()),
   });
 }
 

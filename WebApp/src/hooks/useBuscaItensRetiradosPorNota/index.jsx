@@ -5,10 +5,7 @@ function useBuscaItensRetiradosNota(notaID) {
 
   return useQuery({
     queryKey: ["retirados", notaID],
-    queryFn: () =>
-      fetch(url)
-        .then((res) => res.json())
-        .then((res) => res.data),
+    queryFn: () => fetch(url).then((res) => res.json()),
   });
 }
 

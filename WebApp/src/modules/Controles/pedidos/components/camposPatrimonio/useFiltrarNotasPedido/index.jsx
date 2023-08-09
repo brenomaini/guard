@@ -10,7 +10,7 @@ export default function useFiltrarNotasPedido(pedidoID) {
         return response.json();
       })
       .then((todasNotas) => {
-        for (const nota of todasNotas.data) {
+        for (const nota of todasNotas) {
           setNotasPedido((notas) => [
             ...notas,
             {
