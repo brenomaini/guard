@@ -6,6 +6,7 @@ function useBuscarNotas(pedidoID) {
   return useQuery({
     queryKey: ["notas", pedidoID],
     queryFn: () => fetch(url + pedidoID).then((res) => res.json()),
+    keepPreviousData: true,
   });
 }
 

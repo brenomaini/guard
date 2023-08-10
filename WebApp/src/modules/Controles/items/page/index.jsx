@@ -2,7 +2,7 @@ import React from "react";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
-import { useQuery } from "react-query";
+import useBuscaItensEstoque from "../../../../hooks/useBuscaItensEstoque";
 import EditarResponsavel from "../components/editarResponsavel";
 import HeaderItens from "../components/headerItens";
 
@@ -29,11 +29,8 @@ export default function itens() {
   function setPrevPagina() {
     setPage((old) => Math.max(old - 1, 0));
   }
-  const { isLoading, isError, error, data, isFetching } = useQuery({
-    queryKey: ["itensEstoqueItens"],
-    queryFn: () => buscarItensEstoque(),
-    keepPreviousData: true,
-  });
+  const { isLoading, isError, error, data, isFetching } =
+    useBuscaItensEstoque();
 
   return (
     <>

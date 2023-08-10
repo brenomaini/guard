@@ -34,6 +34,7 @@ export default function modalEditarStatusPat({ pedido }) {
     fetch(url, options).then((response) => {
       if (response.ok) {
         queryClient.invalidateQueries({ queryKey: ["pedidos"] });
+        queryClient.invalidateQueries({ queryKey: ["itensEstoque"] });
         setShowModalAddItem(false);
 
         Swal.fire({
