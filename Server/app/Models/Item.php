@@ -16,7 +16,6 @@ class Item extends Model
         'categoria_id',
         'nome',
         'descricao',
-        'alerta_quantidade',
         'patrimoniado',
         'data_update',
         'link'
@@ -28,8 +27,7 @@ class Item extends Model
             'marca_id' => 'exists:marcas,id',
             'categoria_id' => 'exists:categorias,id',
             'nome' => 'required|unique:itens,nome,' . $this->id,
-            'descricao' => 'required',
-            'alerta_quantidade' => 'boolean'
+            'descricao' => 'required'
         ];
     }
 

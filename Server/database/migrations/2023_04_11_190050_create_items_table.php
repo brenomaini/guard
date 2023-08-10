@@ -17,7 +17,6 @@ return new class extends Migration
             $table->unsignedBigInteger('categoria_id');
             $table->string('nome', 50);
             $table->text('descricao');
-            $table->boolean('alerta_quantidade')->default('0');
             $table->boolean('patrimoniado')->nullable();
             $table->string('link', 300)->nullable();
             $table->string('data_update', 100)->default('0');
