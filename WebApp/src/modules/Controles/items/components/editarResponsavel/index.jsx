@@ -100,7 +100,7 @@ export default function editarResponsavel({ item }) {
             if (response.ok) {
               queryClient.invalidateQueries({ queryKey: ["pedidos"] });
               queryClient.invalidateQueries({
-                queryKey: ["itensEstoqueItens"],
+                queryKey: ["itensEstoque"],
               });
             }
           });

@@ -7,6 +7,7 @@ function useBuscaRetiradosHOJE() {
   return useQuery({
     queryKey: ["retiradosPorNota"],
     queryFn: () => fetch(url).then((res) => res.json()),
+    keepPreviousData: true,
   });
 }
 
