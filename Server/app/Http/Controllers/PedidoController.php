@@ -76,7 +76,9 @@ class PedidoController extends Controller
             'agente' => $request->agente,
             'aprovador' => $request->aprovador,
             'quantidade' => $request->quantidade,
-            'solicitante' => $request->solicitante
+            'solicitante' => $request->solicitante,
+            'numero_ticket_freshdesk' => $request->numero_ticket_freshdesk,
+            'motivo' => $request->motivo
         ]);
 
         return response()->json($pedido, 201);

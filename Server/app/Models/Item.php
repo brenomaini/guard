@@ -17,8 +17,9 @@ class Item extends Model
         'nome',
         'descricao',
         'alerta_quantidade',
-        'alerta_valor',
-        'data_update'
+        'patrimoniado',
+        'data_update',
+        'link'
     ];
 
     public function rules()

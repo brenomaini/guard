@@ -62,8 +62,9 @@ class ItemController extends Controller
             'nome' => $request->nome,
             'descricao' => $request->descricao,
             'alerta_quantidade' => $request->alerta_quantidade,
-            'alerta_valor' => $request->alerta_valor,
-            'data_update' => $request->data_update
+            'patrimoniado' => $request->patrimoniado,
+            'data_update' => $request->data_update,
+            'link' => $request->link
         ]);
 
         return response()->json($item, 201);
