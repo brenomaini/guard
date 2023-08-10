@@ -19,7 +19,9 @@ class Pedido extends Model
         'solicitante',
         'qtdNotas',
         'data_update',
-        'qtdRetirados'
+        'qtdRetirados',
+        'numero_ticket_freshdesk',
+        'motivo'
     ];
 
     public function rules()

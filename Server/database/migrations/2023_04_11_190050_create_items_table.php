@@ -18,7 +18,8 @@ return new class extends Migration
             $table->string('nome', 50);
             $table->text('descricao');
             $table->boolean('alerta_quantidade')->default('0');
-            $table->integer('alerta_valor')->nullable();
+            $table->boolean('patrimoniado')->nullable();
+            $table->string('link', 300)->nullable();
             $table->string('data_update', 100)->default('0');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();
