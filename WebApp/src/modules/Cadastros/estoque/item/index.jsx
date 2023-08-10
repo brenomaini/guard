@@ -15,9 +15,9 @@ export default function Cadastroitem() {
     nome: z.string().nonempty("Nome é obrigatório"),
     categoria: z.string().nonempty("Categoria é obrigatório"),
     marca: z.string().nonempty("Marca é obrigatório"),
+    link: z.string().nonempty("Link de compra do item é obrigatório"),
     descricao: z.string(),
-    alerta: z.boolean(),
-    alertaQtd: z.string(),
+    patrimoniado: z.boolean(),
   });
   const {
     register,
@@ -29,62 +29,53 @@ export default function Cadastroitem() {
     resolver: zodResolver(insereItemSchema),
   });
 
-  // const [item, setitem] = useState({
-  //   data: "Automatico via sistema",
-  //   agente: "Automatico Via sistema",
-  // });
-
   function confirmarCadastro(data) {
     let marcaid = data.marca.split("!");
     let categoriaid = data.categoria.split("!");
-    let alerta = 0;
     let valDescricao = "Item sem descrição";
-    {
-      if (data.alerta) {
-        alerta = 1;
-      }
-      if (data.descricao) {
-        valDescricao = data.descricao;
-      }
-    }
+    const novaData = Intl.DateTimeFormat("pt-BR").format(new Date());
+    const form = new FormData();
+
+    form.append("marca_id", parseInt(marcaid[1]));
+    form.append("categoria_id", parseInt(categoriaid[1]));
+    form.append("nome", data.nome);
+    form.append("descricao", valDescricao);
+    form.append("link", data.link);
+    form.append("patrimoniado", data.patrimoniado ? 1 : 0);
+    form.append("alerta_quantidade", "0");
+    form.append("data_update", novaData);
 
     const options = {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        marca_id: parseInt(marcaid[1]),
-        categoria_id: parseInt(categoriaid[1]),
-        nome: data.nome,
-        descricao: valDescricao,
-        alerta_quantidade: alerta,
-        alerta_valor: parseInt(data.alertaQtd),
-      }),
+
+      body: form,
     };
-    console.log(options);
+    options.headers = new Headers({
+      Accept: "application/json",
+    });
 
-    const url = `${baseURL}/item?all`;
-    try {
-      fetch(url, options).then((response) => {
-        if (response.ok) {
-          resetField("nome");
-          resetField("categoria");
-          resetField("marca");
-          resetField("alerta");
-          resetField("alertaQtd");
-          resetField("descricao");
+    const url = `${baseURL}/item`;
 
-          Swal.fire({
-            title: "Sucesso",
-            text: `Item ${data.nome} cadastrado.`,
-            icon: "success",
-            confirmButtonColor: "#0D134C",
-            confirmButtonText: "OK",
-          });
-        }
-      });
-    } catch (e) {
-      Swal.showValidationMessage(`Erro no cadastro: ${e.message}`);
-    }
+    fetch(url, options).then((response) => {
+      if (response.ok) {
+        resetField("nome");
+        resetField("categoria");
+        resetField("marca");
+        resetField("patrimoniado");
+        resetField("link");
+        resetField("descricao");
+
+        Swal.fire({
+          title: "Sucesso",
+          text: `Item ${data.nome} cadastrado.`,
+          icon: "success",
+          confirmButtonColor: "#0D134C",
+          confirmButtonText: "OK",
+        });
+      } else {
+        console.log(response.json());
+      }
+    });
   }
 
   return (
@@ -149,6 +140,21 @@ export default function Cadastroitem() {
             Cadastrar nova marca
           </a>
         </label>
+        <label className="flex flex-col  text-sm font-medium leading-6 text-black">
+          Link de compra
+          <input
+            className="relative w-72 cursor-default  rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-gran-blue focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6"
+            type="text"
+            id="link"
+            placeholder="https://site.com"
+            {...register("link")}
+          />
+          {errors.link && (
+            <span className="text-gran-red opacity-90">
+              {errors.link.message}
+            </span>
+          )}
+        </label>
         <label
           htmlFor="descricao"
           className="flex flex-col  text-sm font-medium leading-6 text-black items-center h-36"
@@ -164,28 +170,17 @@ export default function Cadastroitem() {
           ></textarea>
         </label>
         <label
-          htmlFor="alerta"
+          htmlFor="patrimoniado"
           className="flex flex-col items-center h-28   text-sm font-medium leading-6 text-black"
         >
-          Alerta quantidade?
+          Este item requer patrimoniamento?
           <input
-            {...register("alerta")}
+            {...register("patrimoniado")}
             type="checkbox"
-            id="alerta"
+            id="patrimoniado"
             className=" peer"
           />
-          <div className="hidden peer-checked:block">
-            <label className="flex flex-col w-72 text-sm font-medium items-center leading-6 text-black">
-              Quantidade
-              <input
-                className="relative w-24 cursor-default  rounded-md bg-white py-1.5 pl-3 pr-4 text-left text-black shadow-sm ring-1 ring-inset ring-gran-blue focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6"
-                type="number"
-                id="nf"
-                placeholder="00"
-                {...register("alertaQtd")}
-              />
-            </label>
-          </div>
+          <div className="hidden peer-checked:block">Sim</div>
         </label>
       </div>
       <CadastroButton confirmarCadastro={handleSubmit(confirmarCadastro)} />

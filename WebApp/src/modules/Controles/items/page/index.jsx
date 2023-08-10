@@ -9,7 +9,7 @@ import HeaderItens from "../components/headerItens";
 export default function itens() {
   const [page, setPage] = React.useState(1);
   const baseURL = import.meta.env.VITE_BASE_URL;
-  const url = `${baseURL}/itemestoque`;
+  const url = `${baseURL}/itemestoque?ordenarDesc=id`;
   const [showModalAddItem, setShowModalAddItem] = React.useState(false);
 
   async function buscarItensEstoque() {

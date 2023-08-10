@@ -18,11 +18,7 @@ export default function camposPatrimonio({
       z.object({
         patrimonio: z.string().refine(
           (pat) => {
-            if (
-              (pedido.item.categoria_id == 1 && pat !== "") ||
-              pedido.item.categoria_id != 1
-            ) {
-              //colocar para que seja retorne TRUE quando for diferente dos IDs que requerem patrimonio.
+            if (!pedido.item.patrimoniado || pat !== "") {
               return true;
             }
           },

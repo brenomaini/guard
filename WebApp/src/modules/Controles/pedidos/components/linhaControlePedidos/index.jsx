@@ -1,11 +1,11 @@
-import { InformationCircleIcon, TrashIcon } from "@heroicons/react/24/outline";
+import { InformationCircleIcon, TicketIcon } from "@heroicons/react/24/outline";
 import { Tooltip } from "@material-tailwind/react";
 import React from "react";
 import ModalEditarStatusFin from "../modalEditarStatusFin";
 import ModalEditarStatusForn from "../modalEditarStatusForn";
 import ModalEditarStatusPat from "../modalEditarStatusPat";
+import Modal from "../modalInformacoesPedido";
 import ModalNotasPedidos from "../modalNotasPedidos";
-import Modal from "../modalRetirarItem";
 
 export default function LinhaControle({ pedido, ...props }) {
   return (
@@ -77,10 +77,20 @@ export default function LinhaControle({ pedido, ...props }) {
 
         <div className="text-xl table-cell justify-center items-center p-2 max-sm:text-base w-1/12"></div>
         <div className="text-xl table-cell justify-center items-center p-2 max-sm:text-base w-1/12">
-          <TrashIcon
-            className="h-6 w-6 text-gran-blue cursor-pointer  hover:scale-110 hover:opacity-50"
-            aria-hidden="true"
-          />
+          <Tooltip content={"Abrir pedido no FreshDesk"} placement="top">
+            <a
+              href={
+                `https://portal-interno.grancursosonline.com.br/a/tickets/` +
+                pedido.numero_ticket_freshdesk
+              }
+              target="_blank"
+            >
+              <TicketIcon
+                className="h-6 w-6 text-gran-blue cursor-pointer  hover:scale-110 hover:opacity-50"
+                aria-hidden="true"
+              />
+            </a>
+          </Tooltip>
         </div>
       </div>
     </div>

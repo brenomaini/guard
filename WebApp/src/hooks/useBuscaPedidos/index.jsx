@@ -1,7 +1,7 @@
 import { useQuery } from "react-query";
 function useBuscarPedidos() {
   const baseURL = import.meta.env.VITE_BASE_URL;
-  const url = `${baseURL}/pedido`;
+  const url = `${baseURL}/pedido?ordenarDesc=id`;
 
   return useQuery({
     queryKey: ["pedidos"],

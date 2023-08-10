@@ -16,6 +16,8 @@ export default function modalInserirPedido() {
   const itemEstoqueSchema = z.object({
     item: z.string().nonempty("Item é obrigatório"),
     setor: z.string().nonempty("Setor é obrigatório"),
+    numero_ticket_freshdesk: z.string().nonempty("Ticket é obrigatório"),
+    motivo: z.string().nonempty("Motivo do pedido é obrigatório"),
     quantidade: z.string().nonempty(`Quantos itens serão comprados?`),
     solicitante: z
       .string()
@@ -51,6 +53,8 @@ export default function modalInserirPedido() {
     form.append("aprovador", data.aprovador);
     form.append("quantidade", data.quantidade);
     form.append("solicitante", data.solicitante);
+    form.append("numero_ticket_freshdesk", data.numero_ticket_freshdesk);
+    form.append("motivo", data.motivo);
     form.append("agente", "teste@email.com");
     form.append("data_update", novaData);
 
@@ -65,6 +69,7 @@ export default function modalInserirPedido() {
     const url = `${baseURL}/pedido`;
 
     fetch(url, options).then((response) => {
+      console.log(response.json());
       if (response.ok) {
         queryClient.invalidateQueries({ queryKey: ["pedidos"] });
         setShowModalAddItem(false);
@@ -87,7 +92,7 @@ export default function modalInserirPedido() {
     <>
       <Tooltip content="Inserir pedido no estoque" placement="top-end">
         <button
-          className="ml-4 mb-1 ease-linear transition-all duration-150 hover:scale-125"
+          className="ml-4 mb-1 ease-linear transition-all duration-150 hover:scale-125 flex items-center underline"
           type="button"
           data-tooltip-target="tooltip-default"
           onClick={() => setShowModalAddItem(true)}
@@ -96,6 +101,7 @@ export default function modalInserirPedido() {
             className="h-12 w-12 text-gran-blue"
             aria-hidden="true"
           />
+          Inserir pedido
         </button>
       </Tooltip>
 
@@ -136,6 +142,36 @@ export default function modalInserirPedido() {
                       {errors.item && (
                         <span className="text-gran-red opacity-90">
                           {errors.item.message}
+                        </span>
+                      )}
+                    </label>
+                    <label className="flex flex-col  text-sm font-medium leading-6 text-black">
+                      Ticket Freshdesk
+                      <input
+                        className="relative w-72 cursor-default  rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-gran-blue focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6"
+                        type="number"
+                        id="numero_ticket_freshdesk"
+                        placeholder="Número do ticket: Ex 00000"
+                        {...register("numero_ticket_freshdesk")}
+                      />
+                      {errors.numero_ticket_freshdesk && (
+                        <span className="text-gran-red opacity-90">
+                          {errors.numero_ticket_freshdesk.message}
+                        </span>
+                      )}
+                    </label>
+                    <label className="flex flex-col  text-sm font-medium leading-6 text-black">
+                      Motivo do pedido
+                      <input
+                        className="relative w-72 h-16 cursor-default  rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-gran-blue focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6"
+                        type="text"
+                        id="motivo"
+                        placeholder="Digite aqui"
+                        {...register("motivo")}
+                      />
+                      {errors.motivo && (
+                        <span className="text-gran-red opacity-90">
+                          {errors.motivo.message}
                         </span>
                       )}
                     </label>

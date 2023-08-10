@@ -1,4 +1,5 @@
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
+import { Tooltip } from "@material-tailwind/react";
 import React from "react";
 import HeaderInformacoesPedidos from "./headerInformacoesNotasPedidos";
 import LinhaRetirados from "./linhaNotasPedido";
@@ -14,10 +15,12 @@ export default function ModalNotasPedidos({ pedido }) {
         type="button"
         onClick={() => setShowModal(true)}
       >
-        <MagnifyingGlassIcon
-          className="h-6 w-6 text-gran-blue  hover:scale-125 hover:opacity-50"
-          aria-hidden="true"
-        />
+        <Tooltip content={`Notas vinculadas ao pedido`} placement="top">
+          <MagnifyingGlassIcon
+            className="h-6 w-6 text-gran-blue  hover:scale-125 hover:opacity-50"
+            aria-hidden="true"
+          />
+        </Tooltip>
       </button>
       {showModal ? (
         <>

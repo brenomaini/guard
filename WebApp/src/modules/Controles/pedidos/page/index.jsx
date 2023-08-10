@@ -11,7 +11,6 @@ export default function pedidos() {
   const [listaPedido, setListaPedido] = useState([""]);
   const [page, setPage] = useState(1);
   const pedidos = useBuscaPedidos();
-  console.log(pedidos);
 
   function setPrimeiraPagina() {
     setPage(1);
