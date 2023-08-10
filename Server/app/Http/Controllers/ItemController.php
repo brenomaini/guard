@@ -61,7 +61,6 @@ class ItemController extends Controller
             'categoria_id' => $request->categoria_id,
             'nome' => $request->nome,
             'descricao' => $request->descricao,
-            'alerta_quantidade' => $request->alerta_quantidade,
             'patrimoniado' => $request->patrimoniado,
             'data_update' => $request->data_update,
             'link' => $request->link
