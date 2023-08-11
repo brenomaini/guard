@@ -3,23 +3,15 @@ import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
 import useBuscaItensEstoque from "../../../../hooks/useBuscaItensEstoque";
+import BotaoNextPrev from "../components/botaoNextPrev";
 import EditarResponsavel from "../components/editarResponsavel";
 import HeaderItens from "../components/headerItens";
 
 export default function itens() {
   const [page, setPage] = React.useState(1);
-  const baseURL = import.meta.env.VITE_BASE_URL;
-  const url = `${baseURL}/itemestoque?ordenarDesc=id`;
+
   const [showModalAddItem, setShowModalAddItem] = React.useState(false);
 
-  async function buscarItensEstoque() {
-    const response = await fetch(url);
-    if (response.ok) {
-      return response.json();
-    } else {
-      throw new Error(response.statusText);
-    }
-  }
   function setPrimeiraPagina() {
     setPage(1);
   }
@@ -30,7 +22,7 @@ export default function itens() {
     setPage((old) => Math.max(old - 1, 0));
   }
   const { isLoading, isError, error, data, isFetching } =
-    useBuscaItensEstoque();
+    useBuscaItensEstoque(page);
 
   return (
     <>
@@ -49,7 +41,7 @@ export default function itens() {
       ) : (
         <div className="table gap-2 row-auto h-16 w-full  text-center p-2">
           <HeaderItens />
-          {data.map((item, index) => {
+          {data.data.map((item, index) => {
             return (
               <div
                 key={index}
@@ -81,17 +73,13 @@ export default function itens() {
               </div>
             );
           })}
-          {/* <BotaoNextPrev
-            setPrimeiraPagina={setPrimeiraPagina}
+          <BotaoNextPrev
+            pagina={page}
             setPrevPagina={setPrevPagina}
             setProxPagina={setProxPagina}
-            isPreviousData={
-              data.last_page === data.current_page &&
-              data.current_page !== data.first_page
-            }
-            page={page}
-            dataHasMore={data.last_page !== data.current_page}
-          /> */}
+            setPrimeiraPagina={setPrimeiraPagina}
+            setUltimaPagina={setPage}
+          />
         </div>
       )}
     </>
