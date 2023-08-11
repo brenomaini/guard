@@ -28,8 +28,6 @@ Route::Apiresource('pedido', 'App\Http\Controllers\PedidoController');
 Route::Apiresource('setor', 'App\Http\Controllers\SetorController');
 Route::Apiresource('notas', 'App\Http\Controllers\NotasFiscaisController');
 Route::Apiresource('itemestoque', 'App\Http\Controllers\ItemEstoqueController');
-Route::apiResource('admissao', 'App\Http\Controllers\AdmissaoController');
-Route::apiResource('demissao', 'App\Http\Controllers\DesligamentoController');
 //Route::Apiresource('retirado', 'App\Http\Controllers\RetiradoController');
 //Route::Apiresource('perfil', 'App\Http\Controllers\PerfilController');
 //Route::Apiresource('estoque', 'App\Http\Controllers\EstoqueController');
