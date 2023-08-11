@@ -3,15 +3,16 @@ import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import InputText from "../../../../components/Inputs/inputText";
 import useBuscaPedidos from "../../../../hooks/useBuscaPedidos";
+import BotaoNextPrev from "../components/botaoNextPrev";
 import HeaderControlePedidos from "../components/headerControlePedidos";
 import LinhaControlePedidos from "../components/linhaControlePedidos";
 import ModalInserirPedido from "../components/modalInserirPedido";
 
 export default function pedidos() {
   const [listaPedido, setListaPedido] = useState([""]);
-  const [page, setPage] = useState(1);
-  const pedidos = useBuscaPedidos();
 
+  const [page, setPage] = useState(1);
+  const pedidos = useBuscaPedidos(page);
   function setPrimeiraPagina() {
     setPage(1);
   }
@@ -21,7 +22,7 @@ export default function pedidos() {
   function setPrevPagina() {
     setPage((old) => Math.max(old - 1, 0));
   }
-
+  console.log(pedidos);
   //CRIAR Componente para filtros.
   return (
     <>
@@ -60,22 +61,18 @@ export default function pedidos() {
 
           <div className="table  gap-2 row-auto h-16 w-full  place-items-center p-2">
             <HeaderControlePedidos />
-            {pedidos.data.map((pedido, index) => {
+            {pedidos.data.data.map((pedido, index) => {
               return <LinhaControlePedidos pedido={pedido} key={index} />;
             })}
           </div>
-          {/* 
+
           <BotaoNextPrev
-            setPrimeiraPagina={setPrimeiraPagina}
+            pagina={page}
             setPrevPagina={setPrevPagina}
             setProxPagina={setProxPagina}
-            isPreviousData={
-              pedidos?.data.last_page === pedidos?.data.current_page &&
-              pedidos?.data.current_page !== pedidos?.data.first_page
-            }
-            page={page}
-            dataHasMore={pedidos?.data.last_page !== pedidos?.data.current_page}
-          /> */}
+            setPrimeiraPagina={setPrimeiraPagina}
+            setUltimaPagina={setPage}
+          />
         </>
       )}
     </>

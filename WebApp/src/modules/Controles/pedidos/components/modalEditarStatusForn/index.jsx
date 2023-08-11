@@ -38,7 +38,11 @@ export default function modalEditarStatusForn({ pedido, atualizar }) {
   const ACCEPTED_IMAGE_TYPES = ["application/pdf", "image/png"];
   const itemEstoqueSchema = z
     .object({
-      numeroDeNotas: z.string().nonempty("Quantidade de notas é obrigatório"),
+      numeroDeNotas: z.string().refine(() => {
+        if (count != 0) {
+          return true;
+        }
+      }, "Quantidade de notas é obrigatório"),
       notas: z.array(
         z.object({
           nf: z.string().nonempty("Nota é obrigatório"),
@@ -60,7 +64,7 @@ export default function modalEditarStatusForn({ pedido, atualizar }) {
     })
     .refine(
       (array) => {
-        if (array.notas.length == array.numeroDeNotas) {
+        if (array.notas.length == count) {
           return true;
         }
       },
@@ -92,6 +96,7 @@ export default function modalEditarStatusForn({ pedido, atualizar }) {
     control,
     handleSubmit,
     reset,
+    setValue,
     formState: { errors },
   } = useForm({
     resolver: zodResolver(itemEstoqueSchema),
@@ -104,10 +109,11 @@ export default function modalEditarStatusForn({ pedido, atualizar }) {
   const [showModalAddItem, setShowModalAddItem] = React.useState(false);
 
   function editarPedido(data) {
+    setValue("numeroDeNotas", count);
     const notas = JSON.stringify(data.notas);
     const form = new FormData();
     const novaData = Intl.DateTimeFormat("pt-BR").format(new Date());
-    form.append("qtdNotas", data.numeroDeNotas);
+    form.append("qtdNotas", count);
     form.append("status", "Aguardando patrimoniamento");
     form.append("agente", "agente@email.com");
     form.append("_method", "PATCH");
@@ -182,11 +188,10 @@ export default function modalEditarStatusForn({ pedido, atualizar }) {
                     Quantas notas o pedido gerou?
                     <input
                       className="hidden"
-                      type="number"
+                      type="text"
                       id="numeroDeNotas"
                       placeholder="00"
                       {...register("numeroDeNotas")}
-                      value={count}
                     />
                     <span className=" w-16 text-center flex items-center justify-center cursor-default font-bold text-4xl rounded-md bg-white p-2 text-black shadow-sm ring-1 ring-inset  focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6">
                       {count}
@@ -271,20 +276,6 @@ export default function modalEditarStatusForn({ pedido, atualizar }) {
                         </div>
                       );
                     })}
-                    <div>
-                      <button
-                        onClick={handleIncrement}
-                        className="bg-gran-blue bg-opacity-80 hover:bg-opacity-100 text-white font-bold p-2 mt-5 w-36 rounded m-2"
-                      >
-                        Adicionar NF
-                      </button>
-                      <button
-                        onClick={handleDecrement}
-                        className="bg-gran-red bg-opacity-80 hover:bg-opacity-100 text-white font-bold p-2 mt-5 w-36 rounded"
-                      >
-                        Remover NF
-                      </button>
-                    </div>
                   </div>
                 </div>
                 {/*footer*/}
