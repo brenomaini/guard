@@ -149,6 +149,7 @@ export default function modalInserirPedido() {
                       Ticket Freshdesk
                       <input
                         className="relative w-72 cursor-default  rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-gran-blue focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6"
+                        min="0"
                         type="number"
                         id="numero_ticket_freshdesk"
                         placeholder="Número do ticket: Ex 00000"
@@ -229,6 +230,7 @@ export default function modalInserirPedido() {
                     <label className="flex flex-col w-72 text-sm font-medium leading-6 text-black">
                       Quantidade
                       <input
+                        min="0"
                         className="relative w-24 cursor-default  rounded-md bg-white py-1.5 pl-3 pr-4 text-left text-black shadow-sm ring-1 ring-inset ring-gran-blue focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6"
                         type="number"
                         id="quantidade"

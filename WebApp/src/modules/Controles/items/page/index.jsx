@@ -56,8 +56,8 @@ export default function itens() {
                 className="table-row-group group text-center border even:bg-black even:bg-opacity-20"
               >
                 <div className="table-row group-hover:bg-gran-blue group-hover:bg-opacity-25 ">
-                  <div className="table-cell">{item.numeroSerie} </div>
-                  <div className="table-cell">{item.patrimonio} </div>
+                  <div className="table-cell">{item.numeroSerie || "N/A"} </div>
+                  <div className="table-cell">{item.patrimonio || "N/A"} </div>
                   <div className="table-cell">{item.item.nome} </div>
                   <div
                     className={

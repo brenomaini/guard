@@ -1,14 +1,37 @@
 import { PencilIcon } from "@heroicons/react/24/outline";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Tooltip } from "@material-tailwind/react";
-import React from "react";
+import React, { useState } from "react";
 import { useFieldArray, useForm } from "react-hook-form";
 import { useQueryClient } from "react-query";
 import Swal from "sweetalert2";
 import { z } from "zod";
+import Contador from "./contador";
 
 export default function modalEditarStatusForn({ pedido, atualizar }) {
   const queryClient = useQueryClient();
+  const [count, setCount] = useState(0);
+
+  const handleIncrement = () => {
+    setCount(count + 1);
+    append({
+      nf: "",
+      file: "",
+      qtd: "",
+      idItem: pedido.item_id,
+      idPedido: pedido.id,
+    });
+  };
+
+  const handleDecrement = () => {
+    if (count === 0) {
+    } else {
+      setCount(count - 1);
+
+      let index = fields.lastIndexOf();
+      remove(index);
+    }
+  };
 
   const baseURL = import.meta.env.VITE_BASE_URL;
   const MAX_FILE_SIZE = 500000;
@@ -77,19 +100,6 @@ export default function modalEditarStatusForn({ pedido, atualizar }) {
     control,
     name: "notas",
   });
-  function adicionarNovaNota() {
-    append({
-      nf: "",
-      file: "",
-      qtd: "",
-      idItem: pedido.item_id,
-      idPedido: pedido.id,
-    });
-  }
-  function removerNota() {
-    let index = fields.lastIndexOf();
-    remove(index);
-  }
 
   const [showModalAddItem, setShowModalAddItem] = React.useState(false);
 
@@ -168,14 +178,22 @@ export default function modalEditarStatusForn({ pedido, atualizar }) {
                 </div>
                 {/*body*/}
                 <div className="relative flex p-6 flex-col items-center justify-center overflow-y-scroll overflow-x-hidden">
-                  <label className="flex flex-col   font-medium my-4 text-slate-500 text-lg leading-relaxed text-black">
+                  <label className="flex flex-col items-center font-medium my-4 text-slate-500 text-lg leading-relaxed text-black">
                     Quantas notas o pedido gerou?
                     <input
-                      className="relative cursor-default  rounded-md bg-white py-1.5 pl-3 pr-4 text-left text-black shadow-sm ring-1 ring-inset ring-gran-blue focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6"
+                      className="hidden"
                       type="number"
                       id="numeroDeNotas"
                       placeholder="00"
                       {...register("numeroDeNotas")}
+                      value={count}
+                    />
+                    <span className=" w-16 text-center flex items-center justify-center cursor-default font-bold text-4xl rounded-md bg-white p-2 text-black shadow-sm ring-1 ring-inset  focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6">
+                      {count}
+                    </span>
+                    <Contador
+                      handleIncrement={handleIncrement}
+                      handleDecrement={handleDecrement}
                     />
                     {errors.numeroDeNotas && (
                       <span className="text-gran-red opacity-90">
@@ -238,6 +256,7 @@ export default function modalEditarStatusForn({ pedido, atualizar }) {
                           <label className="flex flex-col  text-sm font-medium leading-6 text-black">
                             Quantidade
                             <input
+                              min="0"
                               type="number"
                               id="qtd"
                               className="relative w-24 cursor-default  rounded-md bg-white py-1.5 pl-3 pr-4 text-left text-black shadow-sm ring-1 ring-inset ring-gran-blue focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6"
@@ -254,13 +273,13 @@ export default function modalEditarStatusForn({ pedido, atualizar }) {
                     })}
                     <div>
                       <button
-                        onClick={adicionarNovaNota}
+                        onClick={handleIncrement}
                         className="bg-gran-blue bg-opacity-80 hover:bg-opacity-100 text-white font-bold p-2 mt-5 w-36 rounded m-2"
                       >
                         Adicionar NF
                       </button>
                       <button
-                        onClick={removerNota}
+                        onClick={handleDecrement}
                         className="bg-gran-red bg-opacity-80 hover:bg-opacity-100 text-white font-bold p-2 mt-5 w-36 rounded"
                       >
                         Remover NF
