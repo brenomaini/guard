@@ -12,8 +12,22 @@ class MarcaSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('marcas')->insert([
-            'nome' => 'Dell'
-        ]);
+        $names = [
+            'Dell',
+            'Lenovo',
+            'Gigabyte',
+            'Samsung',
+            'HyperX',
+            'Microsoft',
+            'Logitech',
+            'Asus',
+            'Corsair'
+        ];
+
+        foreach ($names as $name) {
+            DB::table('marcas')->insert([
+                'nome' => $name,
+            ]);
+        }
     }
 }

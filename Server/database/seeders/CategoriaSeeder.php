@@ -12,8 +12,21 @@ class CategoriaSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('categorias')->insert([
-            'nome' => 'Notebook'
-        ]);
+        $names = [
+            'Notebook',
+            'Micro PC',
+            'Hardware',
+            'Monitor',
+            'Pefirérico',
+            'Camêra',
+            'Cabos',
+            'Gabinete'
+        ];
+
+        foreach ($names as $name) {
+            DB::table('categorias')->insert([
+                'nome' => $name,
+            ]);
+        }
     }
 }
