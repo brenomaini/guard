@@ -36,7 +36,7 @@ class SetorController extends Controller
 
         // condição caso exista o parametro de paginação
         if ($request->has('pages')) {
-            return response()->json($setorRepository->getResultadoPaginado(10), 200);
+            return response()->json($setorRepository->getResultadoPaginado($request->pages), 200);
         } else {
             return response()->json($setorRepository->getResultado(), 200);
         }

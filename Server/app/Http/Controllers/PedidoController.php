@@ -57,7 +57,7 @@ class PedidoController extends Controller
 
         // condição caso exista o parametro de paginação
         if ($request->has('pages')) {
-            return response()->json($pedidoRepository->getResultadoPaginado(10), 200);
+            return response()->json($pedidoRepository->getResultadoPaginado($request->pages), 200);
         } else {
             return response()->json($pedidoRepository->getResultado(), 200);
         }

@@ -54,7 +54,7 @@ class ItemEstoqueController extends Controller
 
         // condição caso exista o parametro de paginação
         if ($request->has('pages')) {
-            return response()->json($itemEstoqueRepository->getResultadoPaginado(10), 200);
+            return response()->json($itemEstoqueRepository->getResultadoPaginado($request->pages), 200);
         } else {
             return response()->json($itemEstoqueRepository->getResultado(), 200);
         }

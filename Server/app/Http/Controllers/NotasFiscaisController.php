@@ -41,10 +41,9 @@ class NotasFiscaisController extends Controller
             if ($request->has('atributos')) {
                 $notasFiscaisRepository->selectAtributos($request->atributos);
             }
-
             // condição caso exista o parametro de paginação
             if ($request->has('pages')) {
-                return response()->json($notasFiscaisRepository->getResultadoPaginado(10), 200);
+                return response()->json($notasFiscaisRepository->getResultadoPaginado($request->pages), 200);
             } else {
                 return response()->json($notasFiscaisRepository->getResultado(), 200);
             }

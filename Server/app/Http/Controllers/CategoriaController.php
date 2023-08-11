@@ -36,7 +36,7 @@ class CategoriaController extends Controller
 
         // condição caso exista o parametro de paginação
         if ($request->has('pages')) {
-            return response()->json($categoriaRepository->getResultadoPaginado(10), 200);
+            return response()->json($categoriaRepository->getResultadoPaginado($request->pages), 200);
         } else {
             return response()->json($categoriaRepository->getResultado(), 200);
         }
