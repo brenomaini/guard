@@ -4,7 +4,6 @@ import { useFieldArray, useForm } from "react-hook-form";
 import { z } from "zod";
 import InputSelectLocalizacao from "../../../../../components/Inputs/inputSelectLocalizacao";
 import useFiltrarNotasPedido from "./useFiltrarNotasPedido";
-const baseURL = import.meta.env.VITE_BASE_URL;
 
 export default function camposPatrimonio({
   pedido,

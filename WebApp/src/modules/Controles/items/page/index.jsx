@@ -6,9 +6,14 @@ import useBuscaItensEstoque from "../../../../hooks/useBuscaItensEstoque";
 import BotaoNextPrev from "../components/botaoNextPrev";
 import EditarResponsavel from "../components/editarResponsavel";
 import HeaderItens from "../components/headerItens";
+import SelectItensPorPagina from "../components/selectItensPorPagina";
 
 export default function itens() {
   const [page, setPage] = React.useState(1);
+  const [filtro, setFiltros] = React.useState([
+    { campo: "status", valorProc: "Disponível" },
+  ]);
+  const [qtdItensPagina, setQtdItensPagina] = React.useState(25);
 
   const [showModalAddItem, setShowModalAddItem] = React.useState(false);
 
@@ -21,8 +26,11 @@ export default function itens() {
   function setPrevPagina() {
     setPage((old) => Math.max(old - 1, 0));
   }
-  const { isLoading, isError, error, data, isFetching } =
-    useBuscaItensEstoque(page);
+  const { isLoading, isError, error, data, isFetching } = useBuscaItensEstoque(
+    page,
+    filtro,
+    qtdItensPagina
+  );
 
   return (
     <>
@@ -79,13 +87,16 @@ export default function itens() {
               );
             })}
           </div>
-          <BotaoNextPrev
-            pagina={page}
-            setPrevPagina={setPrevPagina}
-            setProxPagina={setProxPagina}
-            setPrimeiraPagina={setPrimeiraPagina}
-            setUltimaPagina={setPage}
-          />
+          <div className="flex justify-center">
+            <BotaoNextPrev
+              pagina={page}
+              setPrevPagina={setPrevPagina}
+              setProxPagina={setProxPagina}
+              setPrimeiraPagina={setPrimeiraPagina}
+              setUltimaPagina={setPage}
+            />
+            <SelectItensPorPagina setQtdItensPagina={setQtdItensPagina} />
+          </div>
         </>
       )}
     </>
