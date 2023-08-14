@@ -8,6 +8,7 @@ use App\Models\ItemEstoque;
 use App\Models\Pedido;
 use Illuminate\Http\Request;
 use App\Repositories\ItemEstoqueRepository;
+use Illuminate\Support\Facades\Log;
 
 class ItemEstoqueController extends Controller
 {
@@ -91,7 +92,8 @@ class ItemEstoqueController extends Controller
         $pedidoUpdateStatus = Pedido::where('id', $request->pedido_id)->update([
             "status" => $request->status
         ]);
-
+        //log
+        Log::channel('crud')->info('Itens do pedido id: ' . $request->pedido_id . ' foram patrimoniado e alterado pelo agente: agente@gran.com.br. para o status: ' . $request->status);
         return response()->json($itemEstoque);
     }
 

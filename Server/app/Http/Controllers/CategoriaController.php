@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateCategoriaRequest;
 use App\Models\Categoria;
 use Illuminate\Http\Request;
 use App\Repositories\CategoriaRepository;
+use Illuminate\Support\Facades\Log;
 
 class CategoriaController extends Controller
 {
@@ -51,7 +52,8 @@ class CategoriaController extends Controller
         $categoria = Categoria::create([
             'nome' => $request->nome
         ]);
-
+        //log
+        Log::channel('crud')->info('Cateogira id: ' . $categoria->id . ' criada pelo agente: agente@gran.com.br.');
         return response()->json($categoria, 201);
     }
 

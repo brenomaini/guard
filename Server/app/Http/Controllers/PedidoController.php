@@ -8,6 +8,7 @@ use App\Models\Pedido;
 use App\Models\NotasFiscais;
 use Illuminate\Http\Request;
 use App\Repositories\PedidoRepository;
+use Illuminate\Support\Facades\Log;
 
 class PedidoController extends Controller
 {
@@ -80,6 +81,8 @@ class PedidoController extends Controller
             'numero_ticket_freshdesk' => $request->numero_ticket_freshdesk,
             'motivo' => $request->motivo
         ]);
+        //log
+        Log::channel('crud')->info('Pedido id: ' . $pedido->id . ' Criado pelo agente: agente@gran.com.br.');
 
         return response()->json($pedido, 201);
     }
@@ -143,10 +146,14 @@ class PedidoController extends Controller
                         'data_update' => $request->data_update,
                         'qtdRetirados' => $request->qtdRetirados
                     ]);
+                    //log
+                    Log::channel('crud')->info('Nota id: ' . $notas->id . ' adicionada ao pedido id: ' . $dataNotas[$i]->idPedido . ' pelo agente: agente@gran.com.br.');
                 }
             }
             $pedido->fill($request->all());
             $pedido->save();
+            //log
+            Log::channel('crud')->info('Pedido id: ' . $pedido->id . ' alterado pelo agente: agente@gran.com.br. para o status: ' . $pedido->status);
             return response()->json($pedido, 200);
         } catch (\PDOException $e) {
             return response()->json($e->getMessage(), 500);

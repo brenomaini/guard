@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateItemRequest;
 use App\Models\Item;
 use Illuminate\Http\Request;
 use App\Repositories\ItemRepository;
+use Illuminate\Support\Facades\Log;
 
 class ItemController extends Controller
 {
@@ -65,7 +66,8 @@ class ItemController extends Controller
             'data_update' => $request->data_update,
             'link' => $request->link
         ]);
-
+        //log
+        Log::channel('crud')->info('Item id: ' . $item->id . ' criado pelo agente: agente@gran.com.br.');
         return response()->json($item, 201);
     }
 

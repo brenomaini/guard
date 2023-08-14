@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateMarcaRequest;
 use App\Models\Marca;
 use Illuminate\Http\Request;
 use App\Repositories\MarcaRepository;
+use Illuminate\Support\Facades\Log;
 
 class MarcaController extends Controller
 {
@@ -59,7 +60,8 @@ class MarcaController extends Controller
         $marca = Marca::create([
             'nome' => $request->nome
         ]);
-
+        //log
+        Log::channel('crud')->info('Marca id: ' . $marca->id . ' criado pelo agente: agente@gran.com.br.');
         return response()->json($marca, 201);
     }
 
