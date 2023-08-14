@@ -1,4 +1,5 @@
 import { useQuery } from "react-query";
+
 function useBuscaItensEstoque(page, filtro, qtdItensPagina) {
   const baseURL = import.meta.env.VITE_BASE_URL;
 
@@ -11,7 +12,6 @@ function useBuscaItensEstoque(page, filtro, qtdItensPagina) {
     });
     url = url.substring(0, url.length - 1);
   }
-  console.log(url);
 
   return useQuery({
     queryKey: ["itensEstoque", page, filtro, qtdItensPagina],

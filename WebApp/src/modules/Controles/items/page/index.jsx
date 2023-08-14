@@ -5,14 +5,13 @@ import "react-loading-skeleton/dist/skeleton.css";
 import useBuscaItensEstoque from "../../../../hooks/useBuscaItensEstoque";
 import BotaoNextPrev from "../components/botaoNextPrev";
 import EditarResponsavel from "../components/editarResponsavel";
+import Filtro from "../components/filtro";
 import HeaderItens from "../components/headerItens";
 import SelectItensPorPagina from "../components/selectItensPorPagina";
 
 export default function itens() {
   const [page, setPage] = React.useState(1);
-  const [filtro, setFiltros] = React.useState([
-    { campo: "status", valorProc: "Disponível" },
-  ]);
+  const [filtro, setFiltros] = React.useState([""]);
   const [qtdItensPagina, setQtdItensPagina] = React.useState(25);
 
   const [showModalAddItem, setShowModalAddItem] = React.useState(false);
@@ -44,10 +43,12 @@ export default function itens() {
             <Skeleton count={20} height={25} />
           </div>
         </>
-      ) : isError ? (
+      ) : isError && data.data != undefined ? (
         <div>Error: {error.message}</div>
       ) : (
         <>
+          <Filtro setFiltro={setFiltros} />
+
           <div className="table gap-2 row-auto h-16 w-full  text-center p-2">
             <HeaderItens />
             {data.data.map((item, index) => {
