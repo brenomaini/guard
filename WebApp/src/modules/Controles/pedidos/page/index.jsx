@@ -6,7 +6,7 @@ import BotaoNextPrev from "../components/botaoNextPrev";
 import Filtro from "../components/filtro";
 import HeaderControlePedidos from "../components/headerControlePedidos";
 import LinhaControlePedidos from "../components/linhaControlePedidos";
-import ModalInserirPedido from "../components/modalInserirPedido";
+import ModalInserirPedido from "../components/modais/modalInserirPedido";
 import SelectItensPorPagina from "../components/selectItensPorPagina";
 
 export default function pedidos() {

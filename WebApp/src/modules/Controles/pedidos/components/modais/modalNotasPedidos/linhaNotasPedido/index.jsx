@@ -2,7 +2,7 @@ import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { Tooltip } from "@material-tailwind/react";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-import useBuscaItensRetirados from "../../../../../../hooks/useBuscaItensRetiradosPorNota";
+import useBuscaItensRetirados from "../../../../../../../hooks/useBuscaItensRetiradosPorNota";
 const baseURL = import.meta.env.VITE_BASE_URL_STORAGE;
 
 export default function linhaRetirados({ pedido }) {

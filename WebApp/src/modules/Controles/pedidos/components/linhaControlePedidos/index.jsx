@@ -1,11 +1,11 @@
 import { InformationCircleIcon, TicketIcon } from "@heroicons/react/24/outline";
 import { Tooltip } from "@material-tailwind/react";
 import React from "react";
-import ModalEditarStatusFin from "../modalEditarStatusFin";
-import ModalEditarStatusForn from "../modalEditarStatusForn";
-import ModalEditarStatusPat from "../modalEditarStatusPat";
-import Modal from "../modalInformacoesPedido";
-import ModalNotasPedidos from "../modalNotasPedidos";
+import ModalEditarStatusFin from "../modais/modalEditarStatusFin";
+import ModalEditarStatusForn from "../modais/modalEditarStatusForn";
+import ModalEditarStatusPat from "../modais/modalEditarStatusPat";
+import Modal from "../modais/modalInformacoesPedido";
+import ModalNotasPedidos from "../modais/modalNotasPedidos";
 
 export default function LinhaControle({ pedido, ...props }) {
   return (

@@ -6,8 +6,8 @@ import { useForm } from "react-hook-form";
 import { useQueryClient } from "react-query";
 import Swal from "sweetalert2";
 import { z } from "zod";
-import InputSelectItem from "../../../../../components/Inputs/inputSelectItem";
-import InputSelectSetor from "../../../../../components/Inputs/inputSelectSetor";
+import InputSelectItem from "../../../../../../components/inputs/inputSelectItem";
+import InputSelectSetor from "../../../../../../components/inputs/inputSelectSetor";
 
 export default function modalInserirPedido() {
   const queryClient = useQueryClient();

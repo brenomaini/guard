@@ -3,7 +3,7 @@ import { Tooltip } from "@material-tailwind/react";
 import React from "react";
 import { useQueryClient } from "react-query";
 import Swal from "sweetalert2";
-import CamposPatrimonio from "../camposPatrimonio";
+import CamposPatrimonio from "../../camposPatrimonio";
 
 export default function modalEditarStatusPat({ pedido }) {
   const queryClient = useQueryClient();
