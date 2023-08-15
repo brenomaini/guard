@@ -8,13 +8,13 @@ import CadastroSetor from "../modules/Cadastros/estoque/setor";
 import Itens from "../modules/Controles/items/page";
 import CadastroItemAvulso from "../modules/Controles/itemsAvulsos/page";
 import Pedidos from "../modules/Controles/pedidos/page";
+import Admissao from "../modules/GranLover/admissao";
+import Desligamento from "../modules/GranLover/desligamento";
+import Infos from "../modules/GranLover/infos";
 import Inicio from "../modules/Relatorios/dashboardInicial/page";
 import Entradas from "../modules/Relatorios/estoque/entradas";
 import Saidas from "../modules/Relatorios/estoque/saidas";
 import CadastroAgente from "../modules/Usuarios/estoque/cadastroAgente";
-import Admissao from "../pages/granLover/admissao";
-import Desligamento from "../pages/granLover/desligamento";
-import Infos from "../pages/granLover/infos";
 import Login from "../pages/login";
 import "../styles/global.css";
 

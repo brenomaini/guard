@@ -19,7 +19,7 @@ export default function modalEditarStatusPat({ pedido }) {
     form.append("pedido_id", pedido.id);
     form.append("setor_id", pedido.setor_id);
     form.append("data_update", novaData);
-    form.append("status", "Disponível");
+    form.append("status", "DISPONÍVEL");
     form.append("agente", "emaildoagente@email.com");
     const options = {
       method: "POST",

@@ -3,8 +3,8 @@ import React from "react";
 import { useFieldArray, useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import { z } from "zod";
-import InputSelectSetor from "../../../components/Inputs/inputSelectSetor";
 import Header from "../../../components/headerGranLover";
+import InputSelectSetor from "../../../components/inputs/inputSelectSetor";
 
 export default function admissao() {
   const admissaoSchema = z.object({
