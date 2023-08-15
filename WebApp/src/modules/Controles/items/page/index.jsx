@@ -95,6 +95,7 @@ export default function itens() {
               setProxPagina={setProxPagina}
               setPrimeiraPagina={setPrimeiraPagina}
               setUltimaPagina={setPage}
+              infosPaginacao={data}
             />
             <SelectItensPorPagina setQtdItensPagina={setQtdItensPagina} />
           </div>

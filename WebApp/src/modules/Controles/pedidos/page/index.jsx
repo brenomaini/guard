@@ -15,6 +15,7 @@ export default function pedidos() {
   const [qtdItensPagina, setQtdItensPagina] = React.useState(15);
 
   const pedidos = useBuscaPedidos(page, filtro, qtdItensPagina);
+
   function setPrimeiraPagina() {
     setPage(1);
   }

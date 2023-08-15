@@ -43,7 +43,7 @@ export default function LinhaControle({ pedido, ...props }) {
 
         <div
           className={
-            pedido.status == "Disponível"
+            pedido.status == "DISPONÍVEL"
               ? `text-base table-cell border-b border-b-gran-blue items-center text-center p-1 max-sm:text-base w-3/12 bg-green font-bold `
               : pedido.status == "Aguardando fornecedor"
               ? `text-base table-cell text-center border-b items-center p-1 max-sm:text-base w-3/12 bg-yellow font-bold`

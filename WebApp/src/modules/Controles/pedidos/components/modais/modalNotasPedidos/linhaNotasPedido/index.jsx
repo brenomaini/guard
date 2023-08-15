@@ -1,5 +1,4 @@
-import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
-import { Tooltip } from "@material-tailwind/react";
+import { DocumentIcon } from "@heroicons/react/24/outline";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import useBuscaItensRetirados from "../../../../../../../hooks/useBuscaItensRetiradosPorNota";
@@ -20,7 +19,12 @@ export default function linhaRetirados({ pedido }) {
                 href={baseURL + nota.notafile}
                 title="link nota fiscal"
                 target="_blank"
+                className="flex justify-center gap-1 hover:underline hover:scale-110"
               >
+                <DocumentIcon
+                  className="h-6 w-6 text-gran-blue cursor-pointer"
+                  aria-hidden="true"
+                />
                 {nota.nf}
               </a>
             </div>
@@ -37,7 +41,7 @@ export default function linhaRetirados({ pedido }) {
             </div>
             <div className="table-cell align-middle">{nota.quantidade}</div>
 
-            <div className="table-cell align-middle">
+            {/* <div className="table-cell align-middle">
               <Tooltip
                 content={`Buscar item no estoque`}
                 placement="top"
@@ -48,7 +52,7 @@ export default function linhaRetirados({ pedido }) {
                   aria-hidden="true"
                 />
               </Tooltip>
-            </div>
+            </div> */}
           </div>
         );
       })}
