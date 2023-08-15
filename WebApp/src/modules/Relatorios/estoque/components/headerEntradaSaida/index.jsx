@@ -5,7 +5,7 @@ export default function HeaderControle() {
         <div className="text-white table-cell font-semibold text-xl bg-gran-blue  justify-center items-center p-2 rounded-tl-md max-sm:text-base ">
           Pedido
         </div>
-        <div className="text-white table-cell font-semibold text-xl bg-gran-blue  justify-center items-center p-2 rounded-tl-md max-sm:text-base ">
+        <div className="text-white table-cell font-semibold text-xl bg-gran-blue  justify-center items-center p-2  max-sm:text-base ">
           Nota
         </div>
         <div className="text-white font-semibold text-xl bg-gran-blue table-cell  justify-center items-center p-2  max-sm:text-base">
