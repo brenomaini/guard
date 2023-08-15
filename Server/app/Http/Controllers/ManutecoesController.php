@@ -58,7 +58,8 @@ class ManutecoesController extends Controller
     {
         $request->validate($this->manutencoes->rules(), $this->manutencoes->feedback());
         $manutencoes = Manutecoes::create([
-            'itens_estoque_id' => $request->itens_estoque_id
+            'itens_estoque_id' => $request->itens_estoque_id,
+            'descricao' => $request->descricao
         ]);
         //log
         Log::channel('crud')->info('Item id: ' . $request->itens_estoque_id . ' retirado de manutenção por: agente@email.com');
