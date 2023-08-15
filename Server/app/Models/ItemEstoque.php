@@ -67,7 +67,7 @@ class ItemEstoque extends Model
     }
 
 
-    public function nota()
+    public function notas_fiscais()
     {
         //UM ItemEstoque PERTENCE a UM item
         return $this->belongsTo('App\Models\NotasFiscais');

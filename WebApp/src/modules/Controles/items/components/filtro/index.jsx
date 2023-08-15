@@ -3,8 +3,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import InputSelectItem from "../../../../../components/inputs/inputSelectItem";
-import InputSelectSetor from "../../../../../components/inputs/inputSelectSetor";
+import InputSelectItem from "../../../../../components/Inputs/inputSelectItem";
+import InputSelectSetor from "../../../../../components/Inputs/inputSelectSetor";
 import InputSelectStatus from "./InputSelectStatus";
 
 function Filtro({ setFiltro }) {

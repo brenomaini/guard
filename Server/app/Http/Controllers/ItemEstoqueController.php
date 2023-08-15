@@ -40,7 +40,7 @@ class ItemEstoqueController extends Controller
             $atributos_pedido = 'pedido:id,' . $request->atributos_pedido;
             $itemEstoqueRepository->selectAtributosRegistrosRelacionados($atributos_pedido);
         } else {
-            $itemEstoqueRepository->selectAtributosRegistrosRelacionados('pedido', 'item', 'nota', 'setor');
+            $itemEstoqueRepository->selectAtributosRegistrosRelacionados('pedido', 'item', 'notas_fiscais', 'setor');
         }
 
         // filtro multiplo
