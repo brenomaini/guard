@@ -30,7 +30,7 @@ class ManutencoesController extends Controller
             $atributos_item = 'item:id,' . $request->atributos_item;
             $manutencoesRepository->selectAtributosRegistrosRelacionados($atributos_item);
         } else {
-            $manutencoesRepository->selectAtributosRegistrosRelacionados('item_estoque');
+            $manutencoesRepository->selectAtributosRegistrosRelacionados('itens_estoque');
         }
 
         // filtro multiplo

@@ -37,7 +37,7 @@ class Manutencoes extends Model
         ];
     }
 
-    public function item_estoque()
+    public function itens_estoque()
     {
         //UMA manutenção PERTENCE a UM itemEstoque
         return $this->belongsTo('App\Models\ItemEstoque');
