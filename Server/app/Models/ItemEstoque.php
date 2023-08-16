@@ -37,7 +37,8 @@ class ItemEstoque extends Model
             'patrimonio' => 'required|unique',
             'localizacao' => 'required',
             'numeroSerie' => 'required|unique',
-            'agente' => 'required'
+            'agente' => 'required',
+            'enable' => 'boolean'
         ];
 
         /*

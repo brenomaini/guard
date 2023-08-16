@@ -21,7 +21,8 @@ class Pedido extends Model
         'data_update',
         'qtdRetirados',
         'numero_ticket_freshdesk',
-        'motivo'
+        'motivo',
+        'enable' => 'boolean'
     ];
 
     public function rules()

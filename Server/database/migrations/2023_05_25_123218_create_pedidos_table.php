@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('data_update', 100)->default('0');
             $table->integer('numero_ticket_freshdesk');
             $table->text('motivo');
+            $table->boolean('enable')->default(1);
             $table->integer('qtdRetirados')->default('0');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();
