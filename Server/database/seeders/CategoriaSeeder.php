@@ -17,7 +17,7 @@ class CategoriaSeeder extends Seeder
             'Micro PC',
             'Hardware',
             'Monitor',
-            'Pefirérico',
+            'Periféricos',
             'Camêra',
             'Cabos',
             'Gabinete'
