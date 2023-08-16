@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreManutecoesRequest;
-use App\Http\Requests\UpdateManutecoesRequest;
-use App\Models\Manutecoes;
-use App\Repositories\ManutecoesRepository;
+use App\Http\Requests\StoreManutencoesRequest;
+use App\Http\Requests\UpdateManutencoesRequest;
+use App\Models\Manutencoes;
+use App\Repositories\ManutencoesRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
-class ManutecoesController extends Controller
+class ManutencoesController extends Controller
 {
     protected $manutencoes;
 
-    public function __construct(Manutecoes $manutencoes)
+    public function __construct(Manutencoes $manutencoes)
     {
         $this->manutencoes = $manutencoes;
     }
@@ -23,7 +23,7 @@ class ManutecoesController extends Controller
      */
     public function index(Request $request)
     {
-        $manutencoesRepository = new ManutecoesRepository($this->manutencoes);
+        $manutencoesRepository = new ManutencoesRepository($this->manutencoes);
 
         // condição caso exista o atributos na url
         if ($request->has('atributos_item')) {
@@ -54,10 +54,10 @@ class ManutecoesController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreManutecoesRequest $request)
+    public function store(StoreManutencoesRequest $request)
     {
         $request->validate($this->manutencoes->rules(), $this->manutencoes->feedback());
-        $manutencoes = Manutecoes::create([
+        $manutencoes = Manutencoes::create([
             'itens_estoque_id' => $request->itens_estoque_id,
             'descricao' => $request->descricao
         ]);
@@ -69,7 +69,7 @@ class ManutecoesController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Manutecoes $manutecoes)
+    public function show(Manutencoes $manutencoes)
     {
         //
     }
@@ -77,7 +77,7 @@ class ManutecoesController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateManutecoesRequest $request, Manutecoes $manutecoes)
+    public function update(UpdateManutencoesRequest $request, Manutencoes $manutencoes)
     {
         //
     }
@@ -85,7 +85,7 @@ class ManutecoesController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Manutecoes $manutecoes)
+    public function destroy(Manutencoes $manutencoes)
     {
         //
     }
