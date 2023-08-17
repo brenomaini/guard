@@ -9,13 +9,13 @@ import { z } from "zod";
 import SelectOptions from "../selectOptions";
 
 export default function editarResponsavel({ item }) {
-  let retiradosAtual = item.pedido.qtdRetirados;
   let statusAtual = item.status.toUpperCase();
   const queryClient = useQueryClient();
 
   const baseURL = import.meta.env.VITE_BASE_URL;
   const itemResponsavelSchema = z
     .object({
+      descricao: z.string().optional().or(z.literal("")),
       status: z
         .string()
         .nonempty("Selecione o novo status do item.")
@@ -43,6 +43,19 @@ export default function editarResponsavel({ item }) {
         message: "Email obrigatório para item retirado.",
         path: ["responsavel"],
       }
+    )
+    .refine(
+      (data) => {
+        if (statusAtual === "MANUTENÇÃO" && data.descricao === "") {
+          return false;
+        } else {
+          return true;
+        }
+      },
+      {
+        message: "Descricao obrigatória para manutenções realizadas",
+        path: ["descricao"],
+      }
     );
 
   const {
@@ -61,11 +74,11 @@ export default function editarResponsavel({ item }) {
     const form = new FormData();
     const novaData = Intl.DateTimeFormat("pt-BR").format(new Date());
     const url = `${baseURL}/itemestoque/${item.id}`;
+    let infosModalSucesso = "Pedido editado com sucesso.";
     form.append("responsavel", data?.responsavel ?? "");
     form.append("status", data.status);
     form.append("_method", "PATCH");
     form.append("data_update", novaData);
-
     form.append("agente", "emailagente@gran.com");
     const options = {
       method: "POST",
@@ -87,7 +100,6 @@ export default function editarResponsavel({ item }) {
 
       formPedido.append("qtdRetirados", aumentaRetirados);
     }
-
     const optionsPedido = {
       method: "POST",
       body: formPedido,
@@ -98,9 +110,31 @@ export default function editarResponsavel({ item }) {
         if (response.ok) {
           fetch(urlPedido, optionsPedido).then((response) => {
             if (response.ok) {
+              if (statusAtual === "MANUTENÇÃO") {
+                const formManutencao = new FormData();
+                const urlManutencao = `${baseURL}/manutencoes`;
+
+                formManutencao.append("itens_estoque_id", item.id);
+                formManutencao.append("descricao", data.descricao);
+                const optionsManutencao = {
+                  method: "POST",
+                  body: formManutencao,
+                };
+                fetch(urlManutencao, optionsManutencao).then((response) => {
+                  response.ok
+                    ? (infosModalSucesso =
+                        "Pedido alterado e manutenção inserida.")
+                    : (infosModalSucesso =
+                        "Erro ao inserir manutenção, informe o administrador");
+                });
+              }
+
               queryClient.invalidateQueries({ queryKey: ["pedidos"] });
               queryClient.invalidateQueries({
                 queryKey: ["itensEstoque"],
+              });
+              queryClient.invalidateQueries({
+                queryKey: ["manutencoes"],
               });
             }
           });
@@ -108,7 +142,7 @@ export default function editarResponsavel({ item }) {
           reset();
           Swal.fire({
             title: "Sucesso",
-            text: `Pedido editado com sucesso.`,
+            text: `${infosModalSucesso}`,
             icon: "success",
             confirmButtonColor: "#0D134C",
             confirmButtonText: "OK",
@@ -190,7 +224,7 @@ export default function editarResponsavel({ item }) {
                         className="relative w-72 cursor-default  rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-gran-blue focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6"
                         type="text"
                         id="responsavel"
-                        placeholder="Digite aqui"
+                        placeholder="nome.sobrenome@gran.com"
                         {...register("responsavel")}
                       />
                       {errors.responsavel && (
@@ -200,7 +234,25 @@ export default function editarResponsavel({ item }) {
                       )}
                     </label>
 
-                    <div></div>
+                    <div>
+                      {statusAtual === "MANUTENÇÃO" ? (
+                        <label className="flex flex-col  text-sm font-medium leading-6 text-black">
+                          O que foi realizado?
+                          <input
+                            className="relative w-72 h-16 cursor-default  rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-gran-blue focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6"
+                            type="text"
+                            id="descricao"
+                            placeholder="O que foi feito na manutenção?"
+                            {...register("descricao")}
+                          />
+                          {errors.descricao && (
+                            <span className="text-gran-red opacity-90">
+                              {errors.descricao.message}
+                            </span>
+                          )}
+                        </label>
+                      ) : null}
+                    </div>
                   </div>
                 </div>
                 {/*footer*/}

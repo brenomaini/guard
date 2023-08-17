@@ -29,11 +29,11 @@ export default function InicioDashboard() {
         </div>
       </div>
 
-      <div className="grid gap-4 grid-cols-2 row-auto w-full place-items-center p-2 text-sm">
-        <div className="inline-grid gap-1 grid-cols-5 h-full grid-flow-row w-full place-items-center ">
+      <div className="grid gap-4 grid-cols-2 row-auto w-full place-items-start p-2 text-sm">
+        <div className="inline-grid gap-1 grid-cols-5 max-h-min grid-flow-row w-full place-items-center ">
           <UltimasEntradas />
         </div>
-        <div className="inline-grid gap-1 grid-cols-6 h-full grid-flow-row w-full place-items-center ">
+        <div className="inline-grid gap-1 grid-cols-6 max-h-min grid-flow-row w-full place-items-center ">
           <UltimasSaidas />
         </div>
       </div>

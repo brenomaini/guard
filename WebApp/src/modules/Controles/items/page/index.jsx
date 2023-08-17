@@ -1,12 +1,12 @@
 import React from "react";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-
 import useBuscaItensEstoque from "../../../../hooks/useBuscaItensEstoque";
 import BotaoNextPrev from "../components/botaoNextPrev";
 import EditarResponsavel from "../components/editarResponsavel";
 import Filtro from "../components/filtro";
 import HeaderItens from "../components/headerItens";
+import ModalManutencao from "../components/modalManutencoes";
 import SelectItensPorPagina from "../components/selectItensPorPagina";
 
 export default function itens() {
@@ -58,6 +58,9 @@ export default function itens() {
                   className="table-row-group group text-center border even:bg-black even:bg-opacity-20"
                 >
                   <div className="table-row group-hover:bg-gran-blue group-hover:bg-opacity-25 ">
+                    <div className="table-cell ">
+                      <ModalManutencao idItem={item.id} />
+                    </div>
                     <div className="table-cell">
                       {item.numeroSerie || "N/A"}{" "}
                     </div>

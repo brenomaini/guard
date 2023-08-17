@@ -99,7 +99,7 @@ export default function entradas() {
           })}
         </div>
       </div>
-      <div className="flex flex-row-reverse items-center">
+      <div className="flex flex-row-reverse items-center justify-center">
         <CSVLink
           data={itemsEstoque}
           filename="ultimasSaidasDATA.csv"

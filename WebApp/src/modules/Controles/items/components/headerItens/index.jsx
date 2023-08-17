@@ -3,6 +3,9 @@ export default function HeaderItens() {
     <div className="table-header-group ">
       <div className="table-row text-center">
         <div className="text-white table-cell font-semibold text-xl bg-gran-blue  p-2 rounded-tl-md max-sm:text-base ">
+          Info
+        </div>
+        <div className="text-white table-cell font-semibold text-xl bg-gran-blue  p-2 max-sm:text-base ">
           N.Série
         </div>
         <div className="text-white table-cell font-semibold text-xl bg-gran-blue  p-2 max-sm:text-base ">

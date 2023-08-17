@@ -40,19 +40,6 @@ export default function linhaRetirados({ pedido }) {
                 : 0}
             </div>
             <div className="table-cell align-middle">{nota.quantidade}</div>
-
-            {/* <div className="table-cell align-middle">
-              <Tooltip
-                content={`Buscar item no estoque`}
-                placement="top"
-                className="z-50"
-              >
-                <MagnifyingGlassIcon
-                  className="h-6 w-6 text-gran-blue cursor-pointer hover:scale-110"
-                  aria-hidden="true"
-                />
-              </Tooltip>
-            </div> */}
           </div>
         );
       })}
