@@ -21,11 +21,11 @@ export default function modalInserirPedido() {
     quantidade: z.string().nonempty(`Quantos itens serão comprados?`),
     solicitante: z
       .string()
-      .email("Digite o e-mail do GranLover")
+      .email("Digite o e-mail do funcionario")
       .nonempty("Quem solicitou a compra?"),
     aprovador: z
       .string()
-      .email("Digite o e-mail do GranLover")
+      .email("Digite o e-mail do funcionario")
       .nonempty("Quem aprovou a compra?"),
   });
 
@@ -98,7 +98,7 @@ export default function modalInserirPedido() {
           onClick={() => setShowModalAddItem(true)}
         >
           <PlusCircleIcon
-            className="h-12 w-12 text-gran-blue"
+            className="h-12 w-12 text-guard-green"
             aria-hidden="true"
           />
           Inserir pedido
@@ -135,12 +135,12 @@ export default function modalInserirPedido() {
                       Item
                       <select
                         {...register("item")}
-                        className="relative w-72 cursor-default font-normal rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-gran-blue focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6"
+                        className="relative w-72 cursor-default font-normal rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-guard-green focus:outline-none focus:ring-2 focus:ring-guard-green sm:text-sm sm:leading-6"
                       >
                         <InputSelectItem />
                       </select>
                       {errors.item && (
-                        <span className="text-gran-red opacity-90">
+                        <span className="text-guard-red opacity-90">
                           {errors.item.message}
                         </span>
                       )}
@@ -148,7 +148,7 @@ export default function modalInserirPedido() {
                     <label className="flex flex-col  text-sm font-medium leading-6 text-black">
                       Ticket Freshdesk
                       <input
-                        className="relative w-72 cursor-default  rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-gran-blue focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6"
+                        className="relative w-72 cursor-default  rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-guard-green focus:outline-none focus:ring-2 focus:ring-guard-green sm:text-sm sm:leading-6"
                         min="0"
                         type="number"
                         id="numero_ticket_freshdesk"
@@ -156,7 +156,7 @@ export default function modalInserirPedido() {
                         {...register("numero_ticket_freshdesk")}
                       />
                       {errors.numero_ticket_freshdesk && (
-                        <span className="text-gran-red opacity-90">
+                        <span className="text-guard-red opacity-90">
                           {errors.numero_ticket_freshdesk.message}
                         </span>
                       )}
@@ -164,14 +164,14 @@ export default function modalInserirPedido() {
                     <label className="flex flex-col  text-sm font-medium leading-6 text-black">
                       Motivo do pedido
                       <input
-                        className="relative w-72 h-16 cursor-default  rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-gran-blue focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6"
+                        className="relative w-72 h-16 cursor-default  rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-guard-green focus:outline-none focus:ring-2 focus:ring-guard-green sm:text-sm sm:leading-6"
                         type="text"
                         id="motivo"
                         placeholder="Digite aqui"
                         {...register("motivo")}
                       />
                       {errors.motivo && (
-                        <span className="text-gran-red opacity-90">
+                        <span className="text-guard-red opacity-90">
                           {errors.motivo.message}
                         </span>
                       )}
@@ -179,14 +179,14 @@ export default function modalInserirPedido() {
                     <label className="flex flex-col  text-sm font-medium leading-6 text-black">
                       E-Mail do solicitante
                       <input
-                        className="relative w-72 cursor-default  rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-gran-blue focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6"
+                        className="relative w-72 cursor-default  rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-guard-green focus:outline-none focus:ring-2 focus:ring-guard-green sm:text-sm sm:leading-6"
                         type="text"
                         id="solicitante"
                         placeholder="Digite aqui"
                         {...register("solicitante")}
                       />
                       {errors.solicitante && (
-                        <span className="text-gran-red opacity-90">
+                        <span className="text-guard-red opacity-90">
                           {errors.solicitante.message}
                         </span>
                       )}
@@ -194,14 +194,14 @@ export default function modalInserirPedido() {
                     <label className="flex flex-col  text-sm font-medium leading-6 text-black">
                       E-Mail do aprovador
                       <input
-                        className="relative w-72 cursor-default  rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-gran-blue focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6"
+                        className="relative w-72 cursor-default  rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-guard-green focus:outline-none focus:ring-2 focus:ring-guard-green sm:text-sm sm:leading-6"
                         type="text"
                         id="aprovador"
                         placeholder="Digite aqui"
                         {...register("aprovador")}
                       />
                       {errors.aprovador && (
-                        <span className="text-gran-red opacity-90">
+                        <span className="text-guard-red opacity-90">
                           {errors.aprovador.message}
                         </span>
                       )}
@@ -210,19 +210,19 @@ export default function modalInserirPedido() {
                       Setor
                       <select
                         {...register("setor")}
-                        className="relative w-72 cursor-default font-normal rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-gran-blue focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6"
+                        className="relative w-72 cursor-default font-normal rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-guard-green focus:outline-none focus:ring-2 focus:ring-guard-green sm:text-sm sm:leading-6"
                       >
                         <InputSelectSetor />
                       </select>
                       {errors.setor && (
-                        <span className="text-gran-red opacity-90">
+                        <span className="text-guard-red opacity-90">
                           {errors.setor.message}
                         </span>
                       )}
                     </label>
                     <label className="flex flex-col  text-sm font-medium leading-6 text-black">
                       Novo status
-                      <span className="relative w-72 cursor-default font-normal rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset  focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6">
+                      <span className="relative w-72 cursor-default font-normal rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset  focus:outline-none focus:ring-2 focus:ring-guard-green sm:text-sm sm:leading-6">
                         Aguardando financeiro
                       </span>
                     </label>
@@ -231,14 +231,14 @@ export default function modalInserirPedido() {
                       Quantidade
                       <input
                         min="0"
-                        className="relative w-24 cursor-default  rounded-md bg-white py-1.5 pl-3 pr-4 text-left text-black shadow-sm ring-1 ring-inset ring-gran-blue focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6"
+                        className="relative w-24 cursor-default  rounded-md bg-white py-1.5 pl-3 pr-4 text-left text-black shadow-sm ring-1 ring-inset ring-guard-green focus:outline-none focus:ring-2 focus:ring-guard-green sm:text-sm sm:leading-6"
                         type="number"
                         id="quantidade"
                         placeholder="00"
                         {...register("quantidade")}
                       />
                       {errors.quantidade && (
-                        <span className="text-gran-red opacity-90">
+                        <span className="text-guard-red opacity-90">
                           {errors.quantidade.message}
                         </span>
                       )}
@@ -248,14 +248,14 @@ export default function modalInserirPedido() {
                 {/*footer*/}
                 <div className="flex items-center justify-around p-6 border-t border-solid border-slate-200 rounded-b">
                   <button
-                    className="text-white bg-gran-red bg-opacity-80 font-bold uppercase px-6 py-2 text-sm rounded mr-1 mb-1 ease-linear transition-all duration-150 hover:scale-105"
+                    className="text-white bg-guard-red bg-opacity-80 font-bold uppercase px-6 py-2 text-sm rounded mr-1 mb-1 ease-linear transition-all duration-150 hover:scale-105"
                     type="button"
                     onClick={() => setShowModalAddItem(false)}
                   >
                     Cancelar
                   </button>
                   <button
-                    className="text-white bg-gran-blue bg-opacity-90 font-bold uppercase px-6 py-2 text-sm rounded mr-1 mb-1 ease-linear transition-all duration-150 hover:scale-105"
+                    className="text-white bg-guard-green bg-opacity-90 font-bold uppercase px-6 py-2 text-sm rounded mr-1 mb-1 ease-linear transition-all duration-150 hover:scale-105"
                     type="button"
                     onClick={handleSubmit(insereEstoque)}
                   >

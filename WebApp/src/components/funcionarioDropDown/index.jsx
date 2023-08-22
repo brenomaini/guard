@@ -8,32 +8,32 @@ import {
 import { Fragment } from "react";
 const logado = false;
 
-const GranLover = [
+const funcionario = [
   {
     name: "Informações",
-    description: "Busque informações do GranLover",
+    description: "Busque informações do Funcionário",
     href: "/infos",
     icon: InformationCircleIcon,
   },
   {
     name: "Admissão",
-    description: "Vincule itens rapidamenta a um novo GranLover",
+    description: "Vincule itens rapidamenta a um novo Funcionário",
     href: "/admissao",
     icon: UserPlusIcon,
   },
   {
     name: "Desligamento",
-    description: "Desvincule rapidamente vários itens de um GranLover",
+    description: "Desvincule rapidamente vários itens de um Funcionário",
     href: "/desligamento",
     icon: NoSymbolIcon,
   },
 ];
 
-export default function granLoverDropDown() {
+export default function funcionarioDropDown() {
   return (
     <Popover className="relative">
-      <Popover.Button className="inline-flex items-center gap-x-1 text-gran-blue text-2xl hover:opacity-70 max-sm:text-xl ">
-        <span>GranLover</span>
+      <Popover.Button className="inline-flex items-center gap-x-1 text-guard-green text-2xl hover:opacity-70 max-sm:text-xl ">
+        <span>Funcionário</span>
         <ChevronDownIcon className="h-8 w-6" aria-hidden="true" />
       </Popover.Button>
 
@@ -47,23 +47,23 @@ export default function granLoverDropDown() {
         leaveTo="opacity-0 translate-y-1"
       >
         <Popover.Panel className="absolute left-1/2 z-10 mt-5 flex w-screen max-w-max -translate-x-1/2 px-4">
-          <div className="w-screen max-w-md flex-auto overflow-hidden rounded-3xl bg-white text-base leading-6 shadow-lg ring-1 ring-gran-blue  ">
+          <div className="w-screen max-w-md flex-auto overflow-hidden rounded-3xl bg-white text-base leading-6 shadow-lg ring-1 ring-guard-green  ">
             <div className="p-4">
-              {GranLover.map((item) => (
+              {funcionario.map((item) => (
                 <div
                   key={item.name}
                   className="group relative flex gap-x-6 rounded-lg p-4 hover:bg-black hover:bg-opacity-5  "
                 >
                   <div className="mt-1 flex h-11 w-11 flex-none items-center justify-center rounded-lg ">
                     <item.icon
-                      className="h-6 w-6 text-gran-blue "
+                      className="h-6 w-6 text-guard-green "
                       aria-hidden="true"
                     />
                   </div>
                   <div>
                     <a
                       href={item.href}
-                      className="font-semibold text-gran-blue text-2xl "
+                      className="font-semibold text-guard-green text-2xl "
                     >
                       {item.name}
                       <span className="absolute inset-0" />

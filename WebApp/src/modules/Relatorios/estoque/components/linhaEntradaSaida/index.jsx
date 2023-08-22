@@ -1,7 +1,7 @@
 export default function linhaEntradaSaida({ item }) {
   return (
     <div className="table-row-group group text-center even:bg-black even:bg-opacity-20">
-      <div className="table-row  group-hover:bg-gran-blue group-hover:bg-opacity-25 ">
+      <div className="table-row  group-hover:bg-guard-green group-hover:bg-opacity-25 ">
         <div
           className={`text-xl text-black table-cell justify-center items-center p-2  max-sm:text-base `}
         >

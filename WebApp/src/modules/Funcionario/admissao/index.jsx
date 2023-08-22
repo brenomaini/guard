@@ -3,20 +3,20 @@ import React from "react";
 import { useFieldArray, useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import { z } from "zod";
-import Header from "../../../components/headerGranLover";
 import InputSelectSetor from "../../../components/Inputs/inputSelectSetor";
+import Header from "../../../components/headerfuncionario";
 
 export default function admissao() {
   const admissaoSchema = z.object({
-    emailGranLover: z
+    emailfuncionario: z
       .string()
-      .nonempty("E-mail do novo GranLover é obrigatório")
+      .nonempty("E-mail do novo funcionario é obrigatório")
       .email("Formato de e-mail inválido")
       .toLowerCase()
-      .refine((emailGranLover) => {
-        return emailGranLover.endsWith("@grancursosonline.com.br");
+      .refine((emailfuncionario) => {
+        return emailfuncionario.endsWith("@grancursosonline.com.br");
       }, "O e-mail deve ser @grancursosonline.com.br"),
-    setor: z.string().nonempty("Setor do GranLover é obrigatório"),
+    setor: z.string().nonempty("Setor do funcionario é obrigatório"),
     emailAprovador: z
       .string()
       .nonempty("E-mail do aprovador é obrigatório")
@@ -86,17 +86,17 @@ export default function admissao() {
       <div className="flex flex-col w-full justify-around flex-grow flex-wrap gap-6  h-full items-center ">
         <div className="flex items-center gap-6 justify-around">
           <label className="flex flex-col text-sm font-medium leading-6 text-black">
-            E-mail do novo GranLover
+            E-mail do novo funcionario
             <input
-              className="relative w-72 cursor-default  rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-gran-blue focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6"
+              className="relative w-72 cursor-default  rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-guard-green focus:outline-none focus:ring-2 focus:ring-guard-green sm:text-sm sm:leading-6"
               type="text"
               id="solicitante"
               placeholder="Digite aqui"
-              {...register("emailGranLover")}
+              {...register("emailfuncionario")}
             />
-            {errors.emailGranLover && (
-              <span className="text-gran-red opacity-90">
-                {errors.emailGranLover.message}
+            {errors.emailfuncionario && (
+              <span className="text-guard-red opacity-90">
+                {errors.emailfuncionario.message}
               </span>
             )}
           </label>
@@ -105,34 +105,34 @@ export default function admissao() {
             Setor
             <select
               {...register("setor")}
-              className="relative w-72 cursor-default font-normal rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-gran-blue focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6"
+              className="relative w-72 cursor-default font-normal rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-guard-green focus:outline-none focus:ring-2 focus:ring-guard-green sm:text-sm sm:leading-6"
             >
               <InputSelectSetor />
             </select>
             {errors.setor && (
-              <span className="text-gran-red opacity-90">
+              <span className="text-guard-red opacity-90">
                 {errors.setor.message}
               </span>
             )}
           </label>
           <label className="flex flex-col justify-center text-sm font-medium leading-6 text-black">
-            E-mail do GranLover aprovador
+            E-mail do funcionario aprovador
             <input
-              className="relative w-72 cursor-default  rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-gran-blue focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6"
+              className="relative w-72 cursor-default  rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-guard-green focus:outline-none focus:ring-2 focus:ring-guard-green sm:text-sm sm:leading-6"
               type="text"
               id="solicitante"
               placeholder="Digite aqui"
               {...register("emailAprovador")}
             />
             {errors.emailAprovador && (
-              <span className="text-gran-red opacity-90">
+              <span className="text-guard-red opacity-90">
                 {errors.emailAprovador.message}
               </span>
             )}
           </label>
           <button
             onClick={adicionarNovoItem}
-            className="bg-gran-blue bg-opacity-50 hover:bg-opacity-80 text-white font-bold p-2 mt-5 w-36 rounded"
+            className="bg-guard-green bg-opacity-50 hover:bg-opacity-80 text-white font-bold p-2 mt-5 w-36 rounded"
           >
             Adicionar item
           </button>
@@ -147,14 +147,14 @@ export default function admissao() {
                 <label className="flex flex-col  text-sm font-medium leading-6 text-black">
                   Nota fiscal do item
                   <input
-                    className="relative w-72 cursor-default  rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-gran-blue focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6"
+                    className="relative w-72 cursor-default  rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-guard-green focus:outline-none focus:ring-2 focus:ring-guard-green sm:text-sm sm:leading-6"
                     type="text"
                     id="notaItem"
                     placeholder="NF do item"
                     {...register(`techs.${index}.notaf`)}
                   />
                   {errors.itens?.[index]?.notaf && (
-                    <span className="text-gran-red opacity-90">
+                    <span className="text-guard-red opacity-90">
                       {errors.itens?.[index]?.notaf.message}
                     </span>
                   )}
@@ -162,14 +162,14 @@ export default function admissao() {
                 <label className="flex flex-col  text-sm font-medium leading-6 text-black">
                   Patrimônio do item
                   <input
-                    className="relative w-72 cursor-default  rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-gran-blue focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6"
+                    className="relative w-72 cursor-default  rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-guard-green focus:outline-none focus:ring-2 focus:ring-guard-green sm:text-sm sm:leading-6"
                     type="text"
                     id="Patrimonio"
                     placeholder="Patrimonio do item"
                     {...register(`techs.${index}.patrimonio`)}
                   />
                   {errors.itens?.[index]?.patrimonio && (
-                    <span className="text-gran-red opacity-90">
+                    <span className="text-guard-red opacity-90">
                       {errors.itens?.[index]?.patrimonio.message}
                     </span>
                   )}
@@ -183,7 +183,7 @@ export default function admissao() {
       {/*footer*/}
       <div className="flex items-center justify-around p-4 border-t border-solid border-slate-200 rounded-b">
         <button
-          className="text-white bg-gran-blue bg-opacity-90 font-bold uppercase px-6 py-2 text-sm rounded mr-1 mb-1 ease-linear transition-all duration-150 hover:scale-105"
+          className="text-white bg-guard-green bg-opacity-90 font-bold uppercase px-6 py-2 text-sm rounded mr-1 mb-1 ease-linear transition-all duration-150 hover:scale-105"
           type="button"
           onClick={handleSubmit(vincular)}
         >

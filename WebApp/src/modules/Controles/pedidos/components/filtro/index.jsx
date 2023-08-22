@@ -57,18 +57,18 @@ function Filtro({ setFiltro }) {
       setFiltro((old) =>
         old != ""
           ? [
-            ...old,
-            {
-              campo: "numero_ticket_freshdesk",
-              valorProc: data?.numero_ticket_freshdesk,
-            },
-          ]
+              ...old,
+              {
+                campo: "numero_ticket_freshdesk",
+                valorProc: data?.numero_ticket_freshdesk,
+              },
+            ]
           : [
-            {
-              campo: "numero_ticket_freshdesk",
-              valorProc: data?.numero_ticket_freshdesk,
-            },
-          ]
+              {
+                campo: "numero_ticket_freshdesk",
+                valorProc: data?.numero_ticket_freshdesk,
+              },
+            ]
       );
     }
   }
@@ -110,14 +110,14 @@ function Filtro({ setFiltro }) {
             <label className="flex flex-col  text-sm font-medium leading-6 text-black">
               Aprovador
               <input
-                className="relative w-72 cursor-default font-normal rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-gran-blue focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6"
+                className="relative w-72 cursor-default font-normal rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-guard-green focus:outline-none focus:ring-2 focus:ring-guard-green sm:text-sm sm:leading-6"
                 type="text"
                 id="aprovador"
                 placeholder=""
                 {...register("aprovador")}
               ></input>
               {errors.aprovador && (
-                <span className="text-gran-red opacity-90">
+                <span className="text-guard-red opacity-90">
                   {errors.aprovador.message}
                 </span>
               )}
@@ -125,14 +125,14 @@ function Filtro({ setFiltro }) {
             <label className="flex flex-col  text-sm font-medium leading-6 text-black">
               Solicitante
               <input
-                className="relative w-72 cursor-default font-normal rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-gran-blue focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6"
+                className="relative w-72 cursor-default font-normal rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-guard-green focus:outline-none focus:ring-2 focus:ring-guard-green sm:text-sm sm:leading-6"
                 type="text"
                 id="solicitante"
                 placeholder=""
                 {...register("solicitante")}
               ></input>
               {errors.solicitante && (
-                <span className="text-gran-red opacity-90">
+                <span className="text-guard-red opacity-90">
                   {errors.solicitante.message}
                 </span>
               )}
@@ -141,12 +141,12 @@ function Filtro({ setFiltro }) {
               Item
               <select
                 {...register("item")}
-                className="relative w-72 cursor-default font-normal rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-gran-blue focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6"
+                className="relative w-72 cursor-default font-normal rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-guard-green focus:outline-none focus:ring-2 focus:ring-guard-green sm:text-sm sm:leading-6"
               >
                 <InputSelectItem />
               </select>
               {errors.item && (
-                <span className="text-gran-red opacity-90">
+                <span className="text-guard-red opacity-90">
                   {errors.item.message}
                 </span>
               )}
@@ -155,12 +155,12 @@ function Filtro({ setFiltro }) {
               Setor
               <select
                 {...register("setor")}
-                className="relative w-72 cursor-default font-normal rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-gran-blue focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6"
+                className="relative w-72 cursor-default font-normal rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-guard-green focus:outline-none focus:ring-2 focus:ring-guard-green sm:text-sm sm:leading-6"
               >
                 <InputSelectSetor />
               </select>
               {errors.setor && (
-                <span className="text-gran-red opacity-90">
+                <span className="text-guard-red opacity-90">
                   {errors.setor.message}
                 </span>
               )}
@@ -168,14 +168,14 @@ function Filtro({ setFiltro }) {
             <label className="flex flex-col  text-sm font-medium leading-6 text-black">
               Número do ticket
               <input
-                className="relative w-72 cursor-default font-normal rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-gran-blue focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6"
+                className="relative w-72 cursor-default font-normal rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-guard-green focus:outline-none focus:ring-2 focus:ring-guard-green sm:text-sm sm:leading-6"
                 type="text"
                 id="numero_ticket_freshdesk"
                 placeholder=""
                 {...register("numero_ticket_freshdesk")}
               ></input>
               {errors.numero_ticket_freshdesk && (
-                <span className="text-gran-red opacity-90">
+                <span className="text-guard-red opacity-90">
                   {errors.numero_ticket_freshdesk.message}
                 </span>
               )}
@@ -184,12 +184,12 @@ function Filtro({ setFiltro }) {
               Status
               <select
                 {...register("status")}
-                className="relative w-72 cursor-default font-normal rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-gran-blue focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6"
+                className="relative w-72 cursor-default font-normal rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-guard-green focus:outline-none focus:ring-2 focus:ring-guard-green sm:text-sm sm:leading-6"
               >
                 <InputSelectStatus />
               </select>
               {errors.status && (
-                <span className="text-gran-red opacity-90">
+                <span className="text-guard-red opacity-90">
                   {errors.status.message}
                 </span>
               )}
@@ -197,13 +197,13 @@ function Filtro({ setFiltro }) {
           </div>
           <div>
             <button
-              className="mt-4 bg-gran-blue bg-opacity-70 hover:scale-105 text-white font-semibold py-1 px-2 rounded hover:shadow-xl"
+              className="mt-4 bg-guard-green bg-opacity-70 hover:scale-105 text-white font-semibold py-1 px-2 rounded hover:shadow-xl"
               onClick={handleSubmit(pesquisar)}
             >
               Pesquisar
             </button>
             <button
-              className="mt-4 ml-4 bg-gran-red bg-opacity-70 hover:scale-105 text-white font-semibold py-1 px-2 rounded hover:shadow-xl"
+              className="mt-4 ml-4 bg-guard-red bg-opacity-70 hover:scale-105 text-white font-semibold py-1 px-2 rounded hover:shadow-xl"
               onClick={() => {
                 setFiltro([""]);
                 setValue("aprovador", "");

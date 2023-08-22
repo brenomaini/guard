@@ -62,7 +62,7 @@ export default function modalEditarStatusPat({ pedido }) {
           }}
         >
           <PencilIcon
-            className="h-4 w-4 text-gran-blue hover:text-white"
+            className="h-4 w-4 text-guard-green hover:text-white"
             aria-hidden="true"
           />
         </button>

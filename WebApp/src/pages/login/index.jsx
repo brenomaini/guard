@@ -7,21 +7,20 @@ export default function login() {
         <div className="w-full max-w-md space-y-8">
           <div>
             <img
-              className="mx-auto h-12 w-auto"
-              src="../src/assets/gran_corporativa.png"
-              alt="Logo GRAN"
+              className="mx-auto w-auto h-28"
+              src="../src/assets/guard.png"
+              alt="Logo GUARD"
             />
             <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
               Entre em sua conta
             </h2>
             <p className="mt-2 text-center text-sm text-gray-600">
-              Ou{" "}
               <a
-                href="https://portal-interno.grancursosonline.com.br/"
+                href=""
                 className="font-medium text-black hover:opacity-70"
                 target={"_blank"}
               >
-                peça ajuda a um administrador
+                Esqueci minha senha
               </a>
             </p>
           </div>
@@ -69,7 +68,7 @@ export default function login() {
             <div>
               <button
                 type="submit"
-                className="group relative flex w-full justify-center rounded-md bg-gran-blue px-3 py-2 text-sm font-semibold text-white hover:bg-opacity-80 hover:scale-105 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:bg-gran-blue"
+                className="group relative flex w-full justify-center rounded-md bg-guard-green px-3 py-2 text-sm font-semibold text-white hover:bg-opacity-80 hover:scale-105 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:bg-guard-green"
               >
                 <span className=" inset-y-0 left-0 flex items-center pl-3">
                   <LockClosedIcon

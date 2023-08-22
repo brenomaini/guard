@@ -112,7 +112,7 @@ export default function cadastroItemAvulso() {
           {/*content*/}
           <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
             {/*header*/}
-            <div className="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t bg-gran-blue ">
+            <div className="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t bg-guard-green ">
               <h3 className="text-3xl font-semibold text-white">
                 Inserir um novo item avulso no estoque
               </h3>
@@ -127,12 +127,12 @@ export default function cadastroItemAvulso() {
                   Item
                   <select
                     {...register("item")}
-                    className="relative w-72 cursor-default font-normal rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-gran-blue focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6"
+                    className="relative w-72 cursor-default font-normal rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-guard-green focus:outline-none focus:ring-2 focus:ring-guard-green sm:text-sm sm:leading-6"
                   >
                     <InputSelectItem />
                   </select>
                   {errors.item && (
-                    <span className="text-gran-red opacity-90">
+                    <span className="text-guard-red opacity-90">
                       {errors.item.message}
                     </span>
                   )}
@@ -142,19 +142,19 @@ export default function cadastroItemAvulso() {
                   Setor pertencente
                   <select
                     {...register("setor")}
-                    className="relative w-72 cursor-default font-normal rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-gran-blue focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6"
+                    className="relative w-72 cursor-default font-normal rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-guard-green focus:outline-none focus:ring-2 focus:ring-guard-green sm:text-sm sm:leading-6"
                   >
                     <InputSelectSetor />
                   </select>
                   {errors.setor && (
-                    <span className="text-gran-red opacity-90">
+                    <span className="text-guard-red opacity-90">
                       {errors.setor.message}
                     </span>
                   )}
                 </label>
                 <label className="flex flex-col  text-sm font-medium leading-6 text-black">
                   Novo status
-                  <span className="relative w-72 cursor-default font-normal rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset  focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6">
+                  <span className="relative w-72 cursor-default font-normal rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset  focus:outline-none focus:ring-2 focus:ring-guard-green sm:text-sm sm:leading-6">
                     Disponível
                   </span>
                 </label>
@@ -162,14 +162,14 @@ export default function cadastroItemAvulso() {
                 <label className="flex flex-col  text-sm font-medium leading-6 text-black">
                   Patrimônio
                   <input
-                    className="relative w-72 cursor-default  rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-gran-blue focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6"
+                    className="relative w-72 cursor-default  rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-guard-green focus:outline-none focus:ring-2 focus:ring-guard-green sm:text-sm sm:leading-6"
                     type="text"
                     id="patrimonio"
                     placeholder="00000"
                     {...register("patrimonio")}
                   />
                   {errors.patrimonio && (
-                    <span className="text-gran-red opacity-90">
+                    <span className="text-guard-red opacity-90">
                       {errors.patrimonio.message}
                     </span>
                   )}
@@ -177,14 +177,14 @@ export default function cadastroItemAvulso() {
                 <label className="flex flex-col w-72 text-sm font-medium leading-6 text-black">
                   Quantidade
                   <input
-                    className="relative w-24 cursor-default  rounded-md bg-white py-1.5 pl-3 pr-4 text-left text-black shadow-sm ring-1 ring-inset ring-gran-blue focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6"
+                    className="relative w-24 cursor-default  rounded-md bg-white py-1.5 pl-3 pr-4 text-left text-black shadow-sm ring-1 ring-inset ring-guard-green focus:outline-none focus:ring-2 focus:ring-guard-green sm:text-sm sm:leading-6"
                     type="number"
                     id="quantidade"
                     placeholder="00"
                     {...register("quantidade")}
                   />
                   {errors.quantidade && (
-                    <span className="text-gran-red opacity-90">
+                    <span className="text-guard-red opacity-90">
                       {errors.quantidade.message}
                     </span>
                   )}
@@ -193,12 +193,12 @@ export default function cadastroItemAvulso() {
                   Localização
                   <select
                     {...register("localizacao")}
-                    className="relative w-72 cursor-default font-normal rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-gran-blue focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6"
+                    className="relative w-72 cursor-default font-normal rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-guard-green focus:outline-none focus:ring-2 focus:ring-guard-green sm:text-sm sm:leading-6"
                   >
                     <InputSelectLocalizacao />
                   </select>
                   {errors.localizacao && (
-                    <span className="text-gran-red opacity-90">
+                    <span className="text-guard-red opacity-90">
                       {errors.localizacao.message}
                     </span>
                   )}
@@ -213,7 +213,7 @@ export default function cadastroItemAvulso() {
                     cols="30"
                     rows="10"
                     placeholder="Informaçoes extras"
-                    className="cursor-default rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-gran-blue focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6"
+                    className="cursor-default rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-guard-green focus:outline-none focus:ring-2 focus:ring-guard-green sm:text-sm sm:leading-6"
                     {...register("descricaoExtra")}
                   ></textarea>
                 </label>
@@ -222,7 +222,7 @@ export default function cadastroItemAvulso() {
             {/*footer*/}
             <div className="flex items-center justify-around p-6 border-t border-solid border-slate-200 rounded-b">
               <button
-                className="text-white bg-gran-blue bg-opacity-90 font-bold uppercase px-6 py-2 text-sm rounded mr-1 mb-1 ease-linear transition-all duration-150 hover:scale-105 hover:opacity-80"
+                className="text-white bg-guard-green bg-opacity-90 font-bold uppercase px-6 py-2 text-sm rounded mr-1 mb-1 ease-linear transition-all duration-150 hover:scale-105 hover:opacity-80"
                 type="button"
                 onClick={handleSubmit(insereEstoque)}
               >

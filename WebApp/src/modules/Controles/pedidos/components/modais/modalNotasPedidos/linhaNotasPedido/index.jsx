@@ -22,7 +22,7 @@ export default function linhaRetirados({ pedido }) {
                 className="flex justify-center gap-1 hover:underline hover:scale-110"
               >
                 <DocumentIcon
-                  className="h-6 w-6 text-gran-blue cursor-pointer"
+                  className="h-6 w-6 text-guard-green cursor-pointer"
                   aria-hidden="true"
                 />
                 {nota.nf}

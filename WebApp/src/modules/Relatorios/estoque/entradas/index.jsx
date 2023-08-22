@@ -58,14 +58,14 @@ export default function entradas() {
           <label className="flex flex-col  text-sm font-medium leading-6 text-black">
             Data Inicial
             <input
-              className="relative w-42 cursor-default font-normal rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-gran-blue focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6"
+              className="relative w-42 cursor-default font-normal rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-guard-green focus:outline-none focus:ring-2 focus:ring-guard-green sm:text-sm sm:leading-6"
               type="date"
               id="inicial"
               placeholder=""
               {...register("inicial")}
             ></input>
             {errors.inicial && (
-              <span className="text-gran-red opacity-90">
+              <span className="text-guard-red opacity-90">
                 {errors.inicial.message}
               </span>
             )}
@@ -73,20 +73,20 @@ export default function entradas() {
           <label className="flex flex-col  text-sm font-medium leading-6 text-black">
             Data Final
             <input
-              className="relative w-42 cursor-default font-normal rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-gran-blue focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6"
+              className="relative w-42 cursor-default font-normal rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-guard-green focus:outline-none focus:ring-2 focus:ring-guard-green sm:text-sm sm:leading-6"
               type="date"
               id="final"
               placeholder=""
               {...register("final")}
             ></input>
             {errors.final && (
-              <span className="text-gran-red opacity-90">
+              <span className="text-guard-red opacity-90">
                 {errors.final.message}
               </span>
             )}
           </label>
           <button
-            className="mt-4 bg-gran-blue bg-opacity-70 hover:scale-105 text-white font-semibold py-1 px-2 rounded hover:shadow-xl"
+            className="mt-4 bg-guard-green bg-opacity-70 hover:scale-105 text-white font-semibold py-1 px-2 rounded hover:shadow-xl"
             onClick={handleSubmit(buscarInfos)}
           >
             Pesquisar

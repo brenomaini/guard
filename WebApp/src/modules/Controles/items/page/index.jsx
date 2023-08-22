@@ -49,7 +49,7 @@ export default function itens() {
         <>
           <Filtro setFiltro={setFiltros} />
 
-          <div className="table gap-2 row-auto h-16 w-full  text-center p-2">
+          <div className="table row-auto w-full  text-center p-2">
             <HeaderItens />
             {data.data.map((item, index) => {
               return (
@@ -57,8 +57,8 @@ export default function itens() {
                   key={index}
                   className="table-row-group group text-center border even:bg-black even:bg-opacity-20"
                 >
-                  <div className="table-row group-hover:bg-gran-blue group-hover:bg-opacity-25 ">
-                    <div className="table-cell ">
+                  <div className="table-row group-hover:bg-guard-green group-hover:bg-opacity-25 ">
+                    <div className="table-cell align-middle">
                       <ModalManutencao idItem={item.id} />
                     </div>
                     <div className="table-cell">
@@ -70,12 +70,13 @@ export default function itens() {
                     <div className="table-cell">{item.item.nome} </div>
                     <div
                       className={
-                        item.status === "DISPONÍVEL" ||
-                        item.status === "Disponível"
-                          ? "bg-green border-b font-semibold"
+                        item.status === "DISPONÍVEL"
+                          ? "bg-green border-b font-semibold table-cell align-middle"
                           : item.status === "QUEBRADO"
-                          ? "bg-gran-red text-white border-b border-black font-semibold"
-                          : "bg-orange border-b font-semibold"
+                          ? "bg-guard-red text-white border-b border-black font-semibold table-cell align-middle"
+                          : item.status === "PARA EMPRÉSTIMO"
+                          ? "bg-yellow text-black border-b border-black  font-semibold table-cell align-middle"
+                          : "bg-orange border-b font-semibold table-cell align-middle"
                       }
                     >
                       {item.status.toUpperCase()}

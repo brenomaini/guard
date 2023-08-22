@@ -6,10 +6,10 @@ export default function InicioDashboard() {
   return (
     <div className="flex flex-col justify-center items-center bg-black bg-opacity-40  h-full m-4">
       <div className="grid gap-1 grid-cols-2 h-16 w-full  place-items-center p-2">
-        <div className="text-white font-semibold text-3xl bg-gran-blue w-full h-full flex justify-center items-center">
+        <div className="text-white font-semibold text-3xl bg-guard-green w-full h-full flex justify-center items-center">
           ÚLTIMAS ENTRADAS
         </div>
-        <div className="text-white font-semibold text-3xl bg-gran-red w-full h-full flex justify-center items-center">
+        <div className="text-white font-semibold text-3xl bg-guard-red w-full h-full flex justify-center items-center">
           ÚLTIMAS SAÍDAS
         </div>
         <div className="grid gap-2 grid-cols-5 h-full grid-flow-row w-full place-items-center">

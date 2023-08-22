@@ -85,14 +85,14 @@ export default function Cadastroitem() {
         <label className="flex flex-col  text-sm font-medium leading-6 text-black">
           Nome do item
           <input
-            className="relative w-72 cursor-default  rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-gran-blue focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6"
+            className="relative w-72 cursor-default  rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-guard-green focus:outline-none focus:ring-2 focus:ring-guard-green sm:text-sm sm:leading-6"
             type="text"
             id="nome"
             placeholder="Nome do item"
             {...register("nome")}
           />
           {errors.nome && (
-            <span className="text-gran-red opacity-90">
+            <span className="text-guard-red opacity-90">
               {errors.nome.message}
             </span>
           )}
@@ -102,19 +102,19 @@ export default function Cadastroitem() {
           Categoria
           <select
             {...register("categoria")}
-            className="relative w-72 cursor-default font-normal rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-gran-blue focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6"
+            className="relative w-72 cursor-default font-normal rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-guard-green focus:outline-none focus:ring-2 focus:ring-guard-green sm:text-sm sm:leading-6"
           >
             <InputSelectCategoria />
           </select>
           {errors.categoria && (
-            <span className="text-gran-red opacity-90">
+            <span className="text-guard-red opacity-90">
               {errors.categoria.message}
             </span>
           )}
           <a
             href="/cadastroCategoria"
             target="_blank"
-            className="text-gran-blue opacity-90 text-xs hover:font-bold"
+            className="text-guard-green opacity-90 text-xs hover:font-bold"
           >
             Cadastrar nova categoria
           </a>
@@ -123,19 +123,19 @@ export default function Cadastroitem() {
           Marca
           <select
             {...register("marca")}
-            className="relative w-72 cursor-default font-normal rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-gran-blue focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6"
+            className="relative w-72 cursor-default font-normal rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-guard-green focus:outline-none focus:ring-2 focus:ring-guard-green sm:text-sm sm:leading-6"
           >
             <InputSelectMarca />
           </select>
           {errors.marca && (
-            <span className="text-gran-red opacity-90">
+            <span className="text-guard-red opacity-90">
               {errors.marca.message}
             </span>
           )}
           <a
             href="/cadastroMarca"
             target="_blank"
-            className="text-gran-blue opacity-90 text-xs hover:font-bold "
+            className="text-guard-green opacity-90 text-xs hover:font-bold "
           >
             Cadastrar nova marca
           </a>
@@ -143,14 +143,14 @@ export default function Cadastroitem() {
         <label className="flex flex-col  text-sm font-medium leading-6 text-black">
           Link de compra
           <input
-            className="relative w-72 cursor-default  rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-gran-blue focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6"
+            className="relative w-72 cursor-default  rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-guard-green focus:outline-none focus:ring-2 focus:ring-guard-green sm:text-sm sm:leading-6"
             type="text"
             id="link"
             placeholder="https://site.com"
             {...register("link")}
           />
           {errors.link && (
-            <span className="text-gran-red opacity-90">
+            <span className="text-guard-red opacity-90">
               {errors.link.message}
             </span>
           )}
@@ -165,7 +165,7 @@ export default function Cadastroitem() {
             cols="30"
             rows="10"
             placeholder="Memória,hd,infos extras"
-            className="cursor-default rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-gran-blue focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6"
+            className="cursor-default rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-guard-green focus:outline-none focus:ring-2 focus:ring-guard-green sm:text-sm sm:leading-6"
             {...register("descricao")}
           ></textarea>
         </label>

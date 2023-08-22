@@ -10,7 +10,7 @@ import ModalNotasPedidos from "../modais/modalNotasPedidos";
 export default function LinhaControle({ pedido, ...props }) {
   return (
     <div className="table-row-group group text-center border even:bg-black even:bg-opacity-20 ">
-      <div className="table-row group-hover:bg-gran-blue group-hover:bg-opacity-25 ">
+      <div className="table-row group-hover:bg-guard-green group-hover:bg-opacity-25 ">
         <div
           className={`text-xl text-black table-cell items-center max-sm:text-base `}
         >
@@ -31,7 +31,7 @@ export default function LinhaControle({ pedido, ...props }) {
           {pedido.item.nome}
           <Tooltip content={`${pedido.item.descricao}`} placement="top">
             <InformationCircleIcon
-              className="h-5 w-5 text-gran-blue cursor-pointer m-2 hover:scale-110 hover:opacity-50"
+              className="h-5 w-5 text-guard-green cursor-pointer m-2 hover:scale-110 hover:opacity-50"
               aria-hidden="true"
             />
           </Tooltip>
@@ -44,11 +44,11 @@ export default function LinhaControle({ pedido, ...props }) {
         <div
           className={
             pedido.status == "DISPONÍVEL"
-              ? `text-base table-cell border-b border-b-gran-blue items-center text-center p-1 max-sm:text-base w-3/12 bg-green font-bold `
+              ? `text-base table-cell border-b border-b-guard-green items-center text-center p-1 max-sm:text-base w-3/12 bg-green font-bold `
               : pedido.status == "Aguardando fornecedor"
               ? `text-base table-cell text-center border-b items-center p-1 max-sm:text-base w-3/12 bg-yellow font-bold`
               : pedido.status == "Em falta"
-              ? `text-base table-cell text-white border-b text-center items-center p-1 max-sm:text-base w-3/12 bg-gran-red font-bold`
+              ? `text-base table-cell text-white border-b text-center items-center p-1 max-sm:text-base w-3/12 bg-guard-red font-bold`
               : pedido.status == "Aguardando financeiro"
               ? `text-base table-cell text-center border-b items-center p-1 max-sm:text-base w-3/12 bg-orange font-bold`
               : pedido.status == "Aguardando patrimoniamento"
@@ -86,7 +86,7 @@ export default function LinhaControle({ pedido, ...props }) {
               target="_blank"
             >
               <TicketIcon
-                className="h-6 w-6 text-gran-blue cursor-pointer  hover:scale-110 hover:opacity-50"
+                className="h-6 w-6 text-guard-green cursor-pointer  hover:scale-110 hover:opacity-50"
                 aria-hidden="true"
               />
             </a>

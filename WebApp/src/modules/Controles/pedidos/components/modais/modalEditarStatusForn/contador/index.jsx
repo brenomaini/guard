@@ -6,13 +6,13 @@ const Contador = ({ handleDecrement, handleIncrement }) => {
     <div>
       <button
         onClick={handleIncrement}
-        className="m-2 rounded-md p-2 bg-gran-blue hover:scale-105 hover:shadow-md"
+        className="m-2 rounded-md p-2 bg-guard-green hover:scale-105 hover:shadow-md"
       >
         <PlusIcon className="h-4 w-4 text-white " aria-hidden="true" />
       </button>
       <button
         onClick={handleDecrement}
-        className="m-2 rounded-md p-2 bg-gran-red hover:scale-105 hover:shadow-md"
+        className="m-2 rounded-md p-2 bg-guard-red hover:scale-105 hover:shadow-md"
       >
         <MinusIcon
           className="h-4 w-4  text-white   font-bold"

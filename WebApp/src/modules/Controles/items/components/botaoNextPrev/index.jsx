@@ -35,7 +35,7 @@ export default function botaoNextPrev({
         <button
           className={
             paginaAtual != primeiraPagina
-              ? "relative inline-flex items-center rounded-l-md px-2 py-2  ring-1 ring-inset hover:bg-gran-blue focus:z-20 focus:outline-offset-0 hover:bg-opacity-30 hover:cursor-pointer"
+              ? "relative inline-flex items-center rounded-l-md px-2 py-2  ring-1 ring-inset hover:bg-guard-green focus:z-20 focus:outline-offset-0 hover:bg-opacity-30 hover:cursor-pointer"
               : "relative inline-flex items-center rounded-l-md px-2 py-2  ring-1 ring-inset   focus:z-20 focus:outline-offset-0 cursor-default bg-black bg-opacity-10"
           }
           onClick={() => {
@@ -57,7 +57,7 @@ export default function botaoNextPrev({
         <button
           className={
             paginaAtual != ultimaPagina && ultimaPagina != null
-              ? " items-center rounded-r-md px-2 py-2  ring-1 ring-inset hover:bg-gran-blue focus:z-20 focus:outline-offset-0 hover:bg-opacity-30 hover:cursor-pointer"
+              ? " items-center rounded-r-md px-2 py-2  ring-1 ring-inset hover:bg-guard-green focus:z-20 focus:outline-offset-0 hover:bg-opacity-30 hover:cursor-pointer"
               : " items-center rounded-r-md px-2 py-2  ring-1 ring-inset focus:z-20 focus:outline-offset-0 cursor-default bg-black bg-opacity-10"
           }
           onClick={() => {

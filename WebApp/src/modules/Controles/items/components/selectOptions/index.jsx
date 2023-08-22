@@ -3,7 +3,7 @@ import React from "react";
 import { useState } from "react";
 
 export default function optionsItensList() {
-  const [setorList, setSetorList] = useState([
+  const [statusList, setStatusList] = useState([
     {
       id: 1,
       nome: "DISPONÍVEL",
@@ -20,6 +20,14 @@ export default function optionsItensList() {
       id: 4,
       nome: "QUEBRADO",
     },
+    {
+      id: 5,
+      nome: "EMPRESTADO",
+    },
+    {
+      id: 6,
+      nome: "PARA EMPRÉSTIMO",
+    },
   ]);
 
   return (
@@ -27,7 +35,7 @@ export default function optionsItensList() {
       <option value="" hidden className="font-light">
         Selecione o setor
       </option>
-      {setorList.map((item) => {
+      {statusList.map((item) => {
         return (
           <option value={item.nome} id={item.id} key={item.id}>
             {item.nome}

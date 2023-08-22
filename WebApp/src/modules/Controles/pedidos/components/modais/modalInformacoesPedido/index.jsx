@@ -15,7 +15,7 @@ export default function ModalInformacoesPedido({ pedido }) {
       >
         <Tooltip content={`Informações do pedido`} placement="top-end">
           <InformationCircleIcon
-            className="h-6 w-6 text-gran-blue rounded-md hover:scale-125 hover:opacity-50"
+            className="h-6 w-6 text-guard-green rounded-md hover:scale-125 hover:opacity-50"
             aria-hidden="true"
           />
         </Tooltip>
@@ -69,7 +69,7 @@ export default function ModalInformacoesPedido({ pedido }) {
                 {/*footer*/}
                 <div className="flex items-center justify-around p-6 border-t border-solid border-slate-200 rounded-b">
                   <button
-                    className="text-white bg-gran-red bg-opacity-80 font-bold uppercase px-6 py-2 text-sm rounded mr-1 mb-1 ease-linear transition-all duration-150 hover:scale-105"
+                    className="text-white bg-guard-red bg-opacity-80 font-bold uppercase px-6 py-2 text-sm rounded mr-1 mb-1 ease-linear transition-all duration-150 hover:scale-105"
                     type="button"
                     onClick={() => setShowModal(false)}
                   >

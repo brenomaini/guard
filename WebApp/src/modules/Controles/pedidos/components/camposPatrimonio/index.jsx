@@ -91,14 +91,14 @@ export default function camposPatrimonio({
               <div className="flex w-full justify-around flex-wrap h-full items-center ">
                 <label className="flex flex-col  text-sm font-medium leading-6 text-black ">
                   Item
-                  <span className="relative w-72 cursor-default font-normal rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset  focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6">
+                  <span className="relative w-72 cursor-default font-normal rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset  focus:outline-none focus:ring-2 focus:ring-guard-green sm:text-sm sm:leading-6">
                     {pedido.item.nome}
                   </span>
                 </label>
 
                 <label className="flex flex-col  text-sm font-medium leading-6 text-black">
                   Novo status
-                  <span className="relative w-72 cursor-default font-normal rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset  focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6">
+                  <span className="relative w-72 cursor-default font-normal rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset  focus:outline-none focus:ring-2 focus:ring-guard-green sm:text-sm sm:leading-6">
                     Disponível
                   </span>
                 </label>
@@ -112,14 +112,14 @@ export default function camposPatrimonio({
                       <label className="flex flex-col  text-sm font-medium leading-6 text-black">
                         Número de série
                         <input
-                          className="relative w-72 cursor-default  rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-gran-blue focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6"
+                          className="relative w-72 cursor-default  rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-guard-green focus:outline-none focus:ring-2 focus:ring-guard-green sm:text-sm sm:leading-6"
                           type="text"
                           id="numero_surie"
                           placeholder="Número de série"
                           {...register(`patrimonios.${index}.numero_serie`)}
                         />
                         {errors.patrimonios?.[index]?.numero_serie && (
-                          <span className="text-gran-red opacity-90">
+                          <span className="text-guard-red opacity-90">
                             {errors.patrimonios?.[index]?.numero_serie.message}
                           </span>
                         )}
@@ -127,21 +127,21 @@ export default function camposPatrimonio({
                       <label className="flex flex-col  text-sm font-medium leading-6 text-black">
                         Patrimonio
                         <input
-                          className="relative w-72 cursor-default  rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-gran-blue focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6"
+                          className="relative w-72 cursor-default  rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-guard-green focus:outline-none focus:ring-2 focus:ring-guard-green sm:text-sm sm:leading-6"
                           type="text"
                           id="patrimonio"
                           placeholder="patrimônio do item"
                           {...register(`patrimonios.${index}.patrimonio`)}
                         />
                         {errors.patrimonios?.[index]?.patrimonio && (
-                          <span className="text-gran-red opacity-90">
+                          <span className="text-guard-red opacity-90">
                             {errors.patrimonios?.[index]?.patrimonio.message}
                           </span>
                         )}
                       </label>
                       <label className="flex flex-col  text-sm font-medium leading-6 text-black">
                         Número da nota
-                        <span className="relative w-72 cursor-default font-normal rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset  focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6">
+                        <span className="relative w-72 cursor-default font-normal rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset  focus:outline-none focus:ring-2 focus:ring-guard-green sm:text-sm sm:leading-6">
                           {field.nota}
                         </span>
                       </label>
@@ -150,12 +150,12 @@ export default function camposPatrimonio({
                         Localização
                         <select
                           {...register(`patrimonios.${index}.localizacao`)}
-                          className="relative w-72 cursor-default font-normal rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-gran-blue focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6"
+                          className="relative w-72 cursor-default font-normal rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-guard-green focus:outline-none focus:ring-2 focus:ring-guard-green sm:text-sm sm:leading-6"
                         >
                           <InputSelectLocalizacao />
                         </select>
                         {errors.patrimonios?.[index]?.localizacao && (
-                          <span className="text-gran-red opacity-90">
+                          <span className="text-guard-red opacity-90">
                             {errors.patrimonios?.[index]?.localizacao.message}
                           </span>
                         )}
@@ -168,14 +168,14 @@ export default function camposPatrimonio({
             {/*footer*/}
             <div className="flex items-center justify-around p-6 border-t border-solid border-slate-200 rounded-b">
               <button
-                className="text-white bg-gran-red bg-opacity-80 font-bold uppercase px-6 py-2 text-sm rounded mr-1 mb-1 ease-linear transition-all duration-150 hover:scale-105"
+                className="text-white bg-guard-red bg-opacity-80 font-bold uppercase px-6 py-2 text-sm rounded mr-1 mb-1 ease-linear transition-all duration-150 hover:scale-105"
                 type="button"
                 onClick={() => setShowModalAddItem(false)}
               >
                 Cancelar
               </button>
               <button
-                className="text-white bg-gran-blue font-bold uppercase px-6 py-2 text-sm rounded mr-1 mb-1 ease-linear transition-all duration-150 hover:scale-105"
+                className="text-white bg-guard-green font-bold uppercase px-6 py-2 text-sm rounded mr-1 mb-1 ease-linear transition-all duration-150 hover:scale-105"
                 type="button"
                 onClick={handleSubmit(editarPedido)}
               >

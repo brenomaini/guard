@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Swal from "sweetalert2";
 import Input from "../../../components/Inputs/inputText";
-import Header from "../../../components/headerGranLover";
+import Header from "../../../components/headerfuncionario";
 
 export default function desligamento() {
   const [inputs, setInputs] = useState({
@@ -66,7 +66,7 @@ export default function desligamento() {
       </p>
       <div className="flex w-full justify-around flex-wrap h-96 items-center ">
         <Input
-          name={"E-mail do GranLover desligado"}
+          name={"E-mail do funcionario desligado"}
           onChange={handleChange}
           value={inputs.emailDesligado}
           htmlName={"emailDesligado"}
@@ -76,7 +76,7 @@ export default function desligamento() {
       {/*footer*/}
       <div className="flex items-center justify-around p-4 border-t border-solid border-slate-200 rounded-b">
         <button
-          className="text-white bg-gran-blue bg-opacity-90 font-bold uppercase px-6 py-2 text-sm rounded mr-1 mb-1 ease-linear transition-all duration-150 hover:scale-105"
+          className="text-white bg-guard-green bg-opacity-90 font-bold uppercase px-6 py-2 text-sm rounded mr-1 mb-1 ease-linear transition-all duration-150 hover:scale-105"
           type="button"
           onClick={() => {
             desvincular();

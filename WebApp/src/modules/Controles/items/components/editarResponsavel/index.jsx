@@ -38,7 +38,8 @@ export default function editarResponsavel({ item }) {
     .refine(
       (data) =>
         (data.status === "RETIRADO" && data.responsavel !== "") ||
-        data.status != "RETIRADO",
+        (data.status === "EMPRESTADO" && data.responsavel !== "") ||
+        (data.status != "RETIRADO" && data.status != "EMPRESTADO"),
       {
         message: "Email obrigatório para item retirado.",
         path: ["responsavel"],
@@ -89,12 +90,16 @@ export default function editarResponsavel({ item }) {
     formPedido.append("_method", "PATCH");
     formPedido.append("agente", "emailagente@gran.com");
     formPedido.append("data_update", novaData);
-    if (data.status == "DISPONÍVEL") {
+    if (data.status == "DISPONÍVEL" || data.status === "PARA EMPRÉSTIMO") {
       let diminuiRetirados = 0;
       diminuiRetirados = item.pedido.qtdRetirados - 1;
 
       formPedido.append("qtdRetirados", diminuiRetirados);
-    } else if (data.status != "DISPONÍVEL" && statusAtual === "DISPONÍVEL") {
+    } else if (
+      data.status != "DISPONÍVEL" &&
+      data.status != "PARA EMPRÉSTIMO" &&
+      (statusAtual === "DISPONÍVEL" || statusAtual === "PARA EMPRÉSTIMO")
+    ) {
       let aumentaRetirados = 0;
       aumentaRetirados = item.pedido.qtdRetirados + 1;
 
@@ -162,7 +167,7 @@ export default function editarResponsavel({ item }) {
           onClick={() => setShowModalAddItem(true)}
         >
           <PencilIcon
-            className="h-4 w-4 text-gran-blue hover:text-white"
+            className="h-4 w-4 text-guard-green hover:text-white"
             aria-hidden="true"
           />
         </button>
@@ -193,13 +198,13 @@ export default function editarResponsavel({ item }) {
                   <div className="flex w-full flex-col justify-center flex-wrap h-full items-center ">
                     <label className="flex flex-col  text-sm font-medium leading-6 text-black">
                       Item
-                      <span className="relative w-72 cursor-default font-normal rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset  focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6">
+                      <span className="relative w-72 cursor-default font-normal rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black ring-1 ring-inset  focus:outline-none focus:ring-2 focus:ring-guard-green sm:text-sm sm:leading-6">
                         {item.item.nome}
                       </span>
                     </label>
                     <label className="flex flex-col  text-sm font-medium leading-6 text-black">
                       Patrimônio
-                      <span className="relative w-72 cursor-default font-normal rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset  focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6">
+                      <span className="relative w-72 cursor-default font-normal rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black  ring-1 ring-inset  focus:outline-none focus:ring-2 focus:ring-guard-green sm:text-sm sm:leading-6">
                         {item.patrimonio}
                       </span>
                     </label>
@@ -207,12 +212,12 @@ export default function editarResponsavel({ item }) {
                       Status
                       <select
                         {...register("status")}
-                        className="relative w-72 cursor-default font-normal rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-gran-blue focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6"
+                        className="relative w-72 cursor-default font-normal rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black  ring-1 ring-inset ring-guard-green focus:outline-none focus:ring-2 focus:ring-guard-green sm:text-sm sm:leading-6"
                       >
                         <SelectOptions />
                       </select>
                       {errors.status && (
-                        <span className="text-gran-red opacity-90">
+                        <span className="text-guard-red opacity-90">
                           {errors.status.message}
                         </span>
                       )}
@@ -221,14 +226,14 @@ export default function editarResponsavel({ item }) {
                     <label className="flex flex-col  text-sm font-medium leading-6 text-black">
                       E-mail do recebedor
                       <input
-                        className="relative w-72 cursor-default  rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-gran-blue focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6"
+                        className="relative w-72 cursor-default  rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black  ring-1 ring-inset ring-guard-green focus:outline-none focus:ring-2 focus:ring-guard-green sm:text-sm sm:leading-6"
                         type="text"
                         id="responsavel"
                         placeholder="nome.sobrenome@gran.com"
                         {...register("responsavel")}
                       />
                       {errors.responsavel && (
-                        <span className="text-gran-red opacity-90">
+                        <span className="text-guard-red opacity-90">
                           {errors.responsavel.message}
                         </span>
                       )}
@@ -239,14 +244,14 @@ export default function editarResponsavel({ item }) {
                         <label className="flex flex-col  text-sm font-medium leading-6 text-black">
                           O que foi realizado?
                           <input
-                            className="relative w-72 h-16 cursor-default  rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-gran-blue focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6"
+                            className="relative w-72 h-16 cursor-default  rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black  ring-1 ring-inset ring-guard-green focus:outline-none focus:ring-2 focus:ring-guard-green sm:text-sm sm:leading-6"
                             type="text"
                             id="descricao"
                             placeholder="O que foi feito na manutenção?"
                             {...register("descricao")}
                           />
                           {errors.descricao && (
-                            <span className="text-gran-red opacity-90">
+                            <span className="text-guard-red opacity-90">
                               {errors.descricao.message}
                             </span>
                           )}
@@ -258,14 +263,14 @@ export default function editarResponsavel({ item }) {
                 {/*footer*/}
                 <div className="flex items-center justify-around p-6 border-t border-solid border-slate-200 rounded-b">
                   <button
-                    className="text-white bg-gran-red bg-opacity-80 font-bold uppercase px-6 py-2 text-sm rounded mr-1 mb-1 ease-linear transition-all duration-150 hover:scale-105"
+                    className="text-white bg-guard-red bg-opacity-80 font-bold uppercase px-6 py-2 text-sm rounded mr-1 mb-1 ease-linear transition-all duration-150 hover:scale-105"
                     type="button"
                     onClick={() => setShowModalAddItem(false)}
                   >
                     Cancelar
                   </button>
                   <button
-                    className="text-white bg-gran-blue font-bold uppercase px-6 py-2 text-sm rounded mr-1 mb-1 ease-linear transition-all duration-150 hover:scale-105"
+                    className="text-white bg-guard-green font-bold uppercase px-6 py-2 text-sm rounded mr-1 mb-1 ease-linear transition-all duration-150 hover:scale-105"
                     type="button"
                     onClick={handleSubmit(editarItem)}
                   >

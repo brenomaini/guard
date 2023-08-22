@@ -17,7 +17,7 @@ export default function ModalNotasPedidos({ pedido }) {
       >
         <Tooltip content={`Notas vinculadas ao pedido`} placement="top">
           <MagnifyingGlassIcon
-            className="h-6 w-6 text-gran-blue  hover:scale-125 hover:opacity-50"
+            className="h-6 w-6 text-guard-green  hover:scale-125 hover:opacity-50"
             aria-hidden="true"
           />
         </Tooltip>
@@ -50,14 +50,14 @@ export default function ModalNotasPedidos({ pedido }) {
                 {/*footer*/}
                 <div className="flex items-center justify-around p-6 border-t border-solid border-slate-200 rounded-b">
                   {/* <button
-                    className="text-white bg-gran-red bg-opacity-80 font-bold uppercase px-6 py-2 text-sm rounded mr-1 mb-1 ease-linear transition-all duration-150 hover:scale-105"
+                    className="text-white bg-guard-red bg-opacity-80 font-bold uppercase px-6 py-2 text-sm rounded mr-1 mb-1 ease-linear transition-all duration-150 hover:scale-105"
                     type="button"
                     onClick={() => setShowModal(false)}
                   >
                     Cancelar
                   </button> */}
                   <button
-                    className="text-white bg-gran-blue bg-opacity-90 font-bold uppercase px-6 py-2 text-sm rounded mr-1 mb-1 ease-linear transition-all duration-150 hover:scale-105"
+                    className="text-white bg-guard-green bg-opacity-90 font-bold uppercase px-6 py-2 text-sm rounded mr-1 mb-1 ease-linear transition-all duration-150 hover:scale-105"
                     type="button"
                     onClick={() => {
                       setShowModal(false);

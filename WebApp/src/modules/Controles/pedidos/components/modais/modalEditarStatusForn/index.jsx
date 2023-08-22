@@ -158,7 +158,7 @@ export default function modalEditarStatusForn({ pedido, atualizar }) {
           onClick={() => setShowModalAddItem(true)}
         >
           <PencilIcon
-            className="h-4 w-4 text-gran-blue hover:text-white"
+            className="h-4 w-4 text-guard-green hover:text-white"
             aria-hidden="true"
           />
         </button>
@@ -193,7 +193,7 @@ export default function modalEditarStatusForn({ pedido, atualizar }) {
                       placeholder="00"
                       {...register("numeroDeNotas")}
                     />
-                    <span className=" w-16 text-center flex items-center justify-center cursor-default font-bold text-4xl rounded-md bg-white p-2 text-black shadow-sm ring-1 ring-inset  focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6">
+                    <span className=" w-16 text-center flex items-center justify-center cursor-default font-bold text-4xl rounded-md bg-white p-2 text-black shadow-sm ring-1 ring-inset  focus:outline-none focus:ring-2 focus:ring-guard-green sm:text-sm sm:leading-6">
                       {count}
                     </span>
                     <Contador
@@ -201,7 +201,7 @@ export default function modalEditarStatusForn({ pedido, atualizar }) {
                       handleDecrement={handleDecrement}
                     />
                     {errors.numeroDeNotas && (
-                      <span className="text-gran-red opacity-90">
+                      <span className="text-guard-red opacity-90">
                         {errors.numeroDeNotas.message}
                       </span>
                     )}
@@ -210,14 +210,14 @@ export default function modalEditarStatusForn({ pedido, atualizar }) {
                   <div className="flex w-full justify-around flex-wrap h-full items-center ">
                     <label className="flex flex-col  text-sm font-medium leading-6 text-black">
                       Item
-                      <span className="relative w-72 cursor-default font-normal rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset  focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6">
+                      <span className="relative w-72 cursor-default font-normal rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset  focus:outline-none focus:ring-2 focus:ring-guard-green sm:text-sm sm:leading-6">
                         {pedido.item.nome}
                       </span>
                     </label>
 
                     <label className="flex flex-col  text-sm font-medium leading-6 text-black">
                       Novo status
-                      <span className="relative w-72 cursor-default font-normal rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset  focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6">
+                      <span className="relative w-72 cursor-default font-normal rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset  focus:outline-none focus:ring-2 focus:ring-guard-green sm:text-sm sm:leading-6">
                         Aguardando patrimoniamento
                       </span>
                     </label>
@@ -231,14 +231,14 @@ export default function modalEditarStatusForn({ pedido, atualizar }) {
                           <label className="flex flex-col  text-sm font-medium leading-6 text-black">
                             Nota fiscal
                             <input
-                              className="relative w-72 cursor-default  rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-gran-blue focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6"
+                              className="relative w-72 cursor-default  rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-guard-green focus:outline-none focus:ring-2 focus:ring-guard-green sm:text-sm sm:leading-6"
                               type="text"
                               id="notaItem"
                               placeholder="NF do item"
                               {...register(`notas.${index}.nf`)}
                             />
                             {errors.notas?.[index]?.nf && (
-                              <span className="text-gran-red opacity-90">
+                              <span className="text-guard-red opacity-90">
                                 {errors.notas?.[index]?.nf.message}
                               </span>
                             )}
@@ -249,11 +249,11 @@ export default function modalEditarStatusForn({ pedido, atualizar }) {
                             <input
                               type="file"
                               id="file"
-                              className="relative w-72 cursor-default font-normal rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-gran-blue focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6"
+                              className="relative w-72 cursor-default font-normal rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-guard-green focus:outline-none focus:ring-2 focus:ring-guard-green sm:text-sm sm:leading-6"
                               {...register(`notas.${index}.file`)}
                             />
                             {errors.notas?.[index]?.file && (
-                              <span className="text-gran-red opacity-90">
+                              <span className="text-guard-red opacity-90">
                                 {errors.notas?.[index]?.file.message}
                               </span>
                             )}
@@ -264,11 +264,11 @@ export default function modalEditarStatusForn({ pedido, atualizar }) {
                               min="0"
                               type="number"
                               id="qtd"
-                              className="relative w-24 cursor-default  rounded-md bg-white py-1.5 pl-3 pr-4 text-left text-black shadow-sm ring-1 ring-inset ring-gran-blue focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6"
+                              className="relative w-24 cursor-default  rounded-md bg-white py-1.5 pl-3 pr-4 text-left text-black shadow-sm ring-1 ring-inset ring-guard-green focus:outline-none focus:ring-2 focus:ring-guard-green sm:text-sm sm:leading-6"
                               {...register(`notas.${index}.qtd`)}
                             />
                             {errors.notas?.[index]?.qtd && (
-                              <span className="text-gran-red opacity-90">
+                              <span className="text-guard-red opacity-90">
                                 {errors.notas?.[index]?.qtd.message}
                               </span>
                             )}
@@ -281,14 +281,14 @@ export default function modalEditarStatusForn({ pedido, atualizar }) {
                 {/*footer*/}
                 <div className="flex items-center justify-around p-6 border-t border-solid border-slate-200 rounded-b">
                   <button
-                    className="text-white bg-gran-red bg-opacity-80 font-bold uppercase px-6 py-2 text-sm rounded mr-1 mb-1 ease-linear transition-all duration-150 hover:scale-105"
+                    className="text-white bg-guard-red bg-opacity-80 font-bold uppercase px-6 py-2 text-sm rounded mr-1 mb-1 ease-linear transition-all duration-150 hover:scale-105"
                     type="button"
                     onClick={() => setShowModalAddItem(false)}
                   >
                     Cancelar
                   </button>
                   <button
-                    className="text-white bg-gran-blue font-bold uppercase px-6 py-2 text-sm rounded mr-1 mb-1 ease-linear transition-all duration-150 hover:scale-105"
+                    className="text-white bg-guard-green font-bold uppercase px-6 py-2 text-sm rounded mr-1 mb-1 ease-linear transition-all duration-150 hover:scale-105"
                     type="button"
                     onClick={handleSubmit(editarPedido)}
                   >

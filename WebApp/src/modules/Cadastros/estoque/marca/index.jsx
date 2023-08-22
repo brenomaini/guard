@@ -51,14 +51,14 @@ export default function CadastroMarca() {
         <label className="flex flex-col text-sm font-medium leading-6 text-black">
           Nome da nova marca
           <input
-            className="relative w-72 cursor-default  rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-gran-blue focus:outline-none focus:ring-2 focus:ring-gran-blue sm:text-sm sm:leading-6"
+            className="relative w-72 cursor-default  rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-guard-green focus:outline-none focus:ring-2 focus:ring-guard-green sm:text-sm sm:leading-6"
             type="text"
             id="NomeMarca"
             placeholder="Digite aqui"
             {...register("nomeMarca")}
           />
           {errors.nomeMarca && (
-            <span className="text-gran-red opacity-90">
+            <span className="text-guard-red opacity-90">
               {errors.nomeMarca.message}
             </span>
           )}
