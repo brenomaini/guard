@@ -5,14 +5,14 @@ import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { z } from "zod";
 import Header from "../../../components/headerFuncionario";
-import useBuscaItensfuncionario from "../../Funcionario/hooks/useBuscaItensFuncionario";
-import HeaderInfosfuncionario from "./headerInfosFuncionario";
+import useBuscaItensFuncionario from "../../Funcionario/hooks/useBuscaItensFuncionario";
+import HeaderInfosFuncionario from "./headerInfosFuncionario";
 import LinhaPorItem from "./linhaPorItem";
 
 export default function infos() {
   const [showModal, setShowModal] = React.useState(false);
-  const [emailfuncionario, setEmailfuncionario] = React.useState("");
-  const itens = useBuscaItensfuncionario(emailfuncionario);
+  const [emailFuncionario, setEmailFuncionario] = React.useState("");
+  const itens = useBuscaItensFuncionario(emailFuncionario);
 
   const emailSchema = z.object({
     email: z
@@ -29,7 +29,7 @@ export default function infos() {
     resolver: zodResolver(emailSchema),
   });
   function buscarInfos(data) {
-    setEmailfuncionario(data.email);
+    setEmailFuncionario(data.email);
     setShowModal(true);
   }
 
@@ -72,7 +72,7 @@ export default function infos() {
       {itens.isIdle || itens.isLoading ? (
         <>
           <div className="table gap-4 row-auto w-full  place-items-center ">
-            <HeaderInfosfuncionario />
+            <HeaderInfosFuncionario />
           </div>
           <Skeleton count={4} height={40} />
         </>

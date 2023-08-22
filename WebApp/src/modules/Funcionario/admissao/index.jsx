@@ -4,17 +4,17 @@ import { useFieldArray, useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import { z } from "zod";
 import InputSelectSetor from "../../../components/Inputs/inputSelectSetor";
-import Header from "../../../components/headerfuncionario";
+import Header from "../../../components/headerFuncionario";
 
 export default function admissao() {
   const admissaoSchema = z.object({
-    emailfuncionario: z
+    emailFuncionario: z
       .string()
       .nonempty("E-mail do novo funcionario é obrigatório")
       .email("Formato de e-mail inválido")
       .toLowerCase()
-      .refine((emailfuncionario) => {
-        return emailfuncionario.endsWith("@grancursosonline.com.br");
+      .refine((emailFuncionario) => {
+        return emailFuncionario.endsWith("@grancursosonline.com.br");
       }, "O e-mail deve ser @grancursosonline.com.br"),
     setor: z.string().nonempty("Setor do funcionario é obrigatório"),
     emailAprovador: z
@@ -92,11 +92,11 @@ export default function admissao() {
               type="text"
               id="solicitante"
               placeholder="Digite aqui"
-              {...register("emailfuncionario")}
+              {...register("emailFuncionario")}
             />
-            {errors.emailfuncionario && (
+            {errors.emailFuncionario && (
               <span className="text-guard-red opacity-90">
-                {errors.emailfuncionario.message}
+                {errors.emailFuncionario.message}
               </span>
             )}
           </label>

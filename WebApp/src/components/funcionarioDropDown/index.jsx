@@ -29,7 +29,7 @@ const funcionario = [
   },
 ];
 
-export default function funcionarioDropDown() {
+export default function FuncionarioDropDown() {
   return (
     <Popover className="relative">
       <Popover.Button className="inline-flex items-center gap-x-1 text-guard-green text-2xl hover:opacity-70 max-sm:text-xl ">

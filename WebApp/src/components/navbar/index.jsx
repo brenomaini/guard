@@ -2,6 +2,7 @@ import { UsersIcon } from "@heroicons/react/24/solid";
 import { Link } from "react-router-dom";
 import Cadastro from "../cadastroDropDown";
 import Controle from "../controleDropDown";
+import FuncionarioDropDown from "../funcionarioDropDown";
 import RelatoriosDropDown from "../relatoriosDropDown";
 
 export default function Navbar() {
@@ -19,7 +20,7 @@ export default function Navbar() {
         </Link>
 
         <Controle />
-        <funcionarioDropDown />
+        <FuncionarioDropDown />
         <Cadastro />
         <RelatoriosDropDown />
         <Link
