@@ -15,11 +15,12 @@ use App\Http\Controllers\AuthController;
 |
 */
 
-// Route::controller(AuthController::class)->group(function () {
-//     Route::post('login', 'login');
-//     Route::post('register', 'register');
-//     Route::post('refresh', 'App\Http\Controllers\AuthController@refresh');
-// });
+Route::controller(AuthController::class)->group(function () {
+    Route::post('login', 'login');
+    Route::post('register', 'register');
+    Route::post('logout', 'logout');
+    Route::post('refresh', 'refresh');
+});
 
 Route::Apiresource('marca', 'App\Http\Controllers\MarcaController');
 Route::Apiresource('categoria', 'App\Http\Controllers\CategoriaController');
