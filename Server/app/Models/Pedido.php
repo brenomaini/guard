@@ -22,7 +22,7 @@ class Pedido extends Model
         'qtdRetirados',
         'numero_ticket_freshdesk',
         'motivo',
-        'enable' => 'boolean'
+        'enable'
     ];
 
     public function rules()
@@ -34,7 +34,8 @@ class Pedido extends Model
             'agente' => 'required',
             'aprovador' => 'required',
             'quantidade' => 'required',
-            'solicitante' => 'required'
+            'solicitante' => 'required',
+            'enable' => 'boolean'
         ];
 
         /*

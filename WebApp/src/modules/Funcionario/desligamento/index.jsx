@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Swal from "sweetalert2";
 import Input from "../../../components/Inputs/inputText";
-import Header from "../../../components/headerfuncionario";
+import Header from "../../../components/headerFuncionario";
 
 export default function desligamento() {
   const [inputs, setInputs] = useState({
