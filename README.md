@@ -58,7 +58,7 @@ O Teste 2 faz Y coisa.
 
 ## Contributing
 
-Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
+Please read [CONTRIBUTING.md](https://github.com/brenomaini/guard/blob/main/CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
 
 ## Versioning
 
@@ -73,4 +73,4 @@ Lista de contribuintes [contribuintes](https://github.com/brenomaini/guard/contr
 
 ## Licença
 
-Projeto licenciado de acordo com a licença GNU AGPLv3 - veja [LICENSE.md](LICENSE.md) para mais detalhes
+Projeto licenciado de acordo com a licença GNU AGPLv3 - veja [LICENSE.md](https://github.com/brenomaini/guard/blob/main/LICENSE.md) para mais detalhes
