@@ -21,16 +21,17 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('logout', 'logout');
     Route::post('refresh', 'refresh');
 });
-
-Route::Apiresource('marca', 'App\Http\Controllers\MarcaController');
-Route::Apiresource('categoria', 'App\Http\Controllers\CategoriaController');
-Route::Apiresource('item', 'App\Http\Controllers\ItemController');
-Route::Apiresource('pedido', 'App\Http\Controllers\PedidoController');
-Route::Apiresource('setor', 'App\Http\Controllers\SetorController');
-Route::Apiresource('notas', 'App\Http\Controllers\NotasFiscaisController');
-Route::Apiresource('itemestoque', 'App\Http\Controllers\ItemEstoqueController');
-Route::Apiresource('manutencoes', 'App\Http\Controllers\ManutencoesController');
-//Route::Apiresource('retirado', 'App\Http\Controllers\RetiradoController');
-//Route::Apiresource('perfil', 'App\Http\Controllers\PerfilController');
-//Route::Apiresource('estoque', 'App\Http\Controllers\EstoqueController');
-//Route::Apiresource('retirado', 'App\Http\Controllers\RetiradoController');
+Route::middleware('jwt.auth')->group(function () {
+    Route::Apiresource('marca', 'App\Http\Controllers\MarcaController');
+    Route::Apiresource('categoria', 'App\Http\Controllers\CategoriaController');
+    Route::Apiresource('item', 'App\Http\Controllers\ItemController');
+    Route::Apiresource('pedido', 'App\Http\Controllers\PedidoController');
+    Route::Apiresource('setor', 'App\Http\Controllers\SetorController');
+    Route::Apiresource('notas', 'App\Http\Controllers\NotasFiscaisController');
+    Route::Apiresource('itemestoque', 'App\Http\Controllers\ItemEstoqueController');
+    Route::Apiresource('manutencoes', 'App\Http\Controllers\ManutencoesController');
+    //Route::Apiresource('retirado', 'App\Http\Controllers\RetiradoController');
+    //Route::Apiresource('perfil', 'App\Http\Controllers\PerfilController');
+    //Route::Apiresource('estoque', 'App\Http\Controllers\EstoqueController');
+    //Route::Apiresource('retirado', 'App\Http\Controllers\RetiradoController');
+});
