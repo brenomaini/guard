@@ -66,8 +66,8 @@ Usaremos [SemVer](http://semver.org/) para padrões de versionamento. As versos 
 
 ## Autores
 
-* **Breno Maini** - *Initial work* - [Breno Maini](https://github.com/brenomaini)
-* **Lucas Cardoso** - *Initial work* - [Lucas Cardoso](https://github.com/CLucasrodrigues22)
+* **Breno Maini** - *Código Frontend inicial* - [Breno Maini](https://github.com/brenomaini)
+* **Lucas Cardoso** - *Código Backend inicial* - [Lucas Cardoso](https://github.com/CLucasrodrigues22)
 
 Lista de contribuintes [contribuintes](https://github.com/brenomaini/guard/contributors) que participaram do projeto.
 
