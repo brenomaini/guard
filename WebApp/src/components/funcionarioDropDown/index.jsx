@@ -17,7 +17,7 @@ const funcionario = [
   },
   {
     name: "Admissão",
-    description: "Vincule itens rapidamenta a um novo Funcionário",
+    description: "Vincule itens rapidamente a um novo Funcionário",
     href: "/admissao",
     icon: UserPlusIcon,
   },

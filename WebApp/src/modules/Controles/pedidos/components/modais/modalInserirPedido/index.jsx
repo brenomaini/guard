@@ -16,7 +16,7 @@ export default function modalInserirPedido() {
   const itemEstoqueSchema = z.object({
     item: z.string().nonempty("Item é obrigatório"),
     setor: z.string().nonempty("Setor é obrigatório"),
-    numero_ticket_freshdesk: z.string().nonempty("Ticket é obrigatório"),
+    numero_ticket: z.string().nonempty("Ticket é obrigatório"),
     motivo: z.string().nonempty("Motivo do pedido é obrigatório"),
     quantidade: z.string().nonempty(`Quantos itens serão comprados?`),
     solicitante: z
@@ -53,7 +53,7 @@ export default function modalInserirPedido() {
     form.append("aprovador", data.aprovador);
     form.append("quantidade", data.quantidade);
     form.append("solicitante", data.solicitante);
-    form.append("numero_ticket_freshdesk", data.numero_ticket_freshdesk);
+    form.append("numero_ticket_freshdesk", data.numero_ticket);
     form.append("motivo", data.motivo);
     form.append("agente", "teste@email.com");
     form.append("data_update", novaData);
@@ -69,7 +69,6 @@ export default function modalInserirPedido() {
     const url = `${baseURL}/pedido`;
 
     fetch(url, options).then((response) => {
-      console.log(response.json());
       if (response.ok) {
         queryClient.invalidateQueries({ queryKey: ["pedidos"] });
         setShowModalAddItem(false);
@@ -146,18 +145,18 @@ export default function modalInserirPedido() {
                       )}
                     </label>
                     <label className="flex flex-col  text-sm font-medium leading-6 text-black">
-                      Ticket Freshdesk
+                      Ticket do pedido
                       <input
                         className="relative w-72 cursor-default  rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-guard-green focus:outline-none focus:ring-2 focus:ring-guard-green sm:text-sm sm:leading-6"
                         min="0"
                         type="number"
-                        id="numero_ticket_freshdesk"
+                        id="numero_ticket"
                         placeholder="Número do ticket: Ex 00000"
-                        {...register("numero_ticket_freshdesk")}
+                        {...register("numero_ticket")}
                       />
-                      {errors.numero_ticket_freshdesk && (
+                      {errors.numero_ticket && (
                         <span className="text-guard-red opacity-90">
-                          {errors.numero_ticket_freshdesk.message}
+                          {errors.numero_ticket.message}
                         </span>
                       )}
                     </label>

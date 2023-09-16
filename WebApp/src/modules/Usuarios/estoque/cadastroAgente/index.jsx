@@ -23,11 +23,6 @@ export default function cadastroAgente() {
     resolver: zodResolver(inseteUserSchema),
   });
 
-  // const [item, setitem] = useState({
-  //   data: "Automatico via sistema",
-  //   agente: "Automatico Via sistema",
-  // });
-
   function confirmarCadastro(data) {
     const options = {
       method: "POST",

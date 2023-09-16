@@ -1,7 +1,6 @@
 import { Popover, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import {
-  ArrowUpOnSquareStackIcon,
   RectangleStackIcon,
   Square3Stack3DIcon,
 } from "@heroicons/react/24/outline";
@@ -20,12 +19,6 @@ const Controle = [
     description: "Estoque por Itens/Patrimônio",
     href: "/controleItens",
     icon: Square3Stack3DIcon,
-  },
-  {
-    name: "Item avulso",
-    description: "Cadastrar item antigo de forma avulsa",
-    href: "/itemAvulso",
-    icon: ArrowUpOnSquareStackIcon,
   },
 ];
 

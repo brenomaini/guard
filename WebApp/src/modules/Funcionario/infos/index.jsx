@@ -6,7 +6,7 @@ import "react-loading-skeleton/dist/skeleton.css";
 import { z } from "zod";
 import Header from "../../../components/headerFuncionario";
 import useBuscaItensFuncionario from "../../Funcionario/hooks/useBuscaItensFuncionario";
-import HeaderInfosFuncionario from "./headerInfosFuncionario";
+import HeaderInfosfuncionario from "./headerInfosFuncionario";
 import LinhaPorItem from "./linhaPorItem";
 
 export default function infos() {
@@ -72,7 +72,7 @@ export default function infos() {
       {itens.isIdle || itens.isLoading ? (
         <>
           <div className="table gap-4 row-auto w-full  place-items-center ">
-            <HeaderInfosFuncionario />
+            <HeaderInfosfuncionario />
           </div>
           <Skeleton count={4} height={40} />
         </>
