@@ -1,0 +1,5 @@
+- cd laradock/
+- cp .env.example .env
+- docker compose up -d nginx mysql phpmyadmin redis workspace
+- docker-compose exec workspace bash
+- chmod +x start.sh
