@@ -56,9 +56,9 @@ O Teste 2 faz Y coisa.
 * [Laravel](https://laravel.com/) - Framework backend usado
 * [Icones - HeroIcons](https://heroicons.com/) - Usado para os icones do projeto
 
-## Contributing
+## Gostaria de contribuir?
 
-Please read [CONTRIBUTING.md](https://github.com/brenomaini/guard/blob/main/CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
+Leia a política [CONTRIBUTING.md](https://github.com/brenomaini/guard/blob/main/CONTRIBUTING.md) para detalhes, contudo, toda e qualquer benfeitoria será vista e revisada por nós <3 
 
 ## Versioning
 
