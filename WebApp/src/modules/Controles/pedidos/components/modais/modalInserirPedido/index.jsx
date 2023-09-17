@@ -2,6 +2,7 @@ import { PlusCircleIcon } from "@heroicons/react/24/outline";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Tooltip } from "@material-tailwind/react";
 import React from "react";
+import { useAuthUser } from "react-auth-kit";
 import { useForm } from "react-hook-form";
 import { useQueryClient } from "react-query";
 import Swal from "sweetalert2";
@@ -11,6 +12,7 @@ import InputSelectSetor from "../../../../../../components/Inputs/inputSelectSet
 
 export default function modalInserirPedido() {
   const queryClient = useQueryClient();
+  const auth = useAuthUser();
 
   const baseURL = import.meta.env.VITE_BASE_URL;
   const itemEstoqueSchema = z.object({
@@ -55,7 +57,7 @@ export default function modalInserirPedido() {
     form.append("solicitante", data.solicitante);
     form.append("numero_ticket_freshdesk", data.numero_ticket);
     form.append("motivo", data.motivo);
-    form.append("agente", "teste@email.com");
+    form.append("agente", auth().email);
     form.append("data_update", novaData);
 
     const options = {

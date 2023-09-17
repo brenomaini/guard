@@ -2,6 +2,7 @@ import { PencilIcon } from "@heroicons/react/24/outline";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Tooltip } from "@material-tailwind/react";
 import React, { useState } from "react";
+import { useAuthUser } from "react-auth-kit";
 import { useFieldArray, useForm } from "react-hook-form";
 import { useQueryClient } from "react-query";
 import Swal from "sweetalert2";
@@ -9,6 +10,7 @@ import { z } from "zod";
 import Contador from "./contador";
 
 export default function modalEditarStatusForn({ pedido, atualizar }) {
+  const auth = useAuthUser();
   const queryClient = useQueryClient();
   const [count, setCount] = useState(0);
 
@@ -115,7 +117,7 @@ export default function modalEditarStatusForn({ pedido, atualizar }) {
     const novaData = Intl.DateTimeFormat("pt-BR").format(new Date());
     form.append("qtdNotas", count);
     form.append("status", "Aguardando patrimoniamento");
-    form.append("agente", "agente@email.com");
+    form.append("agente", auth().email);
     form.append("_method", "PATCH");
     form.append("data_update", novaData);
     form.append("notasData", notas);

@@ -1,11 +1,13 @@
 import { PencilIcon } from "@heroicons/react/24/outline";
 import { Tooltip } from "@material-tailwind/react";
 import React from "react";
+import { useAuthUser } from "react-auth-kit";
 import { useForm } from "react-hook-form";
 import { useQueryClient } from "react-query";
 import Swal from "sweetalert2";
 
 export default function modalEditarStatusFin({ pedido }) {
+  const auth = useAuthUser();
   const queryClient = useQueryClient();
   const baseURL = import.meta.env.VITE_BASE_URL;
 
@@ -23,7 +25,7 @@ export default function modalEditarStatusFin({ pedido }) {
     const form = new FormData();
     const novaData = Intl.DateTimeFormat("pt-BR").format(new Date());
     form.append("status", "Aguardando fornecedor");
-    form.append("agente", "novoagente2@email.com");
+    form.append("agente", auth().email);
     form.append("_method", "PATCH");
     form.append("data_update", novaData);
 

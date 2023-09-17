@@ -1,11 +1,13 @@
 import { PencilIcon } from "@heroicons/react/24/outline";
 import { Tooltip } from "@material-tailwind/react";
 import React from "react";
+import { useAuthUser } from "react-auth-kit";
 import { useQueryClient } from "react-query";
 import Swal from "sweetalert2";
 import CamposPatrimonio from "../../camposPatrimonio";
 
 export default function modalEditarStatusPat({ pedido }) {
+  const auth = useAuthUser();
   const queryClient = useQueryClient();
 
   const [showModalAddItem, setShowModalAddItem] = React.useState(false);
@@ -20,7 +22,7 @@ export default function modalEditarStatusPat({ pedido }) {
     form.append("setor_id", pedido.setor_id);
     form.append("data_update", novaData);
     form.append("status", "DISPONÍVEL");
-    form.append("agente", "emaildoagente@email.com");
+    form.append("agente", auth().email);
     const options = {
       method: "POST",
       body: form,

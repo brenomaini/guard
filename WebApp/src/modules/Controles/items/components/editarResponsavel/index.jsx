@@ -2,6 +2,7 @@ import { PencilIcon } from "@heroicons/react/24/outline";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Tooltip } from "@material-tailwind/react";
 import React from "react";
+import { useAuthUser } from "react-auth-kit";
 import { useForm } from "react-hook-form";
 import { useQueryClient } from "react-query";
 import Swal from "sweetalert2";
@@ -9,6 +10,7 @@ import { z } from "zod";
 import SelectOptions from "../selectOptions";
 
 export default function editarResponsavel({ item }) {
+  const auth = useAuthUser();
   let statusAtual = item.status.toUpperCase();
   const queryClient = useQueryClient();
 
@@ -80,7 +82,7 @@ export default function editarResponsavel({ item }) {
     form.append("status", data.status);
     form.append("_method", "PATCH");
     form.append("data_update", novaData);
-    form.append("agente", "emailagente@gran.com");
+    form.append("agente", auth().email);
     const options = {
       method: "POST",
       body: form,
@@ -88,7 +90,7 @@ export default function editarResponsavel({ item }) {
     const formPedido = new FormData();
     const urlPedido = `${baseURL}/pedido/${item.pedido_id}`;
     formPedido.append("_method", "PATCH");
-    formPedido.append("agente", "emailagente@gran.com");
+    formPedido.append("agente", auth().email);
     formPedido.append("data_update", novaData);
     if (data.status == "DISPONÍVEL" || data.status === "PARA EMPRÉSTIMO") {
       let diminuiRetirados = 0;
