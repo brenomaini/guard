@@ -64,13 +64,14 @@ export default function modalInserirPedido() {
 
     const options = {
       method: "POST",
-      headers: { "Content-Type": "application/json", Authorization: getToken },
+      headers: { Authorization: getToken },
       body: form,
     };
 
     const url = `${baseURL}/pedido`;
 
     fetch(url, options).then((response) => {
+      console.log(response.json());
       if (response.ok) {
         queryClient.invalidateQueries({ queryKey: ["pedidos"] });
         setShowModalAddItem(false);

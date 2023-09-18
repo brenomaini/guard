@@ -5,7 +5,6 @@ import { useAuthHeader, useAuthUser } from "react-auth-kit";
 import { useQueryClient } from "react-query";
 import Swal from "sweetalert2";
 import CamposPatrimonio from "../../camposPatrimonio";
-
 export default function modalEditarStatusPat({ pedido }) {
   const authHeader = useAuthHeader();
   const getToken = authHeader();
@@ -30,9 +29,6 @@ export default function modalEditarStatusPat({ pedido }) {
       headers: { Authorization: getToken },
       body: form,
     };
-    options.headers = new Headers({
-      Accept: "application/json",
-    });
 
     const url = `${baseURL}/itemestoque`;
 
