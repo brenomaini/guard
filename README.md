@@ -9,51 +9,70 @@ As instruções abaixo visa te ajudar a copiar o projeto e setá-lo para rodar e
 
 ### Pré-requisitos
 
-Composer
-Laravel
-XAMPP(Windows)
+Docker ^20.10
+
+## Subindo Container e configurando a API 
+
+- Abra um terminal no diretório /Server e siga o passo a passo para configurar a API
 
 
-### Instalando
-
-Um guia passo a passo ensinando-lhe a como colocar a aplicação para rodar:
-
-Passo 1
+1° Crie o arquivo .env e configure as variaveis de conexão do banco (default: user: root / password: password / dbname: guard)
 
 ```
-Exemplo
+cp .env.example .env
 ```
 
-Passo 2
+2° Agora suba o container Server
 
 ```
-Exemplo
+docker-compose up -d
 ```
 
-Aqui embaixo, podemos por um videozinho ou gif do projeto.
-
-## Rodando alguns testes
-
-Testes ainda não implementados.
-
-### Explicando os testes
-
-Ex Teste 1: 
+3° Identifique o containerID do server_app
 
 ```
-O Teste 1 faz X coisa.
+docker ps
 ```
-Ex Teste 2: 
+
+4° Abrir um terminal do contaniner em execução
 
 ```
-O Teste 2 faz Y coisa.
+docker exec -it (CONTAINER ID) bash
 ```
+
+5° Execute o script start.sh para instalar e configurar depedências do laravel no container
+
+```
+./start.sh
+``` 
+
+## API configurada!
+
+
+### Subindo Container e configurando front da aplicação
+
+- Abra um terminal no diretório /WebApp e siga o passo a passo para configurar o front que irá consumir a api
+
+1° Instale as depedências do node
+
+```
+npm install
+```
+
+2° Execute o arquivo docker-compose.yml para subi o container do front
+
+```
+docker-compose up -d
+```
+## Front da aplicação configurada!
+
 
 ## Feito com:
 
 * [ReactJS](https://react.dev/) - WebFramework usado
 * [TailwindCSS](https://tailwindcss.com/) - CSS Framework
 * [Laravel](https://laravel.com/) - Framework backend usado
+* [Docker](https://www.docker.com/) - Orquestrador de containers usado
 * [Icones - HeroIcons](https://heroicons.com/) - Usado para os icones do projeto
 
 ## Gostaria de contribuir?
