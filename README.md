@@ -40,7 +40,13 @@ docker ps
 docker exec -it (CONTAINER ID) bash
 ```
 
-5° Execute o script start.sh para instalar e configurar depedências do laravel no container
+5° Torne o start.sh executável
+
+```
+chmod +x /start.sh
+``` 
+
+6° Execute o script start.sh para instalar e configurar depedências do laravel no container
 
 ```
 ./start.sh
