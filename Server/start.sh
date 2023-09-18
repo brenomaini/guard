@@ -1,6 +1,6 @@
 #!/bin/sh  
 
-composer update
+composer install
 
 composer dump-autoload
 
@@ -11,3 +11,5 @@ php artisan storage:link
 php artisan migrate
 
 php artisan db:seed
+
+php artisan jwt:secret

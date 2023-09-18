@@ -1,0 +1,11 @@
+version: '3.7'
+services:
+  guard-front:
+    image: node:18-alpine # Use a imagem base do Node.js
+    container_name: guard-front
+    working_dir: /front
+    volumes:
+      - .:/front # Mapear o diretório local para o diretório de trabalho do contêiner
+    ports:
+      - "3000:3000" # Mapear a porta do host para a porta do contêiner
+    command: [ "npm", "run", "dev" ] # Comando para iniciar o servidor de desenvolvimento
