@@ -2,7 +2,7 @@ import { PencilIcon } from "@heroicons/react/24/outline";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Tooltip } from "@material-tailwind/react";
 import React from "react";
-import { useAuthUser } from "react-auth-kit";
+import { useAuthHeader, useAuthUser } from "react-auth-kit";
 import { useForm } from "react-hook-form";
 import { useQueryClient } from "react-query";
 import Swal from "sweetalert2";
@@ -10,6 +10,8 @@ import { z } from "zod";
 import SelectOptions from "../selectOptions";
 
 export default function editarResponsavel({ item }) {
+  const authHeader = useAuthHeader();
+  const getToken = authHeader();
   const auth = useAuthUser();
   let statusAtual = item.status.toUpperCase();
   const queryClient = useQueryClient();
@@ -85,6 +87,7 @@ export default function editarResponsavel({ item }) {
     form.append("agente", auth().email);
     const options = {
       method: "POST",
+      headers: { Authorization: getToken },
       body: form,
     };
     const formPedido = new FormData();
@@ -109,6 +112,7 @@ export default function editarResponsavel({ item }) {
     }
     const optionsPedido = {
       method: "POST",
+      headers: { Authorization: getToken },
       body: formPedido,
     };
 
@@ -125,6 +129,7 @@ export default function editarResponsavel({ item }) {
                 formManutencao.append("descricao", data.descricao);
                 const optionsManutencao = {
                   method: "POST",
+                  headers: { Authorization: getToken },
                   body: formManutencao,
                 };
                 fetch(urlManutencao, optionsManutencao).then((response) => {

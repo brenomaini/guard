@@ -1,12 +1,14 @@
 import { PencilIcon } from "@heroicons/react/24/outline";
 import { Tooltip } from "@material-tailwind/react";
 import React from "react";
-import { useAuthUser } from "react-auth-kit";
+import { useAuthHeader, useAuthUser } from "react-auth-kit";
 import { useForm } from "react-hook-form";
 import { useQueryClient } from "react-query";
 import Swal from "sweetalert2";
 
 export default function modalEditarStatusFin({ pedido }) {
+  const authHeader = useAuthHeader();
+  const getToken = authHeader();
   const auth = useAuthUser();
   const queryClient = useQueryClient();
   const baseURL = import.meta.env.VITE_BASE_URL;
@@ -31,6 +33,7 @@ export default function modalEditarStatusFin({ pedido }) {
 
     const options = {
       method: "POST",
+      headers: { Authorization: getToken },
       body: form,
     };
 

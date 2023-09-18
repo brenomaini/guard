@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
+import { useAuthHeader } from "react-auth-kit";
 
 export default function inputSelectItem() {
+  const authHeader = useAuthHeader();
+  const getToken = authHeader();
   const [itemList, setItemList] = useState([
     {
       id: 1,
@@ -10,7 +13,9 @@ export default function inputSelectItem() {
   async function buscarItens() {
     const baseURL = import.meta.env.VITE_BASE_URL;
     const url = `${baseURL}/item?all`;
-    const lista = await fetch(url).then((res) => {
+    const lista = await fetch(url, {
+      headers: { Authorization: getToken },
+    }).then((res) => {
       let filtrada = res.json();
 
       return filtrada;

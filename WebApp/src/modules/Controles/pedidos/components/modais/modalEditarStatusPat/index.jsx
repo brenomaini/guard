@@ -1,12 +1,14 @@
 import { PencilIcon } from "@heroicons/react/24/outline";
 import { Tooltip } from "@material-tailwind/react";
 import React from "react";
-import { useAuthUser } from "react-auth-kit";
+import { useAuthHeader, useAuthUser } from "react-auth-kit";
 import { useQueryClient } from "react-query";
 import Swal from "sweetalert2";
 import CamposPatrimonio from "../../camposPatrimonio";
 
 export default function modalEditarStatusPat({ pedido }) {
+  const authHeader = useAuthHeader();
+  const getToken = authHeader();
   const auth = useAuthUser();
   const queryClient = useQueryClient();
 
@@ -25,6 +27,7 @@ export default function modalEditarStatusPat({ pedido }) {
     form.append("agente", auth().email);
     const options = {
       method: "POST",
+      headers: { Authorization: getToken },
       body: form,
     };
     options.headers = new Headers({

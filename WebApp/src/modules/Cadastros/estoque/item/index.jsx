@@ -1,5 +1,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import React from "react";
+import { useAuthHeader } from "react-auth-kit";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import { z } from "zod";
@@ -9,6 +10,8 @@ import CadastroButton from "../../../../components/cadastroButton";
 import HeaderCadastroItem from "../components/headerCadastroItem";
 
 export default function Cadastroitem() {
+  const authHeader = useAuthHeader();
+  const getToken = authHeader();
   const baseURL = import.meta.env.VITE_BASE_URL;
 
   const insereItemSchema = z.object({
@@ -47,12 +50,9 @@ export default function Cadastroitem() {
 
     const options = {
       method: "POST",
-
+      headers: { "Content-Type": "application/json", Authorization: getToken },
       body: form,
     };
-    options.headers = new Headers({
-      Accept: "application/json",
-    });
 
     const url = `${baseURL}/item`;
 

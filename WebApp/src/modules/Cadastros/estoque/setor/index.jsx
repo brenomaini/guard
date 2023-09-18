@@ -1,5 +1,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import React from "react";
+import { useAuthHeader } from "react-auth-kit";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import { z } from "zod";
@@ -7,6 +8,8 @@ import CadastroButton from "../../../../components/cadastroButton";
 import HeaderCadastroItem from "../components/headerCadastroItem";
 
 export default function cadastroSetor() {
+  const authHeader = useAuthHeader();
+  const getToken = authHeader();
   const insereSetorSchema = z.object({
     nomeSetor: z.string().nonempty("Nome da marca é obrigatório"),
     numeroCentroDeCusto: z
@@ -25,7 +28,7 @@ export default function cadastroSetor() {
   function cadastrar(data) {
     const options = {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json", Authorization: getToken },
       body: JSON.stringify({
         nome: `${data.nomeSetor}`,
         centro_de_custo: `${data.numeroCentroDeCusto}`,

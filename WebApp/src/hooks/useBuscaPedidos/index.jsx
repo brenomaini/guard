@@ -1,7 +1,10 @@
+import { useAuthHeader } from "react-auth-kit";
 import { useQuery, useQueryClient } from "react-query";
 
 function useBuscarPedidos(page, filtro, qtdItensPagina) {
   const queryClient = useQueryClient();
+  const authHeader = useAuthHeader();
+  const getToken = authHeader();
 
   const baseURL = import.meta.env.VITE_BASE_URL;
   let url = `${baseURL}/pedido?pages=${qtdItensPagina}&page=${page}&ordenarDesc=id`;
@@ -17,7 +20,10 @@ function useBuscarPedidos(page, filtro, qtdItensPagina) {
 
   return useQuery({
     queryKey: ["pedidos", page, filtro, qtdItensPagina],
-    queryFn: () => fetch(url).then((res) => res.json()),
+    queryFn: () =>
+      fetch(url, { headers: { Authorization: getToken } }).then((res) =>
+        res.json()
+      ),
     keepPreviousData: true,
   });
 }

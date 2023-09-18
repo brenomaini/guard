@@ -50,9 +50,6 @@ export default function register() {
       method: "POST",
       body: form,
     };
-    options.headers = new Headers({
-      Accept: "application/json",
-    });
 
     const url = `${baseURL}/register`;
     const response = await fetch(url, options).then((response) => {

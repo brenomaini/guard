@@ -15,7 +15,7 @@ function App() {
   return (
     <AuthProvider
       authType={"cookie"}
-      authName={"authorization"}
+      authName={"Authorization"}
       cookieDomain={window.location.hostname}
       // cookieSecure={window.location.protocol === "https:"} reativar caso suba
       cookieSecure={false}

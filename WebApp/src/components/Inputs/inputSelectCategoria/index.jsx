@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
+import { useAuthHeader } from "react-auth-kit";
 export default function inputSelectCategoria() {
+  const authHeader = useAuthHeader();
+  const getToken = authHeader();
   const [categoryList, setCategoryList] = useState([
     {
       id: 1,
@@ -14,7 +17,9 @@ export default function inputSelectCategoria() {
   async function buscarCategorias() {
     const baseURL = import.meta.env.VITE_BASE_URL;
     const url = `${baseURL}/categoria?all`;
-    const lista = await fetch(url).then((res) => {
+    const lista = await fetch(url, {
+      headers: { Authorization: getToken },
+    }).then((res) => {
       let filtrada = res.json();
       return filtrada;
     });

@@ -1,8 +1,11 @@
 import React from "react";
 
 import { useEffect, useState } from "react";
+import { useAuthHeader } from "react-auth-kit";
 
 export default function inputSelectMarca() {
+  const authHeader = useAuthHeader();
+  const getToken = authHeader();
   const [setorList, setSetorList] = useState([
     {
       id: 1,
@@ -16,7 +19,9 @@ export default function inputSelectMarca() {
   async function buscarSetor() {
     const baseURL = import.meta.env.VITE_BASE_URL;
     const url = `${baseURL}/setor?all`;
-    const lista = await fetch(url).then((res) => {
+    const lista = await fetch(url, {
+      headers: { Authorization: getToken },
+    }).then((res) => {
       let filtrada = res.json();
       return filtrada;
     });

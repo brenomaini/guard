@@ -2,7 +2,7 @@ import { PlusCircleIcon } from "@heroicons/react/24/outline";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Tooltip } from "@material-tailwind/react";
 import React from "react";
-import { useAuthUser } from "react-auth-kit";
+import { useAuthHeader, useAuthUser } from "react-auth-kit";
 import { useForm } from "react-hook-form";
 import { useQueryClient } from "react-query";
 import Swal from "sweetalert2";
@@ -11,6 +11,8 @@ import InputSelectItem from "../../../../../../components/Inputs/inputSelectItem
 import InputSelectSetor from "../../../../../../components/Inputs/inputSelectSetor";
 
 export default function modalInserirPedido() {
+  const authHeader = useAuthHeader();
+  const getToken = authHeader();
   const queryClient = useQueryClient();
   const auth = useAuthUser();
 
@@ -62,11 +64,9 @@ export default function modalInserirPedido() {
 
     const options = {
       method: "POST",
+      headers: { "Content-Type": "application/json", Authorization: getToken },
       body: form,
     };
-    options.headers = new Headers({
-      Accept: "application/json",
-    });
 
     const url = `${baseURL}/pedido`;
 
