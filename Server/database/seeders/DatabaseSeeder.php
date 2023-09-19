@@ -28,5 +28,8 @@ class DatabaseSeeder extends Seeder
             SetorSeeder::class,
         ]);
 
+        $this->call([
+            UserSeeder::class,
+        ]);
     }
 }

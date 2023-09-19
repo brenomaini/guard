@@ -43,7 +43,7 @@ docker exec -it (CONTAINER ID) bash
 5° Torne o start.sh executável
 
 ```
-chmod +x /start.sh
+chmod +x start.sh
 ``` 
 
 6° Execute o script start.sh para instalar e configurar depedências do laravel no container
@@ -71,6 +71,15 @@ docker-compose up -d
 ```
 #### Front da aplicação configurada!
 
+### Usando
+
+- Ao iniciar os containers, acesse (http://localhost:3000), irá ser solicitada a autenticação, preencha os campos solicitados com as credênciais abaixo.
+
+```
+email: admin@guard.com
+password: 12345678
+```
+<img src="/WebApp/src/assets/img/login.png">
 
 ## Feito com:
 
