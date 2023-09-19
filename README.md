@@ -40,16 +40,21 @@ docker ps
 docker exec -it (CONTAINER ID) bash
 ```
 
-5° Execute o script start.sh para instalar e configurar depedências do laravel no container
+5° Torne o start.sh executável
+
+```
+chmod +x /start.sh
+``` 
+
+6° Execute o script start.sh para instalar e configurar depedências do laravel no container
 
 ```
 ./start.sh
 ``` 
+#### API configurada!
 
-## API configurada!
 
-
-### Subindo Container e configurando front da aplicação
+## Subindo Container e configurando front da aplicação
 
 - Abra um terminal no diretório /WebApp e siga o passo a passo para configurar o front que irá consumir a api
 
@@ -64,7 +69,7 @@ npm install
 ```
 docker-compose up -d
 ```
-## Front da aplicação configurada!
+#### Front da aplicação configurada!
 
 
 ## Feito com:
