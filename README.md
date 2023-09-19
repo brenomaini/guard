@@ -75,9 +75,13 @@ docker-compose up -d
 
 - Ao iniciar os containers, acesse (http://localhost:3000), irá ser solicitada a autenticação, preencha os campos solicitados com as credênciais abaixo.
 
+email:
 ```
-email: admin@guard.com
-password: 12345678
+admin@guard.com
+```
+senha:
+```
+12345678
 ```
 <img src="/WebApp/src/assets/img/login.png">
 
