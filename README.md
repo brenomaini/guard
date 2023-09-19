@@ -51,11 +51,10 @@ chmod +x /start.sh
 ```
 ./start.sh
 ``` 
+#### API configurada!
 
-## API configurada!
 
-
-### Subindo Container e configurando front da aplicação
+## Subindo Container e configurando front da aplicação
 
 - Abra um terminal no diretório /WebApp e siga o passo a passo para configurar o front que irá consumir a api
 
@@ -70,7 +69,7 @@ npm install
 ```
 docker-compose up -d
 ```
-## Front da aplicação configurada!
+#### Front da aplicação configurada!
 
 
 ## Feito com:
