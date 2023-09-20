@@ -18,10 +18,6 @@ O Guard foi desenvolvido com a simplicidade de uso em mente, garantindo que até
 
 Explore, experimente e aprimore o Guard para atender às suas necessidades específicas. Sua jornada de otimização do gerenciamento de estoque começa aqui.
 
-## Entendendo este doc
-
-As instruções abaixo visa te ajudar a copiar o projeto e setá-lo para rodar em sua máquina de forma local e poder testá-lo e contribuir com o mesmo.
-
 ### Pré-requisitos
 
 Docker ^20.10
