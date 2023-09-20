@@ -17,27 +17,33 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        $request->validate([
-            'email' => 'required|string|email',
-            'password' => 'required|string',
-        ]);
-        $credentials = $request->only('email', 'password');
-        $token = Auth::attempt($credentials);
+        try {
+            $request->validate([
+                'email' => 'required|string|email',
+                'password' => 'required|string',
+            ]);
+            $credentials = $request->only('email', 'password');
+            $token = Auth::attempt($credentials);
 
-        if (!$token) {
+            if (!$token) {
+                return response()->json([
+                    'message' => 'Unauthorized',
+                ], 401);
+            }
+
+            $user = Auth::user();
             return response()->json([
-                'message' => 'Unauthorized',
-            ], 401);
+                'user' => $user,
+                'authorization' => [
+                    'token' => $token,
+                    'type' => 'bearer',
+                ]
+            ]);
+        } catch (\PDOException $e) {
+            return response()->json([
+                'msg' => 'Erro: ' . $e->getMessage(),
+            ], 500);
         }
-
-        $user = Auth::user();
-        return response()->json([
-            'user' => $user,
-            'authorization' => [
-                'token' => $token,
-                'type' => 'bearer',
-            ]
-        ]);
     }
 
     public function register(Request $request)
