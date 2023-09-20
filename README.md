@@ -16,10 +16,6 @@ Recursos Principais:
 
 O Guard foi desenvolvido com a simplicidade de uso em mente, garantindo que até mesmo usuários iniciantes possam tirar o máximo proveito de suas funcionalidades avançadas.
 
-Se você está em busca de uma solução completa para a gestão de estoque empresarial, não procure mais. Junte-se a nós explorando este repositório e descubra como o Guard pode transformar a maneira como você gerencia seus recursos.
-
-Comece agora: Repositório do Projeto Guard
-
 Explore, experimente e aprimore o Guard para atender às suas necessidades específicas. Sua jornada de otimização do gerenciamento de estoque começa aqui.
 
 ## Entendendo este doc
