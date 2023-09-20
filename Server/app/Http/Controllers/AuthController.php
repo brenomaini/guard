@@ -41,7 +41,7 @@ class AuthController extends Controller
             ]);
         } catch (\PDOException $e) {
             return response()->json([
-                'msg' => 'Erro: ' . $e->getMessage(),
+                'msg' => 'Error: ' . $e->getMessage(),
             ], 500);
         }
     }
@@ -67,7 +67,7 @@ class AuthController extends Controller
             ]);
         } catch (\PDOException $e) {
             return response()->json([
-                'msg' => 'Erro: ' . $e->getMessage(),
+                'msg' => 'Error: ' . $e->getMessage(),
             ], 500);
         }
     }
