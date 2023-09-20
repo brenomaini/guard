@@ -18,9 +18,19 @@ O Guard foi desenvolvido com a simplicidade de uso em mente, garantindo que até
 
 Explore, experimente e aprimore o Guard para atender às suas necessidades específicas. Sua jornada de otimização do gerenciamento de estoque começa aqui.
 
-### Pré-requisitos
+### Pré-requisito (máquina local)
 
-Docker ^20.10
+* Composer >= 2.6.3
+* MariaDB >= 10.2 ou MySQL >= 8.0
+* Um web server (Apache, Nginx, IIS, etc.)
+
+|      PHP      |      NODE     |  
+| ------------- | ------------- |
+|     ^8.0      |    ^18.18.0   |
+
+### Pré-requisito (Docker)
+
+* Docker >= 20.10
 
 ## Subindo Container e configurando a API 
 

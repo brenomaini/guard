@@ -74,20 +74,32 @@ class AuthController extends Controller
 
     public function logout()
     {
-        Auth::logout();
-        return response()->json([
-            'message' => 'Successfully logged out',
-        ]);
+        try {
+            Auth::logout();
+            return response()->json([
+                'message' => 'Successfully logged out',
+            ]);
+        } catch (\PDOException $e) {
+            return response()->json([
+                'msg' => 'Error: ' . $e->getMessage(),
+            ], 500);
+        }
     }
 
     public function refresh()
     {
-        return response()->json([
-            'user' => Auth::user(),
-            'authorization' => [
-                'token' => Auth::refresh(),
-                'type' => 'bearer',
-            ]
-        ]);
+        try {
+            return response()->json([
+                'user' => Auth::user(),
+                'authorization' => [
+                    'token' => Auth::refresh(),
+                    'type' => 'bearer',
+                ]
+            ]);
+        } catch (\PDOException $e) {
+            return response()->json([
+                'msg' => 'Error: ' . $e->getMessage(),
+            ], 500);
+        }
     }
 }
