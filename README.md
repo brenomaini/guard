@@ -24,9 +24,9 @@ Explore, experimente e aprimore o Guard para atender às suas necessidades espec
 * MariaDB >= 10.2 ou MySQL >= 8.0
 * Um web server (Apache, Nginx, IIS, etc.)
 
-|      PHP      |      NODE     |  
-| ------------- | ------------- |
-|     ^8.0      |    ^18.18.0   |
+    |      PHP      |      NODE     |  
+    | ------------- | ------------- |
+    |     ^8.0      |   ^18.18.0    |
 
 ### Pré-requisito (Docker)
 
