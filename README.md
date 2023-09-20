@@ -16,19 +16,21 @@ Recursos Principais:
 
 O Guard foi desenvolvido com a simplicidade de uso em mente, garantindo que até mesmo usuários iniciantes possam tirar o máximo proveito de suas funcionalidades avançadas.
 
-Se você está em busca de uma solução completa para a gestão de estoque empresarial, não procure mais. Junte-se a nós explorando este repositório e descubra como o Guard pode transformar a maneira como você gerencia seus recursos.
-
-Comece agora: Repositório do Projeto Guard
-
 Explore, experimente e aprimore o Guard para atender às suas necessidades específicas. Sua jornada de otimização do gerenciamento de estoque começa aqui.
 
-## Entendendo este doc
+### Pré-requisito (máquina local)
 
-As instruções abaixo visa te ajudar a copiar o projeto e setá-lo para rodar em sua máquina de forma local e poder testá-lo e contribuir com o mesmo.
+* Composer >= 2.6.3
+* MariaDB >= 10.2 ou MySQL >= 8.0
+* Um web server (Apache, Nginx, IIS, etc.)
 
-### Pré-requisitos
+|      PHP      |      NODE     |  
+| ------------- | ------------- |
+|     ^8.0      |    ^18.18.0   |
 
-Docker ^20.10
+### Pré-requisito (Docker)
+
+* Docker >= 20.10
 
 ## Subindo Container e configurando a API 
 

@@ -41,47 +41,65 @@ class AuthController extends Controller
             ]);
         } catch (\PDOException $e) {
             return response()->json([
-                'msg' => 'Erro: ' . $e->getMessage(),
+                'msg' => 'Error: ' . $e->getMessage(),
             ], 500);
         }
     }
 
     public function register(Request $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6',
-        ]);
+        try {
+            $request->validate([
+                'name' => 'required|string|max:255',
+                'email' => 'required|string|email|max:255|unique:users',
+                'password' => 'required|string|min:6',
+            ]);
 
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
+            $user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+            ]);
 
-        return response()->json([
-            'message' => 'User created successfully',
-            'user' => $user
-        ]);
+            return response()->json([
+                'message' => 'User created successfully',
+                'user' => $user
+            ]);
+        } catch (\PDOException $e) {
+            return response()->json([
+                'msg' => 'Error: ' . $e->getMessage(),
+            ], 500);
+        }
     }
 
     public function logout()
     {
-        Auth::logout();
-        return response()->json([
-            'message' => 'Successfully logged out',
-        ]);
+        try {
+            Auth::logout();
+            return response()->json([
+                'message' => 'Successfully logged out',
+            ]);
+        } catch (\PDOException $e) {
+            return response()->json([
+                'msg' => 'Error: ' . $e->getMessage(),
+            ], 500);
+        }
     }
 
     public function refresh()
     {
-        return response()->json([
-            'user' => Auth::user(),
-            'authorization' => [
-                'token' => Auth::refresh(),
-                'type' => 'bearer',
-            ]
-        ]);
+        try {
+            return response()->json([
+                'user' => Auth::user(),
+                'authorization' => [
+                    'token' => Auth::refresh(),
+                    'type' => 'bearer',
+                ]
+            ]);
+        } catch (\PDOException $e) {
+            return response()->json([
+                'msg' => 'Error: ' . $e->getMessage(),
+            ], 500);
+        }
     }
 }
