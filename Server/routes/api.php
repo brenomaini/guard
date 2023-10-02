@@ -30,8 +30,4 @@ Route::middleware('jwt.auth')->group(function () {
     Route::Apiresource('notas', 'App\Http\Controllers\NotasFiscaisController');
     Route::Apiresource('itemestoque', 'App\Http\Controllers\ItemEstoqueController');
     Route::Apiresource('manutencoes', 'App\Http\Controllers\ManutencoesController');
-    //Route::Apiresource('retirado', 'App\Http\Controllers\RetiradoController');
-    //Route::Apiresource('perfil', 'App\Http\Controllers\PerfilController');
-    //Route::Apiresource('estoque', 'App\Http\Controllers\EstoqueController');
-    //Route::Apiresource('retirado', 'App\Http\Controllers\RetiradoController');
 });
